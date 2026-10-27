@@ -1,0 +1,720 @@
+{
+  "algorithmId": "sha256",
+  "pronunciations": {
+    "SHA-256": "莎二五六",
+    "UTF-8": "U T F 八",
+    "W": "消息字",
+    "T1": "T 一",
+    "T2": "T 二",
+    "a、b、c": "诶、比、西"
+  },
+  "beats": [
+    {
+      "id": "intro-box",
+      "kind": "analogy",
+      "title": "先分箱：固定大小的输入",
+      "text": "像流水线：先把消息变成字节，补齐分箱。",
+      "artworkRegion": [
+        0.01,
+        0.085,
+        0.99,
+        0.342
+      ],
+      "panelExplanations": [
+        "文本 → UTF-8 字节 → 填充后的 512 位消息块。"
+      ],
+      "ruleIds": [
+        "sha256-bytes",
+        "sha256-output"
+      ]
+    },
+    {
+      "id": "intro-work",
+      "kind": "analogy",
+      "title": "固定配方：同样的输入，同样的结果",
+      "text": "每箱让八个状态字，按固定配方交接六十四轮。",
+      "artworkRegion": [
+        0.01,
+        0.355,
+        0.99,
+        0.65
+      ],
+      "panelExplanations": [
+        "a—h 各 32 位；64 轮规则确定，不是随机搅拌。"
+      ],
+      "ruleIds": [
+        "sha256-bytes",
+        "sha256-output"
+      ]
+    },
+    {
+      "id": "intro-output",
+      "kind": "analogy",
+      "title": "输出指纹：固定二百五十六位",
+      "text": "最后拼成固定长度的指纹。这不是加密。",
+      "artworkRegion": [
+        0.01,
+        0.662,
+        0.99,
+        0.885
+      ],
+      "panelExplanations": [
+        "八个状态字按顺序连接：8 × 32 = 256 位。"
+      ],
+      "ruleIds": [
+        "sha256-bytes",
+        "sha256-output"
+      ]
+    },
+    {
+      "id": "bytes",
+      "kind": "event",
+      "title": "三个字节，每个字节八位",
+      "text": "a、b、c编码成三个字节，共二十四位。中文一字通常占多个字节。",
+      "eventIds": [
+        "0"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "detailEventIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "padding",
+      "kind": "event",
+      "title": "每格一个字节：原消息、填充、长度",
+      "text": "追加一位一，再补零；末八字节写原长度。这六十四格，正好一箱。",
+      "eventIds": [
+        "1"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "detailEventIds": [
+        "1"
+      ]
+    },
+    {
+      "id": "read-first",
+      "kind": "event",
+      "title": "四个相邻字节，组成第一个消息字",
+      "text": "四个字节按高位在前，接成一个三十二位消息字。",
+      "eventIds": [
+        "2"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "detailEventIds": [
+        "2"
+      ]
+    },
+    {
+      "id": "read-rest",
+      "kind": "recap",
+      "title": "同一读取规则：继续 W[1]—W[15]",
+      "text": "按同样规则读完前十六个字。",
+      "eventIds": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "schedule-zero",
+      "kind": "event",
+      "title": "扩展 W[16]：四项相加",
+      "text": "扩展取四项：两个旧字，加两个移位混合值。本步后三项为零。",
+      "eventIds": [
+        "18"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "visualFocus": "sha-schedule-sum",
+      "calculationKeys": [
+        "W[t−16]",
+        "σ0",
+        "W[t−7]",
+        "σ1"
+      ],
+      "operandsPerPage": 4,
+      "detailEventIds": [
+        "18"
+      ]
+    },
+    {
+      "id": "schedule-shift",
+      "kind": "event",
+      "title": "扩展 W[17]：看非零的移位混合",
+      "text": "下一步看非零的长度字。循环右移会绕回，逻辑右移补零。三行异或，奇数个一得一。",
+      "eventIds": [
+        "19"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "visualFocus": "sha-sigma1",
+      "calculationKeys": [
+        "ROTR17(y)",
+        "ROTR19(y)",
+        "y>>>10",
+        "σ1"
+      ],
+      "operandsPerPage": 4,
+      "detailEventIds": [
+        "19"
+      ]
+    },
+    {
+      "id": "schedule-rest",
+      "kind": "recap",
+      "title": "同一扩展规则：W[18]—W[63]",
+      "text": "余下四十六字复用规则，加和只留低三十二位。",
+      "eventIds": [
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "initialize",
+      "kind": "event",
+      "title": "八个工作寄存器从哪里来？",
+      "text": "将标准规定的八个初值，装入工作寄存器。",
+      "eventIds": [
+        "66"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after",
+      "detailEventIds": [
+        "66"
+      ]
+    },
+    {
+      "id": "rotate-e",
+      "kind": "event",
+      "title": "第一轮：先对旧 e 循环右移并异或",
+      "text": "第一轮，先把e的三次循环右移结果异或。",
+      "eventIds": [
+        "67"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "visualFocus": "sha-rotate-e",
+      "calculationKeys": [
+        "ROTR6(e)",
+        "ROTR11(e)",
+        "ROTR25(e)",
+        "Σ1(e)"
+      ],
+      "operandsPerPage": 4,
+      "detailEventIds": [
+        "67"
+      ]
+    },
+    {
+      "id": "choose",
+      "kind": "event",
+      "title": "逐位选择：e 为 1 取 f，否则取 g",
+      "text": "逐位看e：一取f，零取g。放大最高八位，沿亮线核对来源。",
+      "eventIds": [
+        "67"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after",
+      "visualFocus": "sha-ch",
+      "detailEventIds": [
+        "67"
+      ]
+    },
+    {
+      "id": "sum-t1",
+      "kind": "event",
+      "title": "把五项加起来，得到 T1",
+      "text": "再加旧h、轮常数和消息字，只留低三十二位，得到T1。",
+      "eventIds": [
+        "67"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "visualFocus": "sha-round-sum",
+      "calculationKeys": [
+        "h",
+        "Σ1(e)",
+        "Ch",
+        "K"
+      ],
+      "operandsPerPage": 4,
+      "detailEventIds": [
+        "67"
+      ]
+    },
+    {
+      "id": "majority",
+      "kind": "event",
+      "title": "逐位多数：三个来源投票",
+      "text": "另一路看a、b、c，每一位至少两个一才得一。",
+      "eventIds": [
+        "68"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after",
+      "visualFocus": "sha-maj",
+      "detailEventIds": [
+        "68"
+      ]
+    },
+    {
+      "id": "sum-t2",
+      "kind": "event",
+      "title": "移位混合与多数结果相加，得到 T2",
+      "text": "把a的三个循环右移结果异或，再加多数值，得到T2。",
+      "eventIds": [
+        "68"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "visualFocus": "sha-rotate-a",
+      "calculationKeys": [
+        "ROTR2(a)",
+        "ROTR13(a)",
+        "ROTR22(a)",
+        "Maj"
+      ],
+      "operandsPerPage": 4,
+      "detailEventIds": [
+        "68"
+      ]
+    },
+    {
+      "id": "update",
+      "kind": "event",
+      "title": "所有新值，都读取同一份旧状态",
+      "text": "新a是T1加T2，新e是旧d加T1。其余同步交接。b必须接收旧a，若用刚算的新a，就改了规则。",
+      "eventIds": [
+        "69"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "detailEventIds": [
+        "69"
+      ]
+    },
+    {
+      "id": "repeat",
+      "kind": "recap",
+      "title": "第 2—64 轮：同一混合与同步交接规则",
+      "text": "第二到六十四轮重复计算与交接。这里加速复盘，完整步骤在网页展开。",
+      "eventIds": [
+        "70",
+        "71",
+        "72",
+        "73",
+        "74",
+        "75",
+        "76",
+        "77",
+        "78",
+        "79",
+        "80",
+        "81",
+        "82",
+        "83",
+        "84",
+        "85",
+        "86",
+        "87",
+        "88",
+        "89",
+        "90",
+        "91",
+        "92",
+        "93",
+        "94",
+        "95",
+        "96",
+        "97",
+        "98",
+        "99",
+        "100",
+        "101",
+        "102",
+        "103",
+        "104",
+        "105",
+        "106",
+        "107",
+        "108",
+        "109",
+        "110",
+        "111",
+        "112",
+        "113",
+        "114",
+        "115",
+        "116",
+        "117",
+        "118",
+        "119",
+        "120",
+        "121",
+        "122",
+        "123",
+        "124",
+        "125",
+        "126",
+        "127",
+        "128",
+        "129",
+        "130",
+        "131",
+        "132",
+        "133",
+        "134",
+        "135",
+        "136",
+        "137",
+        "138",
+        "139",
+        "140",
+        "141",
+        "142",
+        "143",
+        "144",
+        "145",
+        "146",
+        "147",
+        "148",
+        "149",
+        "150",
+        "151",
+        "152",
+        "153",
+        "154",
+        "155",
+        "156",
+        "157",
+        "158",
+        "159",
+        "160",
+        "161",
+        "162",
+        "163",
+        "164",
+        "165",
+        "166",
+        "167",
+        "168",
+        "169",
+        "170",
+        "171",
+        "172",
+        "173",
+        "174",
+        "175",
+        "176",
+        "177",
+        "178",
+        "179",
+        "180",
+        "181",
+        "182",
+        "183",
+        "184",
+        "185",
+        "186",
+        "187",
+        "188",
+        "189",
+        "190",
+        "191",
+        "192",
+        "193",
+        "194",
+        "195",
+        "196",
+        "197",
+        "198",
+        "199",
+        "200",
+        "201",
+        "202",
+        "203",
+        "204",
+        "205",
+        "206",
+        "207",
+        "208",
+        "209",
+        "210",
+        "211",
+        "212",
+        "213",
+        "214",
+        "215",
+        "216",
+        "217",
+        "218",
+        "219",
+        "220",
+        "221",
+        "222",
+        "223",
+        "224",
+        "225",
+        "226",
+        "227",
+        "228",
+        "229",
+        "230",
+        "231",
+        "232",
+        "233",
+        "234",
+        "235",
+        "236",
+        "237",
+        "238",
+        "239",
+        "240",
+        "241",
+        "242",
+        "243",
+        "244",
+        "245",
+        "246",
+        "247",
+        "248",
+        "249",
+        "250",
+        "251",
+        "252",
+        "253",
+        "254",
+        "255",
+        "256",
+        "257",
+        "258"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "chain",
+      "kind": "event",
+      "title": "旧链式状态 + 工作结果 = 新链式状态",
+      "text": "工作结果逐项加回本块之前的状态，只留低三十二位。后续消息块继承它，不能各自计算再拼接。",
+      "eventIds": [
+        "259"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "calculationKeys": [],
+      "operandsPerPage": 4,
+      "detailEventIds": [
+        "259"
+      ]
+    },
+    {
+      "id": "output",
+      "kind": "event",
+      "title": "顺序连接八个字，不是把它们相加",
+      "text": "最后按编号连接八个字，得到二百五十六位摘要。",
+      "eventIds": [
+        "260"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "detailEventIds": [
+        "260"
+      ]
+    },
+    {
+      "id": "contrast",
+      "kind": "event",
+      "title": "同一配方，比较两份真实摘要",
+      "text": "末尾c改成d，同样算完全部流程。本例一百二十二位不同，橙格逐位标出，并非每次恰好一半。",
+      "eventIds": [
+        "261"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after",
+      "detailEventIds": [
+        "261"
+      ]
+    },
+    {
+      "id": "finish-use",
+      "kind": "summary",
+      "title": "能做什么：内容指纹与完整性核对",
+      "text": "摘要可作内容指纹；核对完整性时，预期摘要应来自可信渠道。",
+      "artworkRegion": [
+        0.01,
+        0.62,
+        0.515,
+        0.89
+      ],
+      "panelExplanations": [
+        "内容变化 → 重新计算摘要 → 与可信的预期摘要比较。"
+      ],
+      "ruleIds": [
+        "sha256-bytes",
+        "sha256-output"
+      ]
+    },
+    {
+      "id": "finish-limit",
+      "kind": "summary",
+      "title": "使用边界：不能解密，也不能排除碰撞",
+      "text": "它不能解密还原，不同输入仍可能碰撞。记住分箱、调度、同步混合、块合并，再输出。",
+      "artworkRegion": [
+        0.525,
+        0.62,
+        0.99,
+        0.89
+      ],
+      "panelExplanations": [
+        "不是可解密的密文；有限长度意味着不同输入可能得到相同摘要。"
+      ],
+      "ruleIds": [
+        "sha256-bytes",
+        "sha256-output"
+      ]
+    }
+  ],
+  "artworkPanels": {
+    "analogy": [
+      [
+        0.01,
+        0.085,
+        0.99,
+        0.342
+      ],
+      [
+        0.01,
+        0.355,
+        0.99,
+        0.65
+      ],
+      [
+        0.01,
+        0.662,
+        0.99,
+        0.885
+      ]
+    ],
+    "summary": [
+      [
+        0.01,
+        0.087,
+        0.99,
+        0.33
+      ],
+      [
+        0.01,
+        0.34,
+        0.99,
+        0.611
+      ],
+      [
+        0.01,
+        0.62,
+        0.99,
+        0.89
+      ]
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "algorithmId": "merge-sort",
+  "lessonVersion": 2,
+  "traceHash": "b933defee7ac359f21aef29757f1e54fb0b72bfed230a4754faecc7a8c4c4248",
+  "checkedAt": "2026-10-26",
+  "reviewedAt": "2026-10-26",
+  "reviewer": "Codex：逐张目视检查与真实事件对照",
+  "generator": "built-in imagegen",
+  "status": "accepted",
+  "assets": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "version": 2,
+      "notes": [
+        "两队只包含2、5和2、4、7；移除多余未编号人物，甲先乙后。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "version": 3,
+      "notes": [
+        "分割2+3、1+2、1+1符合真实事件；修正初稿三分和括号歧义。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "version": 2,
+      "notes": [
+        "同值顺序与临时缓冲区准确；反例改为顺序错乱，不声称丢失元素。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    }
+  ],
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "两队只包含2、5和2、4、7；移除多余未编号人物，甲先乙后。",
+      "status": "passed"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "分割2+3、1+2、1+1符合真实事件；修正初稿三分和括号歧义。",
+      "status": "passed"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "同值顺序与临时缓冲区准确；反例改为顺序错乱，不声称丢失元素。",
+      "status": "passed"
+    }
+  ],
+  "script": {
+    "file": "media/scripts/merge-sort.json",
+    "beats": 8,
+    "narrationCharacters": 688,
+    "hanCharacters": 606,
+    "status": "authored-and-event-checked",
+    "videoRendered": false,
+    "revision": "删去重复旁白，为150秒内成片保留收尾；规则、事件、对比未删减。"
+  },
+  "limitations": [
+    "这是漫画与脚本审查；未在本记录中宣称成片已渲染或已听评。",
+    "影视动画沿用真实eventIds；类比与反例图不冒充额外计算记录。"
+  ]
+}

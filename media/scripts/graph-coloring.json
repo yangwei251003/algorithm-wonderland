@@ -1,0 +1,378 @@
+{
+  "algorithmId": "graph-coloring",
+  "pronunciations": {
+    "DSATUR": "饱和度优先着色"
+  },
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "不能同时考的科目连起来",
+      "text": "考试有共同学生就不能同时考。科目画成点，冲突连边，颜色代表时段。相邻点异色，其余可以复用。饱和度优先法先处理已被最多种邻色限制的考试。",
+      "ruleIds": [
+        "graph-coloring.initialize"
+      ],
+      "panelExplanations": [
+        "有共同学生的考试连边；颜色代表时段。每条冲突边两端必须异色。",
+        "相邻科目分开，无冲突的科目可以复用时段。每次试色都要检查邻居。",
+        "饱和度数的是邻居已经使用的不同颜色数，优先处理限制更多的考试。"
+      ]
+    },
+    {
+      "id": "saturation",
+      "kind": "rule",
+      "title": "邻居多，不等于限制颜色多",
+      "text": "饱和度数的是已着色邻居用了多少种不同颜色。三个邻居都用同一种色，只封住一个时段；两个邻居分别用两种色，却封住两个。",
+      "ruleIds": [
+        "graph-coloring.select"
+      ],
+      "artwork": "../comics/graph-coloring/analogy.png",
+      "artworkRegion": [
+        0.01,
+        0.648,
+        0.99,
+        0.898
+      ],
+      "visualExplanation": "三邻居同色 → 饱和度1。\n两邻居异色 → 饱和度2。\n数不同颜色，不数邻居人数。"
+    },
+    {
+      "id": "tie",
+      "kind": "rule",
+      "title": "并列时，按确定的顺序比较",
+      "text": "并列时，本版比较原图连接数，再按小编号选择，不是随机挑一个点。",
+      "ruleIds": [
+        "graph-coloring.select"
+      ],
+      "artwork": "../comics/graph-coloring/rules.png",
+      "artworkRegion": [
+        0.015,
+        0.153,
+        0.99,
+        0.263
+      ],
+      "visualExplanation": "先比较饱和度；再比较原图度数；仍相同，按小编号。"
+    },
+    {
+      "id": "first",
+      "kind": "event",
+      "title": "全部无色时如何先选D",
+      "text": "开始全部无色，饱和度都是零。节点D连接四个邻居，度数最高，按并列规则先处理它。其他节点仍待安排，不是被删除。",
+      "ruleIds": [
+        "graph-coloring.initialize",
+        "graph-coloring.select",
+        "graph-coloring.color"
+      ],
+      "eventIds": [
+        "0",
+        "1"
+      ],
+      "detailEventIds": [
+        "1"
+      ],
+      "pageModes": [
+        "rule",
+        "comparison"
+      ]
+    },
+    {
+      "id": "first-color",
+      "kind": "event",
+      "title": "给D最小可用颜色零",
+      "text": "D的邻居还没着色，颜色零没有被占用，所以给D颜色零。",
+      "eventIds": [
+        "2"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "detailEventIds": [
+        "2"
+      ]
+    },
+    {
+      "id": "choose-a",
+      "kind": "event",
+      "title": "并列时先选A",
+      "text": "随后A、B、C条件相同，按小编号先选A。",
+      "eventIds": [
+        "3"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "detailEventIds": [
+        "3"
+      ]
+    },
+    {
+      "id": "reject-a",
+      "kind": "event",
+      "title": "A的颜色零为什么冲突",
+      "text": "A与D相邻，而D已用颜色零，先拒绝零。",
+      "eventIds": [
+        "4"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "detailEventIds": [
+        "4"
+      ]
+    },
+    {
+      "id": "accept-a",
+      "kind": "event",
+      "title": "A接受颜色一",
+      "text": "再试颜色一；一未被邻居占用，才接受。相邻异色约束决定这次选择。",
+      "eventIds": [
+        "5"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "detailEventIds": [
+        "5"
+      ]
+    },
+    {
+      "id": "second",
+      "kind": "event",
+      "title": "B的饱和度为二",
+      "text": "B的饱和度为二，邻居用了零和一。",
+      "eventIds": [
+        "6"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "detailEventIds": [
+        "6"
+      ]
+    },
+    {
+      "id": "reject-b",
+      "kind": "event",
+      "title": "B先排除颜色零",
+      "text": "先试零，",
+      "eventIds": [
+        "7"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "detailEventIds": [
+        "7"
+      ],
+      "readingHoldSeconds": 0.6
+    },
+    {
+      "id": "reject-b-one",
+      "kind": "event",
+      "title": "B再排除颜色一",
+      "text": "再试一，两色都被邻居占用而拒绝。",
+      "eventIds": [
+        "8"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "detailEventIds": [
+        "8"
+      ]
+    },
+    {
+      "id": "accept-b",
+      "kind": "event",
+      "title": "B接受最小可用颜色二",
+      "text": "最终选择二。必须逐色检查，不能凭节点编号指定时段。",
+      "eventIds": [
+        "9"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "detailEventIds": [
+        "9"
+      ]
+    },
+    {
+      "id": "third",
+      "kind": "event",
+      "title": "C受到三种邻色限制",
+      "text": "C的邻居已有零、一、二三种颜色。",
+      "eventIds": [
+        "10"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "detailEventIds": [
+        "10"
+      ]
+    },
+    {
+      "id": "reject-c",
+      "kind": "event",
+      "title": "C逐一排除零、一、二",
+      "text": "依次尝试零、一、二，都因邻居占用而拒绝。",
+      "eventIds": [
+        "11",
+        "12",
+        "13"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "detailEventIds": [
+        "11",
+        "12",
+        "13"
+      ],
+      "readingHoldSeconds": 0.8
+    },
+    {
+      "id": "accept-c",
+      "kind": "event",
+      "title": "C接受最小可用颜色三",
+      "text": "三是最小可用色，因此出现第四个时段。",
+      "eventIds": [
+        "14"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "detailEventIds": [
+        "14"
+      ]
+    },
+    {
+      "id": "reuse",
+      "kind": "event",
+      "title": "最后处理E",
+      "text": "最后处理E，它只与D相邻。",
+      "eventIds": [
+        "15"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "detailEventIds": [
+        "15"
+      ]
+    },
+    {
+      "id": "reject-e",
+      "kind": "event",
+      "title": "E只排除颜色零",
+      "text": "所以只排除D使用的零。",
+      "eventIds": [
+        "16"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "detailEventIds": [
+        "16"
+      ]
+    },
+    {
+      "id": "accept-e",
+      "kind": "event",
+      "title": "E复用颜色一",
+      "text": "颜色一与邻居兼容，可以复用。晚处理不一定需要新颜色。",
+      "eventIds": [
+        "17"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "detailEventIds": [
+        "17"
+      ]
+    },
+    {
+      "id": "limit",
+      "kind": "comparison",
+      "title": "没有冲突不代表颜色最少",
+      "text": "本例最终用了四个时段，所有冲突边两端颜色不同。但这是一种贪心启发式，普通输入上不保证全局颜色最少。证明最少需要额外下界或精确搜索，不能仅凭没有冲突就宣布最优。",
+      "ruleIds": [
+        "graph-coloring.stop"
+      ],
+      "eventIds": [
+        "18"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "每种被拒颜色都有邻居证据",
+      "text": "回放重新统计饱和度、选节点、从最小颜色试起。拒绝色是邻居已用，延后节点是别处限制更紧。最后检查所有冲突边，报告实际用色数。",
+      "ruleIds": [
+        "graph-coloring.initialize",
+        "graph-coloring.select",
+        "graph-coloring.color",
+        "graph-coloring.stop"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18"
+      ]
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "冲突关系可以迁移",
+      "text": "排考试、互斥活动、干扰频道都可建成冲突图。时段长度、人员和禁用时段需另加约束。先处理限制最多者，再给最小可用色。",
+      "ruleIds": [
+        "graph-coloring.stop"
+      ],
+      "artwork": "../comics/graph-coloring/summary.png",
+      "artworkRegion": [
+        0.01,
+        0.663,
+        0.99,
+        0.887
+      ],
+      "visualExplanation": "考试、互斥活动、干扰频道都可建冲突图。\n额外资源和禁用时段，需另加约束。"
+    }
+  ],
+  "artworkPanels": {
+    "analogy": [
+      [
+        0.01,
+        0.092,
+        0.99,
+        0.375
+      ],
+      [
+        0.01,
+        0.382,
+        0.99,
+        0.638
+      ],
+      [
+        0.01,
+        0.648,
+        0.99,
+        0.898
+      ]
+    ]
+  }
+}

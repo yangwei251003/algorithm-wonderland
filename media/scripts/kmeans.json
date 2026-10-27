@@ -1,0 +1,337 @@
+{
+  "algorithmId": "kmeans",
+  "artworkPanels": {
+    "analogy": [
+      [
+        0,
+        0.08,
+        1,
+        0.348
+      ],
+      [
+        0,
+        0.355,
+        1,
+        0.622
+      ],
+      [
+        0,
+        0.63,
+        1,
+        0.885
+      ]
+    ],
+    "summary": [
+      [
+        0,
+        0.085,
+        1,
+        0.3
+      ],
+      [
+        0,
+        0.306,
+        1,
+        0.582
+      ],
+      [
+        0,
+        0.586,
+        1,
+        0.862
+      ]
+    ]
+  },
+  "pronunciations": {
+    "K-means": "K均值",
+    "SSE": "组内距离平方和"
+  },
+  "beats": [
+    {
+      "id": "intro-place",
+      "kind": "analogy",
+      "title": "先放两个集合点",
+      "text": "六位朋友要分成两个集合小组。先在地图上放两个集合点；组数由我们指定，算法不会提前知道应该分几组。",
+      "artwork": "../comics/kmeans/analogy.png",
+      "artworkRegion": [
+        0,
+        0.082,
+        1,
+        0.346
+      ],
+      "panelExplanations": [
+        "两面旗子对应两个初始中心。朋友的位置是输入，中心是可以移动的集合点。"
+      ],
+      "ruleIds": [
+        "kmeans-init"
+      ]
+    },
+    {
+      "id": "intro-choose",
+      "kind": "analogy",
+      "title": "每个人先选较近的一组",
+      "text": "每个人比较两个集合点，选择距离较近的一个。这个阶段只改变归属，两个集合点先不动。",
+      "artwork": "../comics/kmeans/analogy.png",
+      "artworkRegion": [
+        0,
+        0.356,
+        1,
+        0.622
+      ],
+      "panelExplanations": [
+        "朋友逐个比较到两面旗子的距离；较近的旗子决定当前归属。"
+      ],
+      "ruleIds": [
+        "kmeans-nearest"
+      ]
+    },
+    {
+      "id": "intro-move",
+      "kind": "analogy",
+      "title": "再把集合点搬到平均位置",
+      "text": "分好后，把集合点搬到成员的平均位置；再重新分组。这就是K-means交替进行的两件事。",
+      "artwork": "../comics/kmeans/analogy.png",
+      "artworkRegion": [
+        0,
+        0.632,
+        1,
+        0.885
+      ],
+      "panelExplanations": [
+        "固定分组后，分别平均成员的横、纵坐标。下一轮再比较距离。"
+      ],
+      "ruleIds": [
+        "kmeans-mean"
+      ]
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "本例的初始中心",
+      "text": "两个初始中心从样本里抽取。这次都落在右边，第一轮分组可能很不理想。算法并未提前知道答案。",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "kmeans-init"
+      ]
+    },
+    {
+      "id": "distance",
+      "kind": "event",
+      "title": "点1到第二个中心有多远？",
+      "text": "先看点一，坐标十八、二十四。第二个中心在七十六、六十二。横纵坐标分别相减、平方再相加，得到四千八百零八。",
+      "eventIds": [
+        "1"
+      ],
+      "ruleIds": [
+        "kmeans-nearest"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "reject-c1",
+      "kind": "event",
+      "title": "为什么不选第一个中心？",
+      "text": "同一个点到第一中心的距离平方是四千八百五十二，比四千八百零八更大。因此第一组这次被舍弃。",
+      "eventIds": [
+        "1"
+      ],
+      "ruleIds": [
+        "kmeans-nearest"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "中心 1"
+      ]
+    },
+    {
+      "id": "choose-c2",
+      "kind": "event",
+      "title": "距离更小，所以选第二组",
+      "text": "第二组的距离平方更小，所以点一归入第二组。依据是距离，不是哪一组人少；距离相等时才按较小编号。",
+      "eventIds": [
+        "1"
+      ],
+      "ruleIds": [
+        "kmeans-nearest"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "中心 2"
+      ]
+    },
+    {
+      "id": "others",
+      "kind": "event",
+      "title": "其余5个点也逐个比较",
+      "text": "其余五个点照同一规则比较。连线标出正在计算的对象；在所有点分完前，两个中心保持不动。",
+      "eventIds": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "ruleIds": [
+        "kmeans-nearest"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "move-one",
+      "kind": "event",
+      "title": "第一组中心移动到平均位置",
+      "text": "第一组有两个点。横坐标之和除以二，纵坐标之和也除以二，中心移到七十六、七十二。",
+      "eventIds": [
+        "7"
+      ],
+      "ruleIds": [
+        "kmeans-mean"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "move-two",
+      "kind": "event",
+      "title": "第二组也按同样方法平均",
+      "text": "第二组有四个点，平均后中心是三十四点五、三十三。中心可以落在没有实际数据点的位置。",
+      "eventIds": [
+        "8"
+      ],
+      "ruleIds": [
+        "kmeans-mean"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "event",
+      "title": "为什么不能现在就结束？",
+      "text": "中心移动后，原先最近的集合点可能不再最近。当前距离平方和虽然下降了，归属仍有变化，还不能停止。",
+      "eventIds": [
+        "9"
+      ],
+      "ruleIds": [
+        "kmeans-stop"
+      ]
+    },
+    {
+      "id": "repeat",
+      "kind": "recap",
+      "title": "第2至3轮：重复分配与移动",
+      "text": "现在加速回放第二、第三轮的分配与移动。详细计算可在网页展开。每轮先比较距离，再移动中心。",
+      "eventIds": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26"
+      ],
+      "ruleIds": [
+        "kmeans-nearest",
+        "kmeans-mean",
+        "kmeans-stop"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "stop",
+      "kind": "event",
+      "title": "第三轮归属不再改变",
+      "text": "第三轮，所有点保持原组，中心也不再移动。距离平方和为二百，停止迭代。",
+      "eventIds": [
+        "27"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "contrast",
+      "kind": "comparison",
+      "title": "稳定，也可能不符合你的问题",
+      "text": "内外两圈的例子中，K-means却把两圈切成两半。它追求围绕中心的紧凑分组，不是任意形状；稳定也不保证全局最优。",
+      "ruleIds": [
+        "kmeans-stop"
+      ],
+      "caseFile": "kmeans-counterexample.json",
+      "caseLabel": "另一组输入：同心双环",
+      "caseExplanation": "这里仍按到中心的距离分组，而不是按内外圈身份。两圈各有 12 个点进入每一组；稳定分组不一定符合你的目标。"
+    },
+    {
+      "id": "summary-0",
+      "kind": "summary",
+      "title": "复盘这个案例",
+      "text": "六点分成两组，三轮后稳定，距离平方和二百。",
+      "artworkRegion": [
+        0,
+        0.085,
+        1,
+        0.3
+      ],
+      "panelExplanations": [
+        "本例6个点分成2组，3轮后稳定，距离平方和为200。"
+      ]
+    },
+    {
+      "id": "summary-1",
+      "kind": "summary",
+      "title": "两件事交替进行",
+      "text": "初始化只做一次。之后重复分配、平均、检查归属，直到不变。",
+      "artworkRegion": [
+        0,
+        0.306,
+        1,
+        0.582
+      ],
+      "panelExplanations": [
+        "初始化只做一次；接着重复分配、求平均、检查归属。归属仍变就继续，不变就停。"
+      ]
+    },
+    {
+      "id": "summary-2",
+      "kind": "summary",
+      "title": "什么问题适合它",
+      "text": "适合紧凑的顾客分群；环形数据可能不合适。组数需先给定，初始位置也影响结果。",
+      "artworkRegion": [
+        0,
+        0.586,
+        1,
+        0.862
+      ],
+      "panelExplanations": [
+        "适合围绕中心的紧凑分群；内外圈等特殊形状可能被切开。组数与初始中心需要选择。"
+      ]
+    }
+  ]
+}

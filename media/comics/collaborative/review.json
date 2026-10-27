@@ -1,0 +1,44 @@
+{
+  "algorithmId": "collaborative",
+  "lessonVersion": 2,
+  "traceHash": "93eab79da8ef3beec2e018108d3b9ad07f4d082be9ce9accc123e64c4f866780",
+  "reviewedAt": "2026-10-25T19:18:14.526626+00:00",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "collaborative：生活类比",
+      "status": "passed",
+      "checks": [
+        "查看共同评分先用于物品相似，再用个人已评分加权；0=缺失与证据收缩清楚。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "collaborative：规则计算",
+      "status": "passed",
+      "checks": [
+        "核对5/4分及0.82724/0.80795相似度，加权约4.51；取2邻居且缺失不参与。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "collaborative：应用与边界",
+      "status": "passed",
+      "checks": [
+        "已改正用户相似说法为物品相似加权，移除虚构红心评分；冷启动和独立反馈限制清楚。"
+      ],
+      "corrections": [
+        "修正此图的推荐类型：本图是物品协同过滤，不是用户协同过滤。左上对白替换为“先用其他观众对两部电影的共同评分，计算电影之间的相似度；再用你对相似电影的评分，预测候选电影。”右下橙色个人加权预测对白必须替换为“根据你对相似电影的已有评分，按物品相似度加权，预测这部候选电影。”删除一切“与你相似用户”的说法。下方共同评分图所有红心评分数字删除，改为无数值的档案卡/空表单示意，避免虚构额外评分。保留其他风格、标题、边界、流程。"
+      ]
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "示意场景不代表未经计算的新增实验"
+  ]
+}

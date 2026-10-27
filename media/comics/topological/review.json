@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "algorithmId": "topological",
+  "lessonVersion": 2,
+  "traceHash": "0c423df8242d1f94204427f7b1fb04d59240b0b5119f1d7ea0b625068c53900b",
+  "checkedAt": "2026-10-26",
+  "reviewedAt": "2026-10-26",
+  "reviewer": "Codex：逐张目视检查与真实事件对照",
+  "generator": "built-in imagegen",
+  "status": "accepted",
+  "assets": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "version": 1,
+      "notes": [
+        "A和B都完成才能做C，对应两把锁；非二选一。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "version": 3,
+      "notes": [
+        "初始入度0,1,2,2,2，完成A/B后的减一表逐项核对；移除错误自动连边，明确减的是后继入度。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "version": 1,
+      "notes": [
+        "完成序列A,B,C,D,E；X/Y环外Z也可被堵住，不把全部剩余节点判作环。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    }
+  ],
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "A和B都完成才能做C，对应两把锁；非二选一。",
+      "status": "passed"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "初始入度0,1,2,2,2，完成A/B后的减一表逐项核对；移除错误自动连边，明确减的是后继入度。",
+      "status": "passed"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "完成序列A,B,C,D,E；X/Y环外Z也可被堵住，不把全部剩余节点判作环。",
+      "status": "passed"
+    }
+  ],
+  "script": {
+    "file": "media/scripts/topological.json",
+    "beats": 8,
+    "narrationCharacters": 660,
+    "hanCharacters": 590,
+    "status": "authored-and-event-checked",
+    "videoRendered": false
+  },
+  "limitations": [
+    "这是漫画与脚本审查，成片渲染及音频验收由统一媒体流程另行记录。",
+    "类比、局部规则示意与反例均不冒充额外真实执行记录。"
+  ]
+}

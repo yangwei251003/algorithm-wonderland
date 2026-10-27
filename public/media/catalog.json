@@ -1,0 +1,1850 @@
+{
+  "ahp": {
+    "algorithmId": "ahp",
+    "lessonVersion": 2,
+    "traceHash": "a8472cde55d92e9cc9a3eba95867c5f7a3b7dcdc5ea84d77e462e989350ea616",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/ahp/comic-analogy.png",
+        "alt": "购物时两两比较价格、性能、便携重要性"
+      },
+      {
+        "role": "rules",
+        "src": "media/ahp/comic-rules.png",
+        "alt": "互反矩阵和归一化幂迭代的真实分数"
+      },
+      {
+        "role": "summary",
+        "src": "media/ahp/comic-summary.png",
+        "alt": "最重视性能与推荐均衡款分别呈现"
+      }
+    ]
+  },
+  "annealing": {
+    "algorithmId": "annealing",
+    "lessonVersion": 2,
+    "traceHash": "fbf462e16f25e56db640c5ecb02c0687b781c008ab439b32f5e5e5911c19188f",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/annealing/comic-analogy.png",
+        "alt": "高低温只改变同损失接受概率；抽签箱修正为是否接受，与候选生成分开。"
+      },
+      {
+        "role": "rules",
+        "src": "media/annealing/comic-rules.png",
+        "alt": "最大化差值、p=exp(Δ/T)、两次抽签接受/拒绝数值正确；标明舍入与温度下限；修正记录本收益标签。"
+      },
+      {
+        "role": "summary",
+        "src": "media/annealing/comic-summary.png",
+        "alt": "160轮25次接受下坡、位置24.29收益36.02与真实结果一致；返回历史最好且无全局保证。"
+      }
+    ]
+  },
+  "ant-colony": {
+    "algorithmId": "ant-colony",
+    "lessonVersion": 2,
+    "traceHash": "04c13113bb4288efb912b231fd0d10c4407d5fcd5b2b3167c4902c848058430e",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/ant-colony/comic-analogy.png",
+        "alt": "侦察路标类比加权选择、蒸发与沉积；距离6/3明确仅类比，改正旧路线/新路线的误导标签。"
+      },
+      {
+        "role": "rules",
+        "src": "media/ant-colony/comic-rules.png",
+        "alt": "首步候选概率31.35%、18.73%、49.92%及抽签0.72308选4一致；蒸发0.75和所有蚂蚁每边双向100/L准确。"
+      },
+      {
+        "role": "summary",
+        "src": "media/ant-colony/comic-summary.png",
+        "alt": "4城3蚂蚁5轮、最好14231长120.79一致；其他闭环显式规则示意，已把无证明最优措辞改为本次最好。"
+      }
+    ]
+  },
+  "apriori": {
+    "algorithmId": "apriori",
+    "lessonVersion": 2,
+    "traceHash": "5a5ce94dc443151311e157501ebe11968560b6ec0fd8e209233b4b3179b6c0ae",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/apriori/comic-analogy.png",
+        "alt": "Apriori 关联规则：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/apriori/comic-rules.png",
+        "alt": "Apriori 关联规则：规则与计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/apriori/comic-summary.png",
+        "alt": "Apriori 关联规则：结果与边界"
+      }
+    ]
+  },
+  "astar": {
+    "algorithmId": "astar",
+    "lessonVersion": 2,
+    "traceHash": "af659008e912535715a97d0b1ae472acde6ced74f4bdbee097e94c3e72072eb2",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/astar/comic-analogy.png",
+        "alt": "快递员同时记录已经花费和预计剩余代价。"
+      },
+      {
+        "role": "rules",
+        "src": "media/astar/comic-rules.png",
+        "alt": "真实候选：1号f=11，5号f=8；未选中只是等待。"
+      },
+      {
+        "role": "summary",
+        "src": "media/astar/comic-summary.png",
+        "alt": "本例最短代价14；低估剩余代价的启发式和非负边是条件。"
+      }
+    ]
+  },
+  "bayes": {
+    "algorithmId": "bayes",
+    "lessonVersion": 2,
+    "traceHash": "4e13d82874550e7972eaa4937b95e8f6c28d169de5a0d3c624f00570c6547265",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/bayes/comic-analogy.png",
+        "alt": "贝叶斯更新：生活类比与核心思想"
+      },
+      {
+        "role": "rules",
+        "src": "media/bayes/comic-rules.png",
+        "alt": "贝叶斯更新：真实样例的计算规则"
+      },
+      {
+        "role": "summary",
+        "src": "media/bayes/comic-summary.png",
+        "alt": "贝叶斯更新：用途与适用边界"
+      }
+    ]
+  },
+  "bfs": {
+    "algorithmId": "bfs",
+    "lessonVersion": 2,
+    "traceHash": "2f05a27e5bb99a151de0c6faff1f02ec6a919fcf04c6cb643ca8a258afa3b41b",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/bfs/comic-analogy.png",
+        "alt": "逐层询问朋友，对应先入先出的待处理名单。"
+      },
+      {
+        "role": "rules",
+        "src": "media/bfs/comic-rules.png",
+        "alt": "真实5×5地图：右下左上检查、首次登记及队列追加。"
+      },
+      {
+        "role": "summary",
+        "src": "media/bfs/comic-summary.png",
+        "alt": "找到8步路线；等代价条件下保证最少边数。"
+      }
+    ]
+  },
+  "binary-search": {
+    "algorithmId": "binary-search",
+    "lessonVersion": 2,
+    "traceHash": "b952857db240eb0a04283094a8734a91c749764468c5997291a24d709f35025e",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/binary-search/comic-analogy.png",
+        "alt": "有序货架找23，检查17、31、23并逐次缩小范围。"
+      },
+      {
+        "role": "rules",
+        "src": "media/binary-search/comic-rules.png",
+        "alt": "根据升序证据排除左区间和右区间，三次比较命中23。"
+      },
+      {
+        "role": "summary",
+        "src": "media/binary-search/comic-summary.png",
+        "alt": "说明有序前提、错误用于无序列表的反例和排序准备成本。"
+      }
+    ]
+  },
+  "bloom": {
+    "algorithmId": "bloom",
+    "lessonVersion": 2,
+    "traceHash": "7863d4513756b8cb0f0b7abe9431bb5233c07e9e019672845dd10f03479219f4",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/bloom/comic-analogy.png",
+        "alt": "Bloom Filter 布隆过滤器：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/bloom/comic-rules.png",
+        "alt": "Bloom Filter 布隆过滤器：规则与计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/bloom/comic-summary.png",
+        "alt": "Bloom Filter 布隆过滤器：结果与边界"
+      }
+    ]
+  },
+  "bm25": {
+    "algorithmId": "bm25",
+    "lessonVersion": 2,
+    "traceHash": "fa74a112682e168c6d00bec0409994df10843188fd0cae84fb1c115cf83f3684",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/bm25/comic-analogy.png",
+        "alt": "BM25 文本检索：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/bm25/comic-rules.png",
+        "alt": "BM25 文本检索：规则与计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/bm25/comic-summary.png",
+        "alt": "BM25 文本检索：结果与边界"
+      }
+    ]
+  },
+  "boids": {
+    "algorithmId": "boids",
+    "lessonVersion": 2,
+    "traceHash": "52958863e32ea51702cae77fbbe4b4a92c43b060d6d01c3a3838376dcbdf88f5",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/boids/comic-analogy.png",
+        "alt": "Boids 鸟群：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/boids/comic-rules.png",
+        "alt": "Boids 鸟群：规则与真实计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/boids/comic-summary.png",
+        "alt": "Boids 鸟群：结果与适用边界"
+      }
+    ]
+  },
+  "bootstrap": {
+    "algorithmId": "bootstrap",
+    "lessonVersion": 2,
+    "traceHash": "4e193e49bfae2913dfe48efc485dfd90d4cac9e696c3159d1dcca4ac9ec19e1b",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/bootstrap/comic-analogy.png",
+        "alt": "Bootstrap 重采样：生活类比与核心思想"
+      },
+      {
+        "role": "rules",
+        "src": "media/bootstrap/comic-rules.png",
+        "alt": "Bootstrap 重采样：真实样例的计算规则"
+      },
+      {
+        "role": "summary",
+        "src": "media/bootstrap/comic-summary.png",
+        "alt": "Bootstrap 重采样：用途与适用边界"
+      }
+    ]
+  },
+  "branch-bound": {
+    "algorithmId": "branch-bound",
+    "lessonVersion": 2,
+    "traceHash": "354bf4284e020b254f057330dc1a54157588bb5fe9b0b5be739d150f067cd43f",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/branch-bound/comic-analogy.png",
+        "alt": "2.4分成≤2和≥3、38<40剪枝均明确假设示意；去除误导四舍五入箭头和错误数量盒子。"
+      },
+      {
+        "role": "rules",
+        "src": "media/branch-bound/comic-rules.png",
+        "alt": "根放松54.57、整数纪录48/50/52及A≥4上界46核对；修正为更好合法方案才更新。"
+      },
+      {
+        "role": "summary",
+        "src": "media/branch-bound/comic-summary.png",
+        "alt": "A1 B5收益52及两项资源检验一致；9分支2剪枝、栈空证明，明确整个连续放松不可行才可整支拒绝。"
+      }
+    ]
+  },
+  "collaborative": {
+    "algorithmId": "collaborative",
+    "lessonVersion": 2,
+    "traceHash": "93eab79da8ef3beec2e018108d3b9ad07f4d082be9ce9accc123e64c4f866780",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/collaborative/comic-analogy.png",
+        "alt": "collaborative：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/collaborative/comic-rules.png",
+        "alt": "collaborative：规则计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/collaborative/comic-summary.png",
+        "alt": "collaborative：应用与边界"
+      }
+    ]
+  },
+  "content-recommendation": {
+    "algorithmId": "content-recommendation",
+    "lessonVersion": 2,
+    "traceHash": "5ee0d1877a6fb9bc2bc8b836400f50140b7d683c16983befc41ddb6e52d72d80",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/content-recommendation/comic-analogy.png",
+        "alt": "内容余弦推荐：analogy"
+      },
+      {
+        "role": "rules",
+        "src": "media/content-recommendation/comic-rules.png",
+        "alt": "内容余弦推荐：rules"
+      },
+      {
+        "role": "summary",
+        "src": "media/content-recommendation/comic-summary.png",
+        "alt": "内容余弦推荐：summary"
+      }
+    ]
+  },
+  "counting-sort": {
+    "algorithmId": "counting-sort",
+    "lessonVersion": 2,
+    "traceHash": "7bd463f5f8e0889bce062a0059300601f91675ccab1a7dbf875e06523dfb2cd9",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/counting-sort/comic-analogy.png",
+        "alt": "输入[2,-1,2,0,-1]分盒计数[2,1,0,2]，负数作为活动积分合理。"
+      },
+      {
+        "role": "rules",
+        "src": "media/counting-sort/comic-rules.png",
+        "alt": "2−(−1)=3与−1−(−1)=0正确；区分下标与数值。"
+      },
+      {
+        "role": "summary",
+        "src": "media/counting-sort/comic-summary.png",
+        "alt": "重建重复值和小值域条件准确；删除可能误读成完全无比较成本的表述。"
+      }
+    ]
+  },
+  "crc": {
+    "algorithmId": "crc",
+    "lessonVersion": 2,
+    "traceHash": "cb639482fc57ecbed6490d6afe3bcb8d9e769c9303d4067f8c801625ee831c20",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/crc/comic-analogy.png",
+        "alt": "CRC 循环冗余校验：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/crc/comic-rules.png",
+        "alt": "CRC 循环冗余校验：规则与计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/crc/comic-summary.png",
+        "alt": "CRC 循环冗余校验：结果与边界"
+      }
+    ]
+  },
+  "critical-path": {
+    "algorithmId": "critical-path",
+    "lessonVersion": 2,
+    "traceHash": "ccc8973db6ff5fc40547b92cb5ae7aea4bc7774bc4481000e60ca6432c94432d",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/critical-path/comic-analogy.png",
+        "alt": "并行两线14与13完成取14，后续18、21时间一致，明确资源假设。"
+      },
+      {
+        "role": "rules",
+        "src": "media/critical-path/comic-rules.png",
+        "alt": "向前max与向后截止倒推、采购6−5=1及海报5−5=0准确；修正倒推箭头。"
+      },
+      {
+        "role": "summary",
+        "src": "media/critical-path/comic-summary.png",
+        "alt": "五个关键任务时长合21；共享缓冲不能分别耗尽；资源竞争改用可并行的宣传与布置。"
+      }
+    ]
+  },
+  "dbscan": {
+    "algorithmId": "dbscan",
+    "lessonVersion": 2,
+    "traceHash": "71d7f5d16d6f34b174f23cfe07a989287e3670f1e8e78982e000f017aaa6b4fc",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/dbscan/comic-analogy.png",
+        "alt": "dbscan：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/dbscan/comic-rules.png",
+        "alt": "dbscan：核心规则"
+      },
+      {
+        "role": "summary",
+        "src": "media/dbscan/comic-summary.png",
+        "alt": "dbscan：应用与局限"
+      }
+    ]
+  },
+  "decision-tree": {
+    "algorithmId": "decision-tree",
+    "lessonVersion": 2,
+    "traceHash": "d7fe33d5817f94de8d3513d2ea4c38edc2459977366d9d8a00ebecc91f3e2971",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/decision-tree/comic-analogy.png",
+        "alt": "decision-tree：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/decision-tree/comic-rules.png",
+        "alt": "decision-tree：核心规则"
+      },
+      {
+        "role": "summary",
+        "src": "media/decision-tree/comic-summary.png",
+        "alt": "decision-tree：应用与局限"
+      }
+    ]
+  },
+  "dfs": {
+    "algorithmId": "dfs",
+    "lessonVersion": 2,
+    "traceHash": "3cb84f191209e7d2d7baf1b51c42c9441cf9108bb76f4e57b1e99c432b0e207d",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/dfs/comic-analogy.png",
+        "alt": "按右下左上顺序试路；死胡同格明确标规则示意，本成功案例未执行死路回退。"
+      },
+      {
+        "role": "rules",
+        "src": "media/dfs/comic-rules.png",
+        "alt": "网格0至15、墙5/9、实际路径一致；回溯方向改为15→11→7→3→2→1→0。"
+      },
+      {
+        "role": "summary",
+        "src": "media/dfs/comic-summary.png",
+        "alt": "实际7格6步，重新绘制4×4地图；明确DFS不保证最短，与BFS区分。"
+      }
+    ]
+  },
+  "dijkstra": {
+    "algorithmId": "dijkstra",
+    "lessonVersion": 2,
+    "traceHash": "20410ef06b01a7ee90ee7759e8b88ab7fd44a6e556e2425c7bfb89d4c251a394",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/dijkstra/comic-analogy.png",
+        "alt": "累计成本9与1选择1；更贵的14不替换12；非负费用前提。"
+      },
+      {
+        "role": "rules",
+        "src": "media/dijkstra/comic-rules.png",
+        "alt": "只保留实际7→6边与待办卡，删除生成时虚构的候选间道路；终点取出才停。"
+      },
+      {
+        "role": "summary",
+        "src": "media/dijkstra/comic-summary.png",
+        "alt": "七步费用7与三步费用19准确；路径0,4,8,9,10,11,7,3与真实记录一致。"
+      }
+    ]
+  },
+  "edit-distance": {
+    "algorithmId": "edit-distance",
+    "lessonVersion": 2,
+    "traceHash": "bb17a80f08b32929b0aecf7ebfceb4797310da6be34a1ab7246cb88c1f5118f5",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/edit-distance/comic-analogy.png",
+        "alt": "编辑距离：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/edit-distance/comic-rules.png",
+        "alt": "编辑距离：规则与计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/edit-distance/comic-summary.png",
+        "alt": "编辑距离：结果与边界"
+      }
+    ]
+  },
+  "exponential-smoothing": {
+    "algorithmId": "exponential-smoothing",
+    "lessonVersion": 2,
+    "traceHash": "195e1ce52de33c58588fdf7d960e36768b9c01fc408a97e555fe53bdccf72bc8",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/exponential-smoothing/comic-analogy.png",
+        "alt": "指数平滑：生活类比与核心思想"
+      },
+      {
+        "role": "rules",
+        "src": "media/exponential-smoothing/comic-rules.png",
+        "alt": "指数平滑：真实样例的计算规则"
+      },
+      {
+        "role": "summary",
+        "src": "media/exponential-smoothing/comic-summary.png",
+        "alt": "指数平滑：用途与适用边界"
+      }
+    ]
+  },
+  "fft": {
+    "algorithmId": "fft",
+    "lessonVersion": 2,
+    "traceHash": "493804c13d3971f06dc70974ac2920382856907b5da2219031e1f51770d6289e",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/fft/comic-analogy.png",
+        "alt": "按奇偶下标分工并复用小问题答案"
+      },
+      {
+        "role": "rules",
+        "src": "media/fft/comic-rules.png",
+        "alt": "蝴蝶计算共享乘法，产生加减两份输出"
+      },
+      {
+        "role": "summary",
+        "src": "media/fft/comic-summary.png",
+        "alt": "128点合成信号的频谱峰及混叠分辨率限制"
+      }
+    ]
+  },
+  "floyd-warshall": {
+    "algorithmId": "floyd-warshall",
+    "lessonVersion": 2,
+    "traceHash": "d9d9849f72dc1feac4ff938fb27007ca1b0941d06fa3a1238de909afc2d9d689",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/floyd-warshall/comic-analogy.png",
+        "alt": "A到C无直达；经B8+6=14；经D7+11=18保留14。"
+      },
+      {
+        "role": "rules",
+        "src": "media/floyd-warshall/comic-rules.png",
+        "alt": "逐轮新增中转k，并保留先前允许中转；∞不作零。"
+      },
+      {
+        "role": "summary",
+        "src": "media/floyd-warshall/comic-summary.png",
+        "alt": "A-C14、A-D7、B-C6与最终表一致；移除错误铁路连线，负环局限准确。"
+      }
+    ]
+  },
+  "gaussian-filter": {
+    "algorithmId": "gaussian-filter",
+    "lessonVersion": 2,
+    "traceHash": "54caa643e9e09d885cdd7eb97229ce6b7506908225412d207c628eafab524ae4",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/gaussian-filter/comic-analogy.png",
+        "alt": "高斯滤波按距离给邻居分配不同权重"
+      },
+      {
+        "role": "rules",
+        "src": "media/gaussian-filter/comic-rules.png",
+        "alt": "3×3真实权重和首个像素的加权计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/gaussian-filter/comic-summary.png",
+        "alt": "降噪误差变化与边缘变模糊的代价"
+      }
+    ]
+  },
+  "genetic": {
+    "algorithmId": "genetic",
+    "lessonVersion": 2,
+    "traceHash": "38f403dec1a0f51f29d67378e0984c5f605ada518d1a90ea09bd1651251c7af2",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/genetic/comic-analogy.png",
+        "alt": "旅行方案类比选择、保序交叉、交换与精英保留；修正无效色点排列，交换示意1234→1432保持城市唯一。"
+      },
+      {
+        "role": "rules",
+        "src": "media/genetic/comic-rules.png",
+        "alt": "锦标赛126.09对150.92只比较长度，移除不对应长度的虚构路线；真实OX3421→3421、交换3421→3124核对。"
+      },
+      {
+        "role": "summary",
+        "src": "media/genetic/comic-summary.png",
+        "alt": "4城6候选5代、路线14231及120.79一致；移除生成器虚构的父子优劣数组，强调重新评价和有限预算。"
+      }
+    ]
+  },
+  "graph-coloring": {
+    "algorithmId": "graph-coloring",
+    "lessonVersion": 2,
+    "traceHash": "56ea125a0da7fc172908239df7dd1a53d1a58e613e85500148cde3c5c76a41a2",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/graph-coloring/comic-analogy.png",
+        "alt": "三节点链A—B—C异色约束正确；饱和度计不同颜色而非邻居数。"
+      },
+      {
+        "role": "rules",
+        "src": "media/graph-coloring/comic-rules.png",
+        "alt": "实际次序D,A,B,C,E和颜色0,1,2,3,1核对；逐个拒绝色有邻色依据。"
+      },
+      {
+        "role": "summary",
+        "src": "media/graph-coloring/comic-summary.png",
+        "alt": "实际4色0冲突；区分一般启发式可行性与最优性证明，未否认本例实际可达到最少4色。"
+      }
+    ]
+  },
+  "hamming": {
+    "algorithmId": "hamming",
+    "lessonVersion": 2,
+    "traceHash": "781419ed0605a57420ff5ba5a05a30262b4ac10617fba391b46a31066b01e008",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/hamming/comic-analogy.png",
+        "alt": "Hamming 纠错：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/hamming/comic-rules.png",
+        "alt": "Hamming 纠错：规则与计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/hamming/comic-summary.png",
+        "alt": "Hamming 纠错：结果与边界"
+      }
+    ]
+  },
+  "heap-sort": {
+    "algorithmId": "heap-sort",
+    "lessonVersion": 2,
+    "traceHash": "75991c6b3ec5170eedee13eca329793d51dc3cd3c864561c2dba458e01b6186f",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/heap-sort/comic-analogy.png",
+        "alt": "堆[7,5,1,3,2]取7后剩余修复成[5,3,1,2]，父子连线核对。"
+      },
+      {
+        "role": "rules",
+        "src": "media/heap-sort/comic-rules.png",
+        "alt": "3与7交换后继续与5交换，未把大顶堆当作已排序数组。"
+      },
+      {
+        "role": "summary",
+        "src": "media/heap-sort/comic-summary.png",
+        "alt": "最终[1,2,3,5,7]；原地与不保证稳定为算法特征，不指教学回放内存。"
+      }
+    ]
+  },
+  "hill-climbing": {
+    "algorithmId": "hill-climbing",
+    "lessonVersion": 2,
+    "traceHash": "aff6cdff83ff3d9d6fe5d595890decb0c4d5e561f942e50d54b4367ad04717aa",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/hill-climbing/comic-analogy.png",
+        "alt": "步长3位置15、18、21、24；远峰明确标为未搜索局限示意。"
+      },
+      {
+        "role": "rules",
+        "src": "media/hill-climbing/comic-rules.png",
+        "alt": "三个候选比较及19.76、25.33、30.56、34.44、36.02值核对；移除生成器编造连续曲线。"
+      },
+      {
+        "role": "summary",
+        "src": "media/hill-climbing/comic-summary.png",
+        "alt": "位置24收益36.02与轨迹准确；边界示意和真实结果分开，不承诺全局最优。"
+      }
+    ]
+  },
+  "huffman": {
+    "algorithmId": "huffman",
+    "lessonVersion": 2,
+    "traceHash": "a921dacc123b9e961fb251bfc935065f036fce82aa5f5e566aa08bd9b94269f2",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/huffman/comic-analogy.png",
+        "alt": "Huffman 编码：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/huffman/comic-rules.png",
+        "alt": "Huffman 编码：规则与计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/huffman/comic-summary.png",
+        "alt": "Huffman 编码：结果与边界"
+      }
+    ]
+  },
+  "hungarian": {
+    "algorithmId": "hungarian",
+    "lessonVersion": 2,
+    "traceHash": "64f4879656ccbb59762073538780f77e4e97504a4ba8d90a74267097a671bb56",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/hungarian/comic-analogy.png",
+        "alt": "原成本表三行8,10,17；14,1,11；7,13,12正确；替换生成的错误余量表为8−8−0=0。"
+      },
+      {
+        "role": "rules",
+        "src": "media/hungarian/comic-rules.png",
+        "alt": "甲到2余量2与丙到3余量5，δ2后变0/3；探索候选不冒称已沿未零边完成换岗。"
+      },
+      {
+        "role": "summary",
+        "src": "media/hungarian/comic-summary.png",
+        "alt": "匹配8+1+12=21，对比局部抢占7+1+17=25；工时表标明本次分配，不暗示与人员无关。"
+      }
+    ]
+  },
+  "interval-scheduling": {
+    "algorithmId": "interval-scheduling",
+    "lessonVersion": 2,
+    "traceHash": "bd188e4ca5a78ddc32f32a74067fdbdf5cd0c08fd62a78c70b1a4aa9646eb870",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/interval-scheduling/comic-analogy.png",
+        "alt": "活动3的4–10先选，活动4/6在6开始冲突，活动1的15–20可接。"
+      },
+      {
+        "role": "rules",
+        "src": "media/interval-scheduling/comic-rules.png",
+        "alt": "按结束时刻重新排列画格，活动1先于超时26/28两场；冲突与超上限区分。"
+      },
+      {
+        "role": "summary",
+        "src": "media/interval-scheduling/comic-summary.png",
+        "alt": "最大数量2，早结束交换理由与加权目标边界明确；首尾相接为演示约定。"
+      }
+    ]
+  },
+  "kalman": {
+    "algorithmId": "kalman",
+    "lessonVersion": 2,
+    "traceHash": "70091c36bced156b384198423cb9fc5029ca94e75774602bf6262662b0c41b12",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/kalman/comic-analogy.png",
+        "alt": "步长预测与带噪声定位先比较可靠程度，再修正位置。"
+      },
+      {
+        "role": "rules",
+        "src": "media/kalman/comic-rules.png",
+        "alt": "由方差5.1与36得到权重0.124，并算出更新位置10.223。"
+      },
+      {
+        "role": "summary",
+        "src": "media/kalman/comic-summary.png",
+        "alt": "120次测量中RMSE从6.13到1.45，并说明模型错误的边界。"
+      }
+    ]
+  },
+  "kmeans": {
+    "algorithmId": "kmeans",
+    "lessonVersion": 2,
+    "traceHash": "50f8f1aea532e517f700cf694e1534d1b9928756d8dc5e0d5206c0adcd576f26",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/kmeans/comic-analogy.png",
+        "alt": "朋友去较近集合点，再把集合点移到成员坐标均值。"
+      },
+      {
+        "role": "rules",
+        "src": "media/kmeans/comic-rules.png",
+        "alt": "真实距离平方4852与4808，随后用成员均值更新中心。"
+      },
+      {
+        "role": "summary",
+        "src": "media/kmeans/comic-summary.png",
+        "alt": "3轮后稳定，SSE为200；稳定不保证全局最好。"
+      }
+    ]
+  },
+  "kmp": {
+    "algorithmId": "kmp",
+    "lessonVersion": 2,
+    "traceHash": "6229a022356881bcfa1e92fcd8bd544d59a90851bf75fe00c1adc533ed16db3e",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/kmp/comic-analogy.png",
+        "alt": "KMP 字符串匹配：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/kmp/comic-rules.png",
+        "alt": "KMP 字符串匹配：规则与计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/kmp/comic-summary.png",
+        "alt": "KMP 字符串匹配：结果与边界"
+      }
+    ]
+  },
+  "knapsack": {
+    "algorithmId": "knapsack",
+    "lessonVersion": 2,
+    "traceHash": "5d047ae815c90f4b0f02301ab2e4a0d465c94942edadc249a68236eaf66f1060",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/knapsack/comic-analogy.png",
+        "alt": "容量5的行李选择：雨衣、水、相机各一件。"
+      },
+      {
+        "role": "rules",
+        "src": "media/knapsack/comic-rules.png",
+        "alt": "状态表比较带与不带，相机在容量5处得到最大价值9。"
+      },
+      {
+        "role": "summary",
+        "src": "media/knapsack/comic-summary.png",
+        "alt": "雨衣加相机价值9，单位价值贪心只得7；不可拆分、价值可加。"
+      }
+    ]
+  },
+  "knn": {
+    "algorithmId": "knn",
+    "lessonVersion": 2,
+    "traceHash": "6ad943f7f248fb92a1b2553ddc4abc176e560f004d0a402a77f6954aede0483d",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/knn/comic-analogy.png",
+        "alt": "knn：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/knn/comic-rules.png",
+        "alt": "knn：核心规则"
+      },
+      {
+        "role": "summary",
+        "src": "media/knn/comic-summary.png",
+        "alt": "knn：应用与局限"
+      }
+    ]
+  },
+  "kruskal": {
+    "algorithmId": "kruskal",
+    "lessonVersion": 2,
+    "traceHash": "3be04df5897c2f3007f3f48262412e7eec1ab2420622d639cd5db70b241b3566",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/kruskal/comic-analogy.png",
+        "alt": "B-D3、B-C6跨组；C-D11成环为局部规则示意；将长度误词改为费用。"
+      },
+      {
+        "role": "rules",
+        "src": "media/kruskal/comic-rules.png",
+        "alt": "费用排序3,6,7,8,8,9,11；A-B8闭环拒绝；组指针不当成道路。"
+      },
+      {
+        "role": "summary",
+        "src": "media/kruskal/comic-summary.png",
+        "alt": "最终边7+6+3+9=25，五村四边；A到B树内13对直达8；森林示意去掉误生成的环。"
+      }
+    ]
+  },
+  "life": {
+    "algorithmId": "life",
+    "lessonVersion": 2,
+    "traceHash": "711b9a7db1aa980361fbfa71aef0c59caa1e4cde56f3fb9facf877c5a998f467",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/life/comic-analogy.png",
+        "alt": "Conway 生命游戏：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/life/comic-rules.png",
+        "alt": "Conway 生命游戏：规则与真实计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/life/comic-summary.png",
+        "alt": "Conway 生命游戏：结果与适用边界"
+      }
+    ]
+  },
+  "linear-regression": {
+    "algorithmId": "linear-regression",
+    "lessonVersion": 2,
+    "traceHash": "71a04c069b28ffd5641da36737685499ebbda3acc103f12e1dbc6d752359b4b5",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/linear-regression/comic-analogy.png",
+        "alt": "最小二乘回归：生活类比与核心思想"
+      },
+      {
+        "role": "rules",
+        "src": "media/linear-regression/comic-rules.png",
+        "alt": "最小二乘回归：真实样例的计算规则"
+      },
+      {
+        "role": "summary",
+        "src": "media/linear-regression/comic-summary.png",
+        "alt": "最小二乘回归：用途与适用边界"
+      }
+    ]
+  },
+  "linear-search": {
+    "algorithmId": "linear-search",
+    "lessonVersion": 2,
+    "traceHash": "e7531892ee3d0bd9f4069e383760c2a9abf2eed5d5573e1fd91578930f5fbf90",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/linear-search/comic-analogy.png",
+        "alt": "按口袋顺序找钥匙，命中后停止，未检查的口袋仍保留。"
+      },
+      {
+        "role": "rules",
+        "src": "media/linear-search/comic-rules.png",
+        "alt": "依次比较12、7、20，三次检查找到第三位置。"
+      },
+      {
+        "role": "summary",
+        "src": "media/linear-search/comic-summary.png",
+        "alt": "对比成功早停和失败全扫，说明无序短清单的应用边界。"
+      }
+    ]
+  },
+  "logistic-regression": {
+    "algorithmId": "logistic-regression",
+    "lessonVersion": 2,
+    "traceHash": "c93ee11d28f36c443ce7644ce2cf79e0381f1da345ceed5440fd5c72202e8578",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/logistic-regression/comic-analogy.png",
+        "alt": "logistic-regression：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/logistic-regression/comic-rules.png",
+        "alt": "logistic-regression：核心规则"
+      },
+      {
+        "role": "summary",
+        "src": "media/logistic-regression/comic-summary.png",
+        "alt": "logistic-regression：应用与局限"
+      }
+    ]
+  },
+  "lsystem": {
+    "algorithmId": "lsystem",
+    "lessonVersion": 2,
+    "traceHash": "6d12e262dba3dddac588567649e9e3e1fa7e1d4d98c7a2eca8d09b6e8827c442",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/lsystem/comic-analogy.png",
+        "alt": "L-system：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/lsystem/comic-rules.png",
+        "alt": "L-system：规则与真实计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/lsystem/comic-summary.png",
+        "alt": "L-system：结果与适用边界"
+      }
+    ]
+  },
+  "lz77": {
+    "algorithmId": "lz77",
+    "lessonVersion": 2,
+    "traceHash": "4aecaffae4fa6dc14543037a61beb31da923727c258d53b9412c1d7afbba339d",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/lz77/comic-analogy.png",
+        "alt": "LZ77 滑动窗口压缩：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/lz77/comic-rules.png",
+        "alt": "LZ77 滑动窗口压缩：规则与计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/lz77/comic-summary.png",
+        "alt": "LZ77 滑动窗口压缩：结果与边界"
+      }
+    ]
+  },
+  "max-flow": {
+    "algorithmId": "max-flow",
+    "lessonVersion": 2,
+    "traceHash": "d9ea00950aa4c0c4048cee097276abafacd633098a98d146156640fca6d49227",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/max-flow/comic-analogy.png",
+        "alt": "容量4、1、4瓶颈1准确；正减反增是余量记录而非新增实物管。"
+      },
+      {
+        "role": "rules",
+        "src": "media/max-flow/comic-rules.png",
+        "alt": "第一轮层图s/1,2/3,4/t，跳过同层1→2；沿路径三条边分别正减反增。"
+      },
+      {
+        "role": "summary",
+        "src": "media/max-flow/comic-summary.png",
+        "alt": "源侧{s,1,2,4}及割容量1+2+1=4与真实结果对应；修正不存在的s→4边并移除第二张误导网络；图突出割边、省略部分内部边。"
+      }
+    ]
+  },
+  "mcts": {
+    "algorithmId": "mcts",
+    "lessonVersion": 2,
+    "traceHash": "7d6cabcd43f18d8cac93b7ec106a18658d788292ee9504f2c152eedcdf863170",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/mcts/comic-analogy.png",
+        "alt": "试走路线对应选择、扩展、模拟及沿祖先回传"
+      },
+      {
+        "role": "rules",
+        "src": "media/mcts/comic-rules.png",
+        "alt": "第八格扩展与第六格随机应对后的零分记账"
+      },
+      {
+        "role": "summary",
+        "src": "media/mcts/comic-summary.png",
+        "alt": "树内探索分与最终访问次数决策的区别"
+      }
+    ]
+  },
+  "median-filter": {
+    "algorithmId": "median-filter",
+    "lessonVersion": 2,
+    "traceHash": "1e537ab8fc8a252f5b0bfd195d20c6892a2236cda4bf966a4decab2882399390",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/median-filter/comic-analogy.png",
+        "alt": "九个报价按升序选第5项的生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/median-filter/comic-rules.png",
+        "alt": "真实255坏点窗口排序后得到37.25"
+      },
+      {
+        "role": "summary",
+        "src": "media/median-filter/comic-summary.png",
+        "alt": "中值滤波去椒盐噪声的效果与细线损失"
+      }
+    ]
+  },
+  "merge-sort": {
+    "algorithmId": "merge-sort",
+    "lessonVersion": 2,
+    "traceHash": "b933defee7ac359f21aef29757f1e54fb0b72bfed230a4754faecc7a8c4c4248",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/merge-sort/comic-analogy.png",
+        "alt": "两队只包含2、5和2、4、7；移除多余未编号人物，甲先乙后。"
+      },
+      {
+        "role": "rules",
+        "src": "media/merge-sort/comic-rules.png",
+        "alt": "分割2+3、1+2、1+1符合真实事件；修正初稿三分和括号歧义。"
+      },
+      {
+        "role": "summary",
+        "src": "media/merge-sort/comic-summary.png",
+        "alt": "同值顺序与临时缓冲区准确；反例改为顺序错乱，不声称丢失元素。"
+      }
+    ]
+  },
+  "minimax": {
+    "algorithmId": "minimax",
+    "lessonVersion": 2,
+    "traceHash": "0cd3b7a7ff9a83c1505f57656628e66070f745b8c37188160a5c1c822b70b22f",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/minimax/comic-analogy.png",
+        "alt": "两层岔路树展示对手取最小、我方取最大"
+      },
+      {
+        "role": "rules",
+        "src": "media/minimax/comic-rules.png",
+        "alt": "真实井字棋初盘与五个根候选回传值"
+      },
+      {
+        "role": "summary",
+        "src": "media/minimax/comic-summary.png",
+        "alt": "完整搜索与有限深度估计的区别"
+      }
+    ]
+  },
+  "monte-carlo": {
+    "algorithmId": "monte-carlo",
+    "lessonVersion": 2,
+    "traceHash": "47e0014084b6797b2907517fa01c71dfc2dfdedda3676bcfdb1cb9cb351155b8",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/monte-carlo/comic-analogy.png",
+        "alt": "蒙特卡洛模拟：生活类比与核心思想"
+      },
+      {
+        "role": "rules",
+        "src": "media/monte-carlo/comic-rules.png",
+        "alt": "蒙特卡洛模拟：真实样例的计算规则"
+      },
+      {
+        "role": "summary",
+        "src": "media/monte-carlo/comic-summary.png",
+        "alt": "蒙特卡洛模拟：用途与适用边界"
+      }
+    ]
+  },
+  "moving-average": {
+    "algorithmId": "moving-average",
+    "lessonVersion": 2,
+    "traceHash": "ce70152550e408af1991e9a631f44fbffba2ad13c1586e8c4f545fbc5199d3bf",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/moving-average/comic-analogy.png",
+        "alt": "移动平均：生活类比与核心思想"
+      },
+      {
+        "role": "rules",
+        "src": "media/moving-average/comic-rules.png",
+        "alt": "移动平均：真实样例的计算规则"
+      },
+      {
+        "role": "summary",
+        "src": "media/moving-average/comic-summary.png",
+        "alt": "移动平均：用途与适用边界"
+      }
+    ]
+  },
+  "naive-bayes": {
+    "algorithmId": "naive-bayes",
+    "lessonVersion": 2,
+    "traceHash": "fdd908e2c7886ff23f3e6c13b2a2b844101124772e3acbc95e649c6950039454",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/naive-bayes/comic-analogy.png",
+        "alt": "naive-bayes：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/naive-bayes/comic-rules.png",
+        "alt": "naive-bayes：核心规则"
+      },
+      {
+        "role": "summary",
+        "src": "media/naive-bayes/comic-summary.png",
+        "alt": "naive-bayes：应用与局限"
+      }
+    ]
+  },
+  "neural-network": {
+    "algorithmId": "neural-network",
+    "lessonVersion": 2,
+    "traceHash": "cb9db3a7a25addaade5da9f8a423c9f8be6746d2229ce25d66749933fd7f34ac",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/neural-network/comic-analogy.png",
+        "alt": "neural-network：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/neural-network/comic-rules.png",
+        "alt": "neural-network：规则计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/neural-network/comic-summary.png",
+        "alt": "neural-network：应用与边界"
+      }
+    ]
+  },
+  "otsu": {
+    "algorithmId": "otsu",
+    "lessonVersion": 2,
+    "traceHash": "96fbf8475b6c8e9834e65dc52f1a85fe07d0a64e46b20c1606aa8b58c2a2a5c8",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/otsu/comic-analogy.png",
+        "alt": "用身高分组类比枚举阈值"
+      },
+      {
+        "role": "rules",
+        "src": "media/otsu/comic-rules.png",
+        "alt": "阈值82与83同分时保留先遇到的82"
+      },
+      {
+        "role": "summary",
+        "src": "media/otsu/comic-summary.png",
+        "alt": "自动阈值的效果与光照和分布重叠限制"
+      }
+    ]
+  },
+  "pagerank": {
+    "algorithmId": "pagerank",
+    "lessonVersion": 2,
+    "traceHash": "324471357a8736e1925dc2c61f5c0f01e945c84e48fb4c8abe470c0a03b5eb5b",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/pagerank/comic-analogy.png",
+        "alt": "pagerank：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/pagerank/comic-rules.png",
+        "alt": "pagerank：规则计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/pagerank/comic-summary.png",
+        "alt": "pagerank：应用与边界"
+      }
+    ]
+  },
+  "particle-filter": {
+    "algorithmId": "particle-filter",
+    "lessonVersion": 2,
+    "traceHash": "c5cbde030deaef94c9b5d41c611d497fb9bae51203459cb62a2572b4813d09cc",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/particle-filter/comic-analogy.png",
+        "alt": "筹码表示可能位置，跟随运动、获得证据权重，再按份额复制。"
+      },
+      {
+        "role": "rules",
+        "src": "media/particle-filter/comic-rules.png",
+        "alt": "真实测量22.721对候选22.599和60.435给出不同权重，按系统重采样复制。"
+      },
+      {
+        "role": "summary",
+        "src": "media/particle-filter/comic-summary.png",
+        "alt": "重复地标允许多峰；本次唯一地标实验150粒子90轮误差1.03，未混作同一场景。"
+      }
+    ]
+  },
+  "pca": {
+    "algorithmId": "pca",
+    "lessonVersion": 2,
+    "traceHash": "08edba2b9b764cb37e46146d318c077527f90d7ff2b7ad62c2bc2485d64432db",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/pca/comic-analogy.png",
+        "alt": "pca：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/pca/comic-rules.png",
+        "alt": "pca：核心规则"
+      },
+      {
+        "role": "summary",
+        "src": "media/pca/comic-summary.png",
+        "alt": "pca：应用与局限"
+      }
+    ]
+  },
+  "perlin": {
+    "algorithmId": "perlin",
+    "lessonVersion": 2,
+    "traceHash": "ddf952f49bf6daa6db2f130402faeb1efa21cd52d0620fe0fbfbce48cafff009",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/perlin/comic-analogy.png",
+        "alt": "Perlin 噪声：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/perlin/comic-rules.png",
+        "alt": "Perlin 噪声：规则与真实计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/perlin/comic-summary.png",
+        "alt": "Perlin 噪声：结果与适用边界"
+      }
+    ]
+  },
+  "pid": {
+    "algorithmId": "pid",
+    "lessonVersion": 2,
+    "traceHash": "0e4fd3a7d698e67ca2fbfcd569e426c370a6aa7447f18f9f1cb8c2e076e55665",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/pid/comic-analogy.png",
+        "alt": "三位助手分别看当前误差、累计误差和误差变化。"
+      },
+      {
+        "role": "rules",
+        "src": "media/pid/comic-rules.png",
+        "alt": "目标60、高度10，原始61.12限幅为22，更新高度10.1408。"
+      },
+      {
+        "role": "summary",
+        "src": "media/pid/comic-summary.png",
+        "alt": "25.6秒时误差约0.38、最大超调约6；闭环持续重新测量。"
+      }
+    ]
+  },
+  "potential-field": {
+    "algorithmId": "potential-field",
+    "lessonVersion": 2,
+    "traceHash": "5e6e372cd673d9ce05a2770b76fb766cd2f6340e392ce4c82febb1a505972892",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/potential-field/comic-analogy.png",
+        "alt": "目标吸引与障碍排斥合成局部方向，每次只移动一小步。"
+      },
+      {
+        "role": "rules",
+        "src": "media/potential-field/comic-rules.png",
+        "alt": "首步吸引力0.06×(92−8)=5.04，障碍18.79在影响范围外，位置只移到8.8。"
+      },
+      {
+        "role": "summary",
+        "src": "media/potential-field/comic-summary.png",
+        "alt": "U形陷阱中力可能平衡；另列顺利绕行案例131次更新距目标1.98。"
+      }
+    ]
+  },
+  "pso": {
+    "algorithmId": "pso",
+    "lessonVersion": 2,
+    "traceHash": "62f8fce7caba91466b136200e62d0df37f428fc9e6976daad83e925707d742e8",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/pso/comic-analogy.png",
+        "alt": "原速度、个人记忆、团队共享对应三个分量，团队最好不冒充全球最高。"
+      },
+      {
+        "role": "rules",
+        "src": "media/pso/comic-rules.png",
+        "alt": "三项公式使用位置差、独立随机数0≤r<1；6.59位移、42.29收益更新及−24.08限幅−18与事件核对。"
+      },
+      {
+        "role": "summary",
+        "src": "media/pso/comic-summary.png",
+        "alt": "3粒子10轮、最好74.17位于75.28与结果一致；历史纪录与个体当前质量区别明确。"
+      }
+    ]
+  },
+  "pure-pursuit": {
+    "algorithmId": "pure-pursuit",
+    "lessonVersion": 2,
+    "traceHash": "0fe18d4bf28aab5227cccf313fbb854c733e25cf9136ddb1ec7d44e7c264fb50",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/pure-pursuit/comic-analogy.png",
+        "alt": "已知路线中追逐前视点，计算前轮转角，小步前进后重新选点。"
+      },
+      {
+        "role": "rules",
+        "src": "media/pure-pursuit/comic-rules.png",
+        "alt": "前视阈值12选出实际距离13.576，轴距4、方向差27.88度算出轮角15.41度。"
+      },
+      {
+        "role": "summary",
+        "src": "media/pure-pursuit/comic-summary.png",
+        "alt": "短前视可能敏感、长前视可能切弯；另列本次误差1.37与1.23。"
+      }
+    ]
+  },
+  "qlearning": {
+    "algorithmId": "qlearning",
+    "lessonVersion": 2,
+    "traceHash": "8d96778db513468bddbaba31806f4d18c2ebfbf9a7e1c1abcdc99e6128e153b3",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/qlearning/comic-analogy.png",
+        "alt": "机器人记录地点与方向的经验分，展示探索、奖励、未来回报与单项更新"
+      },
+      {
+        "role": "rules",
+        "src": "media/qlearning/comic-rules.png",
+        "alt": "首次向上越界后留在起点，以学习率0.3将该动作Q值从0更新为−0.3"
+      },
+      {
+        "role": "summary",
+        "src": "media/qlearning/comic-summary.png",
+        "alt": "对比训练探索与冻结评估，起点四个真实Q值中向下−0.614最大"
+      }
+    ]
+  },
+  "quick-sort": {
+    "algorithmId": "quick-sort",
+    "lessonVersion": 2,
+    "traceHash": "edb3c58158b0bf4faffd5e33be63775944b8fad230acb5364c6fdcada2d8c2b0",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/quick-sort/comic-analogy.png",
+        "alt": "≤4的两个2归左组，分界4独立，两个子区间仍需整理。"
+      },
+      {
+        "role": "rules",
+        "src": "media/quick-sort/comic-rules.png",
+        "alt": "两次交换后[2,2,7,5,4]，再交换7与4，边界明确为左区后第一个位置。"
+      },
+      {
+        "role": "summary",
+        "src": "media/quick-sort/comic-summary.png",
+        "alt": "结果[2,2,4,5,7]，6次比较和6次写入口径吻合；末尾枢轴在已排序输入上偏斜。"
+      }
+    ]
+  },
+  "ransac": {
+    "algorithmId": "ransac",
+    "lessonVersion": 2,
+    "traceHash": "2917e746eed400f77734e444856ee9baaaae04f8e13524c3acc0f24233ed0856",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/ransac/comic-analogy.png",
+        "alt": "随机两点提案并逐个点检查支持"
+      },
+      {
+        "role": "rules",
+        "src": "media/ransac/comic-rules.png",
+        "alt": "垂直距离、容差和真实首轮支持判断"
+      },
+      {
+        "role": "summary",
+        "src": "media/ransac/comic-summary.png",
+        "alt": "24次尝试后39点支持的候选与变体边界"
+      }
+    ]
+  },
+  "reaction-diffusion": {
+    "algorithmId": "reaction-diffusion",
+    "lessonVersion": 2,
+    "traceHash": "2c2febc80c2f3c7d5e5e0bc5d152506b483102ec4dccc9b1c182f1099500aa15",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/reaction-diffusion/comic-analogy.png",
+        "alt": "Gray–Scott 反应扩散：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/reaction-diffusion/comic-rules.png",
+        "alt": "Gray–Scott 反应扩散：规则与真实计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/reaction-diffusion/comic-summary.png",
+        "alt": "Gray–Scott 反应扩散：结果与适用边界"
+      }
+    ]
+  },
+  "regret": {
+    "algorithmId": "regret",
+    "lessonVersion": 2,
+    "traceHash": "69992f85b94d0f6b750aba706ece42d55ce5325a629a7e4428883efbf4a4fb2c",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/regret/comic-analogy.png",
+        "alt": "实际出布对石头与同轮三种反事实收益"
+      },
+      {
+        "role": "rules",
+        "src": "media/regret/comic-rules.png",
+        "alt": "收益减实际收益得到−1/0/−2，取正部为零后均匀"
+      },
+      {
+        "role": "summary",
+        "src": "media/regret/comic-summary.png",
+        "alt": "最终累计遗憾与历史出拳次数并列，明确概率与频率不同"
+      }
+    ]
+  },
+  "reservoir": {
+    "algorithmId": "reservoir",
+    "lessonVersion": 2,
+    "traceHash": "e5ccdc0691da1f88d42ba4696bc320783e1593760d9598740f6ad2082703569e",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/reservoir/comic-analogy.png",
+        "alt": "席位0、1、2与报名者编号区分；四替三、五入席、六抽5不替换；签0到5齐全。"
+      },
+      {
+        "role": "rules",
+        "src": "media/reservoir/comic-rules.png",
+        "alt": "新人3/i、已入池者被替换1/i与老者最终3/i推导核对；修正初稿把签画成人的误导。"
+      },
+      {
+        "role": "summary",
+        "src": "media/reservoir/comic-summary.png",
+        "alt": "真实seed42结果1、8、5；理论3/8不当作实测频率，不保证群体覆盖。"
+      }
+    ]
+  },
+  "rle": {
+    "algorithmId": "rle",
+    "lessonVersion": 2,
+    "traceHash": "c3d170068657faac09bea2533510f0f7f68955c8afefe9264b92a866e417770f",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/rle/comic-analogy.png",
+        "alt": "RLE 游程编码：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/rle/comic-rules.png",
+        "alt": "RLE 游程编码：规则与计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/rle/comic-summary.png",
+        "alt": "RLE 游程编码：结果与边界"
+      }
+    ]
+  },
+  "rrt": {
+    "algorithmId": "rrt",
+    "lessonVersion": 2,
+    "traceHash": "36b09121ce42812edf1fc948cd727e320c155be83bdbb8e83c3a8cd184e9f810",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/rrt/comic-analogy.png",
+        "alt": "从随机样本向最近树节点短步延伸，整段碰撞则拒绝。"
+      },
+      {
+        "role": "rules",
+        "src": "media/rrt/comic-rules.png",
+        "alt": "真实第二次采样比较9.847与4.932，步长上限7，并检查整个线段。"
+      },
+      {
+        "role": "summary",
+        "src": "media/rrt/comic-summary.png",
+        "alt": "沿父节点回溯一条可行路；31次采样25节点长度105.9，不保证最短。"
+      }
+    ]
+  },
+  "seam-carving": {
+    "algorithmId": "seam-carving",
+    "lessonVersion": 2,
+    "traceHash": "74662f74ac4a236c86d85a60bb308b7f84950c65348cfe224fa298a61714e650",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/seam-carving/comic-analogy.png",
+        "alt": "布条裁剪类比每行一个像素的连续缝"
+      },
+      {
+        "role": "rules",
+        "src": "media/seam-carving/comic-rules.png",
+        "alt": "累计代价、底行选最小和向上回溯"
+      },
+      {
+        "role": "summary",
+        "src": "media/seam-carving/comic-summary.png",
+        "alt": "缩小图宽的实际指标与视觉失真边界"
+      }
+    ]
+  },
+  "sha256": {
+    "algorithmId": "sha256",
+    "lessonVersion": 2,
+    "traceHash": "6e1e1289f79ad80aa1d38da68be11eefd7668ee40907553ba3cfa253f7b2ec8e",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/sha256/comic-analogy.png",
+        "alt": "固定配方指纹流水线：分块、调度、64轮混合、链式继承。"
+      },
+      {
+        "role": "rules",
+        "src": "media/sha256/comic-rules.png",
+        "alt": "T1/T2与八寄存器同步更新，模2³²加法并保留旧状态依赖。"
+      },
+      {
+        "role": "summary",
+        "src": "media/sha256/comic-summary.png",
+        "alt": "abc与abd两份摘要有122/256位不同；不是加密且碰撞可能存在。"
+      }
+    ]
+  },
+  "simplex": {
+    "algorithmId": "simplex",
+    "lessonVersion": 2,
+    "traceHash": "7901e70d8de6aa75da75cee8b4cb1e21e83517fcfb87e89d3a549f579be64a0e",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/simplex/comic-analogy.png",
+        "alt": "资源最小限制4与余量换基类比准确；明确退出基不删除变量，行变换保持等式组等价。"
+      },
+      {
+        "role": "rules",
+        "src": "media/simplex/comic-rules.png",
+        "alt": "−5优先于−4、正比值7/4/8取4、第二行整行除2准确；改正总提升空间措辞和全体余量被替换的误导图。"
+      },
+      {
+        "role": "summary",
+        "src": "media/simplex/comic-summary.png",
+        "alt": "A1 B6收益29、两次换基、两个主要限制检验准确；区分计算轮数预算30与资源用尽，保留无界/整数/退化边界。"
+      }
+    ]
+  },
+  "sobel": {
+    "algorithmId": "sobel",
+    "lessonVersion": 2,
+    "traceHash": "5a73cb15691e73ebe8fb34d05136f25981647f2315ed66dd895ac5ca5b1b6a16",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/sobel/comic-analogy.png",
+        "alt": "横纵两把尺类比亮度梯度"
+      },
+      {
+        "role": "rules",
+        "src": "media/sobel/comic-rules.png",
+        "alt": "Sobel双核、梯度强度与真实阈值判断"
+      },
+      {
+        "role": "summary",
+        "src": "media/sobel/comic-summary.png",
+        "alt": "候选边缘与噪声、阈值和语义局限"
+      }
+    ]
+  },
+  "stable-matching": {
+    "algorithmId": "stable-matching",
+    "lessonVersion": 2,
+    "traceHash": "0bb3c8e03727bfb7bc800e85ec3e668e598c627563520c70395f6daa1fbd6607",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/stable-matching/comic-analogy.png",
+        "alt": "导师暂留与按偏好换人对应实际事件；修正学生1下一志愿为导师1。"
+      },
+      {
+        "role": "rules",
+        "src": "media/stable-matching/comic-rules.png",
+        "alt": "逐卡核对导师3排名1对3、导师1排名2对3及导师2空缺接受。"
+      },
+      {
+        "role": "summary",
+        "src": "media/stable-matching/comic-summary.png",
+        "alt": "最终配对1→2、2→1、3→3与5次提议一致；阻挡配对定义图显式标为假设，避免冒充本例。"
+      }
+    ]
+  },
+  "thompson": {
+    "algorithmId": "thompson",
+    "lessonVersion": 2,
+    "traceHash": "39bda08631427fad6b9bb928b14bc0c8adac941173353c27c5b21500b4604966",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/thompson/comic-analogy.png",
+        "alt": "为摊位保留可能成功率分布，独立抽样决定本轮尝试"
+      },
+      {
+        "role": "rules",
+        "src": "media/thompson/comic-rules.png",
+        "alt": "均匀先验抽样与成功一次后的后验参数更新"
+      },
+      {
+        "role": "summary",
+        "src": "media/thompson/comic-summary.png",
+        "alt": "第三轮改选B与40次试验统计"
+      }
+    ]
+  },
+  "topological": {
+    "algorithmId": "topological",
+    "lessonVersion": 2,
+    "traceHash": "0c423df8242d1f94204427f7b1fb04d59240b0b5119f1d7ea0b625068c53900b",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/topological/comic-analogy.png",
+        "alt": "A和B都完成才能做C，对应两把锁；非二选一。"
+      },
+      {
+        "role": "rules",
+        "src": "media/topological/comic-rules.png",
+        "alt": "初始入度0,1,2,2,2，完成A/B后的减一表逐项核对；移除错误自动连边，明确减的是后继入度。"
+      },
+      {
+        "role": "summary",
+        "src": "media/topological/comic-summary.png",
+        "alt": "完成序列A,B,C,D,E；X/Y环外Z也可被堵住，不把全部剩余节点判作环。"
+      }
+    ]
+  },
+  "topsis": {
+    "algorithmId": "topsis",
+    "lessonVersion": 2,
+    "traceHash": "1e1def2e67916cb3821702b47b36606e91d327877bb10c858fccfae2a32136e4",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/topsis/comic-analogy.png",
+        "alt": "项目选择的梦想组合与最差组合"
+      },
+      {
+        "role": "rules",
+        "src": "media/topsis/comic-rules.png",
+        "alt": "校园配送两段真实距离推导0.702贴近度"
+      },
+      {
+        "role": "summary",
+        "src": "media/topsis/comic-summary.png",
+        "alt": "四个真实项目分数与排名对条件的依赖"
+      }
+    ]
+  },
+  "ucb": {
+    "algorithmId": "ucb",
+    "lessonVersion": 2,
+    "traceHash": "d0f7b50dd091d49a1f17f5072c69dc6b9a423fa5fe12024012464a24d43d713b",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/ucb/comic-analogy.png",
+        "alt": "美食摊位的平均好评与探索机会"
+      },
+      {
+        "role": "rules",
+        "src": "media/ucb/comic-rules.png",
+        "alt": "第四次选择B的真实UCB分数与反馈更新"
+      },
+      {
+        "role": "summary",
+        "src": "media/ucb/comic-summary.png",
+        "alt": "40次尝试统计与环境变化的边界"
+      }
+    ]
+  },
+  "voronoi": {
+    "algorithmId": "voronoi",
+    "lessonVersion": 2,
+    "traceHash": "872be49e397b03b86bc9148578045802d1885e5fe5adba17f8fde58fbfc243fe",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/voronoi/comic-analogy.png",
+        "alt": "Voronoi 分区：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/voronoi/comic-rules.png",
+        "alt": "Voronoi 分区：规则与真实计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/voronoi/comic-summary.png",
+        "alt": "Voronoi 分区：结果与适用边界"
+      }
+    ]
+  },
+  "wfc": {
+    "algorithmId": "wfc",
+    "lessonVersion": 2,
+    "traceHash": "28d6567c4e9f32c7709a5df50ec157cc9e0ddb3565d8a00a2705ce8ec7e96402",
+    "comics": [
+      {
+        "role": "analogy",
+        "src": "media/wfc/comic-analogy.png",
+        "alt": "Wave Function Collapse：生活类比"
+      },
+      {
+        "role": "rules",
+        "src": "media/wfc/comic-rules.png",
+        "alt": "Wave Function Collapse：规则与真实计算"
+      },
+      {
+        "role": "summary",
+        "src": "media/wfc/comic-summary.png",
+        "alt": "Wave Function Collapse：结果与适用边界"
+      }
+    ]
+  }
+}

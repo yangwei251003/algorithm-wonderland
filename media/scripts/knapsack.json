@@ -1,0 +1,299 @@
+{
+  "algorithmId": "knapsack",
+  "pronunciations": {
+    "0/1": "零一",
+    "D": "状态"
+  },
+  "artworkPanels": {
+    "analogy": [
+      [
+        0,
+        0.08,
+        1,
+        0.348
+      ],
+      [
+        0,
+        0.355,
+        1,
+        0.626
+      ],
+      [
+        0,
+        0.635,
+        1,
+        0.899
+      ]
+    ],
+    "summary": [
+      [
+        0,
+        0.08,
+        1,
+        0.352
+      ],
+      [
+        0,
+        0.36,
+        1,
+        0.664
+      ],
+      [
+        0,
+        0.673,
+        1,
+        0.9
+      ]
+    ]
+  },
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "容量有限，怎样选出最好组合？",
+      "text": "露营容量五：雨衣占二、价值四；水占一、价值三；相机占三、价值五。每件只能拿一次，不可拆。怎样找到最好组合？",
+      "ruleIds": [
+        "knapsack.initialize"
+      ],
+      "artworkRegion": [
+        0,
+        0.08,
+        1,
+        0.348
+      ],
+      "panelExplanations": [
+        "物品各一件；容量5。比较组合的总价值，不是单件价值。"
+      ]
+    },
+    {
+      "id": "initialize",
+      "kind": "event",
+      "title": "给每一格一个明确含义",
+      "text": "行表示已考虑前几件，列表示容量。一格保存这些条件下的最高价值。零行全零；破折号是尚未计算，不能当成答案。",
+      "eventIds": [
+        "0"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "too-heavy",
+      "kind": "event",
+      "title": "容量0与1，雨衣放不下",
+      "text": "先考虑雨衣。占用二，容量零或一都放不下，直接沿用上一行。",
+      "eventIds": [
+        "1",
+        "2"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "first-fit",
+      "kind": "event",
+      "title": "容量2：带与不带各算一次",
+      "text": "容量二：不带得零；带上占二，剩零，再加价值四，得到四。四比零大，这格记四。",
+      "eventIds": [
+        "3"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "rain-rest",
+      "kind": "recap",
+      "title": "相同规则填完雨衣这一行",
+      "text": "容量三、四、五，按同样的带与不带规则，也都记四。",
+      "eventIds": [
+        "4",
+        "5",
+        "6"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "water-zero",
+      "kind": "event",
+      "title": "考虑水：容量0仍放不下",
+      "text": "再考虑水。容量零时，仍然放不下。",
+      "eventIds": [
+        "7"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "water-one",
+      "kind": "event",
+      "title": "带水时为什么只读上一行",
+      "text": "容量一，不带得零；带水占一，查上一行容量零，加价值三，记三。只查上一行，避免重复装同一瓶水。",
+      "eventIds": [
+        "8"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "water-rest",
+      "kind": "recap",
+      "title": "复用雨衣这一行的小答案",
+      "text": "水这一行的其余容量继续比较。这里回放四次计算，完整依据都在网页。",
+      "eventIds": [
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "camera",
+      "kind": "recap",
+      "title": "为相机留出空间",
+      "text": "相机占三。容量不足就沿用旧答案，够用才比较带与不带。这里依次填容量零到四。",
+      "eventIds": [
+        "13",
+        "14",
+        "15",
+        "16",
+        "17"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "no-camera",
+      "kind": "event",
+      "title": "最后一格：不带相机",
+      "text": "容量五，不带相机，上一行同容量的最好价值是七。",
+      "eventIds": [
+        "18"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "不带相机"
+      ],
+      "stateView": "before"
+    },
+    {
+      "id": "take-camera",
+      "kind": "event",
+      "title": "最后一格：带上相机",
+      "text": "带相机先留三，剩余容量二；上一行容量二记四，加相机价值五，得到九。",
+      "eventIds": [
+        "18"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "before"
+    },
+    {
+      "id": "choose-nine",
+      "kind": "event",
+      "title": "两种选择比较之后才写入",
+      "text": "九比七大，选择带相机，这一格才写入九。",
+      "eventIds": [
+        "18"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "带上相机"
+      ]
+    },
+    {
+      "id": "recover-camera",
+      "kind": "event",
+      "title": "从价值九找回相机",
+      "text": "回看最后一格：九大于上一行的七，说明带了相机。减去占用三，剩余容量二。",
+      "eventIds": [
+        "19"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "recover-water",
+      "kind": "event",
+      "title": "剩余容量2：水为什么没选",
+      "text": "在水这一行，价值四与上一行相同。按同值不带约定，跳过水。",
+      "eventIds": [
+        "20"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "recover-rain",
+      "kind": "event",
+      "title": "剩余容量2：带上雨衣",
+      "text": "雨衣这一行是四，上一行是零，说明带了雨衣。容量减到零。",
+      "eventIds": [
+        "21"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "result",
+      "kind": "event",
+      "title": "核对完整装包方案",
+      "text": "最后得到雨衣和相机，占用二加三等于五，总价值四加五等于九。",
+      "eventIds": [
+        "22"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "contrast",
+      "kind": "rule",
+      "title": "为什么不能总选单位价值最高的？",
+      "text": "若总选单位价值最高的，先水再雨衣，只得七。剩余容量二放不下相机。局部最划算，可能错过全局更好的组合。",
+      "ruleIds": [
+        "knapsack.compare"
+      ],
+      "artwork": "../comics/knapsack/summary.png",
+      "artworkRegion": [
+        0,
+        0.36,
+        1,
+        0.664
+      ],
+      "visualExplanation": "按单位价值贪心：先水，再雨衣，价值7。\n\n完整比较：雨衣与相机，价值9。\n\n同样容量5，局部最划算并不保证组合最好。"
+    },
+    {
+      "id": "finish",
+      "kind": "summary",
+      "title": "把“小问题答案”迁移到新任务",
+      "text": "这能帮助分预算、装行李、选项目。前提是整数容量、价值可相加。可拆分或搭配改变价值时，要调整模型。记住每格的含义、两种选择和回溯。",
+      "artworkRegion": [
+        0,
+        0.673,
+        1,
+        0.9
+      ],
+      "panelExplanations": [
+        "应用：预算、行李、项目组合。条件：整数占用、价值可相加、每件最多选一次。"
+      ]
+    }
+  ]
+}

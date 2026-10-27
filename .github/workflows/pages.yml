@@ -1,0 +1,66 @@
+name: Publish Algorithm Wonderland online preview
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+      - 'qa/**'
+      - 'LICENSE'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Restore verified comic and teaching assets
+        run: python3 tools/fetch-open-assets.py
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Check real algorithms and teaching contracts
+        run: npm test
+      - name: Prepare online lessons and build
+        env:
+          VITE_SITE_MODE: online-preview
+        run: |
+          node tools/prepare-online.mjs
+          npm run build
+          touch dist/.nojekyll
+      - name: Enforce the static site size budget
+        run: |
+          python3 - <<'PY'
+          import pathlib
+          total = sum(p.stat().st_size for p in pathlib.Path('dist').rglob('*') if p.is_file())
+          assert total < 950_000_000, f'Site too large: {total}'
+          print(f'Pages content: {total:,} bytes')
+          PY
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish online preview
+        id: deployment
+        uses: actions/deploy-pages@v4

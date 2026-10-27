@@ -1,0 +1,12 @@
+import type {Runner} from '../engine/types';
+import {boids} from './world-flock';
+import {life} from './world-life';
+import {perlin} from './world-perlin';
+import {lsystem} from './world-lsystem';
+import {voronoi} from './world-voronoi';
+import {reaction} from './world-reaction';
+import {wfc} from './world-wfc';
+export {lifeStep} from './world-life';
+export {makePerlin} from './world-perlin';
+export {wfcSolve} from './world-wfc';
+export const generativeRunners:Record<string,Runner>={boids,life,perlin,lsystem,voronoi,'reaction-diffusion':reaction,wfc};

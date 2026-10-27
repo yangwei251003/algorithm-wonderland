@@ -1,0 +1,127 @@
+{
+  "algorithmId": "bayes",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "红灯来自两条路",
+      "text": "仓库检测器亮红灯了，这件产品就一定有缺陷吗？红灯桌上既有真正检出的缺陷品，也有误报的正常品。贝叶斯更新，要重新数这张桌上的比例。",
+      "ruleIds": [
+        "bayes.initialize"
+      ]
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "三个比例，分母不同",
+      "text": "原先缺陷占百分之五，分母是全部产品。灵敏度百分之九十，分母是缺陷品。误报率百分之十，分母是正常品。这三个比例的分母不同。",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "bayes.initialize"
+      ]
+    },
+    {
+      "id": "true",
+      "kind": "event",
+      "title": "缺陷且亮灯的分支",
+      "text": "按一万件折算，五百件有缺陷，其中九成亮灯，就是四百五十件。概率算法是零点零五乘零点九，得到零点零四五。它同时满足缺陷和亮灯。",
+      "eventIds": [
+        "1"
+      ],
+      "ruleIds": [
+        "bayes.joint"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "false",
+      "kind": "event",
+      "title": "为什么正常品也不能漏算？",
+      "text": "另一条路：九千五百件正常品里，一成误报，就是九百五十件。正常产品本来多，即使误报率小，误报红灯仍可能更多。这条分支不能漏。",
+      "eventIds": [
+        "2"
+      ],
+      "ruleIds": [
+        "bayes.joint"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "normalize",
+      "kind": "event",
+      "title": "用所有红灯作新分母",
+      "text": "两类红灯相加，得到一千四百件。已经知道产品亮灯，就只在这个范围里比较。四百五十除以一千四百，约百分之三十二点一四，才是本例后验概率。",
+      "eventIds": [
+        "3"
+      ],
+      "ruleIds": [
+        "bayes.normalize"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "contrast",
+      "kind": "event",
+      "title": "为什么答案不是百分之九十？",
+      "text": "为什么不能直接用百分之九十？它问缺陷品多容易亮灯；我们问亮灯品多容易有缺陷。前者分母是缺陷品，后者分母是所有亮灯。已知条件互换，答案不能照搬。",
+      "ruleIds": [
+        "bayes.initialize",
+        "bayes.normalize"
+      ],
+      "eventIds": [
+        "3"
+      ],
+      "pageModes": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "完整回顾两条分支",
+      "text": "回看两条真实分支：各自先乘亮灯率，然后汇合，再换分母。画面顺序重放三次运算，计算从来没有把两类产品混成同一个条件。",
+      "eventIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "ruleIds": [
+        "bayes.joint",
+        "bayes.normalize"
+      ]
+    },
+    {
+      "id": "limit",
+      "kind": "event",
+      "title": "新判断仍依赖假设",
+      "text": "这些比例依赖输入假设。缺陷更罕见而检测性能不变，误报通常会占更多红灯。先验和误报率估错，后验也会失真，不能判定某一件产品必好或必坏。",
+      "eventIds": [
+        "4"
+      ],
+      "ruleIds": [
+        "bayes.normalize"
+      ]
+    },
+    {
+      "id": "finish",
+      "kind": "summary",
+      "title": "先问基率，再看证据",
+      "text": "贝叶斯适合质量筛查、风险更新和证据推理。记住两条分支、一个新分母：新证据改变判断，也要问原先情况多常见。本例是教学产品比例，不能替代真实个体判断。",
+      "ruleIds": [
+        "bayes.initialize",
+        "bayes.joint",
+        "bayes.normalize"
+      ]
+    }
+  ]
+}

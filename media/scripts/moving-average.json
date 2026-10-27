@@ -1,0 +1,196 @@
+{
+  "algorithmId": "moving-average",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "只用昨天以前的账页",
+      "text": "小店明天该备多少杯？拿出最近三天账页，把每天看得同样重要，相加再平均。窗口像向前移动的相框，框里有谁，谁才参与这次计算。",
+      "ruleIds": [
+        "moving-average.initialize"
+      ]
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "为什么不能偷看未来？",
+      "text": "预测第四天，只能用前三天的十、十二、十四杯。第四天的真实销量还未知，不能放进自己的预测，否则成了事后看答案。",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "moving-average.initialize"
+      ]
+    },
+    {
+      "id": "sum-one",
+      "kind": "event",
+      "title": "先加入第一天",
+      "text": "从零开始，加第一天的十，得到十。窗口内每一天都只贡献一次。",
+      "eventIds": [
+        "1"
+      ],
+      "ruleIds": [
+        "moving-average.average"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "sum-two",
+      "kind": "event",
+      "title": "再加入第二天",
+      "text": "再加第二天的十二，总和从十变成二十二。没有因为更近就额外加分。",
+      "eventIds": [
+        "2"
+      ],
+      "ruleIds": [
+        "moving-average.average"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "sum-three",
+      "kind": "event",
+      "title": "最后加入第三天",
+      "text": "加第三天的十四，得到三十六。三个实际账页都已计入，没有挑最大值。",
+      "eventIds": [
+        "3"
+      ],
+      "ruleIds": [
+        "moving-average.average"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "divide",
+      "kind": "event",
+      "title": "为什么除以三？",
+      "text": "窗口正好有三天，三十六除以三，得到第四天的事先预测十二杯。每天权重都是三分之一，窗口外的旧值不参与。",
+      "eventIds": [
+        "4"
+      ],
+      "ruleIds": [
+        "moving-average.average"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "repeat",
+      "kind": "recap",
+      "title": "窗口随时间向前",
+      "text": "继续回放第五、六天的预测，再准备第七天。每次新一天进入，最旧一天退出，仍逐项相加。这些重复步骤沿用刚才的等权规则。",
+      "eventIds": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "ruleIds": [
+        "moving-average.average"
+      ]
+    },
+    {
+      "id": "last-forecast",
+      "kind": "event",
+      "title": "第七天预测为三十二杯",
+      "text": "最后窗口是三十、三十二、三十四，总和九十六。除以三，第七天预测三十二杯。",
+      "eventIds": [
+        "16"
+      ],
+      "ruleIds": [
+        "moving-average.average"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "error-four",
+      "kind": "event",
+      "title": "第四天实际三十，预测十二",
+      "text": "事后看到第四天实际三十杯，与事先预测十二相差十八。取绝对值，正负误差不会抵消。",
+      "eventIds": [
+        "17"
+      ],
+      "ruleIds": [
+        "moving-average.evaluate"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "other-errors",
+      "kind": "recap",
+      "title": "再核对第五与第六天",
+      "text": "第五、六天也各自核对原先的预测。后来的真实结果不能改写过去的预测。",
+      "eventIds": [
+        "18",
+        "19"
+      ],
+      "ruleIds": [
+        "moving-average.evaluate"
+      ]
+    },
+    {
+      "id": "average-error",
+      "kind": "event",
+      "title": "未知的明天不能算成绩",
+      "text": "三个误差合计四十，平均约十三点三三杯。第七天没有真实销量，不能进入误差的分母。曲线平滑，不代表预测准确。",
+      "eventIds": [
+        "20"
+      ],
+      "ruleIds": [
+        "moving-average.evaluate"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "contrast",
+      "kind": "comparison",
+      "title": "突然热销，为什么反应慢？",
+      "text": "再看第四天：前三天仍是低销量，估计十二明显落后于真实三十。规则只读过去，所以不会预知突发热销。",
+      "ruleIds": [
+        "moving-average.average",
+        "moving-average.evaluate"
+      ],
+      "eventIds": [
+        "17"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "finish",
+      "kind": "summary",
+      "title": "先定窗口，再看误差",
+      "text": "记住最近几天、等权平均、时间向前。它适合简单备货，不能自动理解促销或季节。大窗口通常更平稳，小窗口更灵敏；用相同的后续真实销量比较误差，再选择窗口。",
+      "ruleIds": [
+        "moving-average.initialize",
+        "moving-average.average",
+        "moving-average.evaluate"
+      ]
+    }
+  ]
+}

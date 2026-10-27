@@ -1,0 +1,50 @@
+{
+  "algorithmId": "thompson",
+  "lessonVersion": 2,
+  "traceHash": "39bda08631427fad6b9bb928b14bc0c8adac941173353c27c5b21500b4604966",
+  "reviewedAt": "2026-10-26",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "为摊位保留可能成功率分布，独立抽样决定本轮尝试",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图",
+        "均匀Beta(1,1)、首次抽样0.125/0.132/0.567与C成功后Beta(2,1)核对",
+        "第三轮抽样与最终C后验Beta(20,11)核对，图形概念示意明确"
+      ],
+      "corrections": [
+        "把不符合本例Beta参数的双峰曲线改为单峰，并标分布示意"
+      ]
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "均匀先验抽样与成功一次后的后验参数更新",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图",
+        "均匀Beta(1,1)、首次抽样0.125/0.132/0.567与C成功后Beta(2,1)核对",
+        "第三轮抽样与最终C后验Beta(20,11)核对，图形概念示意明确"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "第三轮改选B与40次试验统计",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图",
+        "均匀Beta(1,1)、首次抽样0.125/0.132/0.567与C成功后Beta(2,1)核对",
+        "第三轮抽样与最终C后验Beta(20,11)核对，图形概念示意明确"
+      ],
+      "corrections": []
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "数值取固定教学案例；不代表客观正确或未来保证"
+  ]
+}

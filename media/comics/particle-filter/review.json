@@ -1,0 +1,48 @@
+{
+  "algorithmId": "particle-filter",
+  "lessonVersion": 2,
+  "traceHash": "c5cbde030deaef94c9b5d41c611d497fb9bae51203459cb62a2572b4813d09cc",
+  "reviewedAt": "2026-10-26",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "筹码表示可能位置，跟随运动、获得证据权重，再按份额复制。",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看；预测/加权/重采样顺序正确",
+        "明确筹码是假设，不是多个机器人；未只保留最大权重"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "真实测量22.721对候选22.599和60.435给出不同权重，按系统重采样复制。",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看修订图；22.721、4、22.599、6.15%、60.435与首轮真实记录一致",
+        "u_k=u_0+k/N正确；约0%未写成绝对零；筹码明确不按比例"
+      ],
+      "corrections": [
+        "移除误导性的候选人物与旗帜",
+        "移除不精确的等间隔示意刻度，改为正确公式",
+        "中央双箭头改成无方向说明框"
+      ]
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "重复地标允许多峰；本次唯一地标实验150粒子90轮误差1.03，未混作同一场景。",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看；多峰概念图与唯一地标实验指标明确分开",
+        "粒子数150、90轮、RMSE1.03来自真实导出；说明有限粒子丢失可能性"
+      ],
+      "corrections": []
+    }
+  ],
+  "limitations": [
+    "未真人试学；美术检查为AI逐图审核，未独立专业美术评审。"
+  ]
+}

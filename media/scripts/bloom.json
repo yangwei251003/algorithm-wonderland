@@ -1,0 +1,358 @@
+{
+  "algorithmId": "bloom",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "共享灯板只记亮没亮",
+      "text": "名字按固定规则对应几盏灯。登记只点亮，不记谁点的。必要灯有一盏灭着，肯定没登记；全亮只代表可能。",
+      "ruleIds": [
+        "bloom.initialize"
+      ],
+      "panelExplanations": [
+        "固定规则把名字映射到多个灯位；只开不关，因此缺一盏能排除，全亮可能是别人点亮。"
+      ]
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "十六盏灯，三套固定规则",
+      "text": "十六位编号零到十五，最初全零。每个键算三次。教学哈希不保证独立，也不是密码哈希。",
+      "ruleIds": [
+        "bloom.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "hash-init",
+      "kind": "event",
+      "title": "每套规则从自己的初值开始",
+      "text": "先加入a。第一套设置初值，再逐字节混入。不同套规则用不同盐，改变起点。",
+      "ruleIds": [
+        "bloom.hash"
+      ],
+      "eventIds": [
+        "1"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "mix",
+      "kind": "event",
+      "title": "字节混入，保留低三十二位",
+      "text": "a的字节值九十七，与旧值异或，再乘固定系数，保留低三十二位。图中是同一次计算的输入和结果。",
+      "ruleIds": [
+        "bloom.hash"
+      ],
+      "eventIds": [
+        "2"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "calculationKeys": [
+        "old",
+        "byte",
+        "xored",
+        "multiplier"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "position",
+      "kind": "event",
+      "title": "对十六取余，得到灯号",
+      "text": "哈希对十六取余，余数七就是位置七。只是算地址，还没点灯。",
+      "ruleIds": [
+        "bloom.hash"
+      ],
+      "eventIds": [
+        "3"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "other-hashes",
+      "kind": "recap",
+      "title": "另两套重新开始计算",
+      "text": "另两套从各自初值开始，重复混入和取余，不能沿用上一套结果。",
+      "ruleIds": [
+        "bloom.hash"
+      ],
+      "eventIds": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ]
+    },
+    {
+      "id": "insert",
+      "kind": "recap",
+      "title": "逐个把所需位设为一",
+      "text": "地址都算完，再依次点亮七、二、十三。每位只存零或一，不存名字和次数。",
+      "ruleIds": [
+        "bloom.insert"
+      ],
+      "eventIds": [
+        "10",
+        "11",
+        "12"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "key-b",
+      "kind": "recap",
+      "title": "加入第二个字母",
+      "text": "对b重复三次计算，再按地址置一。不根据灯亮没亮来改地址。",
+      "ruleIds": [
+        "bloom.hash"
+      ],
+      "eventIds": [
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24"
+      ]
+    },
+    {
+      "id": "key-c",
+      "kind": "recap",
+      "title": "第三个字母先算地址",
+      "text": "c也先算三个地址。地址与以前重叠叫碰撞，不代表字母相同。",
+      "ruleIds": [
+        "bloom.hash"
+      ],
+      "eventIds": [
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33"
+      ]
+    },
+    {
+      "id": "shared-13",
+      "kind": "event",
+      "title": "已有的灯保持一",
+      "text": "插入c的地址十三，它已被a点亮，只保持一，不新增灯。",
+      "ruleIds": [
+        "bloom.insert"
+      ],
+      "eventIds": [
+        "34"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "new-12",
+      "kind": "event",
+      "title": "这一盏才是新点亮的",
+      "text": "十二原来零，现在置一，亮灯数从六变七。",
+      "ruleIds": [
+        "bloom.insert"
+      ],
+      "eventIds": [
+        "35"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "shared-7",
+      "kind": "event",
+      "title": "最后一个地址也被占用",
+      "text": "最后地址七也已亮，保持一。三个键各三个地址，只有七个不同灯位。",
+      "ruleIds": [
+        "bloom.insert"
+      ],
+      "eventIds": [
+        "36"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "query",
+      "kind": "recap",
+      "title": "查询沿用同一组规则",
+      "text": "查询d，重算三次地址。查询只读不点灯；规则和数组大小必须与插入一致。",
+      "ruleIds": [
+        "bloom.hash"
+      ],
+      "eventIds": [
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45"
+      ]
+    },
+    {
+      "id": "absent",
+      "kind": "event",
+      "title": "看到一个零，已经能排除",
+      "text": "必要位置八是零。若曾加入，这盏灯必定亮；只插不删，所以可确定不存在。",
+      "ruleIds": [
+        "bloom.query"
+      ],
+      "eventIds": [
+        "46"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "rest",
+      "kind": "recap",
+      "title": "其余必要位也检查",
+      "text": "继续核对九和十四。演示查全部位置；任一个零已足够排除。",
+      "ruleIds": [
+        "bloom.query"
+      ],
+      "eventIds": [
+        "47",
+        "48",
+        "49"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "collision-hash",
+      "kind": "recap",
+      "title": "换一个实际查询反例",
+      "text": "换成q，保持同一灯板，重算三套规则。",
+      "ruleIds": [
+        "bloom.hash"
+      ],
+      "caseFile": "review-counterexample-bloom.json",
+      "caseEventIds": [
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "collision-addresses",
+      "kind": "recap",
+      "title": "地址全算完：不同字母，地址相同",
+      "text": "三个地址与a相同，却是不同字母。",
+      "ruleIds": [
+        "bloom.hash"
+      ],
+      "caseFile": "review-counterexample-bloom.json",
+      "caseEventIds": [
+        "45"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "collision-check",
+      "kind": "recap",
+      "title": "仍逐个检查必要位",
+      "text": "依次检查必要位，灯板不记谁点亮的。",
+      "ruleIds": [
+        "bloom.query"
+      ],
+      "caseFile": "review-counterexample-bloom.json",
+      "caseEventIds": [
+        "46",
+        "47"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "collision-all",
+      "kind": "recap",
+      "title": "三位都查过，全亮只代表可能",
+      "text": "十三也亮着。全部通过，只能说可能存在。",
+      "ruleIds": [
+        "bloom.query"
+      ],
+      "caseFile": "review-counterexample-bloom.json",
+      "caseEventIds": [
+        "48"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "collision-stop",
+      "kind": "event",
+      "title": "查原名单才知道误报",
+      "text": "查教学名单，只有a、b、c，没有q，是真实误报。核实名单不是过滤器自身能力。",
+      "ruleIds": [
+        "bloom.query"
+      ],
+      "caseFile": "review-counterexample-bloom.json",
+      "caseEventIds": [
+        "49"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "省去确定无结果的查询",
+      "text": "适合缓存和集合预筛。只插不删且配置一致时，已加入的键不会被错排除；全亮仍要查原数据，不能随意清位删除。",
+      "ruleIds": [
+        "bloom.query"
+      ],
+      "panelExplanations": [
+        "必要位有零直接排除；全为一需要查询真实资料库。只插不删且配置一致时，没有假阴性；共享位不能随意清除。"
+      ]
+    }
+  ]
+}

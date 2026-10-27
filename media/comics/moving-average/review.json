@@ -1,0 +1,48 @@
+{
+  "algorithmId": "moving-average",
+  "lessonVersion": 2,
+  "traceHash": "ce70152550e408af1991e9a631f44fbffba2ad13c1586e8c4f545fbc5199d3bf",
+  "reviewedAt": "2026-10-26",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "移动平均：生活类比与核心思想",
+      "status": "passed",
+      "checks": [
+        "3天销量10、12、14及36÷3=12正确",
+        "等权箭头汇聚后指向第4天预测",
+        "角色和中文清晰"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "移动平均：真实样例的计算规则",
+      "status": "passed",
+      "checks": [
+        "6天数值与后3天窗口正确",
+        "96÷3=32指向第7天预测",
+        "绝对误差与不偷看未来准确"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "移动平均：用途与适用边界",
+      "status": "passed",
+      "checks": [
+        "大小窗口的平稳/滞后取舍准确",
+        "用途与局限独立可读",
+        "杯子为场景符号非计数图"
+      ],
+      "corrections": []
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "漫画为静态科普，逐步计算见同源交互轨迹"
+  ]
+}

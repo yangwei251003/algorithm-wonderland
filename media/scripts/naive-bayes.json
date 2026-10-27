@@ -1,0 +1,290 @@
+{
+  "algorithmId": "naive-bayes",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "分开记住宽和高的常态",
+      "text": "质检员分别记录两类产品的宽和高有多常见。新产品来了，比较它在两类里的合理程度。朴素贝叶斯先按类别建立分布，再组合线索。",
+      "ruleIds": [
+        "naive-bayes.initialize"
+      ],
+      "visualExplanation": "宽、高对应两个特征；每类各有均值和波动，不把全体产品混成一个分布。"
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "朴素指的是哪条假设",
+      "text": "假设给定类别后，宽与高相互独立，且各自服从高斯分布。取对数把密度连乘变相加，减少小数下溢。",
+      "ruleIds": [
+        "naive-bayes.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "sum",
+      "kind": "event",
+      "title": "先把同类样本累加",
+      "text": "绿色四点依次累计宽与高。这里只加训练点，不能混入橙色，也不能偷用验证点。",
+      "ruleIds": [
+        "naive-bayes.fit"
+      ],
+      "eventIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "sum-final",
+      "kind": "event",
+      "title": "最后一项加入，均值才齐",
+      "text": "加完第四点，宽合计九十二，高合计一百。各除以四，均值二十三和二十五。",
+      "ruleIds": [
+        "naive-bayes.fit"
+      ],
+      "eventIds": [
+        "4"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "variance",
+      "kind": "event",
+      "title": "波动从每个偏差开始",
+      "text": "第一个点宽十八，与均值二十三差负五，平方二十五；高二十四与均值二十五差负一，平方为一。",
+      "ruleIds": [
+        "naive-bayes.fit"
+      ],
+      "eventIds": [
+        "5"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "variance-rest",
+      "kind": "event",
+      "title": "累计其余平方偏差",
+      "text": "其余三点也减去同类均值再平方，累计宽与高的偏差平方和。不能把正负偏差直接抵消。",
+      "ruleIds": [
+        "naive-bayes.fit"
+      ],
+      "eventIds": [
+        "6",
+        "7",
+        "8"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "green-fit",
+      "kind": "event",
+      "title": "从累计量得到绿色参数",
+      "text": "两个平方和都是八十四，除以四得方差二十一，再加平滑三，得到二十四。人数加一除以总数加二，先验一半。",
+      "ruleIds": [
+        "naive-bayes.fit"
+      ],
+      "eventIds": [
+        "9"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ],
+      "calculationKeys": [
+        "mx",
+        "my",
+        "vx",
+        "vy"
+      ]
+    },
+    {
+      "id": "orange",
+      "kind": "event",
+      "title": "橙色独立重复同一流程",
+      "text": "橙色也单独求和、累计平方偏差；旧的绿色参数不能直接当作橙色参数。",
+      "ruleIds": [
+        "naive-bayes.fit"
+      ],
+      "eventIds": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "orange-fit",
+      "kind": "event",
+      "title": "橙色拟合完成",
+      "text": "橙色均值七十五点五和七十，平滑方差三十一点七五和四十五，先验也是一半。人数相等，分布仍不同。",
+      "ruleIds": [
+        "naive-bayes.fit"
+      ],
+      "eventIds": [
+        "18"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "green-score",
+      "kind": "event",
+      "title": "第一件在绿色里有多合理",
+      "text": "验证点是十二、二十。把绿色先验和两个特征的密度取对数相加，省去两类共有常数，得负六点九一。",
+      "ruleIds": [
+        "naive-bayes.predict"
+      ],
+      "eventIds": [
+        "19"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "calculation"
+      ],
+      "calculationKeys": [
+        "x",
+        "y",
+        "mx",
+        "my"
+      ]
+    },
+    {
+      "id": "orange-score",
+      "kind": "event",
+      "title": "同一件还要检查另一类",
+      "text": "同一验证点换用橙色参数，得负九十五点六零。坐标没有变，变的是解释它的类别分布。",
+      "ruleIds": [
+        "naive-bayes.predict"
+      ],
+      "eventIds": [
+        "20"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "choose",
+      "kind": "event",
+      "title": "两份总证据谁更强",
+      "text": "负六点九一大于负九十五点六零，选择绿色。把分数归一化，才得到模型的类别概率。",
+      "ruleIds": [
+        "naive-bayes.predict"
+      ],
+      "eventIds": [
+        "21"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "comparison"
+      ]
+    },
+    {
+      "id": "second",
+      "kind": "event",
+      "title": "第二件重新比较",
+      "text": "第二件用同样规则计算两类分数，再选较大者；这次预测橙色。最后核对标签，两点都对，没有回写训练参数。",
+      "ruleIds": [
+        "naive-bayes.predict"
+      ],
+      "eventIds": [
+        "22",
+        "23",
+        "24",
+        "25"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "完整记录加速回放",
+      "text": "回放按类拟合、逐类评分、归一化选择。简单计算仍然依赖建模假设。",
+      "ruleIds": [
+        "naive-bayes.initialize",
+        "naive-bayes.fit",
+        "naive-bayes.predict"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "finish",
+      "kind": "summary",
+      "title": "简单基线，也要检查假设",
+      "text": "适合快速分类和建立基线。这里是高斯版本，不是词频版本。同类宽高若强相关，可能重复计算信息；密度也不是百分比，甚至可以大于一。",
+      "ruleIds": [
+        "naive-bayes.fit",
+        "naive-bayes.predict"
+      ],
+      "visualExplanation": "类别内独立与高斯形状都是假设；用留出样本验收，不把两点全对当成普遍保证。"
+    }
+  ]
+}

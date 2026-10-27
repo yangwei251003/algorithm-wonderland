@@ -1,0 +1,48 @@
+{
+  "algorithmId": "knn",
+  "lessonVersion": 2,
+  "traceHash": "6ad943f7f248fb92a1b2553ddc4abc176e560f004d0a402a77f6954aede0483d",
+  "reviewedAt": "2026-10-25T18:53:17.681519+00:00",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "knn：生活类比",
+      "status": "passed",
+      "checks": [
+        "逐张查看：用宽度/高度卡片对应特征，三个邻居投票，不把示意水果值当案例数据。"
+      ],
+      "corrections": [
+        "重绘不准确的特征散点、统一邻居类别和距离数值；总结改为尺度尺而非虚构数据图。"
+      ]
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "knn：核心规则",
+      "status": "passed",
+      "checks": [
+        "逐张查看：四个距离平方52、148、164、388与教学案例一致，选前三个，第四个灰色排除。"
+      ],
+      "corrections": [
+        "重绘不准确的特征散点、统一邻居类别和距离数值；总结改为尺度尺而非虚构数据图。"
+      ]
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "knn：应用与局限",
+      "status": "passed",
+      "checks": [
+        "逐张查看：尺度变化用毫米/米尺解释；小k与大k局限没有虚构精度图。"
+      ],
+      "corrections": [
+        "重绘不准确的特征散点、统一邻居类别和距离数值；总结改为尺度尺而非虚构数据图。"
+      ]
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "科普场景含明确的示意，精确逐步数值以同版案例轨迹为准"
+  ]
+}

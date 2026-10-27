@@ -1,0 +1,42 @@
+{
+  "algorithmId": "dbscan",
+  "lessonVersion": 2,
+  "traceHash": "71d7f5d16d6f34b174f23cfe07a989287e3670f1e8e78982e000f017aaa6b4fc",
+  "reviewedAt": "2026-10-25T18:53:17.657909+00:00",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "dbscan：生活类比",
+      "status": "passed",
+      "checks": [
+        "逐张查看：核心点可接力、边界点不可继续扩散、噪声暂未连接，人数包括自身。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "dbscan：核心规则",
+      "status": "passed",
+      "checks": [
+        "逐张查看：半径4内包含距离0/2/4三点，距离6直接拒绝但可能由其他核心点连接。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "dbscan：应用与局限",
+      "status": "passed",
+      "checks": [
+        "逐张查看：任意形状密度群与噪声示意、统一半径和共享边界归属局限清楚。"
+      ],
+      "corrections": []
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "科普场景含明确的示意，精确逐步数值以同版案例轨迹为准"
+  ]
+}

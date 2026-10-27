@@ -1,0 +1,366 @@
+{
+  "algorithmId": "dbscan",
+  "pronunciations": {
+    "DBSCAN": "密度聚类"
+  },
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "只有热闹的人，才能继续接力",
+      "text": "在人群地图里找热闹片区，不能见人就一直喊下去。附近人数达到门槛，才能继续接力；边缘的人可以加入，却不一定有接力资格。密度聚类就是用这条规则扩散。",
+      "ruleIds": [
+        "dbscan.initialize"
+      ],
+      "visualExplanation": "喊得到的半径对应邻域；人数门槛含自己；核心才能继续扩散。漫画为类比，不按人物数重算正式案例。"
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "半径和人数分工不同",
+      "text": "本例半径四，门槛三个点，包含自己，恰好距离四也计入。访问过只表示查过邻域，不等于已经成组。",
+      "ruleIds": [
+        "dbscan.initialize",
+        "dbscan.neighborhood"
+      ],
+      "eventIds": [
+        "0",
+        "1"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "self",
+      "kind": "event",
+      "title": "先把自己计入",
+      "text": "从十、十开始。到自己的距离是零，不超过四，所以自己也占邻域人数的一名。",
+      "ruleIds": [
+        "dbscan.neighborhood"
+      ],
+      "eventIds": [
+        "2"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "inside",
+      "kind": "event",
+      "title": "附近第二点也计入",
+      "text": "到十二、十，横差二、纵差零，距离二，在半径内，因此邻域累计到两个点。",
+      "ruleIds": [
+        "dbscan.neighborhood"
+      ],
+      "eventIds": [
+        "3"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "edge",
+      "kind": "event",
+      "title": "落在圆周上仍然计入",
+      "text": "到十四、十，距离正好四。条件是小于或等于，不是严格小于，所以第三点也算邻居。",
+      "ruleIds": [
+        "dbscan.neighborhood"
+      ],
+      "eventIds": [
+        "4"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "comparison"
+      ]
+    },
+    {
+      "id": "outside",
+      "kind": "event",
+      "title": "距离六为何拒绝",
+      "text": "到十六、十的距离六，大于四，这一步不能直接接纳。",
+      "ruleIds": [
+        "dbscan.neighborhood"
+      ],
+      "eventIds": [
+        "5"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "outside-remote",
+      "kind": "event",
+      "title": "远处三点用同一半径检查",
+      "text": "远处三点也逐一计算，均超出半径。",
+      "ruleIds": [
+        "dbscan.neighborhood"
+      ],
+      "eventIds": [
+        "6",
+        "7",
+        "8"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "core",
+      "kind": "event",
+      "title": "三名邻居达到启动门槛",
+      "text": "邻域三个点达到门槛，起点成为核心，启动一个组，把邻居放入扩展队列。队列不是已完成的分组。",
+      "ruleIds": [
+        "dbscan.classify"
+      ],
+      "eventIds": [
+        "9"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "check2",
+      "kind": "event",
+      "title": "换一个中心，重新数邻居",
+      "text": "取出第二点，重新检查它的邻域。不能照抄起点的邻居，因为圆心已从十移动到十二。",
+      "ruleIds": [
+        "dbscan.expand",
+        "dbscan.neighborhood"
+      ],
+      "eventIds": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "relay",
+      "kind": "event",
+      "title": "够密才有权把联系传开",
+      "text": "第二点周围有四个点，也达到核心门槛。因此十六、十虽不靠近起点，却能通过这个核心连入。",
+      "ruleIds": [
+        "dbscan.classify"
+      ],
+      "eventIds": [
+        "21"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "queue",
+      "kind": "event",
+      "title": "已有的不重复，新的加入队尾",
+      "text": "前三点已经排过队，保留原队列；",
+      "ruleIds": [
+        "dbscan.expand"
+      ],
+      "eventIds": [
+        "22",
+        "23",
+        "24"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "queue-add",
+      "kind": "event",
+      "title": "第四点尚未排过，加入队尾",
+      "text": "第四点尚未排过，加入队尾。不能无限重复把邻居塞回来。",
+      "ruleIds": [
+        "dbscan.expand"
+      ],
+      "eventIds": [
+        "25"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "noise",
+      "kind": "event",
+      "title": "彼此接近，也可能不够密",
+      "text": "继续扩展后，远处两点各自连同自己只有两个，达不到三，暂列噪声。若后来被核心找到，仍可成为边界点。",
+      "ruleIds": [
+        "dbscan.classify"
+      ],
+      "eventIds": [
+        "67",
+        "76"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "isolated",
+      "kind": "event",
+      "title": "落单点也要用同一个标准",
+      "text": "最后一点只找到自己，也不能启动群组。全部检查后，一个组、三个噪声点；本例前四点都是核心。",
+      "ruleIds": [
+        "dbscan.classify",
+        "dbscan.stop"
+      ],
+      "eventIds": [
+        "85",
+        "86"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "完整记录加速回放",
+      "text": "回放完整邻域检查、核心判断和队列扩展。边界点若不够密，不能把一串稀疏点继续拖进同组。",
+      "ruleIds": [
+        "dbscan.initialize",
+        "dbscan.neighborhood",
+        "dbscan.classify",
+        "dbscan.expand",
+        "dbscan.stop"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69",
+        "70",
+        "71",
+        "72",
+        "73",
+        "74",
+        "75",
+        "76",
+        "77",
+        "78",
+        "79",
+        "80",
+        "81",
+        "82",
+        "83",
+        "84",
+        "85",
+        "86"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "finish",
+      "kind": "summary",
+      "title": "数邻居，再决定能否接力",
+      "text": "适合空间聚集和离群点探索，无须预先定组数。但统一半径可能难兼顾不同密度，单位也会改变邻居，共享边界的归属还可能受访问顺序影响。",
+      "ruleIds": [
+        "dbscan.neighborhood",
+        "dbscan.classify",
+        "dbscan.expand"
+      ],
+      "visualExplanation": "核心点能接力，边界点不能。正式七点案例得到一个组与三个噪声点。"
+    }
+  ]
+}

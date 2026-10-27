@@ -1,0 +1,409 @@
+{
+  "algorithmId": "quick-sort",
+  "beats": [
+    {
+      "id": "intro-pivot",
+      "kind": "analogy",
+      "title": "先选一个号码作分界",
+      "text": "给拿号码牌的人排队，先选一个号码作分界。本例选最后的四，再逐个判断该站在哪侧。",
+      "artwork": "../comics/quick-sort/analogy.png",
+      "artworkRegion": [
+        0,
+        0.089,
+        1,
+        0.334
+      ],
+      "panelExplanations": [
+        "末项4作为分界。类比讲分组规则，具体交换顺序随后用真实数组展示。"
+      ],
+      "ruleIds": [
+        "quick-sort.initialize"
+      ]
+    },
+    {
+      "id": "intro-partition",
+      "kind": "analogy",
+      "title": "小值一边，大值一边",
+      "text": "不大于四的进左边，更大的进右边。四归位后两侧满足大小关系，但各自还未必排好。",
+      "artwork": "../comics/quick-sort/analogy.png",
+      "artworkRegion": [
+        0,
+        0.342,
+        1,
+        0.625
+      ],
+      "panelExplanations": [
+        "左组都≤4，右组都>4。这是分区成立的条件，不是两组内部有序的保证。"
+      ],
+      "ruleIds": [
+        "quick-sort.partition"
+      ]
+    },
+    {
+      "id": "intro-recurse",
+      "kind": "analogy",
+      "title": "两边仍要分别整理",
+      "text": "两组继续用相同规则整理。快速排序把大问题拆小，换位服务于分区条件。",
+      "artwork": "../comics/quick-sort/analogy.png",
+      "artworkRegion": [
+        0,
+        0.633,
+        1,
+        0.905
+      ],
+      "panelExplanations": [
+        "左右两组各自成为更小的排序问题，长度不足2才不必再分。"
+      ],
+      "ruleIds": [
+        "quick-sort.partition"
+      ]
+    },
+    {
+      "id": "setup",
+      "kind": "event",
+      "title": "最后的四作为分界",
+      "text": "输入五、二、七、二、四。四是分界，左区边界从第一个位置开始；边界前面都是已确认的小值，起初为空。扫描一次只看一项。",
+      "ruleIds": [
+        "quick-sort.initialize",
+        "quick-sort.partition"
+      ],
+      "eventIds": [
+        "0",
+        "1"
+      ]
+    },
+    {
+      "id": "five",
+      "kind": "event",
+      "title": "五为何暂时不动？",
+      "text": "五大于四，留在大值区，不与边界交换。左侧小值区也不会增长。",
+      "eventIds": [
+        "2"
+      ],
+      "ruleIds": [
+        "quick-sort.compare"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation",
+        "comparison"
+      ]
+    },
+    {
+      "id": "first-two",
+      "kind": "event",
+      "title": "二为何进入左区？",
+      "text": "再看二。二不大于四，满足左区条件，因此接下来应放进边界指向的位置。",
+      "eventIds": [
+        "3"
+      ],
+      "ruleIds": [
+        "quick-sort.compare"
+      ],
+      "pageModes": [
+        "calculation",
+        "comparison"
+      ]
+    },
+    {
+      "id": "first-swap",
+      "kind": "event",
+      "title": "交换后才推进边界",
+      "text": "二与边界处的五交换，",
+      "eventIds": [
+        "4"
+      ],
+      "ruleIds": [
+        "quick-sort.move"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "detailEventIds": [
+        "4"
+      ]
+    },
+    {
+      "id": "first-boundary",
+      "kind": "event",
+      "title": "第一个小值确认，边界右移",
+      "text": "然后边界右移一格。二留在左区，五仍在已扫描的大值区，没有被删除。",
+      "eventIds": [
+        "5"
+      ],
+      "ruleIds": [
+        "quick-sort.partition"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "detailEventIds": [
+        "5"
+      ]
+    },
+    {
+      "id": "seven",
+      "kind": "event",
+      "title": "七仍留在大值侧",
+      "text": "七大于四，暂留大值侧，边界不动。依据与刚才处理五相同。",
+      "eventIds": [
+        "6"
+      ],
+      "ruleIds": [
+        "quick-sort.compare"
+      ],
+      "pageModes": [
+        "calculation",
+        "comparison"
+      ]
+    },
+    {
+      "id": "second-two",
+      "kind": "event",
+      "title": "另一个二也满足条件",
+      "text": "另一个二也不大于四。同样进入左区，重复值不会被去掉。",
+      "eventIds": [
+        "7"
+      ],
+      "ruleIds": [
+        "quick-sort.compare"
+      ],
+      "pageModes": [
+        "calculation",
+        "comparison"
+      ]
+    },
+    {
+      "id": "second-swap",
+      "kind": "event",
+      "title": "把第二个二放入左区",
+      "text": "它与边界处的五交换，",
+      "eventIds": [
+        "8"
+      ],
+      "ruleIds": [
+        "quick-sort.move"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "detailEventIds": [
+        "8"
+      ]
+    },
+    {
+      "id": "second-boundary",
+      "kind": "event",
+      "title": "第二个小值确认，边界右移",
+      "text": "再推进边界。现在两个二在左边，七和五在后面，分界四仍在末尾。",
+      "eventIds": [
+        "9"
+      ],
+      "ruleIds": [
+        "quick-sort.partition"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "detailEventIds": [
+        "9"
+      ]
+    },
+    {
+      "id": "pivot",
+      "kind": "event",
+      "title": "四为何能固定在这里？",
+      "text": "扫描结束，把四与边界处的七交换。左侧都不大于四，右侧都大于四，所以四到达最终位置。以后递归不再包含四。",
+      "eventIds": [
+        "10",
+        "11"
+      ],
+      "ruleIds": [
+        "quick-sort.move",
+        "quick-sort.partition"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "detailEventIds": [
+        "10",
+        "11"
+      ]
+    },
+    {
+      "id": "subproblems",
+      "kind": "event",
+      "title": "继续处理两侧子区间",
+      "text": "现在加速展示两侧子问题。仍然比较、分区，直到区间不足两项。自己与自己交换不改变数组，本例不计实际写入。",
+      "eventIds": [
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27"
+      ],
+      "ruleIds": [
+        "quick-sort.partition",
+        "quick-sort.compare",
+        "quick-sort.move"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "finished",
+      "kind": "event",
+      "title": "两个子问题都结束",
+      "text": "两个子区间完成，整列才排好。结果二、二、四、五、七，共六次比较、六次实际写入。",
+      "eventIds": [
+        "28"
+      ],
+      "ruleIds": [
+        "quick-sort.stop"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "limit",
+      "kind": "comparison",
+      "title": "分组偏斜，问题缩小得少",
+      "text": "看递增输入的条件示意。若每次选末项，它总是最大值，左边几乎保留全部元素，右边为空。问题缩小得很少，比较可能很多。",
+      "artwork": "../comics/quick-sort/summary.png",
+      "artworkRegion": [
+        0,
+        0.371,
+        1,
+        0.603
+      ],
+      "panelExplanations": [
+        "示意输入1、2、3、4、5，末项5作分界，左4项、右0项。均匀分成两半不是本版保证。"
+      ],
+      "ruleIds": [
+        "quick-sort.partition",
+        "quick-sort.compare"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "从分区到全部完成",
+      "text": "回放主案例的全部真实记录。注意分界归位和整个排序完成是两件事；左右子问题都结束，才有完整有序清单。",
+      "ruleIds": [
+        "quick-sort.initialize",
+        "quick-sort.partition",
+        "quick-sort.compare",
+        "quick-sort.move",
+        "quick-sort.stop"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "整理清单时想到它",
+      "text": "商品价格、成绩和文件都能用排序整理。这版快速排序不保证同值记录的相对顺序。分界选择影响表现，分区后还要完成两侧子问题。",
+      "artwork": "../comics/quick-sort/summary.png",
+      "artworkRegion": [
+        0,
+        0.61,
+        1,
+        0.902
+      ],
+      "panelExplanations": [
+        "适合一般排序。保留重复值，不等于保持同值记录原先的相对次序；本版不承诺稳定。"
+      ],
+      "ruleIds": [
+        "quick-sort.stop"
+      ]
+    }
+  ],
+  "artworkPanels": {
+    "analogy": [
+      [
+        0,
+        0.089,
+        1,
+        0.334
+      ],
+      [
+        0,
+        0.342,
+        1,
+        0.625
+      ],
+      [
+        0,
+        0.633,
+        1,
+        0.905
+      ]
+    ],
+    "summary": [
+      [
+        0,
+        0.09,
+        1,
+        0.362
+      ],
+      [
+        0,
+        0.371,
+        1,
+        0.603
+      ],
+      [
+        0,
+        0.61,
+        1,
+        0.902
+      ]
+    ]
+  }
+}

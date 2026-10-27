@@ -1,0 +1,52 @@
+{
+  "algorithmId": "linear-regression",
+  "lessonVersion": 2,
+  "traceHash": "71a04c069b28ffd5641da36737685499ebbda3acc103f12e1dbc6d752359b4b5",
+  "reviewedAt": "2026-10-26",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "最小二乘回归：生活类比与核心思想",
+      "status": "passed",
+      "checks": [
+        "删除错误交叉尺后只余同一拟合线",
+        "橙色残差竖直连接点与线",
+        "正负5平方为25，中文完整"
+      ],
+      "corrections": [
+        "首稿尺子与拟合线交叉使残差连错线，imagegen删除该尺并修复竖直残差。"
+      ]
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "最小二乘回归：真实样例的计算规则",
+      "status": "passed",
+      "checks": [
+        "4行坐标与均值25,35准确",
+        "两个偏差总和500、斜率1截距10正确",
+        "拟合线及零样本内误差准确"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "最小二乘回归：用途与适用边界",
+      "status": "passed",
+      "checks": [
+        "已将离群值平方修为大的残差平方",
+        "相关不等于因果清晰",
+        "未来误差/退化x边界齐全"
+      ],
+      "corrections": [
+        "首稿措辞误把离群值而非残差平方，imagegen改为大的残差会被平方放大，已逐字复查。"
+      ]
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "漫画为静态科普，逐步计算见同源交互轨迹"
+  ]
+}

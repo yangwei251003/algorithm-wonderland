@@ -1,0 +1,435 @@
+{
+  "algorithmId": "merge-sort",
+  "beats": [
+    {
+      "id": "intro-ordered",
+      "kind": "analogy",
+      "title": "先让两队各自有序",
+      "text": "两队各自有序，后面都不小于队首。只比两个队首，就能选出最小者。",
+      "ruleIds": [
+        "merge-sort.initialize"
+      ],
+      "artwork": "../comics/merge-sort/analogy.png",
+      "artworkRegion": [
+        0,
+        0.085,
+        1,
+        0.366
+      ],
+      "panelExplanations": [
+        "有序队列的队首就是本队剩余最小值。两队必须先各自排好，才能只看队首。"
+      ]
+    },
+    {
+      "id": "intro-tie",
+      "kind": "analogy",
+      "title": "相等时，左队先走",
+      "text": "相等时先取左边。二甲原来在二乙前，这条约定让同值记录保持先后。",
+      "ruleIds": [
+        "merge-sort.compare"
+      ],
+      "artwork": "../comics/merge-sort/analogy.png",
+      "artworkRegion": [
+        0,
+        0.372,
+        1,
+        0.606
+      ],
+      "panelExplanations": [
+        "2甲与2乙数值相同，甲乙只是身份标记；先取左边，保持原有相对顺序。"
+      ]
+    },
+    {
+      "id": "intro-next",
+      "kind": "analogy",
+      "title": "取走谁，就移动谁的队首",
+      "text": "取走谁，就移动谁的读指针，再比较两个队首，直到一队为空。",
+      "ruleIds": [
+        "merge-sort.move"
+      ],
+      "artwork": "../comics/merge-sort/analogy.png",
+      "artworkRegion": [
+        0,
+        0.612,
+        1,
+        0.859
+      ],
+      "panelExplanations": [
+        "左队取走2甲后，队首变成5；右队首仍是2乙。下一次重新比较5与2。"
+      ]
+    },
+    {
+      "id": "divide",
+      "kind": "event",
+      "title": "为什么先拆到单项？",
+      "text": "五、二、四、二、七分成前两项和后三项。先拆左边，直到五和二各自独立。单项天然有序，数字没有丢失。",
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "ruleIds": [
+        "merge-sort.initialize",
+        "merge-sort.divide"
+      ],
+      "detailEventIds": [
+        "1",
+        "3"
+      ]
+    },
+    {
+      "id": "first-compare",
+      "kind": "event",
+      "title": "先合并五与二",
+      "text": "五和二各自有序。二更小，取右队首二，写到输出位置；左队的五保留。",
+      "eventIds": [
+        "5",
+        "6"
+      ],
+      "ruleIds": [
+        "merge-sort.compare",
+        "merge-sort.move"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ],
+      "detailEventIds": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "id": "first-empty",
+      "kind": "event",
+      "title": "右队空了，接上左队",
+      "text": "右队已经没有剩余元素，只能接上左队的五。这里不再做一次数值大小比较，左半得到二、五。",
+      "eventIds": [
+        "7",
+        "8"
+      ],
+      "ruleIds": [
+        "merge-sort.compare",
+        "merge-sort.move"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "detailEventIds": [
+        "7",
+        "8"
+      ]
+    },
+    {
+      "id": "right-divide",
+      "kind": "event",
+      "title": "右边也先拆到单项",
+      "text": "再拆右侧区间，直到每份一项，作为后续合并的起点。",
+      "eventIds": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "ruleIds": [
+        "merge-sort.divide"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "right-merge",
+      "kind": "event",
+      "title": "按已讲规则合成右队",
+      "text": "按同一规则，先合并二和七，再与四合并。真实步骤加速展示，右队成为二、四、七。",
+      "eventIds": [
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23"
+      ],
+      "ruleIds": [
+        "merge-sort.compare",
+        "merge-sort.move"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "equal",
+      "kind": "event",
+      "title": "两队首相等，为什么取左？",
+      "text": "最后两队分别是二、五和二、四、七。队首同为二，按相等先左的规则选择左队；不能为了方便随意改成先右。",
+      "eventIds": [
+        "24"
+      ],
+      "ruleIds": [
+        "merge-sort.compare"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "equal-write",
+      "kind": "event",
+      "title": "先写左二，右二暂留",
+      "text": "写入左队的二，只移动左队指针。右队的二还没用，必须留给下一次比较。",
+      "eventIds": [
+        "25"
+      ],
+      "ruleIds": [
+        "merge-sort.move"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "right-two",
+      "kind": "event",
+      "title": "五与右二，选谁？",
+      "text": "左队首变成五，右队首还是二。二较小，取右二并写入，之后右队首才变成四。",
+      "eventIds": [
+        "26",
+        "27"
+      ],
+      "ruleIds": [
+        "merge-sort.compare",
+        "merge-sort.move"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ],
+      "detailEventIds": [
+        "26",
+        "27"
+      ]
+    },
+    {
+      "id": "right-four",
+      "kind": "event",
+      "title": "再比较五与四",
+      "text": "五大于四，取右四并写入。只推进右队指针，左队首仍是五。",
+      "eventIds": [
+        "28",
+        "29"
+      ],
+      "ruleIds": [
+        "merge-sort.compare",
+        "merge-sort.move"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "detailEventIds": [
+        "28",
+        "29"
+      ]
+    },
+    {
+      "id": "left-five",
+      "kind": "event",
+      "title": "五比七小，取左五",
+      "text": "接下来五小于七，取左五。这次推进左队指针，左队就空了。",
+      "eventIds": [
+        "30",
+        "31"
+      ],
+      "ruleIds": [
+        "merge-sort.compare",
+        "merge-sort.move"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "detailEventIds": [
+        "30",
+        "31"
+      ]
+    },
+    {
+      "id": "last-seven",
+      "kind": "event",
+      "title": "空队不参与比较",
+      "text": "左队已空，接上右队的七。空队没有数值参与比较，合并到此结束。",
+      "eventIds": [
+        "32",
+        "33"
+      ],
+      "ruleIds": [
+        "merge-sort.compare",
+        "merge-sort.move"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "detailEventIds": [
+        "32",
+        "33"
+      ]
+    },
+    {
+      "id": "complete",
+      "kind": "event",
+      "title": "整列全部有序",
+      "text": "结果二、二、四、五、七。八次值比较、十二次写入；空队检查不算值比较。",
+      "eventIds": [
+        "34"
+      ],
+      "ruleIds": [
+        "merge-sort.stop"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "limit",
+      "kind": "comparison",
+      "title": "乱队伍不能直接只比队首",
+      "text": "看错误用法：左队五、二，右队三、四，若直接比队首会先取三，错过更小的二。所以子队有序是必要前提。",
+      "ruleIds": [
+        "merge-sort.divide",
+        "merge-sort.compare"
+      ],
+      "artwork": "../comics/merge-sort/summary.png",
+      "artworkRegion": [
+        0.5,
+        0.628,
+        1,
+        0.886
+      ],
+      "panelExplanations": [
+        "这是故意绕过前提的示意，不是主案例结果。5后面藏着2，队首不再代表本队最小值。"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "完整复盘：拆小，再合流",
+      "text": "回放完整记录。较短有序队逐步合成长队；每个取舍都由当前队首与空队状态决定，直到全部合成一段。",
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34"
+      ],
+      "ruleIds": [
+        "merge-sort.initialize",
+        "merge-sort.divide",
+        "merge-sort.compare",
+        "merge-sort.move",
+        "merge-sort.stop"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "需要稳定合并时想到它",
+      "text": "合并已排好的流水、保留同分记录先后，都能想到归并。它需要额外缓冲空间；记住有序前提、较小先出、相等先左。",
+      "ruleIds": [
+        "merge-sort.stop"
+      ],
+      "artwork": "../comics/merge-sort/summary.png",
+      "artworkRegion": [
+        0,
+        0.34,
+        1,
+        0.621
+      ],
+      "panelExplanations": [
+        "两份各自有序的记录流，通过比较队首写入合并缓冲区。额外空间是本版合并的代价。"
+      ]
+    }
+  ],
+  "artworkPanels": {
+    "analogy": [
+      [
+        0,
+        0.085,
+        1,
+        0.366
+      ],
+      [
+        0,
+        0.372,
+        1,
+        0.606
+      ],
+      [
+        0,
+        0.612,
+        1,
+        0.859
+      ]
+    ],
+    "summary": [
+      [
+        0,
+        0.08,
+        1,
+        0.331
+      ],
+      [
+        0,
+        0.34,
+        1,
+        0.621
+      ],
+      [
+        0,
+        0.628,
+        1,
+        0.886
+      ]
+    ]
+  }
+}

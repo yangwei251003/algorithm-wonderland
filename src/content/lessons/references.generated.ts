@@ -1,0 +1,4204 @@
+// Generated from individually checked research records.
+import type {ResearchReference} from "../../engine/teaching";
+export const referencesById:Record<string,ResearchReference[]>={
+  "linear-search": [
+    {
+      "id": "usf-linear",
+      "url": "https://www.cs.usfca.edu/~galles/visualization/Search.html",
+      "title": "Searching Sorted List",
+      "author": "David Galles / University of San Francisco",
+      "section": "Linear Search",
+      "observedDesign": "逐格数值及蓝色索引分开呈现；搜索目标和结果独立显示，提供前后单步。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器加载 HTTP 200，读取控件并查看截图；未运行完整排序。原作布局较旧，借鉴步骤而非外观。"
+    },
+    {
+      "id": "fieldguide-linear",
+      "url": "https://www.csfieldguide.org.nz/en/chapters/algorithms/searching/",
+      "title": "Searching — Computer Science Field Guide",
+      "author": "University of Canterbury CS Education Research Group",
+      "section": "2.2.1 Linear search",
+      "observedDesign": "先翻无序盒子，再限制次数翻有序盒子；把能排除的候选数量与顺序条件联系起来。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "unplugged-linear",
+      "url": "https://www.csunplugged.org/en/topics/searching-algorithms/the-great-number-hunt-unsorted/",
+      "title": "The Great Number Hunt (Unsorted)",
+      "author": "CS Unplugged / University of Canterbury",
+      "section": "Key questions; Lesson activities; Applying what we have just learnt",
+      "observedDesign": "书架动画说明每次只排除一个候选；31 个号码盒配实际猜测次数柱状统计，提示不要重复检查。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "nist-linear",
+      "url": "https://xlinux.nist.gov/dads/HTML/linearSearch.html",
+      "title": "Linear search",
+      "author": "Paul E. Black / NIST DADS",
+      "section": "Definition",
+      "observedDesign": "逐个检查直到找到或序列耗尽；无序列表不能凭一次大小比较排除一半。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    }
+  ],
+  "binary-search": [
+    {
+      "id": "hello-binary",
+      "url": "https://www.hello-algo.com/chapter_searching/binary_search/",
+      "title": "二分查找",
+      "author": "Krahets 与 Hello 算法贡献者",
+      "section": "图 10-2 七个步骤",
+      "observedDesign": "用闭区间 i、j 与中点 m 标记剩余候选，每次比较后被排除的一半灰化；前提是有序。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "usf-binary",
+      "url": "https://www.cs.usfca.edu/~galles/visualization/Search.html",
+      "title": "Searching Sorted List",
+      "author": "David Galles / University of San Francisco",
+      "section": "Binary Search",
+      "observedDesign": "与顺序查找共用有序数组和目标输入，保留逐格索引及单步播放，便于同输入比较。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器加载 HTTP 200，读取控件并查看截图；未运行完整排序。原作布局较旧，借鉴步骤而非外观。"
+    },
+    {
+      "id": "fieldguide-binary",
+      "url": "https://www.csfieldguide.org.nz/en/chapters/algorithms/searching/",
+      "title": "Searching — Computer Science Field Guide",
+      "author": "University of Canterbury CS Education Research Group",
+      "section": "2.2.2 Binary search",
+      "observedDesign": "先翻无序盒子，再限制次数翻有序盒子；把能排除的候选数量与顺序条件联系起来。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "nist-binary",
+      "url": "https://xlinux.nist.gov/dads/HTML/binarySearch.html",
+      "title": "Binary search",
+      "author": "Paul E. Black / NIST DADS",
+      "section": "Definition",
+      "observedDesign": "对有序数组反复比较中点、缩小候选区间，找到或区间为空终止。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    }
+  ],
+  "quick-sort": [
+    {
+      "id": "hello-quick",
+      "url": "https://www.hello-algo.com/chapter_sorting/quick_sort/",
+      "title": "快速排序",
+      "author": "Krahets 与 Hello 算法贡献者",
+      "section": "图 11-8 基准数划分",
+      "observedDesign": "基准数和双指针分开着色，九个步骤显示从两侧寻找错位元素、交换与基准归位；需说明具体分区变体。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "visualgo-quick",
+      "url": "https://visualgo.net/en/sorting",
+      "title": "Sorting Algorithms",
+      "author": "Steven Halim 与 VisuAlgo 团队",
+      "section": "Quick Sort / Randomized Quick Sort",
+      "observedDesign": "逐帧状态文字和代码轨迹对应柱条交换，支持重复值案例；固定基准和随机基准须分别命名。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "usf-quick",
+      "url": "https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html",
+      "title": "Comparison Sorting Algorithms",
+      "author": "David Galles / University of San Francisco",
+      "section": "Quick Sort",
+      "observedDesign": "同一组带数值柱条可选择快速排序；播放速度与单步独立，方便观察局部分区。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器加载 HTTP 200，读取控件并查看截图；未运行完整排序。原作布局较旧，借鉴步骤而非外观。"
+    },
+    {
+      "id": "nist-quick",
+      "url": "https://xlinux.nist.gov/dads/HTML/quicksort.html",
+      "title": "Quicksort",
+      "author": "Conrado Martínez / NIST DADS",
+      "section": "Definition",
+      "observedDesign": "选择基准、分区并递归处理子区间；分区实现不唯一。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    }
+  ],
+  "merge-sort": [
+    {
+      "id": "hello-merge",
+      "url": "https://www.hello-algo.com/chapter_sorting/merge_sort/",
+      "title": "归并排序",
+      "author": "Krahets 与 Hello 算法贡献者",
+      "section": "图 11-11 十个步骤",
+      "observedDesign": "拆分树与合并临时数组连接；每次只比较左右已排序段的首个未取元素，强调先子问题后合并。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "visualgo-merge",
+      "url": "https://visualgo.net/en/sorting",
+      "title": "Sorting Algorithms",
+      "author": "Steven Halim 与 VisuAlgo 团队",
+      "section": "Merge Sort",
+      "observedDesign": "用帧和状态面板区分拆分与归并，顺序保持可与相同值案例一起说明。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "usf-merge",
+      "url": "https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html",
+      "title": "Comparison Sorting Algorithms",
+      "author": "David Galles / University of San Francisco",
+      "section": "Merge Sort",
+      "observedDesign": "同一柱图入口选择归并并可回退；数值标签允许检查合并结果而非只看高度。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器加载 HTTP 200，读取控件并查看截图；未运行完整排序。原作布局较旧，借鉴步骤而非外观。"
+    },
+    {
+      "id": "nist-merge",
+      "url": "https://xlinux.nist.gov/dads/HTML/mergesort.html",
+      "title": "Merge sort",
+      "author": "Paul E. Black / NIST DADS",
+      "section": "Definition",
+      "observedDesign": "把数据分为两个部分、递归排序并合并有序部分。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    }
+  ],
+  "heap-sort": [
+    {
+      "id": "hello-heap",
+      "url": "https://www.hello-algo.com/chapter_sorting/heap_sort/",
+      "title": "堆排序",
+      "author": "Krahets 与 Hello 算法贡献者",
+      "section": "图 11-12 十二个步骤",
+      "observedDesign": "堆顶最大值与末尾交换、缩小堆范围，再向下恢复堆性质；树与数组映射解释交换理由。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "visualgo-heap",
+      "url": "https://visualgo.net/en/heap",
+      "title": "Binary Heap",
+      "author": "Steven Halim 与 VisuAlgo 团队",
+      "section": "HeapSort(); in-place/default modes",
+      "observedDesign": "二叉最大堆和紧凑数组视图可切换；HeapSort 与 ExtractMax 区分，明确最大堆父节点不小于孩子。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "usf-heap",
+      "url": "https://www.cs.usfca.edu/~galles/visualization/HeapSort.html",
+      "title": "Heap Sort",
+      "author": "David Galles / University of San Francisco",
+      "section": "Heap Sort controls / indexed array",
+      "observedDesign": "输入为带索引数组，随机化与 Heap Sort 分离，配前进回退用于逐次提取检查。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器加载 HTTP 200，读取控件并查看截图；未运行完整排序。原作布局较旧，借鉴步骤而非外观。"
+    },
+    {
+      "id": "nist-heap",
+      "url": "https://xlinux.nist.gov/dads/HTML/heapSort.html",
+      "title": "Heapsort",
+      "author": "Paul E. Black / NIST DADS",
+      "section": "Definition",
+      "observedDesign": "先建堆再反复取最大项；应把建堆与抽取阶段分别解释。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    }
+  ],
+  "counting-sort": [
+    {
+      "id": "hello-counting",
+      "url": "https://www.hello-algo.com/chapter_sorting/counting_sort/",
+      "title": "计数排序",
+      "author": "Krahets 与 Hello 算法贡献者",
+      "section": "基础版与完整版本图示",
+      "observedDesign": "先把数值映射到计数格，再按计数恢复；完整稳定版增加前缀总和及位置回填，不能混成同一步。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "visualgo-counting",
+      "url": "https://visualgo.net/en/sorting",
+      "title": "Sorting Algorithms",
+      "author": "Steven Halim 与 VisuAlgo 团队",
+      "section": "Counting Sort",
+      "observedDesign": "计数分布和元素变化配合状态说明；应解释适用范围较小的整数键及重复值处理。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "usf-counting",
+      "url": "https://www.cs.usfca.edu/~galles/visualization/CountingSort.html",
+      "title": "Counting Sort",
+      "author": "David Galles / University of San Francisco",
+      "section": "Counting Sort canvas",
+      "observedDesign": "三条独立数组分别保留输入、计数/位置和输出；数值域索引一直可见，避免把桶编号误当物品编号。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器加载 HTTP 200，读取控件并查看截图；未运行完整排序。原作布局较旧，借鉴步骤而非外观。"
+    },
+    {
+      "id": "nist-counting",
+      "url": "https://xlinux.nist.gov/dads/HTML/countingsort.html",
+      "title": "Counting sort",
+      "author": "Art S. Kagel / NIST DADS",
+      "section": "Definition",
+      "observedDesign": "计数转累计总数后定位每项；数值基础版与可保持记录稳定性的完整版本需要区分。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    }
+  ],
+  "reservoir": [
+    {
+      "id": "samwho-reservoir",
+      "url": "https://samwho.dev/reservoir-sampling/",
+      "title": "Reservoir Sampling",
+      "author": "Sam Rose",
+      "section": "未知总量抽样与公平性实验",
+      "observedDesign": "从抽牌任务出发，重复抽样统计把概率公平性变成可见分布，再引出第 n 个以 1/n 替换的规则。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "florian-reservoir",
+      "url": "https://florian.github.io/reservoir-sampling/",
+      "title": "Reservoir Sampling",
+      "author": "Florian Hartmann",
+      "section": "Adapting probabilities visualization",
+      "observedDesign": "对比存全量、随机标签和逐步调整概率，图示当前样本随流到来替换，解释旧样本存活概率。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "demofox-reservoir",
+      "url": "https://blog.demofox.org/2022/03/01/picking-fairly-from-a-list-of-unknown-size-with-reservoir-sampling/",
+      "title": "Picking Fairly From a List of Unknown Size With Reservoir Sampling",
+      "author": "Alan Wolfe / Demofox",
+      "section": "Uniform Reservoir Sampling 与对应分布图",
+      "observedDesign": "用分布图展示单槽均匀抽样，并另图比较加权采样；把 1/n 接受率与最终均匀分布并置。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读算法和原作配图位置/说明；未观看链接视频。其多个独立单槽产生有放回样本，不可作为 k 槽无放回版本定义。"
+    },
+    {
+      "id": "nist-reservoir",
+      "url": "https://xlinux.nist.gov/dads/HTML/reservoirSampling.html",
+      "title": "Reservoir sampling",
+      "author": "Paul E. Black / NIST DADS",
+      "section": "Definition",
+      "observedDesign": "前 k 项入池，第 j 项均匀取 1..j，若落在 1..k 则替换对应槽；所有 k 子集等可能。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作及图示/控件描述；未完整观看视频或验证所有交互。"
+    }
+  ],
+  "bfs": [
+    {
+      "id": "bfs-v1",
+      "url": "https://www.redblobgames.com/pathfinding/a-star/introduction.html",
+      "title": "Introduction to the A* Algorithm — Breadth First Search",
+      "author": "Amit Patel / Red Blob Games",
+      "section": "Breadth First Search; frontier; reconstructing paths",
+      "observedDesign": "在同一网格呈现 frontier 扩张、访问顺序与父节点方向，最后沿父指针逆向重建路径。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "bfs-v2",
+      "url": "https://visualgo.net/en/sssp",
+      "title": "Single-Source Shortest Paths — BFS / Unweighted",
+      "author": "Steven Halim 与 VisuAlgo 团队",
+      "section": "BFS/Unweighted; exploration mode; frame controls",
+      "observedDesign": "把无权最短路与加权方法并置，提供逐帧、状态面板与代码轨迹对照。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "bfs-v3",
+      "url": "https://www.hello-algo.com/chapter_graph/graph_traversal/",
+      "title": "9.3 图的遍历 — 广度优先遍历",
+      "author": "krahets / Hello 算法贡献者",
+      "section": "9.3.1；图9-10的11幅遍历步骤",
+      "observedDesign": "分步图同步说明队列和访问集合，并明确同层顶点顺序不唯一。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "bfs-d1",
+      "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/search/uninformed.html",
+      "title": "1.3 Uninformed Search — BFS",
+      "author": "UC Berkeley CS188",
+      "section": "Breadth-First Search",
+      "observedDesign": "依据 FIFO frontier、深度顺序与等边代价最优性校核解释。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    }
+  ],
+  "dfs": [
+    {
+      "id": "hello-dfs",
+      "url": "https://www.hello-algo.com/chapter_graph/graph_traversal/",
+      "title": "图的遍历",
+      "author": "Krahets 与 Hello 算法贡献者",
+      "section": "9.3.2 / 图 9-11",
+      "observedDesign": "图中显示沿未访问邻居一直深入、无候选时返回，visited 避免环造成重复；需把退栈也做成可见步骤。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字和图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "visualgo-dfs",
+      "url": "https://visualgo.net/en/dfsbfs",
+      "title": "VisuAlgo",
+      "author": "Steven Halim 与 VisuAlgo 团队",
+      "section": "Depth-first search",
+      "observedDesign": "节点与边状态分色、发现与完成区分，允许改变有向图及起点，便于说明遍历顺序依赖邻居顺序。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字和图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "usf-dfs",
+      "url": "https://www.cs.usfca.edu/~galles/visualization/DFS.html",
+      "title": "Depth-First Search",
+      "author": "David Galles / University of San Francisco",
+      "section": "独立动画画布",
+      "observedDesign": "图旁同时展示 Parent 与 Visited 两列表；有向/无向、邻接表/矩阵可切换，能把发现节点与记录前驱关联。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器加载并读控件、查看初始截图；尚未播放完整算法。"
+    },
+    {
+      "id": "nist-dfs",
+      "url": "https://xlinux.nist.gov/dads/HTML/depthfirst.html",
+      "title": "Depth-first search",
+      "author": "Paul E. Black / NIST DADS",
+      "section": "Definition",
+      "observedDesign": "先探索当前分支，再处理同层其他分支；递归或显式栈实现；DFS 本身不保证最短路径。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "查阅原作文字和图示说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "dijkstra": [
+    {
+      "id": "redblob-dijkstra",
+      "url": "https://www.redblobgames.com/pathfinding/a-star/introduction.html",
+      "title": "Introduction to the A* Algorithm",
+      "author": "Amit Patel / Red Blob Games",
+      "section": "Dijkstra’s Algorithm",
+      "observedDesign": "带地形代价的地图对照等权 BFS，把已付出费用显示为扩展依据；较多步但便宜的路线能够胜出。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字和图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "visualgo-dijkstra",
+      "url": "https://visualgo.net/en/sssp",
+      "title": "VisuAlgo",
+      "author": "Steven Halim 与 VisuAlgo 团队",
+      "section": "Dijkstra",
+      "observedDesign": "松弛边时同步距离与前驱状态，演示候选最小距离的处理顺序；非负权前提要先说明。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字和图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "tum-dijkstra",
+      "url": "https://algorithms.discrete.ma.tum.de/graph-algorithms/spp-dijkstra/index_en.html",
+      "title": "Dijkstra's Algorithm",
+      "author": "Technische Universität München, Chair M9",
+      "section": "Algorithm idea; Construction of shortest path; Exercises",
+      "observedDesign": "将 20+1=21 的改进画成两段路；优先队列、距离表、前驱回溯分别可见，并提供负边权失败练习。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字和图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "nist-dijkstra",
+      "url": "https://xlinux.nist.gov/dads/HTML/dijkstraalgo.html",
+      "title": "Dijkstra's algorithm",
+      "author": "Paul E. Black / NIST DADS",
+      "section": "Definition",
+      "observedDesign": "非负边权的单源最短路；用优先队列反复选最小暂定距离，松弛其邻边。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "查阅原作文字和图示说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "astar": [
+    {
+      "id": "astar-v1",
+      "url": "https://www.redblobgames.com/pathfinding/a-star/introduction.html",
+      "title": "Introduction to the A* Algorithm",
+      "author": "Amit Patel / Red Blob Games",
+      "section": "Heuristic search; The A* algorithm; compare algorithms",
+      "observedDesign": "在相同地图比较 g、h 与 g+h，使用贪心绕路反例解释为什么同时需要已走代价和剩余估计。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "astar-v2",
+      "url": "https://algorithms.discrete.ma.tum.de/graph-algorithms/spp-a-star/index_en.html",
+      "title": "The A* algorithm",
+      "author": "Technical University of Munich 算法教学项目",
+      "section": "Create a graph; Run the algorithm; Description; Exercises",
+      "observedDesign": "从城市路线问题引入，可编辑节点/边权，使用算法状态、图例与练习拆开解释。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。原作伪代码更新候选 w 时的启发项写作 h(u)，不可照搬；本项目 f(w) 必须使用 g(w)+h(w)，即候选节点自己的启发距离。"
+    },
+    {
+      "id": "astar-v3",
+      "url": "https://www.redblobgames.com/pathfinding/a-star/implementation.html",
+      "title": "Implementation of A*",
+      "author": "Amit Patel / Red Blob Games",
+      "section": "1.4 A* Search; 6. Troubleshooting",
+      "observedDesign": "使用真实网格、方向箭头和代价图，将父指针、当前代价以及难看但等价的路径区别开。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "是同一作者的另一篇独立作品，含图例也含大量代码；借鉴图形对应关系，不照搬代码密度。"
+    },
+    {
+      "id": "astar-d1",
+      "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/search/informed.html",
+      "title": "1.4 Informed Search",
+      "author": "UC Berkeley CS188",
+      "section": "1.4.3 A*; 1.4.4 Admissibility",
+      "observedDesign": "明确 g+h 优先级、启发下界和 Manhattan 所对应的放松问题；结合实现策略说明是否允许重新打开节点。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    }
+  ],
+  "kruskal": [
+    {
+      "id": "visualgo-kruskal",
+      "url": "https://visualgo.net/en/mst",
+      "title": "VisuAlgo",
+      "author": "Steven Halim 与 VisuAlgo 团队",
+      "section": "Kruskal’s algorithm",
+      "observedDesign": "按边权排列候选，接受边橙色、非树边灰色，例子明确因闭环拒绝 1–3；同权 tie-break 是演示约定。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字和图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "tum-kruskal",
+      "url": "https://algorithms.discrete.ma.tum.de/graph-algorithms/mst-kruskal/index_en.html",
+      "title": "Kruskal's Algorithm",
+      "author": "Technische Universität München, Chair M9",
+      "section": "Idea of algorithm / union-find colors",
+      "observedDesign": "用节点颜色表示所属树，跨颜色连边后合并颜色；同树两端加边会闭环，图示给出拒绝理由。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字和图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "usf-kruskal",
+      "url": "https://www.cs.usfca.edu/~galles/visualization/Kruskal.html",
+      "title": "Kruskal Minimum Cost Spanning Tree",
+      "author": "David Galles / University of San Francisco",
+      "section": "独立动画画布",
+      "observedDesign": "原图旁列出 Disjoint Set 数组；并查集状态与候选边两种表征并列，可解释为何拒绝环而非只画最后树。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器加载并读控件、查看初始截图；尚未播放完整算法。"
+    },
+    {
+      "id": "nist-kruskal",
+      "url": "https://xlinux.nist.gov/dads/HTML/kruskalsalgo.html",
+      "title": "Kruskal's algorithm",
+      "author": "Joseph L. Ganley / NIST DADS",
+      "section": "Definition",
+      "observedDesign": "反复添加连接不同部分树的最短边；连接性不足时得到最小生成森林。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "查阅原作文字和图示说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "floyd-warshall": [
+    {
+      "id": "tum-floyd",
+      "url": "https://algorithms.discrete.ma.tum.de/graph-algorithms/spp-floyd-warshall/index_en.html",
+      "title": "The Floyd-Warshall Algorithm",
+      "author": "Technische Universität München, Chair M9",
+      "section": "Current state / i,j,k variables / Description",
+      "observedDesign": "图和距离矩阵联动，i、j、k 独立显示；比较原距离与经过 k 的两段距离之和，强调新增允许中转点。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字和图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "usf-floyd",
+      "url": "https://www.cs.usfca.edu/~galles/visualization/Floyd.html",
+      "title": "Floyd-Warshall All-Pairs Shortest Path",
+      "author": "David Galles / University of San Francisco",
+      "section": "独立动画画布",
+      "observedDesign": "Cost Table 与 Path Table 并列于有向加权图左侧，成本和重建路径来源分开；INF 明示不可达。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器加载并读控件、查看初始截图；尚未播放完整算法。"
+    },
+    {
+      "id": "stanford-floyd",
+      "url": "https://stanford-cs161.github.io/winter2026/assets/files/Lecture12.pdf",
+      "title": "Lecture 12 — Bellman-Ford, Floyd-Warshall and Dynamic Programming",
+      "author": "Stanford CS161 teaching team",
+      "section": "PDF pp.62–71 (optimal substructure cartoons)",
+      "observedDesign": "用蓝色集合表示已允许中转点，逐页加入 k；把不经过 k 和经过 k 的两种情况分开，最后才合成 min 递推式。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字和图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "mit-floyd",
+      "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/665523227a175e9e9ce26ea8d3e5b51c_MIT6_006S20_lec17.pdf",
+      "title": "6.006 Lecture 17: Dynamic Programming III",
+      "author": "Erik Demaine, Jason Ku, Justin Solomon / MIT",
+      "section": "Page 3: All-Pairs Shortest Paths: Floyd–Warshall",
+      "observedDesign": "定义仅允许编号 1..k 中转的子问题，给出两项递推、初始条件与 k 递增的依赖顺序。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "查阅原作文字和图示说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "topological": [
+    {
+      "id": "visualgo-topological",
+      "url": "https://visualgo.net/en/dfsbfs",
+      "title": "VisuAlgo",
+      "author": "Steven Halim 与 VisuAlgo 团队",
+      "section": "Topological sort: DFS and BFS/Kahn",
+      "observedDesign": "把无入边节点选择与 DFS 完成顺序对照；同一 DAG 可有多个合法排序，环使完整排序不存在。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字和图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "usf-topological-kahn",
+      "url": "https://www.cs.usfca.edu/~galles/visualization/TopoSortIndegree.html",
+      "title": "Topological Sort (Indegree)",
+      "author": "David Galles / University of San Francisco",
+      "section": "独立动画画布",
+      "observedDesign": "独立入度列表与依赖图并列；每移除一个可做任务，应同步减少出邻居的未完成前置数。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器加载并读控件、查看初始截图；尚未播放完整算法。"
+    },
+    {
+      "id": "usf-topological-dfs",
+      "url": "https://www.cs.usfca.edu/~galles/visualization/TopoSortDFS.html",
+      "title": "Topological Sort (DFS)",
+      "author": "David Galles / University of San Francisco",
+      "section": "独立动画画布",
+      "observedDesign": "第二个独立演示展示 DFS 版本，与入度版形成同问题不同依据的对照；不是把普通 DFS 当拓扑排序。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器加载并读控件、查看初始截图；尚未播放完整算法。"
+    },
+    {
+      "id": "nist-topological",
+      "url": "https://xlinux.nist.gov/dads/HTML/topologicalSort.html",
+      "title": "Topological sort",
+      "author": "Paul E. Black / NIST DADS",
+      "section": "Definition",
+      "observedDesign": "把偏序关系排成线性次序；有向边前端必须先于后端，须明确 DAG 条件。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "查阅原作文字和图示说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "interval-scheduling": [
+    {
+      "id": "cusack-interval",
+      "url": "https://cusack.hope.edu/DAIADS/Content/Demos/Greedy/Interval%20Scheduling%20Demo.html",
+      "title": "Interval Scheduling Demo",
+      "author": "Charles Cusack / Hope College",
+      "section": "独立 Demo / 父章 Worked Example",
+      "observedDesign": "区间时间轴与未处理、当前、已选图例并列；支持自定义区间、前后单步，父章逐项展示 start 与 currentEnd 的比较。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器读取嵌套演示控件和说明，查看父章截图；未播放完整案例。"
+    },
+    {
+      "id": "wellesley-interval",
+      "url": "https://cs.wellesley.edu/~cs231/slides/21_interval_scheduling.pdf",
+      "title": "An Introduction to Greedy Algorithms: Interval Scheduling",
+      "author": "Lyn Turbak / Wellesley College",
+      "section": "Slides 5–10",
+      "observedDesign": "条状区间反例对比最早开始、最短时长、最少冲突；用贪心和最优序列的结束时间比较说明为什么最早结束安全。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字与图示；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "nju-interval",
+      "url": "https://tcs.nju.edu.cn/shili/courses/2024spring-algo/slides/Greedy.pdf",
+      "title": "Greedy Algorithms",
+      "author": "栗师 / 南京大学",
+      "section": "Interval Scheduling，PDF pp.43 起",
+      "observedDesign": "渐进展开的时间轴先尝试错误规则再显示冲突，突出选定最早结束任务后剩余右侧子问题。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已下载原作并查阅对应 PDF 文本；重复页是逐帧揭示，不计作多个参考。"
+    },
+    {
+      "id": "toronto-interval",
+      "url": "https://www.cs.toronto.edu/~nisarg/teaching/373f20/slides/373f20-W2.pdf",
+      "title": "CSC373 Week 2: Greedy Algorithms",
+      "author": "Nisarg Shah / University of Toronto",
+      "section": "Slides 4–10",
+      "observedDesign": "无权单资源区间最大数量：按结束时间排序，只需与最近所选结束时间比较；交换论证支持最优性。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "查阅原作文字与图示；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "knapsack": [
+    {
+      "id": "knapsack-v1",
+      "url": "https://www.hello-algo.com/chapter_dynamic_programming/knapsack_problem/",
+      "title": "14.4 0-1 背包问题",
+      "author": "krahets / Hello 算法贡献者",
+      "section": "递推关系；动态规划表；空间优化",
+      "observedDesign": "由选与不选两条分支推导表格依赖，用小例子呈现容量约束。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "knapsack-v2",
+      "url": "https://monicagranbois.com/knapsack-algorithm-visualization/",
+      "title": "Knapsack Algorithm Visualization",
+      "author": "Monica Granbois",
+      "section": "Step1 Setup → Step2 Build Table",
+      "observedDesign": "实际点击 Start：容量5、重量[2,1,3]、价值[4,3,5]。首格清晰显示2>1放不下，因此继承上方0，并以箭头与绿色格解释依赖。",
+      "checkedAt": "2026-10-26",
+      "verification": "interacted",
+      "role": "visual",
+      "limitations": "仅实测进入首步；未声明整个站点全部功能通过。证据 evidence/knapsack-monica-start.json 与 PNG。"
+    },
+    {
+      "id": "knapsack-v3",
+      "url": "https://faculty.sist.shanghaitech.edu.cn/faculty/zhoupq/Teaching/Spr16/Lecture8-DynamicProgramming-Knapsack.pdf",
+      "title": "Dynamic Programming: 0-1 Knapsack problem",
+      "author": "Steve Goddard；部分图示来源 David Luebke、Chuck Cusack",
+      "section": "0-1约束示意、递推、表格填充",
+      "observedDesign": "大学教学原始课件用物品重量/收益表和背包图讲清0/1约束，再逐次构建状态表。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "读取的是大学课程托管的作者课件副本；课件内明确标注了图示来源。不是现代交互审美样板。"
+    },
+    {
+      "id": "knapsack-d1",
+      "url": "https://www.cs.cmu.edu/afs/cs/academic/class/15451-s14/www/LectureNotes/DP.pdf",
+      "title": "Lecture 3: Dynamic Programming",
+      "author": "Avrim Blum / Carnegie Mellon University",
+      "section": "3.5 Example #2: The Knapsack Problem，PDF第5—7页",
+      "observedDesign": "明确 max{不选,价值+剩余容量子问题}、容量不足分支与反向恢复选中物品。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    }
+  ],
+  "hungarian": [
+    {
+      "id": "tum-hungarian",
+      "url": "https://algorithms.discrete.ma.tum.de/graph-algorithms/matchings-hungarian-method/index_en.html",
+      "title": "The Hungarian Method",
+      "author": "TUM Chair M9",
+      "section": "Figures 1–6 / algorithm variables",
+      "observedDesign": "最优匹配、节点标号、相等图、交替路分成连续图示；Matching/S/T 状态与标号更新、增广相对应。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字与图示；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "visualgo-hungarian",
+      "url": "https://visualgo.net/en/matching",
+      "title": "Graph Matching — Hungarian/Kuhn-Munkres",
+      "author": "Steven Halim 与 VisuAlgo 团队",
+      "section": "Weighted Bipartite mode / Hungarian",
+      "observedDesign": "左右两组分列，已匹配边和交替增广边区分颜色；加权模式与普通最大数量匹配分开。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "原站明确此功能为 2025 新增实验功能；本轮读取说明而未完整交互，算法正确性以独立定义为准。"
+    },
+    {
+      "id": "uconn-hungarian",
+      "url": "https://cyberlab.engr.uconn.edu/wp-content/uploads/sites/2576/2018/09/Lecture_8.pdf",
+      "title": "Lecture 8: Assignment Algorithms",
+      "author": "Krishna R. Pattipati / University of Connecticut",
+      "section": "Illustration of Hungarian algorithm, slide 25",
+      "observedDesign": "4×4 成本矩阵依次行/列减值、覆盖零和调整，箭头连接状态；最优成本15与朴素选最小成本16形成反例。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字与图示；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "cp-hungarian",
+      "url": "https://cp-algorithms.com/graph/hungarian-algorithm.html",
+      "title": "Hungarian Algorithm for Solving the Assignment Problem",
+      "author": "CP-Algorithms contributors / e-maxx",
+      "section": "Statement; potentials; O(n³) algorithm",
+      "observedDesign": "一行一列各选一次以最小化总费用；势函数满足 u_i+v_j≤A_ij，相等边增广和势更新维持最优性依据。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "查阅原作文字与图示；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "stable-matching": [
+    {
+      "id": "hudson-stable",
+      "url": "https://www.hudsong.dev/gale-shapley",
+      "title": "Gale–Shapley Algorithm Visualizer",
+      "author": "Hudson Griffith",
+      "section": "Preference inputs / proposal steps",
+      "observedDesign": "申请者与公司的二部图伴随当前提案、空闲人员和暂定匹配列表；手输偏好后逐步展示拒绝与替换。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "读取页面及初始状态；此原作支持不等组大小，项目基础版应单独声明等人数、完整严格偏好。"
+    },
+    {
+      "id": "modic-stable",
+      "url": "https://www.modic.app/effects/stable-matching",
+      "title": "Stable Matching",
+      "author": "Modic project",
+      "section": "Interactive experiment / Inside this model",
+      "observedDesign": "三申请者三团队按钮让用户选择谁先提案；保留偏好表和暂定持有位置，最终检验阻塞对而非总满意度。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字与图示；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "wilkins-stable",
+      "url": "https://www.jdhwilkins.com/from-love-to-logic-how-algorithms-decide-our-matches/",
+      "title": "From Love to Logic: How Algorithms Decide Our Matches",
+      "author": "James Wilkins",
+      "section": "Time for some diagrams",
+      "observedDesign": "四对参与者的偏好矩阵与多张左右对照图，左侧提案、右侧暂定匹配；替换时明确哪一人重新空闲。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "仅借鉴图示。原文关系类比过强，且所附代码存在可疑索引/比较逻辑；不得复制该代码或把稳定说成现实婚姻保证。"
+    },
+    {
+      "id": "roth-stable",
+      "url": "https://web.stanford.edu/~alroth/papers/GaleandShapley.revised.IJGT.pdf",
+      "title": "Deferred Acceptance Algorithms: History, Theory, Practice, and Open Questions",
+      "author": "Alvin E. Roth",
+      "section": "pp.2–4 / GS deferred acceptance",
+      "observedDesign": "按偏好向尚未拒绝自己的对象提案，接收方保留当前最偏爱提案，直到无新提案；稳定排除双方都想换的阻塞对。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "查阅原作文字与图示；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "max-flow": [
+    {
+      "id": "visualgo-dinic",
+      "url": "https://visualgo.net/en/maxflow",
+      "title": "Network Flow — Dinic's Algorithm",
+      "author": "Steven Halim 与 VisuAlgo 团队",
+      "section": "Dinic / CP4 8.15 Dinic Showcase",
+      "observedDesign": "可修改容量网络并逐帧查看剩余容量与反向边；与 Edmonds–Karp 的同输入对照让分层信息复用可见。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字与图示；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "ucsd-dinic",
+      "url": "https://cseweb.ucsd.edu/classes/sp11/cse202-a/lecture11-final.pdf",
+      "title": "CSE202 Lecture 11 — Blocking Flows",
+      "author": "Kamalika Chaudhuri / UC San Diego",
+      "section": "PDF pp.14–24",
+      "observedDesign": "三幅图并列分层网络、阻塞流和更新后的残量网络；用高容量与窄瓶颈反例说明为什么一层内送多条路。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字与图示；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "cmu-dinic",
+      "url": "https://www.cs.cmu.edu/~15451-s23/lectures/lec12-slides.pdf",
+      "title": "Max Flow: Polynomial-time Algorithms",
+      "author": "Elaine Shi / Carnegie Mellon University",
+      "section": "PDF pp.18–24",
+      "observedDesign": "粉色竖条将节点按 BFS 层分组，源/汇与层号并列；从一次 BFS 编码多条最短增广路解释阻塞流。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已下载并查看第18、20、23页图像；前面 Edmonds–Karp 幻灯中距离单调性疑有文字笔误，不能照抄。"
+    },
+    {
+      "id": "cp-dinic",
+      "url": "https://cp-algorithms.com/graph/dinic.html",
+      "title": "Maximum Flow — Dinic's Algorithm",
+      "author": "CP-Algorithms contributors / e-maxx",
+      "section": "Definitions; Algorithm; Correctness",
+      "observedDesign": "只保留残量正且 level[u]+1=level[v] 的边，逐阶段建立阻塞流；无残量源汇路时最大流，反向边允许撤回旧分配。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "查阅原作文字与图示；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "graph-coloring": [
+    {
+      "id": "furini-dsatur",
+      "url": "https://fabiofurini.github.io/combinatorial-optimization/heuristic-algorithms/constructive-heuristics/vertex-coloring-greedy-and-dsatur/",
+      "title": "Vertex coloring: greedy and DSATUR",
+      "author": "Fabio Furini",
+      "section": "30.8.2 / Example 30.13",
+      "observedDesign": "Petersen 图配逐步表，邻色集合、饱和度、未着色邻居数与颜色分别列出；先比较固定顺序的三色/四色结果，再解释动态优先级。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字与图示；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "cs2-dsatur",
+      "url": "https://debuggi.ng/23wi/projects/06",
+      "title": "Register Allocation — DSatur Example Walkthrough",
+      "author": "CS 2 Winter 2023 教学团队",
+      "section": "DSatur: Example Walkthrough",
+      "observedDesign": "七节点轮图从中心开始，12步说明每次被选节点、被占颜色、最小可用颜色及邻居优先级变化。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "页面有完整图与逐步讲解；同分按其堆实现决定，不能误当算法唯一顺序；饱和度必须数不同颜色而非已着色邻居个数。"
+    },
+    {
+      "id": "lewis-dsatur",
+      "url": "https://www.geeksforgeeks.org/dsa/dsatur-algorithm-for-graph-coloring/",
+      "title": "DSatur Algorithm for Graph Coloring",
+      "author": "Rhydian Lewis（作者身份由 Cardiff ORCA 条目核对）",
+      "section": "三色示例图 / 三条选择规则",
+      "observedDesign": "先用红蓝绿图建立相邻不同色，再把动态饱和度、未着色子图度数、最小可用色三条规则并列；适合作为静态规则图参考。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读原作图文；该页代码占比高，仅取图及选择规则叙事。作者出处：https://orca.cardiff.ac.uk/id/eprint/146727 。"
+    },
+    {
+      "id": "networkx-dsatur",
+      "url": "https://networkx.org/documentation/stable/_modules/networkx/algorithms/coloring/greedy_coloring.html",
+      "title": "strategy_saturation_largest_first",
+      "author": "NetworkX 开发者",
+      "section": "DSATUR strategy",
+      "observedDesign": "按邻居的不同颜色集合大小选择节点，再取不冲突的最小色；仅保证合法着色，不保证最少颜色。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "此实现平局用原图度数，Furini/Lewis 用未着色子图度数；项目须明确选定变体。"
+    }
+  ],
+  "critical-path": [
+    {
+      "id": "iowa-cpm",
+      "url": "https://user.engineering.uiowa.edu/~dbricker/Slides_Handouts/CPM.pdf",
+      "title": "Critical Path Method",
+      "author": "Dennis L. Bricker / University of Iowa",
+      "section": "PDF pp.2–8",
+      "observedDesign": "同一网络逐页高亮处理节点；正向取前驱完成时间最大值，逆向取后继允许时间最小值，公式和具体数字与节点同步。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已下载并查看原作第3、5页图；旧式界面只借逐步证据布局。"
+    },
+    {
+      "id": "mit-cpm",
+      "url": "https://ocw.mit.edu/courses/esd-36-system-project-management-fall-2012/50d2b3499047b71baaa511aa809f6712_MITESD_36F12_Lec02.pdf",
+      "title": "System Project Management — Lecture 2",
+      "author": "Olivier de Weck / MIT",
+      "section": "PDF pp.23–30",
+      "observedDesign": "任务节点四格显示 ES/EF/LS/LF；红色关键路径与蓝色有余量分支并列，正向、逆向与总时差连续呈现。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已下载并查看第23、30页图像。"
+    },
+    {
+      "id": "sympl-cpm",
+      "url": "https://symplprocess.com/learn/critical-path-method",
+      "title": "Critical Path Method: Steps and Worked Example",
+      "author": "SymplProcess",
+      "section": "Interactive Demo / Forward & Backward Pass Detail",
+      "observedDesign": "八个任务时长控件、红色关键网络、早晚时间与时差表互相对应；改变工期可看到瓶颈迁移。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读页面结构和演示初值，未交互；其“缩短任意关键任务必缩短项目”过度概括不可沿用，多条关键路径时须重新计算。"
+    },
+    {
+      "id": "cmu-cpm",
+      "url": "https://www.cmu.edu/cee/projects/PMbook/10_Fundamental_Scheduling_Procedures.html",
+      "title": "Project Management for Construction: Fundamental Scheduling Procedures",
+      "author": "Carnegie Mellon University",
+      "section": "10.2–10.3 / Table 10-1",
+      "observedDesign": "固定工期、完成后开始约束构成有向无环网络；前向最大与后向最小计算最早/最晚时间、时差。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "基础 CPM 不处理共享资源冲突；可有多条关键路径。"
+    }
+  ],
+  "hill-climbing": [
+    {
+      "id": "elements-hill",
+      "url": "https://buildingai.elementsofai.com/Getting-started-with-AI/hill-climbing",
+      "title": "Building AI — Hill climbing",
+      "author": "University of Helsinki / MinnaLearn",
+      "section": "III / Exercise 3",
+      "observedDesign": "森林找信号与看不远的登山者类比，将起点区间、当前位置、高度和左右邻域一一对应；选择起点范围解释局部峰陷阱。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "独立浏览器读取页面和滑块、保存截图；题目提交需登录，未提交。"
+    },
+    {
+      "id": "declan-hill",
+      "url": "https://declanoller.github.io/2019-06-04-an-interactive-introduction-to-simulated-annealing",
+      "title": "An interactive introduction to Simulated Annealing!",
+      "author": "Declan Oller",
+      "section": "开头三个地形示例",
+      "observedDesign": "蒙眼试探左右脚步，先单峰成功再多峰被困；通过相同山形对照只上坡与允许下坡，清楚解释局部选择限制。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "读取配图和视频说明，未完整观看内嵌视频；这里是随机试邻居的爬山变体。"
+    },
+    {
+      "id": "berkeley-hill",
+      "url": "https://inst.eecs.berkeley.edu/~cs188/sp24/assets/notes/cs188-sp24-note04.pdf",
+      "title": "CS188 Local Search",
+      "author": "Nikhil Sharma / UC Berkeley",
+      "section": "PDF pp.1–2",
+      "observedDesign": "目标函数地形标注全局峰、局部峰、平坦区域；配每轮最佳邻居与停止条件，解释为何只看附近无法知道远处。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字与图示；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "aima-hill",
+      "url": "https://aima.cs.berkeley.edu/algorithms.pdf",
+      "title": "Artificial Intelligence: A Modern Approach — Algorithms",
+      "author": "Stuart Russell / Peter Norvig",
+      "section": "Figure 4.2 / PDF p.8",
+      "observedDesign": "最陡上升版：选择最高值邻居；其值不超过当前时停止，因此返回局部最大而非保证全局最大。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "查阅原作文字与图示；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "annealing": [
+    {
+      "id": "vgarciasc-annealing",
+      "url": "https://vgarciasc.github.io/simulated-annealing-viz/",
+      "title": "Simulated Annealing Visualization",
+      "author": "vgarciasc",
+      "section": "Explanation / 2D clustering / pseudocode",
+      "observedDesign": "二维聚类解、候选解与实时变量并排；内循环做扰动与接受判断，外循环降温，可据此逐步解释同一个坏解为何有时接受。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作文字与图示；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "cse442-annealing",
+      "url": "https://cse442-17f.github.io/simulated-annealing/",
+      "title": "Visualizing Simulated Annealing",
+      "author": "Anmol Anubhai / Gabriel Hughes / Daphne Liang / Thomas Nguyen",
+      "section": "Acceptance Probability / hill comparison / tour",
+      "observedDesign": "用相同地形比较爬山和退火，再连接到旅行路线；接受概率曲线帮助理解温度如何改变冒险程度。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "浏览器读取页面并保存截图；未完整观看 Vimeo。文中概率符号表述不够严谨，公式以明确的最大化/最小化约定重写。"
+    },
+    {
+      "id": "declan-annealing",
+      "url": "https://declanoller.github.io/2019-06-04-an-interactive-introduction-to-simulated-annealing",
+      "title": "An interactive introduction to Simulated Annealing!",
+      "author": "Declan Oller",
+      "section": "Temperature plots / brachistochrone / cooling",
+      "observedDesign": "先固定低温被困、再固定高温乱跳，最后降温；可拖曲线控制点，把温度、扰动幅度和结果质量联系起来。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "读图文与嵌入实验说明，未完整观看视频或操作全部控件。"
+    },
+    {
+      "id": "berkeley-annealing",
+      "url": "https://inst.eecs.berkeley.edu/~cs188/sp24/assets/notes/cs188-sp24-note04.pdf",
+      "title": "CS188 — Simulated Annealing Search",
+      "author": "Nikhil Sharma / UC Berkeley",
+      "section": "PDF p.2",
+      "observedDesign": "随机挑邻居，改进总接受，退步按温度相关概率接受；有限运行不保证全局最优，渐近结论有冷却条件。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "用最大化时坏移动接受率 exp((新值−旧值)/T)，最小化时 exp((旧成本−新成本)/T)；避免混用符号。"
+    }
+  ],
+  "genetic": [
+    {
+      "id": "shiffman-ga",
+      "url": "https://natureofcode.com/genetic-algorithms/",
+      "title": "The Nature of Code — Evolutionary Computing",
+      "author": "Daniel Shiffman",
+      "section": "How Genetic Algorithms Work / Figures 9.2–9.7",
+      "observedDesign": "把适应度画成抽签份额，父母字符串按交叉点拼接、突变改一个字符；从文字目标迁移到小火箭。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "仅参考原创图文和嵌入实验说明，未完整观看关联视频；不是生物进化的精确模型。"
+    },
+    {
+      "id": "obitko-ga",
+      "url": "https://www.obitko.com/tutorials/genetic-algorithms/example-function-minimum.html",
+      "title": "GA Example — Minimum of Function",
+      "author": "Marek Obitko",
+      "section": "旧/新种群与单代演示",
+      "observedDesign": "函数曲线上红线标最好个体、绿线标其他个体；上方用红蓝点显示二进制染色体，按代拆开精英保留、交叉和突变。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "浏览器读取控件并保存截图；2026版已替换旧 Java。内容与软件授权不同，不复制软件。"
+    },
+    {
+      "id": "berkeley-ga",
+      "url": "https://inst.eecs.berkeley.edu/~cs188/sp24/assets/notes/cs188-sp24-note04.pdf",
+      "title": "CS188 — Genetic Algorithms",
+      "author": "Nikhil Sharma / UC Berkeley",
+      "section": "PDF pp.3–4 / Figure 4.6",
+      "observedDesign": "八皇后位置编码为字符串，按适应度选择父母，再用同列排版展示交叉与突变，使每个后代的来源可追溯。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作图文；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "aima-ga",
+      "url": "https://aima.cs.berkeley.edu/algorithms.pdf",
+      "title": "AIMA — Genetic Algorithm",
+      "author": "Stuart Russell / Peter Norvig",
+      "section": "Figure 4.7 / PDF p.9",
+      "observedDesign": "适应度加权抽父母、随机交叉、低概率突变生成新一代；结束时返回最好个体，不保证全局最优。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "查阅原作图文；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "pso": [
+    {
+      "id": "osaka-pso",
+      "url": "https://cc.d3c.osaka-u.ac.jp/app/pso_visualizer/index.html",
+      "title": "Particle Swarm Optimization Explorable",
+      "author": "Cybercommunity Research Division, D3 Center, The University of Osaka",
+      "section": "Sections 1–4",
+      "observedDesign": "三维地形同时显示个人最好、群体最好和被选粒子的三支力箭头；改变惯性/个人/群体权重并看收敛曲线，区分已知最优参考标记与算法实际信息。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "浏览器读取初态并保存截图；未完整操作。其梯度法/PSO优劣概括过宽，教学不照搬。"
+    },
+    {
+      "id": "reid-pso",
+      "url": "https://www.kenreid.co.uk/blog/particle-swarm-live.html",
+      "title": "Particle Swarm, Live",
+      "author": "Ken Reid",
+      "section": "Three kinds of pull / interactive map / failure settings",
+      "observedDesign": "惯性、私有记忆、群体消息拆成三种拉力；通过关掉分量与提高社会权重展示无探索、早熟收敛和速度限制作用。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作图文；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "fitch-pso",
+      "url": "https://www.projectcomputing.com/resources/psovis/",
+      "title": "Particle Swarm Optimization Visualisation",
+      "author": "Kent Fitch / Project Computing",
+      "section": "3D landscape / single step / flock count",
+      "observedDesign": "十二粒子的前后代以不同色和轨迹区分；分成一到四个群体，对比共享范围如何改变探索。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已浏览器读取并保存截图；现JS版声明由Claude Code迁移旧Java，未审计数值实现。"
+    },
+    {
+      "id": "mccaffrey-pso",
+      "url": "https://learn.microsoft.com/en-us/archive/msdn-magazine/2011/august/artificial-intelligence-particle-swarm-optimization",
+      "title": "Artificial Intelligence — Particle Swarm Optimization",
+      "author": "James McCaffrey / MSDN Magazine",
+      "section": "The PSO Algorithm",
+      "observedDesign": "速度由惯性、朝个人最好与朝群体最好三项构成，再更新位置；两吸引项含独立随机系数，有限迭代通常只知当前最好。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "本页为原作者实现讲解，使用含惯性权重的常用版本，不把后续改进归为1995原始公式。"
+    }
+  ],
+  "ant-colony": [
+    {
+      "id": "tuloup-aco",
+      "url": "https://jtp.io/aco-tsp/",
+      "title": "Ant Colony Optimization visualization for the Travelling Salesman Problem",
+      "author": "Jeremy Tuloup / Erik Nilsson（图形）",
+      "section": "Canvas / pheromone-path toggles",
+      "observedDesign": "可移动城市与增删节点；分开信息素显示和当前路径，调整蚂蚁数量与显示速度，让共享痕迹和单个巡回分开观察。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "浏览器读取控件并保存截图；原作基于 Ant Colony System，需区分与基础 Ant System 的更新规则。"
+    },
+    {
+      "id": "song-aco",
+      "url": "https://tianyou-song.github.io/ACO-JS/",
+      "title": "Ant Colony Optimization Demo",
+      "author": "Tianyou Song",
+      "section": "City canvas / Parameters / Info",
+      "observedDesign": "黄点城市、蓝线粗细代表信息素、黑点蚂蚁、绿色当前最好巡回；参数和迭代数/路长并列。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "浏览器读取初始控件；支持 ACS、Elitist、Max-Min 多变体，不把变体微差另算算法。"
+    },
+    {
+      "id": "chanrt-aco",
+      "url": "https://tenloh.github.io/ant_colony_optimization/simulation.html",
+      "title": "Ant Colony Optimization — Visualize It",
+      "author": "ChanRT",
+      "section": "Mechanism / Tweaking",
+      "observedDesign": "在路线画布下直接放未访问候选归一化概率、蒸发与按路长补充的公式，线条强度和选择概率对应。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "仅借概率与线宽的对应形式；原文称α=0、β=1等同确定性最近邻不成立，且验证TSP解不必阶乘穷举，这些说法不得沿用。"
+    },
+    {
+      "id": "dorigo-aco",
+      "url": "https://faculty.csu.edu.cn/_tsf/00/64/QVr2Ir7Zz2Ur.pdf",
+      "title": "Ant Colony Optimization: Artificial Ants as a Computational Intelligence Technique",
+      "author": "Marco Dorigo / Mauro Birattari / Thomas Stützle",
+      "section": "IEEE Computational Intelligence Magazine 2006 / Sections I–II",
+      "observedDesign": "从双桥实验到构造解、信息素更新与可选局部搜索，区分 Ant System、ACS 等变体；随机启发式不承诺有限步最优。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "原作由中南大学教师网页提供；仅研究阅读，不重新分发原论文或插图。"
+    }
+  ],
+  "simplex": [
+    {
+      "id": "gilp-simplex",
+      "url": "https://gilp.henryrobbins.com/en/latest/examples/2d/ALL_INTEGER_2D_LP.html",
+      "title": "GILP — All Integer 2D LP",
+      "author": "Henry Robbins / Samuel C. Gutekunst / Frans Schalekamp / David B. Shmoys / David P. Williamson",
+      "section": "二维可行域、字典与迭代滑块",
+      "observedDesign": "二维约束区域和当前字典同时呈现，迭代滑块把顶点移动、基变量替换、目标值联系起来。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "浏览器实际读取 Plotly 图内坐标、初始字典、迭代0–3；未逐项测试图控件。"
+    },
+    {
+      "id": "lpviz-simplex",
+      "url": "https://lpviz.net/docs/simplex",
+      "title": "The Simplex Method, Visualized",
+      "author": "Evan Grand / Michael Klamkin",
+      "section": "Two phases / The pivot loop",
+      "observedDesign": "可行域边上的移动配迭代日志，第一阶段虚线与第二阶段路径分开；把入基选择和最小比值解释为方向与下一个紧约束。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "阅读作者文档；开头“每步严格改善”对退化换基不成立，后文讨论退化与 Bland，项目须保留这个例外。"
+    },
+    {
+      "id": "eisermann-pivot",
+      "url": "https://pnp.mathematik.uni-stuttgart.de/igt/eiserm/lehre/Pivot/",
+      "title": "Pivot, an Interactive Optimization Tool",
+      "author": "Michael Eisermann / Universität Stuttgart",
+      "section": "Tableau / history / two-variable graph",
+      "observedDesign": "点击表内系数执行基变换，前后历史与末两变量图配合；固定种子与 Klee–Minty 案例可比较换基策略。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "仅阅读控件与交互说明；原作 CC BY-NC-SA，不复制其代码或界面素材。"
+    },
+    {
+      "id": "mit-simplex",
+      "url": "https://ocw.mit.edu/courses/15-053-optimization-methods-in-management-science-spring-2013/6894404cdfa3a78ae351d8f458af5025_MIT15_053S13_lec4.pdf",
+      "title": "The Simplex Method 1",
+      "author": "James Orlin / Ebrahim Nasrabadi / MIT 15.053",
+      "section": "Reduced cost / ratio test / pivoting",
+      "observedDesign": "选择可改善目标的非基变量，按约束能允许的最小非负比值确定离基变量，通过换基保持可行。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "基础展项应明确有初始可行基；额外处理不可行、无界与退化，不能把枚举所有顶点称作单纯形法。"
+    }
+  ],
+  "branch-bound": [
+    {
+      "id": "furini-bb-lab",
+      "url": "https://fabiofurini.github.io/integer-linear-programming/lab/branch-and-bound-steps/",
+      "title": "Branch-and-bound step by step",
+      "author": "Fabio Furini",
+      "section": "Car example / tree / variable-node rules",
+      "observedDesign": "可行域切分、搜索树、当前LP字典和上下界同屏；节点图例分开候选、整数解、剪枝，可选择FIFO/LIFO/最好界。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "浏览器实际读取初态 (7/2,5/2)、LP值31/2、整数上界15与完整控件，保存证据。"
+    },
+    {
+      "id": "mit-bb",
+      "url": "https://www.ocw.mit.edu/courses/15-053-optimization-methods-in-management-science-spring-2013/1f26dafa0483e3283ff5a3774f7fc194_MIT15_053S13_lec12.pdf",
+      "title": "Integer Programming Techniques 1: Branch and Bound",
+      "author": "James Orlin / Ebrahim Nasrabadi / MIT 15.053",
+      "section": "预算奖品案例 / enumeration tree / eliminating subtrees",
+      "observedDesign": "先展开四件奖品的完整枚举树，再整体划去不值得探索的子树；父节点新增约束和上下界计算持续对应。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作图文；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "ozaltin-bb",
+      "url": "https://optimization-online.org/wp-content/uploads/2007/09/1785.pdf",
+      "title": "Visualizing Branch-and-Bound Algorithms",
+      "author": "Osman Y. Ozaltın / Brady Hunsaker / Ted K. Ralphs",
+      "section": "Section 3.5 / Figures 9–10",
+      "observedDesign": "以LP界定位树节点高度，用颜色区分状态，横线标当前整数可行解，直观显示哪些分支已不可能更好。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读原作文字和图注；本地PDF下载/网页截图未成功，未声称亲看彩色交互；这是研究图形案例，非零基础教程。"
+    },
+    {
+      "id": "furini-bb-definition",
+      "url": "https://fabiofurini.github.io/integer-linear-programming/exact-methods/bb/",
+      "title": "LP-based Branch-and-bound",
+      "author": "Fabio Furini",
+      "section": "7.2–7.3",
+      "observedDesign": "分数变量分成向下与向上整数界两支，不丢整数可行点；按不可行、整数可行、上界不优于当前解剪枝。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "最大化时可行解给下界、松弛给上界；仅当目标必为整数才向下取整上界；达到节点限额不能宣称最优。"
+    }
+  ],
+  "moving-average": [
+    {
+      "id": "fpp-ma",
+      "url": "https://otexts.com/fpp3/decomposition.html",
+      "title": "Forecasting: Principles and Practice — Moving averages",
+      "author": "Rob J. Hyndman / George Athanasopoulos",
+      "section": "3.3；图3.8与表3.1",
+      "observedDesign": "逐行显示五年窗口平均，原始时间序列与平滑趋势并列；边缘缺值直接对应窗口缺少数据。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "该段是居中平滑，使用未来观测；不可直接当作实时预测规则。"
+    },
+    {
+      "id": "duke-ma",
+      "url": "https://people.duke.edu/~rnau/411avg.htm",
+      "title": "Moving average and exponential smoothing models",
+      "author": "Robert Nau / Duke University",
+      "section": "Simple moving average；1、5、9、19期对照",
+      "observedDesign": "同一数据比较不同窗口的平滑与转折滞后，并用误差表选择窗口。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已查阅原作图文及相应图表说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "openstax-ma",
+      "url": "https://openstax.org/books/principles-data-science/pages/5-3-time-series-forecasting-methods",
+      "title": "Time Series Forecasting Methods",
+      "author": "OpenStax",
+      "section": "SMA；图5.10、5.12–5.14",
+      "observedDesign": "选中的连续数据格、平均公式、橙色平滑线一一对应，说明窗口如何移动。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "章节同时包括居中平滑与仅历史值的下一步预测；教学必须标明时间对齐。"
+    },
+    {
+      "id": "nist-ma",
+      "url": "https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc421.htm",
+      "title": "Single Moving Average",
+      "author": "NIST/SEMATECH",
+      "section": "6.4.2.1",
+      "observedDesign": "明确最近N个值平均、移入新值移出最旧值，并给数值核对表。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已查阅原作图文及相应图表说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "exponential-smoothing": [
+    {
+      "id": "fpp-ses",
+      "url": "https://otexts.com/fpp3/exponential-smoothing.html",
+      "title": "Simple exponential smoothing",
+      "author": "Rob J. Hyndman / George Athanasopoulos",
+      "section": "8.1；图8.1、不同α的权重表",
+      "observedDesign": "先比较只信最近值与所有值等权，再用逐年递减权重引出递推。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已查阅原作图文及相应图表说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "duke-ses",
+      "url": "https://people.duke.edu/~rnau/411avg.htm",
+      "title": "Brown's Simple Exponential Smoothing",
+      "author": "Robert Nau / Duke University",
+      "section": "Brown SES；权重与拟合图",
+      "observedDesign": "把新预测解释为旧预测沿误差方向移动一部分，权重图与移动平均直接比较。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已查阅原作图文及相应图表说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "openstax-ses",
+      "url": "https://openstax.org/books/principles-data-science/pages/5-3-time-series-forecasting-methods",
+      "title": "Weighted Moving Averages and Exponential Moving Averages",
+      "author": "OpenStax",
+      "section": "表5.6、图5.19",
+      "observedDesign": "递推表与原序列/平滑曲线同屏，能检查某次新观测怎样改变后续预测。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "股票数据仅作历史教学示例，不构成投资预测；基础SES不能自行外推趋势。"
+    },
+    {
+      "id": "nist-ses",
+      "url": "https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc431.htm",
+      "title": "Single Exponential Smoothing",
+      "author": "NIST/SEMATECH",
+      "section": "6.4.3.1",
+      "observedDesign": "递推、α范围、初始化和不同时间下标约定。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已查阅原作图文及相应图表说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "linear-regression": [
+    {
+      "id": "setosa-ols",
+      "url": "https://setosa.io/ev/ordinary-least-squares-regression/",
+      "title": "Ordinary Least Squares Regression",
+      "author": "Victor Powell / Lewis Lehe",
+      "section": "误差平方与可拖数据",
+      "observedDesign": "用残差的正方形面积连接点到直线的误差与总损失，改变斜率截距观察结果。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "浏览器实际读取正文控件并留截图；未逐一操作拖点。"
+    },
+    {
+      "id": "seeing-ols",
+      "url": "https://seeing-theory.brown.edu/regression-analysis/index.html",
+      "title": "Regression Analysis — Ordinary Least Squares",
+      "author": "Seeing Theory / Brown University",
+      "section": "第一节；Anscombe quartet",
+      "observedDesign": "四组看似相同统计量的数据对照，并把SSE表、可拖点与拟合直线连接起来。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "原站已归档；图示用于说明拟合与异常点，不证明因果。"
+    },
+    {
+      "id": "mlu-ols",
+      "url": "https://mlu-explain.github.io/linear-regression/",
+      "title": "Linear Regression",
+      "author": "Jared Wilber / MLU Explain",
+      "section": "房屋面积与价格、梯度下降",
+      "observedDesign": "从平均价格到拟合直线，再显示斜率截距和1/25/100步更新，解释降低损失的方向。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器读完整图文及控件、保存截图；未声称完整互动测试。"
+    },
+    {
+      "id": "nist-ols",
+      "url": "https://www.itl.nist.gov/div898/handbook/pmd/section1/pmd141.htm",
+      "title": "Linear Least Squares Regression",
+      "author": "NIST/SEMATECH",
+      "section": "4.1.4.1",
+      "observedDesign": "最小化残差平方和；区分参数线性、异常值敏感和外推风险。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已查阅原作图文及相应图表说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "logistic-regression": [
+    {
+      "id": "mlu-logistic",
+      "url": "https://mlu-explain.github.io/logistic-regression/",
+      "title": "Logistic Regression",
+      "author": "Erin Bugbee / Jared Wilber / MLU Explain",
+      "section": "天气与徒步、sigmoid、阈值和损失",
+      "observedDesign": "先暴露直线预测超出0–1的问题，再显示S曲线、阈值与逐步优化。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器读取正文控件并保存截图；未完整交互验证。"
+    },
+    {
+      "id": "google-logistic",
+      "url": "https://developers.google.com/machine-learning/crash-course/logistic-regression/sigmoid-function",
+      "title": "Logistic regression: Calculating a probability",
+      "author": "Google Machine Learning Crash Course",
+      "section": "Sigmoid function 与模型",
+      "observedDesign": "把线性得分映射至0–1概率，用S曲线读出同一输入变化的影响。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已查阅原作图文及相应图表说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "illinois-logistic",
+      "url": "https://exploration.stat.illinois.edu/learn/Logistic-Regression/Introducing-Logistic-Regression/",
+      "title": "Introducing Logistic Regression",
+      "author": "University of Illinois Statistics / Data Science Exploration",
+      "section": "Best Fit Sigmoid Function",
+      "observedDesign": "真假社交账号散点图依次叠加不合适直线、默认S曲线、移动拉伸后的S曲线。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已查阅原作图文及相应图表说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "toronto-logistic",
+      "url": "https://www.teach.cs.toronto.edu/~csc311notes/linear_classification/logistic_regression.html",
+      "title": "Logistic Regression",
+      "author": "University of Toronto CSC311",
+      "section": "5.1–5.3",
+      "observedDesign": "明确线性得分、sigmoid和交叉熵的完整模型；梯度为预测减目标再乘特征。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已查阅原作图文及相应图表说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "bayes": [
+    {
+      "id": "seeing-bayes",
+      "url": "https://seeing-theory.brown.edu/bayesian-inference/index.html",
+      "title": "Bayesian Inference",
+      "author": "Seeing Theory / Brown University",
+      "section": "Bayes' Theorem；Prior to Posterior",
+      "observedDesign": "人群患病率与检测准确率分开调整；抛硬币后把后验继续用作下次先验。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "站点已归档；筛查场景是概率教学，不用于个人医疗判断。"
+    },
+    {
+      "id": "3b1b-bayes",
+      "url": "https://www.3blue1brown.com/lessons/bayes-theorem/",
+      "title": "Bayes' theorem",
+      "author": "Grant Sanderson / 3Blue1Brown；文字改编 Josh Pullen",
+      "section": "Thinking about a sample；Thinking with area",
+      "observedDesign": "先用人群数量保留基准比例，再把证据筛选转为面积裁切，分母是所有符合证据者。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "阅读原作文字与配图，未完整观看视频；例子职业比例是教学假定。"
+    },
+    {
+      "id": "bonilla-bayes",
+      "url": "https://oscarbonilla.com/2009/05/visualizing-bayes-theorem/",
+      "title": "Visualizing Bayes' Theorem",
+      "author": "Oscar Bonilla",
+      "section": "集合、交集与条件空间",
+      "observedDesign": "以两个集合交叠区域说明同一交集为何能从两种条件概率计算。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已查阅原作图文及相应图表说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "mit-bayes",
+      "url": "https://math.mit.edu/~dav/05.dir/class11-prep.pdf",
+      "title": "Bayesian Updating with Discrete Priors",
+      "author": "Jeremy Orloff / Jonathan Bloom / MIT",
+      "section": "Class11 pp1–4",
+      "observedDesign": "先验乘似然得到未归一化权重，分母求和后形成后验；三种硬币数值例子。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "原讲义正文有0.625笔误，表与正确计算为0.62；本项目应独立核对。"
+    }
+  ],
+  "monte-carlo": [
+    {
+      "id": "seeing-mc",
+      "url": "https://seeing-theory.brown.edu/frequentist-inference/index.html",
+      "title": "Frequentist Inference — Point Estimation",
+      "author": "Seeing Theory / Brown University",
+      "section": "Point Estimation；π实验",
+      "observedDesign": "方形均匀落点按圆内外着色，显示样本总数与命中数，再解释4×命中比例。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已查阅原作图文及相应图表说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "marble-mc",
+      "url": "https://marblescience.com/blog/monte-carlo-simulations",
+      "title": "Monte Carlo Simulations",
+      "author": "Marble Science",
+      "section": "用随机落球比较面积",
+      "observedDesign": "实物风格球与不同形状容器把频率和面积联系起来，随后连接更复杂模拟。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "读文章及原作插图，未观看完整视频；其分离容器示例与内接圆4倍比例不是同一公式。"
+    },
+    {
+      "id": "goldman-mc",
+      "url": "https://www2.isye.gatech.edu/~sman/courses/6644/Module03-HandSimulationSlides-210816.pdf",
+      "title": "Hand and Spreadsheet Simulations",
+      "author": "Dave Goldsman / Georgia Tech",
+      "section": "Making Some π；pp17–19",
+      "observedDesign": "飞镖内接圆示意后紧接坐标判定式与397/500数值，连起随机输入、规则和估计。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "读取原PDF文字和图页；不能把有限随机样本结果称为精确值。"
+    },
+    {
+      "id": "pbrt-mc",
+      "url": "https://www.pbr-book.org/4ed/Monte_Carlo_Integration/Monte_Carlo_Basics",
+      "title": "Monte Carlo Basics",
+      "author": "Matt Pharr / Wenzel Jakob / Greg Humphreys",
+      "section": "2.1.3–2.1.4",
+      "observedDesign": "采样估计量、期望和独立采样方差随样本数的关系。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已查阅原作图文及相应图表说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "bootstrap": [
+    {
+      "id": "seeing-bootstrap",
+      "url": "https://seeing-theory.brown.edu/frequentist-inference/index.html",
+      "title": "Frequentist Inference — The Bootstrap",
+      "author": "Seeing Theory / Brown University",
+      "section": "The Bootstrap",
+      "observedDesign": "从总体到原样本，再从原样本有放回抽同样大小，画均值分布和标准误。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已查阅原作图文及相应图表说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "dragicevic-bootstrap",
+      "url": "https://explorablemultiverse.github.io/examples/dance/",
+      "title": "Statistical Dances",
+      "author": "Pierre Dragicevic / Inria",
+      "section": "Resampling；Bootstrapping the dataset；Results",
+      "observedDesign": "对原数据重抽样后重复同一分析，把整张图的变化做成动画，展示排序与趋势的稳定性。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "读取原作方法与图表说明；未完整播放动画。原案例按216条件分别重抽，不是忽略数据结构的通用方案。"
+    },
+    {
+      "id": "statkey-bootstrap",
+      "url": "https://www.lock5stat.com/StatKey/bootstrap_1_quant/bootstrap_1_quant.html",
+      "title": "Bootstrap Confidence Interval for a Mean, Median, Std. Dev.",
+      "author": "Lock5 / StatKey",
+      "section": "Original Sample、Bootstrap Sample、Bootstrap Dotplot",
+      "observedDesign": "原样本、一次重抽样和累计统计量分布分别显示；1/10/100/1000次生成便于看分布形成。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器加载并读取控件和初始状态、保存截图；尚未点击生成验证。"
+    },
+    {
+      "id": "hesterberg-bootstrap",
+      "url": "https://www.amstat.org/asa/files/pdfs/EDU-ResamplingUndergradCurriculum.pdf",
+      "title": "What Teachers Should Know About the Bootstrap",
+      "author": "Tim Hesterberg",
+      "section": "§2.3及基础重抽样讨论",
+      "observedDesign": "经验分布上的有放回重抽样及其近似目的，指出小样本区间覆盖率等限制。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已查阅原作图文及相应图表说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "knn": [
+    {
+      "id": "broyelle-knn",
+      "url": "https://antoinebrl.github.io/blog/knn-variance/",
+      "title": "K-Nearest Neighbors — Visualizing the Variance",
+      "author": "Antoine Broyelle",
+      "section": "交互说明及嵌入实验",
+      "observedDesign": "拖点、翻转类别、改变k并查看近邻，让少量标签变化引起边界变化。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作图文与相应图表说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "sklearn-knn",
+      "url": "https://scikit-learn.org/stable/auto_examples/neighbors/plot_classification.html",
+      "title": "Nearest Neighbors Classification",
+      "author": "scikit-learn 开发团队",
+      "section": "Decision boundary",
+      "observedDesign": "同一鸢尾花数据并排显示等权投票和距离加权边界，明确比较只改变一个规则。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作图文与相应图表说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "interactive-knn",
+      "url": "https://www.interactive-ml.com/knn.html",
+      "title": "K-Nearest Neighbors Interactive Demo",
+      "author": "Interactive-ML 原站（未署个人作者）",
+      "section": "How K-Nearest Neighbors Works",
+      "observedDesign": "查询点、两类训练点、最近k个点分别标色，控件只保留k与重生数据。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "只查阅网页与控件说明，未做拖点实测；个人作者未核实。"
+    },
+    {
+      "id": "cornell-knn",
+      "url": "https://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote02_kNN.html",
+      "title": "K-Nearest Neighbors",
+      "author": "Cornell CS4780",
+      "section": "Algorithm；What distance function should we use?",
+      "observedDesign": "最近k个集合与多数标签定义，距离度量、平票和高维局限。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "查阅原作图文与相应图表说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "decision-tree": [
+    {
+      "id": "sklearn-cart",
+      "url": "https://scikit-learn.org/stable/auto_examples/tree/plot_iris_dtc.html",
+      "title": "Decision surface of decision trees trained on iris",
+      "author": "scikit-learn 开发团队",
+      "section": "二维决策区域与树结构",
+      "observedDesign": "同一阈值规则同时表现为平面切分和树节点，展示每对特征对应的分类边界。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作图文与相应图表说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "berkeley-cart",
+      "url": "https://stat154.berkeley.edu/fall-2026/lectures/unit4/unit4_cart.html",
+      "title": "Classification and Regression Trees (CART)",
+      "author": "Ryan Giordano / UC Berkeley",
+      "section": "Regression trees as partition selectors；Tree trimming",
+      "observedDesign": "逐次切分、分段预测、树结构和剪枝对照，显示为何复杂区域需要更多划分。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "教材同时讲回归与分类；8次切分对应2^8叶的表述实际按深度计，不可照抄。原式有左右权重笔误，定义以官方数学式核对。"
+    },
+    {
+      "id": "cornell-cart",
+      "url": "https://www.cs.cornell.edu/courses/cs4780/2022sp/notes/Notes20.pdf",
+      "title": "CART: Classification and Regression Trees",
+      "author": "Cornell CS4/5780",
+      "section": "p1 Binary decision tree 与 Gini impurity图",
+      "observedDesign": "二叉树叶子类别与Gini曲线对应，混合比例越接近均匀越不纯。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "同讲义后半另讲ID3；本项只引用二叉CART及Gini图，不把ID3当CART。"
+    },
+    {
+      "id": "sklearn-cart-definition",
+      "url": "https://scikit-learn.org/stable/modules/tree.html",
+      "title": "Decision Trees — Mathematical formulation",
+      "author": "scikit-learn 开发团队",
+      "section": "1.10.6–1.10.7.1",
+      "observedDesign": "二叉划分、子集加权不纯度、遍历特征阈值选最小、停止规则及Gini公式。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "查阅原作图文与相应图表说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "naive-bayes": [
+    {
+      "id": "vanderplas-nb",
+      "url": "https://jakevdp.github.io/PythonDataScienceHandbook/05.05-naive-bayes.html",
+      "title": "In Depth: Naive Bayes Classification",
+      "author": "Jake VanderPlas",
+      "section": "Gaussian Naive Bayes",
+      "observedDesign": "以各类轴对齐高斯椭圆说明独立特征分布，再叠加预测点查看弯曲决策边界。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "本段是高斯变体；文本段为多项式变体，须与平台选择一致。原文CC-BY-NC-ND，不能直接改编图像发布。"
+    },
+    {
+      "id": "jurafsky-nb",
+      "url": "https://web.stanford.edu/~jurafsky/slp3/slides/7_NB.pdf",
+      "title": "Text Classification and Naïve Bayes",
+      "author": "Dan Jurafsky / Stanford",
+      "section": "pp15–24词袋与条件独立；p41完整例子",
+      "observedDesign": "把评论拆成词频表，再用类别先验及逐词似然相乘，列出两类分数比较。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作图文与相应图表说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "orange-nb",
+      "url": "https://orange3.readthedocs.io/projects/orange-visual-programming/en/latest/widgets/visualize/nomogram.html",
+      "title": "Nomogram",
+      "author": "Orange Data Mining 团队 / University of Ljubljana",
+      "section": "Naive Bayes Titanic example",
+      "observedDesign": "每个特征的贡献画成可调刻度，累加分数对应最终概率，让用户看到哪项证据改变判断。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "同页也讲逻辑回归；本项仅引用明确标为Naive Bayes的例子。未运行桌面Orange。"
+    },
+    {
+      "id": "sklearn-nb-definition",
+      "url": "https://scikit-learn.org/stable/modules/naive_bayes.html",
+      "title": "Naive Bayes",
+      "author": "scikit-learn 开发团队",
+      "section": "1.9、1.9.1、1.9.2",
+      "observedDesign": "条件独立下的乘积、MAP类别选择，以及高斯/多项式模型、拉普拉斯平滑。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "查阅原作图文与相应图表说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "kmeans": [
+    {
+      "id": "kmeans-v1",
+      "url": "https://www.naftaliharris.com/blog/visualizing-k-means-clustering/",
+      "title": "Visualizing K-Means Clustering",
+      "author": "Naftali Harris",
+      "section": "Reassign Points / Update Centroids；初始化与反例",
+      "observedDesign": "将最近中心分配与均值更新分为两个可观察阶段；Voronoi底色与点颜色暂时不同让下一次重分配原因可见。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "kmeans-v2",
+      "url": "https://developers.google.com/machine-learning/clustering/kmeans/overview",
+      "title": "What is k-means clustering?",
+      "author": "Google Machine Learning Education",
+      "section": "Figure1；迭代步骤与初始化限制",
+      "observedDesign": "用点云与中心图建立聚类目标，连接初始化、交替更新和停止条件。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "kmeans-v3",
+      "url": "https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_assumptions.html",
+      "title": "Demonstration of k-means assumptions",
+      "author": "scikit-learn contributors",
+      "section": "Incorrect number of clusters; anisotropic data; unequal variance",
+      "observedDesign": "用并列散点图展示不同数据形状/簇数下的失败模式，避免只呈现圆形好分的点云。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "kmeans-d1",
+      "url": "https://scikit-learn.org/stable/modules/clustering.html#k-means",
+      "title": "Clustering — K-means",
+      "author": "scikit-learn contributors",
+      "section": "2.3.2 K-means",
+      "observedDesign": "平方误差目标、Lloyd交替更新、初始化和局部极小值等适用边界。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    }
+  ],
+  "dbscan": [
+    {
+      "id": "harris-dbscan",
+      "url": "https://www.naftaliharris.com/blog/visualizing-dbscan-clustering/",
+      "title": "Visualizing DBSCAN Clustering",
+      "author": "Naftali Harris",
+      "section": "epsilon balls、Example A、DBSCAN Rings",
+      "observedDesign": "先画邻域圆与密集区域，再扩张簇；边界点可归属两个簇的反例解释顺序影响。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "文案more than与标准至少MinPts有差异，须按定义修正；作者允许运行中改参数属于演示扩展，标准算法参数固定。"
+    },
+    {
+      "id": "sklearn-dbscan",
+      "url": "https://scikit-learn.org/stable/auto_examples/cluster/plot_dbscan.html",
+      "title": "Demo of DBSCAN clustering algorithm",
+      "author": "scikit-learn 开发团队",
+      "section": "Plot results",
+      "observedDesign": "核心点用大圆、非核心点小圆、噪声黑色，同时显示簇数，避免把所有点强行归类。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作图文与相应图表说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "geoda-dbscan",
+      "url": "https://geodacenter.github.io/workbook/99_density/lab9b.html",
+      "title": "Density-Based Clustering Methods",
+      "author": "Luc Anselin / GeoDa Center",
+      "section": "DBSCAN Principle；图5及实现案例",
+      "observedDesign": "九点邻域图用颜色区分核心、边界、噪声，再迁移到芝加哥店铺位置分布。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "只取DBSCAN段；DBSCAN*和HDBSCAN是后续不同方法，不能混写。MinPts包含自身。"
+    },
+    {
+      "id": "ester-dbscan",
+      "url": "https://cdn.aaai.org/KDD/1996/KDD96-037.pdf",
+      "title": "A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise",
+      "author": "Martin Ester / Hans-Peter Kriegel / Jörg Sander / Xiaowei Xu",
+      "section": "§3–4",
+      "observedDesign": "邻域、核心点、密度可达及密度连接的原始定义与簇扩张算法。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "PDF文字OCR可能将≥识别成>；以原版公式和至少MinPts文字一致解释。"
+    }
+  ],
+  "pca": [
+    {
+      "id": "setosa-pca",
+      "url": "https://setosa.io/ev/principal-component-analysis/",
+      "title": "Principal Component Analysis Explained Visually",
+      "author": "Victor Powell / Lewis Lehe",
+      "section": "2D、3D、17D例子",
+      "observedDesign": "拖点看主轴转向，转动三维观察角度，然后用食物数据展示高维投影。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作图文与相应图表说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "sklearn-pca",
+      "url": "https://scikit-learn.org/stable/auto_examples/decomposition/plot_pca_iris.html",
+      "title": "Principal Component Analysis on Iris Dataset",
+      "author": "scikit-learn 开发团队",
+      "section": "成对特征散点与主成分图",
+      "observedDesign": "先保留原始四个特征的关系，再显示三主成分投影，解释新轴是旧变量的组合。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "不应照抄可完全区分每个类别的泛化表述；PCA最大化方差，不保证类别分离。"
+    },
+    {
+      "id": "numiqo-pca",
+      "url": "https://numiqo.com/lab/pca",
+      "title": "Principal Component Analysis — Interactive Visualisation",
+      "author": "Numiqo",
+      "section": "PCA Variation；PCA in 2D/3D",
+      "observedDesign": "手动旋转投影线与解释方差百分比联动；点云、投影与主轴同屏。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器读取动态数值控件并保存截图，未完整拖动测试。"
+    },
+    {
+      "id": "nist-pca",
+      "url": "https://www.itl.nist.gov/div898/handbook/pmc/section5/pmc55.htm",
+      "title": "Principal Components",
+      "author": "NIST/SEMATECH",
+      "section": "6.5.5",
+      "observedDesign": "降维、线性组合最大化方差及特征向量表示。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "该段使用标准化后的相关矩阵；平台若使用仅中心化协方差须明确说明。丢弃维度才导致无法精确逆变换。"
+    }
+  ],
+  "neural-network": [
+    {
+      "id": "tensorflow-nn",
+      "url": "https://playground.tensorflow.org/",
+      "title": "A Neural Network Playground",
+      "author": "Daniel Smilkov / Shan Carter / Google",
+      "section": "Data、Features、Hidden layers、Output",
+      "observedDesign": "神经元小图显示各层学到的分区，连线粗细颜色表示权重，与训练/测试损失并列。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "查阅原作图文与相应图表说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "3b1b-backprop",
+      "url": "https://www.3blue1brown.com/lessons/backpropagation/",
+      "title": "What is backpropagation really doing?",
+      "author": "Grant Sanderson / 3Blue1Brown；文字改编 Josh Pullen",
+      "section": "梯度敏感度、逐层期望改变与样本平均",
+      "observedDesign": "先指出哪个输出需改变，再沿影响关系向前层分摊调整，最后汇总多样本建议。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "读原作文字与配图，未完整观看视频；反向传播算梯度，参数更新由优化器完成。"
+    },
+    {
+      "id": "cs231n-nn",
+      "url": "https://cs231n.github.io/neural-networks-1/",
+      "title": "Neural Networks Part 1",
+      "author": "Stanford CS231n 教学团队",
+      "section": "Modeling one neuron；Architectures；feed-forward computation",
+      "observedDesign": "单个加权求和与激活函数图过渡到多层结构，说明去掉非线性将退化为线性模型。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "借鉴计算结构，生物神经元类比仅为启发，不能声称等同大脑。"
+    },
+    {
+      "id": "cs231n-backprop-definition",
+      "url": "https://cs231n.github.io/optimization-2/",
+      "title": "Backpropagation, Intuitions",
+      "author": "Stanford CS231n 教学团队",
+      "section": "Compound expressions；chain rule；sigmoid example",
+      "observedDesign": "前向值、局部导数、上游导数相乘的链式规则与分支梯度累加。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "查阅原作图文与相应图表说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "pagerank": [
+    {
+      "id": "pagerank-mathsuniverse",
+      "url": "https://www.mathsuniverse.com/pagerank",
+      "title": "PageRank Simulator",
+      "author": "Maths Universe",
+      "section": "Editable graph / Next iteration",
+      "observedDesign": "编辑节点与有向边，逐轮观察分数；将传出链接数量与收到的分数联系起来。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "浏览器读取控件及计算文本。该作使用总分为节点数的非归一化分数，悬空节点只向其他节点分配；本项目必须独立采用明确归一化与悬空分配约定，不能照抄。"
+    },
+    {
+      "id": "pagerank-cornell",
+      "url": "https://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture3/lecture3.html",
+      "title": "The Google PageRank Algorithm",
+      "author": "Cornell Mathematics MEC",
+      "section": "Four-page graph / transition matrix / iteration",
+      "observedDesign": "由四个网页的箭头图转为按出度分摊的矩阵，列出迭代向量；说明少量高权重入链可能超过更多低权重入链。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "pagerank-kun",
+      "url": "https://www.jeremykun.com/2011/06/18/googles-pagerank-a-first-attempt/",
+      "title": "Google’s PageRank—A First Attempt",
+      "author": "Jeremy Kun",
+      "section": "The Web as a Graph / Crawl, then Walk",
+      "observedDesign": "并排比较直觉清楚与不明显的链接图，先否定单数入链，再加入来源权重与出度分摊。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "本篇为首次尝试，尚未完整解决悬空节点和非连通图；最终模型需加入阻尼与重新分配。"
+    },
+    {
+      "id": "pagerank-networkx",
+      "url": "https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.link_analysis.pagerank_alg.pagerank.html",
+      "title": "pagerank — NetworkX documentation",
+      "author": "NetworkX Developers",
+      "section": "alpha / personalization / dangling / power iteration",
+      "observedDesign": "定义阻尼、个性化概率和悬空节点分配；明确迭代容差与未收敛处理。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    }
+  ],
+  "collaborative": [
+    {
+      "id": "cf-bu",
+      "url": "https://ds701.cds.bu.edu/19-Recommender-Systems.html",
+      "title": "Recommender Systems",
+      "author": "Boston University DS701 teaching team",
+      "section": "Item–item CF: one missing rating / Similarity-weighted average",
+      "observedDesign": "六物品十二用户评分矩阵突出缺失格，筛选共同评分者与目标用户评过的邻居；颜色矩阵、相似度小表和2.54的加权结果逐项连接。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "只参考item–item邻域小节，后半段矩阵分解是另一方法。共同评分不足时相关性不可靠，缺失格不能直接作零分。"
+    },
+    {
+      "id": "cf-carleton",
+      "url": "https://www.cs.carleton.edu/cs_comps/0607/recommend/recommender/itembased.html",
+      "title": "Item-based collaborative filtering",
+      "author": "Carleton College CS Comps recommendation project (2006–2007)",
+      "section": "Item-pair diagram / similarity measures / weighted prediction",
+      "observedDesign": "用两件物品与共同用户关系图引出相似度；并列普通余弦、Pearson与去用户均值余弦，再画加权预测。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "原文说只有一位共同用户时调整余弦总为1并不普遍成立，可能为−1或零范数；仅借鉴稀疏性反例，数值独立校验。"
+    },
+    {
+      "id": "cf-cuth",
+      "url": "https://www.jakecuth.com/work/reco-lab/",
+      "title": "Recommendation Engine — Reco Lab",
+      "author": "Jake Cuth",
+      "section": "Fig. B Collaborative / Where the algorithms disagree",
+      "observedDesign": "电影卡片随偏好改变，物品列的去均值评分余弦与内容推荐并排；同一喜欢列表对应三份推荐结果。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读取公开索引的原作全文，浏览器实测遇验证页，未验证交互或性能；不采用未经核实的商业比例与收入断言。"
+    },
+    {
+      "id": "cf-surprise",
+      "url": "https://surprise.readthedocs.io/en/stable/knn_inspired.html",
+      "title": "k-NN inspired algorithms",
+      "author": "Surprise contributors",
+      "section": "KNNBasic item-based formula",
+      "observedDesign": "对目标用户评过的相似物品加权平均；邻居数上限、只保留正相似度及不足时回退规则均需显式声明。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    }
+  ],
+  "content-recommendation": [
+    {
+      "id": "content-cuth",
+      "url": "https://www.jakecuth.com/work/reco-lab/",
+      "title": "Recommendation Engine — Reco Lab",
+      "author": "Jake Cuth",
+      "section": "Fig. A Content-based / genre weights",
+      "observedDesign": "把类型和标签转成TF-IDF特征，以余弦产生电影推荐；同时列出偏好类型权重与候选榜单。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作网页文本及图示说明；浏览器遇验证页，未交互测试。新片没有评分也仍需足够内容特征。"
+    },
+    {
+      "id": "content-google",
+      "url": "https://developers.google.com/machine-learning/recommendation/overview/candidate-generation",
+      "title": "Candidate generation overview",
+      "author": "Google Machine Learning Education",
+      "section": "Similarity measures / Comparing similarity measures",
+      "observedDesign": "同一查询向量面对三个候选箭头，余弦按夹角选C、点积偏向长向量A、距离偏向B，解释推荐排序为何不同。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "本页同时讨论内容与协同嵌入；只借鉴已固定内容向量后的余弦候选排名，不将嵌入学习当成本展项算法。"
+    },
+    {
+      "id": "content-deeprecvis",
+      "url": "https://repositorio.pucrs.br/dspace/bitstream/10923/14096/2/Leveraging_Deep_Visual_Features_for_Content_based_Movie_Recommender_Systems.pdf",
+      "title": "Leveraging Deep Visual Features for Content-based Movie Recommender Systems",
+      "author": "Ralph José Rassweiler Filho, Jônatas Wehrmann, Rodrigo C. Barros",
+      "section": "Figure 3 / equation 9",
+      "observedDesign": "用电影海报两行对比：余弦相同而输入特征不同，得到不同邻居与续集名次；说明特征选择比单一分数更影响意义。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "阅读论文图注、推荐流程及余弦式；研究使用视频深特征，平台用教学标签向量须明确为简化，不能声称复现论文精度。海报不授权复制。"
+    },
+    {
+      "id": "content-sklearn",
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.cosine_similarity.html",
+      "title": "cosine_similarity",
+      "author": "scikit-learn developers",
+      "section": "Definition / normalized dot product",
+      "observedDesign": "余弦为点积除以两向量范数；非零向量的方向相似度，零向量需特别处理。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    }
+  ],
+  "apriori": [
+    {
+      "id": "apriori-mit",
+      "url": "https://ocw.mit.edu/courses/15-097-prediction-machine-learning-and-statistics-spring-2012/eb02afbd0a9c32637dd64cdb6b76c2f1_MIT15_097S12_lec01.pdf",
+      "title": "Rule Mining and the Apriori Algorithm",
+      "author": "Cynthia Rudin / MIT OCW",
+      "section": "pp. 3–4: levels, crossed-out candidates, Ck/Lk tables",
+      "observedDesign": "逐层划掉不频繁项及其候选超集，把每次数据库扫描与候选表、保留表的对应关系画在一起。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "apriori-algobeans",
+      "url": "https://annalyzin.wordpress.com/2016/04/01/association-rules-and-the-apriori-algorithm/",
+      "title": "Association Rules and the Apriori Algorithm",
+      "author": "Annalyn Ng / Algobeans",
+      "section": "Finding itemsets with high support / animated candidate pruning",
+      "observedDesign": "以购物篮开始，将低支持度苹果划掉并删除含它的组合；动画解释为何可以不再检查那些候选。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "原作一句将supersets误写为subsets，示例方向及获授权转载正确；必须使用“不频繁集合的超集也不频繁”。已读图注，未逐帧完整观看GIF。"
+    },
+    {
+      "id": "apriori-spmf",
+      "url": "https://www.philippe-fournier-viger.com/tools/Apriori_algorithm_demo.php",
+      "title": "Apriori Algorithm Demo",
+      "author": "Philippe Fournier-Viger",
+      "section": "Toy database / numbered support, join and prune steps",
+      "observedDesign": "五笔购物数据阈值2，实际运行列出每一轮计数、保留、合并和淘汰理由，最终15个频繁项集。",
+      "checkedAt": "2026-10-26",
+      "verification": "interacted",
+      "role": "visual",
+      "limitations": "实际输入并运行示例。原作两处合并旁白重复同一项，输入笔数描述也有笔误；借鉴逐步原因展示，不能照搬字符串旁白。"
+    },
+    {
+      "id": "apriori-original",
+      "url": "https://www.philippe-fournier-viger.com/spmf/apriori_longer.pdf",
+      "title": "Fast Algorithms for Mining Association Rules in Large Databases",
+      "author": "Rakesh Agrawal, Ramakrishnan Srikant / IBM Research",
+      "section": "§2.1 / §2.1.1 / Figure 1",
+      "observedDesign": "原论文定义上一层频繁集连接、按不频繁子集剪枝，再扫描计数；生成关联规则是后续步骤。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    }
+  ],
+  "bm25": [
+    {
+      "id": "bm25-leroy",
+      "url": "https://www.nathanleroy.dev/bm25viz/",
+      "title": "BM25 Ranking Visualizer",
+      "author": "Nathan Leroy",
+      "section": "Corpus / IDF explorer / per-document score",
+      "observedDesign": "同时展示语料统计、词频、IDF和长度归一项；展开排名可追到每项加分依据。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "bm25-kanli",
+      "url": "https://retrieval-explorables.com/bm25/?route=scoring",
+      "title": "BM25: The Saturation Curve",
+      "author": "Alper Nebi Kanlı",
+      "section": "Seven-step tour / saturation curves / scoring comparison",
+      "observedDesign": "让原始词频、TF-IDF和BM25在同一语料上排序；k1和b改变曲线，练习揭示同义词失配及跨查询不可比较。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器加载并读取完整说明及控件，未执行全部导览。Lucene与Robertson IDF是不同约定，须在平台标明采用哪一种。"
+    },
+    {
+      "id": "bm25-elastic",
+      "url": "https://www.elastic.co/blog/practical-bm25-part-2-the-bm25-algorithm-and-its-variables",
+      "title": "Practical BM25 — Part 2",
+      "author": "Shane Connelly / Elastic",
+      "section": "IDF examples / term frequency saturation figure",
+      "observedDesign": "用姓名短文本逐项代入公式，以饱和曲线解释重复出现收益递减；单独改变长度与频数以避免混淆。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "bm25-lucene",
+      "url": "https://lucene.apache.org/core/9_12_1/core/org/apache/lucene/search/similarities/BM25Similarity.html",
+      "title": "BM25Similarity",
+      "author": "Apache Lucene",
+      "section": "k1 / b / idf / avgFieldLength",
+      "observedDesign": "给出Lucene IDF、词频饱和和长度归一参数及有效范围；不同实现常数不同不应直接比较分数。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    }
+  ],
+  "edit-distance": [
+    {
+      "id": "edit-opendsa",
+      "url": "https://opendsax.cs.vt.edu/ODSA/Books/Everything/html/EditDistance.html",
+      "title": "Edit Distance",
+      "author": "OpenDSA Contributors",
+      "section": "Recursive tree / DP grid / optimal path slideshows",
+      "observedDesign": "cat到kate的递归树映射到二维表，随后沿最优前驱回溯，并以文字标注插入、删除、替换。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "原作把DP称作linear time、并从长度推断不会发生插入/删除的个别语句不严谨；应使用O(mn)与三候选最小递推，不沿用这些说法。"
+    },
+    {
+      "id": "edit-hengli",
+      "url": "https://lh3.github.io/teach-demo/edit-distance.html",
+      "title": "Edit Distance DP Demo",
+      "author": "Heng Li",
+      "section": "Cell dependencies / tied predecessor arrows / traceback",
+      "observedDesign": "按格或按行填表，悬停显示三种依赖；并列最优前驱都留箭头，可展示多个最优编辑方案。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "edit-hello",
+      "url": "https://www.hello-algo.com/chapter_dynamic_programming/edit_distance_problem/",
+      "title": "14.6 编辑距离问题",
+      "author": "krahets / Hello 算法 contributors",
+      "section": "图14-27至14-30",
+      "observedDesign": "先以单词编辑建立决策树，再把三种操作对应到左、上、左上；十五幅步骤图解释逐格填表。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "edit-nist",
+      "url": "https://xlinux.nist.gov/dads/HTML/Levenshtein.html",
+      "title": "Levenshtein distance",
+      "author": "NIST DADS / Paul E. Black (editor)",
+      "section": "Definition",
+      "observedDesign": "单位代价插入、删除和替换的最少次数；标准动态规划Θ(mn)。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    }
+  ],
+  "kmp": [
+    {
+      "id": "kmp-selfboot",
+      "url": "https://gallery.selfboot.cn/en/algorithms/kmp",
+      "title": "KMP Algorithm Visualization",
+      "author": "Selfboot",
+      "section": "LPS construction / pattern search",
+      "observedDesign": "先看模式自身的前后缀，再在搜索面板上追踪i/j；失配时解释j回到lps[j−1]而文本指针保留。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "kmp-ubc",
+      "url": "https://cmps-people.ok.ubc.ca/ylucet/DS/KnuthMorrisPratt.html",
+      "title": "Knuth-Morris-Pratt String Search Visualization",
+      "author": "UBC Okanagan teaching site / Yves Lucet",
+      "section": "Build failure function / Search controls",
+      "observedDesign": "将构造失败函数与正式搜索拆为两个操作；输入文本和模式均可修改，播放器提供单步与回退。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际加载HTTP200并读取控件、保存画布截图；未验证全部动态轨迹。个人动画作者未在页面标明，UBC为托管教学站。"
+    },
+    {
+      "id": "kmp-opendsa",
+      "url": "https://opendsax.cs.vt.edu/ODSA/Books/Everything/html/StringSearchKMP.html",
+      "title": "KMP String Search Algorithm",
+      "author": "OpenDSA Contributors",
+      "section": "Search alignment / align array slideshows and prediction exercises",
+      "observedDesign": "搜索与预处理分别做幻灯步骤，读者预测下一次对齐，并计算移动次数；失配复用已匹配前缀。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "该作align[0]=−1、align[p]按失配位置定义；与lps索引不同，须翻译后讲解，不能混用数组。"
+    },
+    {
+      "id": "kmp-nist",
+      "url": "https://xlinux.nist.gov/dads/HTML/knuthMorrisPratt.html",
+      "title": "Knuth-Morris-Pratt algorithm",
+      "author": "Sterling Bates / NIST DADS",
+      "section": "Definition / original 1977 paper citation",
+      "observedDesign": "预处理模式构成状态机，文本一次扫描，时间O(m+n)；失败函数是状态转移的表示。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    }
+  ],
+  "rle": [
+    {
+      "id": "rle-fieldguide",
+      "url": "https://www.csfieldguide.org.nz/en/chapters/coding-compression/run-length-encoding/",
+      "title": "Run length encoding",
+      "author": "University of Canterbury CS Education Research Group",
+      "section": "Diamond bitmap / alternating run counts",
+      "observedDesign": "黑白菱形像素按行变成连续段长度；首像素为黑时显式放0个白像素，说明解码约定为何必要。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "rle-unplugged",
+      "url": "https://www.csunplugged.org/en/at-a-distance/image-compression/",
+      "title": "Image Compression — CS Unplugged at a Distance",
+      "author": "CS Unplugged team",
+      "section": "Facilitated slideshow / row D / encode and reconstruct",
+      "observedDesign": "先放大照片识别像素，再让参与者逐行报数、另一方还原黑白图；将存储规则与可逆性对应。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "与CS Field Guide属同一教育团队，但为另一套独立活动/幻灯作品；已阅读带讲者备注的课件页面，未观看嵌入视频。"
+    },
+    {
+      "id": "rle-livephysics",
+      "url": "https://livephysics.com/tools/data-compression/",
+      "title": "Data Compression & Image Encoding Explorer",
+      "author": "LivePhysics",
+      "section": "RLE step-by-step / original versus encoded",
+      "observedDesign": "将AAA等连续段逐个对照3A等编码，显示原始与编码大小，并用重复文本、随机文本预设比较失败情况。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "该站示例按ASCII字符计大小，元数据/分隔符成本未充分体现；平台须明确计数格式、数字字符转义及字符编码，不能泛称所有文本都变小。"
+    },
+    {
+      "id": "rle-microsoft",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/gdi/bitmap-compression",
+      "title": "Bitmap Compression",
+      "author": "Microsoft",
+      "section": "BI_RLE8 encoded mode / absolute mode / expansion example",
+      "observedDesign": "真实RLE8格式用计数和色号字节表达连续像素，并规定行尾、结束和绝对片段；作为可逆格式与成本的规范依据。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "这是Windows位图RLE8具体变体；教学RLE需声明自定义格式，不宣称输出即为合法BMP文件。"
+    }
+  ],
+  "huffman": [
+    {
+      "id": "huffman-fieldguide",
+      "url": "https://www.csfieldguide.org.nz/en/chapters/coding-compression/huffman-coding/",
+      "title": "Huffman coding",
+      "author": "University of Canterbury CS Education Research Group",
+      "section": "DNA frequencies / prefix code / merge tree",
+      "observedDesign": "先比较四种DNA字母的等长码和变长码，再从最少频次逐次合树；解释短码为何给常见字母及前缀歧义。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "原页例文某段编码串长度与标注22位不完全一致；本平台频数、码字、位串必须自行核对并包含码表开销。"
+    },
+    {
+      "id": "huffman-opendsa",
+      "url": "https://opendsa-server.cs.vt.edu/ODSA/Books/CS3/html/Huffman.html",
+      "title": "Huffman Coding Trees",
+      "author": "OpenDSA Contributors",
+      "section": "Eight-letter table / construction slideshow / decoding",
+      "observedDesign": "八种字母的频数表对应森林合并幻灯；每次取两个最小根，最后由根至叶路径给出编码。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读幻灯说明与频数表，页面出现学习记录Server Error；不代表算法动画已完整交互验证。"
+    },
+    {
+      "id": "huffman-morris",
+      "url": "https://www.cs.auckland.ac.nz/software/AlgAnim/huffman.html",
+      "title": "Huffman Encoding",
+      "author": "John Morris / University of Auckland",
+      "section": "ETASNO tree / TEA SEA TEN / decoding diagram",
+      "observedDesign": "将树上的0/1路径与TEA等单词编码对照，随后按输入位走树、到叶输出、回到根，解释无需分隔符解码。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "huffman-nist",
+      "url": "https://xlinux.nist.gov/dads/HTML/huffmanCoding.html",
+      "title": "Huffman coding",
+      "author": "Paul E. Black / NIST DADS",
+      "section": "Definition / static binary character coding",
+      "observedDesign": "重复合并频数最小的两棵树；保证给定字符频数下二进制前缀码的最小加权长度。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "只使用该条目核心定义；原文关于Shannon–Fano及历史专利的旁注不纳入教学，也不把前缀码最优扩大成所有压缩算法最优。"
+    }
+  ],
+  "lz77": [
+    {
+      "id": "lz77-cmu",
+      "url": "https://www.cs.cmu.edu/afs/cs/project/pscico-guyb/realworld/www/slidesS18/compression4.pdf",
+      "title": "Data Compression III — Algorithms in the Real World",
+      "author": "Carnegie Mellon University 15-853",
+      "section": "slides4–6: window, example, decoding",
+      "observedDesign": "颜色窗口分出已编码字典与前瞻区，逐行标出最长匹配和三元组；重叠复制例子展示边输出边继续复制。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "lz77-jannikw",
+      "url": "https://jannikw.github.io/lempel-ziv/#/steps",
+      "title": "Lempel-Ziv Playground",
+      "author": "jannikw (original project author)",
+      "section": "Step by Step / LZ77 selection",
+      "observedDesign": "把输入排成字母格，前后步按钮定位当前压缩步骤；同页区分LZ77、有限滑窗和其他变体。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器加载并读取控件及初始状态；未验证全部变体。平台需要固定窗口和token约定，不把不同变体结果混作同算法。"
+    },
+    {
+      "id": "lz77-42math",
+      "url": "https://42math.com/comp/lz77",
+      "title": "LZ77 Compressor Demo",
+      "author": "42Math",
+      "section": "Worked example / larger-window trade-off / overlapping copy",
+      "observedDesign": "以abracadabra式重复串逐步输出距离、长度、下一字符；解释窗口更大也会增加指针位宽，距离1可生成长重复段。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读原作说明和初始示例，未测试全部参数；其压缩比呈现不能替代包含字面量、指针和格式开销的独立核算。"
+    },
+    {
+      "id": "lz77-microsoft",
+      "url": "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wusp/fb98aa28-5cd7-407f-8869-a6cef1ff1ccb",
+      "title": "LZ77 Compression Algorithm",
+      "author": "Microsoft Open Specifications",
+      "section": "Terminology / window / pointer / match",
+      "observedDesign": "定义窗口、编码位置、向后距离和长度，匹配复制先前字节；格式变体的token表示须明确。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    }
+  ],
+  "hamming": [
+    {
+      "id": "hamming-harry",
+      "url": "https://harryli0088.github.io/hamming-code/",
+      "title": "How Hamming Code Works",
+      "author": "Harry Li",
+      "section": "Binary positions / parity partitions / SECDED",
+      "observedDesign": "位格同时显示二进制位置，奇偶校验覆盖不同半区；显示整体校验位并解释如何区分单错与双错。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "浏览器已加载全文和控件。该作是扩展Hamming/SECDED；普通(7,4)与额外整体校验的能力必须分开。原文“不能检测3位以上”应表述为无法保证，部分模式仍可检测。"
+    },
+    {
+      "id": "hamming-nvidia",
+      "url": "https://nvidia.github.io/cuda-q-academic/interactive_widgets/hamming.html",
+      "title": "Hamming [7,4,3] Visualizer",
+      "author": "NVIDIA CUDA-Q Academic",
+      "section": "Syndrome Discovery / H × r = s / two-bit errors",
+      "observedDesign": "先逐个翻转七个位填满综合征表，再开放双错，让同一综合征指向错误的单比特位置；矩阵与位格同步对应。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "hamming-avin",
+      "url": "https://chenavin.github.io/hamming-code/",
+      "title": "Hamming (7,4) Code Demonstration",
+      "author": "Chen Avin",
+      "section": "Data / transmitted / received / parity / corrected tables",
+      "observedDesign": "发送端三组校验和接收端三组复核纵向排布，错误位置由三位综合征转为十进制，最后显示修复后的字。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器读取初始示例：第4位出错，综合征100₂定位4；仅核对这一状态，未穷举所有模式。"
+    },
+    {
+      "id": "hamming-mit",
+      "url": "https://web.mit.edu/6.02/www/s2012/handouts/5.pdf",
+      "title": "Coping with Bit Errors using Error Correction Codes",
+      "author": "MIT 6.02 teaching team",
+      "section": "§5.7 / §5.7.1 / parity equations and corrective-action table",
+      "observedDesign": "每个可能单错对应唯一非零综合征；按二进制位置安排校验集合，展示(7,4)纠错依据和条件。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    }
+  ],
+  "crc": [
+    {
+      "id": "crc-sunshine",
+      "url": "https://www.sunshine2k.de/articles/coding/crc/understanding_crc.html",
+      "title": "Understanding and implementing CRC calculation",
+      "author": "Sunshine2k",
+      "section": "§2 example / §3 shift register",
+      "observedDesign": "0xC2与9位生成多项式逐行异或长除法，指明为何跨过前导零、为何只保留余数；再对应移位寄存器。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "原作个别段落把补零bits写作bytes，平台按多项式次数补位；不能把余数0理解成必然无错。"
+    },
+    {
+      "id": "crc-williams",
+      "url": "https://zlib.net/crc_v3.txt",
+      "title": "A Painless Guide to CRC Error Detection Algorithms",
+      "author": "Ross N. Williams",
+      "section": "§6 Fully Worked Example / §8 register diagram",
+      "observedDesign": "以字符排版完整画出每次对齐、异或和余数；将附加校验后的零余数与错误多项式可整除的漏检反例连接。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "crc-brown",
+      "url": "https://cs.brown.edu/courses/csci1680/f14/lectures/04-link.pdf",
+      "title": "Link Layer Reliability",
+      "author": "Rodrigo Fonseca / Brown University",
+      "section": "slides32–34: CRC / Polynomial Division Example",
+      "observedDesign": "逐行把比特串映射为多项式，再展示1101除法和101余数，用同一图回答接收方怎样检查。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "只借鉴长除法及编码图。后续幻灯关于必须不可约、任意两位错误总可检出的陈述缺少条件，不能照搬；保证与消息长度及生成多项式有关。"
+    },
+    {
+      "id": "crc-rfc3309",
+      "url": "https://www.rfc-editor.org/rfc/rfc3309.html",
+      "title": "RFC3309 — SCTP Checksum Change",
+      "author": "J. Stone, R. Stewart, D. Otis",
+      "section": "§2 polynomial arithmetic / reflection / initialization",
+      "observedDesign": "规范将消息映为多项式并求余数；初值、反射和末尾异或也是完整CRC约定的一部分。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "该规范为CRC-32C历史协议定义。教学小位宽长除法须声明零初值等假设，不宣称与CRC-32C或CRC-32文件校验值相同。"
+    }
+  ],
+  "bloom": [
+    {
+      "id": "bloom-samwho",
+      "url": "https://samwho.dev/bloom-filters/",
+      "title": "Bloom Filters",
+      "author": "Sam Rose / samwho",
+      "section": "Bit highlighting / hashing table / false-positive slider",
+      "observedDesign": "输入值经三个哈希映射到位格，文字里的位号可高亮画面；逐渐填满位阵列并用曲线解释误报增加。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "读图文和交互说明，未运行全部操作；x^k误报解释依赖近似独立均匀哈希，示例SHA族用于教学，不意味着工程首选。"
+    },
+    {
+      "id": "bloom-billmill",
+      "url": "https://llimllib.github.io/bloomfilter-tutorial/",
+      "title": "Bloom Filters by Example",
+      "author": "Bill Mill",
+      "section": "Add string / fnv and murmur indices / test membership",
+      "observedDesign": "新增位标绿，保留位保持已置位；查询同时显示两个索引与判断，使碰撞组合导致“可能存在”可见。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "bloom-davies",
+      "url": "https://www.jasondavies.com/bloomfilter/",
+      "title": "Bloom Filters",
+      "author": "Jason Davies",
+      "section": "Interactive Demonstration / central bit vector",
+      "observedDesign": "中心50位列连接三个哈希位置，同样的映射分别用于插入与查询；任一0即排除，全部1仅表示可能。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及相应图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "bloom-guava",
+      "url": "https://guava.dev/releases/33.4.0-jre/api/docs/com/google/common/hash/BloomFilter.html",
+      "title": "BloomFilter",
+      "author": "Dimitris Andreou, Kevin Bourrillion / Google Guava",
+      "section": "One-sided error / mightContain / FPP",
+      "observedDesign": "集合近似查询的单向误差定义：不存在判断确定，存在判断可能误报；指定预计容量与目标误报率。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "无假阴性保证以正确一致的哈希、仅插入及未损坏位数组为前提；普通Bloom不能直接清位删除。"
+    }
+  ],
+  "sha256": [
+    {
+      "id": "sha256-v1",
+      "url": "https://sha256algorithm.com/",
+      "title": "SHA256 Algorithm Explained",
+      "author": "sha256algorithm.com 项目作者（页面未署姓名）",
+      "section": "Message block; schedule; compression rounds",
+      "observedDesign": "将512位块、64个调度字与压缩寄存器分阶段展开，提供回退和逐步查看。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "sha256-v2",
+      "url": "https://github.com/in3rsha/sha256-animation",
+      "title": "SHA-256 Animation",
+      "author": "in3rsha",
+      "section": "How does SHA-256 work? 各原语与消息调度",
+      "observedDesign": "作者图解说明逐位移位/旋转/XOR、模2^32加法、填充、消息调度和压缩；每个原语可独立演示。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读图解说明；未运行Ruby动画、未观看链接视频。不得照搬其关于ASCII/填充安全意义的简化说法，规范以NIST为准。"
+    },
+    {
+      "id": "sha256-v3",
+      "url": "https://hashexplained.com/sha256",
+      "title": "SHA-256 Visualizer",
+      "author": "Bitcoin Dev Project / hashes-visualizer contributors",
+      "section": "Padding; Message Schedule; Compression; Step Details",
+      "observedDesign": "真实打开页面并审阅截图：横向三阶段与右侧步骤解释并置，统一时轴从0/120推进。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "证据 evidence/sha-hashexplained-detail.json/PNG。未测试算法数值正确性；原仓库明确教育用途且不保证密码实现正确，页面把UTF-8字符概括成8位也不准确。只借鉴信息分区，不用作数学依据。"
+    },
+    {
+      "id": "sha256-d1",
+      "url": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf",
+      "title": "FIPS PUB 180-4: Secure Hash Standard",
+      "author": "NIST",
+      "section": "4.1.2 functions; 4.2.2 constants; 5 preprocessing; 6.2 SHA-256",
+      "observedDesign": "以标准定义校验UTF-8输入字节后填充、消息长度、W扩展、64轮压缩和模2^32运算；WebCrypto作为独立结果对照。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    }
+  ],
+  "gaussian-filter": [
+    {
+      "id": "gauss-hipr",
+      "url": "https://homepages.inf.ed.ac.uk/rbf/HIPR2/gsmooth.htm",
+      "title": "Gaussian Smoothing",
+      "author": "University of Edinburgh HIPR team",
+      "section": "Figures1–4 / discrete Gaussian / image examples",
+      "observedDesign": "从钟形曲线、二维小山到整数权重网格，解释离中心越近权重越大，再用不同模糊强度对比细节。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文与图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "gauss-opencv",
+      "url": "https://docs.opencv.org/4.x/d4/d13/tutorial_py_filtering.html",
+      "title": "Smoothing Images",
+      "author": "OpenCV contributors",
+      "section": "2. Gaussian Blurring",
+      "observedDesign": "同一标志图展示高斯模糊结果，说明核大小与两个方向sigma怎样影响邻域加权。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文与图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "gauss-scipy-lesson",
+      "url": "https://scipy-lectures.org/advanced/image_processing/auto_examples/plot_blur.html",
+      "title": "Blurring of images",
+      "author": "Emmanuelle Gouillart, Gaël Varoquaux",
+      "section": "Gaussian sigma3 / sigma5 / uniform comparison",
+      "observedDesign": "同一浣熊照片比较不同sigma和均值核，直观看到降噪与边缘、纹理损失的交换。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文与图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "gauss-scipy-def",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html",
+      "title": "gaussian_filter",
+      "author": "SciPy developers",
+      "section": "sigma / radius / mode / Notes",
+      "observedDesign": "多维高斯以各轴一维卷积实现；截断半径、边界延拓及数值精度会改变结果。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文与图示说明；未完整观看视频或测试全部交互。"
+    }
+  ],
+  "median-filter": [
+    {
+      "id": "median-hipr",
+      "url": "https://homepages.inf.ed.ac.uk/rbf/HIPR2/median.htm",
+      "title": "Median Filter",
+      "author": "University of Edinburgh HIPR team",
+      "section": "Figure1 / salt-and-pepper examples",
+      "observedDesign": "九宫格150被邻域中位数124取代，随后比较椒盐噪声前后，说明极端值为何不支配输出。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "为避免不同库偶数窗口定义差异，平台固定奇数邻域；边缘也可能被侵蚀，不能保证所有细节保留。"
+    },
+    {
+      "id": "median-opencv",
+      "url": "https://docs.opencv.org/4.x/d4/d13/tutorial_py_filtering.html",
+      "title": "Smoothing Images",
+      "author": "OpenCV contributors",
+      "section": "3. Median Blurring",
+      "observedDesign": "强噪声图与5×5中值结果对照，强调排序选中的实际邻域像素与加权平均的区别。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文与图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "median-scipy-lesson",
+      "url": "https://scipy-lectures.org/advanced/image_processing/auto_examples/plot_denoising.html",
+      "title": "Denoising an image with the median filter",
+      "author": "Emmanuelle Gouillart, Gaël Varoquaux",
+      "section": "Synthetic object / noisy image / filtered image",
+      "observedDesign": "将有明确直边的合成图加噪后再过滤，借已知原图比较降噪和轮廓变化。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文与图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "median-scipy-def",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.median_filter.html",
+      "title": "median_filter",
+      "author": "SciPy developers",
+      "section": "size / footprint / mode / Notes",
+      "observedDesign": "按指定邻域选排序统计量，边缘延拓影响邻域；本项目限定奇数窗口与明示边界规则。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文与图示说明；未完整观看视频或测试全部交互。"
+    }
+  ],
+  "sobel": [
+    {
+      "id": "sobel-hipr",
+      "url": "https://homepages.inf.ed.ac.uk/rbf/HIPR2/sobel.htm",
+      "title": "Sobel Edge Detector",
+      "author": "University of Edinburgh HIPR team",
+      "section": "Figure1 kernels / gradient components / noisy image examples",
+      "observedDesign": "两组旋转90度核分别测水平、垂直亮度变化，再合成梯度大小与方向，图示较粗边缘及噪声影响。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文与图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "sobel-opencv",
+      "url": "https://docs.opencv.org/4.x/d5/d0f/tutorial_py_gradients.html",
+      "title": "Image Gradients",
+      "author": "OpenCV contributors",
+      "section": "Sobel X / Sobel Y / One Important Matter",
+      "observedDesign": "原图、横向和纵向梯度并排，展示直接转无符号像素会丢掉负梯度的反例。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文与图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "sobel-skimage",
+      "url": "https://scikit-image.org/docs/stable/auto_examples/edges/plot_edge_filter.html",
+      "title": "Edge operators",
+      "author": "scikit-image developers",
+      "section": "Sobel edge image / rotational invariance comparison",
+      "observedDesign": "对真实图和旋转对称测试图展示Sobel梯度；差值图揭示方向敏感性，避免把亮边当物体语义。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文与图示说明；未完整观看视频或测试全部交互。"
+    },
+    {
+      "id": "sobel-scipy-def",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.sobel.html",
+      "title": "sobel",
+      "author": "SciPy developers",
+      "section": "axis / mode / output",
+      "observedDesign": "沿指定轴计算Sobel响应，必须分别计算Gx、Gy并明确组合及边界规则。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文与图示说明；未完整观看视频或测试全部交互。"
+    }
+  ],
+  "otsu": [
+    {
+      "id": "otsu-opencv",
+      "url": "https://docs.opencv.org/4.x/d7/d4d/tutorial_py_thresholding.html",
+      "title": "Image Thresholding",
+      "author": "OpenCV developers",
+      "section": "Otsu's Binarization / How does Otsu's Binarization Work?",
+      "observedDesign": "三行对照原始噪声图、直方图与二值结果：固定阈值、直接 Otsu、先高斯去噪再 Otsu；把阈值选择与输入噪声关联。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "otsu-skimage",
+      "url": "https://scikit-image.org/docs/stable/auto_examples/segmentation/plot_thresholding.html",
+      "title": "Thresholding",
+      "author": "scikit-image developers",
+      "section": "Otsu camera example",
+      "observedDesign": "相机灰度原图、带红色阈值竖线的直方图、二值图并列，解释最大类间方差与最小类内方差等价。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "otsu-steve",
+      "url": "https://blogs.mathworks.com/steve/2016/06/14/image-binarization-otsus-method/",
+      "title": "Image binarization – Otsu’s method",
+      "author": "Steve Eddins / MathWorks",
+      "section": "coins and lily mitosis examples",
+      "observedDesign": "先标出硬币直方图阈值，再逐式构造类概率、类均值与类间方差；直方图和评分曲线双轴叠图，最高评分处画阈值线。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "otsu-def",
+      "url": "https://octave.sourceforge.io/image/function/otsuthresh.html",
+      "title": "otsuthresh",
+      "author": "GNU Octave image package",
+      "section": "function definition / separability",
+      "observedDesign": "定义从灰度直方图寻找最小类内方差阈值，给出可分离性指标范围与 Otsu 1979 原始论文出处。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "全局阈值优化的是灰度统计准则，不保证语义前景正确；避免声称永远找两个峰之间的最低谷。"
+    }
+  ],
+  "ransac": [
+    {
+      "id": "ransac-skimage",
+      "url": "https://scikit-image.org/docs/stable/auto_examples/transform/plot_ransac.html",
+      "title": "Robust line model estimation using RANSAC",
+      "author": "scikit-image developers",
+      "section": "line fitting with outliers",
+      "observedDesign": "带离群点的散点图对比普通最小二乘与 RANSAC；文字逐步说明抽取最小样本、残差阈值判内点、按一致集评分、最终重拟合。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "ransac-sklearn",
+      "url": "https://scikit-learn.org/stable/auto_examples/linear_model/plot_ransac.html",
+      "title": "Robust linear model estimation using RANSAC",
+      "author": "scikit-learn developers",
+      "section": "synthetic regression comparison",
+      "observedDesign": "同一组 1000 样本中注入 50 个离群点，以不同颜色显示内点/外点，并列比较真实斜率、普通回归和 RANSAC 斜率。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "这是垂直预测残差的回归示例，不能与几何直线的垂距阈值不加说明地混用。"
+    },
+    {
+      "id": "ransac-cmu",
+      "url": "https://www.cs.cmu.edu/~16385/lectures/lecture9.pdf",
+      "title": "16-385 Computer Vision: Image homographies",
+      "author": "CMU 16-385; slide credits Kris Kitani and Noah Snavely",
+      "section": "slides 64–73, Random Sample Consensus / fitting lines",
+      "observedDesign": "连续幻灯片维持同一散点背景，依次采样、拟合候选线、按阈值统计支持点；之后迁移到照片匹配的变换估计。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "ransac-def",
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RANSACRegressor.html",
+      "title": "RANSACRegressor",
+      "author": "scikit-learn developers",
+      "section": "parameters, stopping probability, estimator_",
+      "observedDesign": "明确最小样本数、内点残差阈值、有效模型约束、随机试验上限与概率停止公式；最终模型在最佳一致集上重拟合。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "具体平局规则因实现而异：sklearn 比 estimator score，skimage 可比残差和。概率停止条件不是每次成功保证。"
+    }
+  ],
+  "fft": [
+    {
+      "id": "fft-archive",
+      "url": "https://www.algorithm-archive.org/contents/cooley_tukey/cooley_tukey.html",
+      "title": "FFT / Cooley–Tukey",
+      "author": "James Schloss / Arcane Algorithm Archive",
+      "section": "Butterfly Diagrams",
+      "observedDesign": "从两点复数加减蝶形，扩展为八点蝶形网络；把奇偶拆分、旋转因子和位反转排序对应到连线位置。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "仅借鉴作者自绘的 radix2/radix8 图；页面另有转载维基图片，不作为独立原作。幂次限制属于此 radix-2 演示，不属于所有 FFT。"
+    },
+    {
+      "id": "fft-dspguide",
+      "url": "https://www.dspguide.com/CH12.PDF",
+      "title": "The Fast Fourier Transform, Chapter 12",
+      "author": "Steven W. Smith",
+      "section": "Figures 12-2 to 12-7, pp. 228–232",
+      "observedDesign": "逐层拆分时域样本，给出十进制/二进制位反转表，再把两个四点频谱合成八点频谱；蝶形单元和三层循环流程对应。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "fft-cmu",
+      "url": "https://www.cs.cmu.edu/~15322/book/ch08/05.html",
+      "title": "8.5 The fast Fourier transform",
+      "author": "Chris Donahue / CMU",
+      "section": "Figure 45 / radix-2 decomposition",
+      "observedDesign": "八点输入先分奇偶，两组四点变换的 E/O 配对，通过加、减同一个旋转因子得到上下半频谱；解释递归层数与每层工作量。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "fft-def",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.fft.html",
+      "title": "scipy.fft.fft",
+      "author": "SciPy developers",
+      "section": "Notes / References",
+      "observedDesign": "提供 DFT 正向指数符号、频率顺序和归一化选项；说明 FFT 复用对称项提高计算效率，引用 Cooley–Tukey 1965。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "必须区分 DFT 的定义与 FFT 的加速计算。零填充改变采样频率网格，不会凭空提升真实频率分辨率；广义 FFT 支持非二次幂长度。"
+    }
+  ],
+  "seam-carving": [
+    {
+      "id": "seam-avik",
+      "url": "https://avikdas.com/2019/05/14/real-world-dynamic-programming-seam-carving.html",
+      "title": "Real-world dynamic programming: seam carving",
+      "author": "Avik Das",
+      "section": "energy map / dynamic-programming diagram",
+      "observedDesign": "冲浪照片上叠低能量缝线，展示删除后效果；三行数字图给出贪心误入高代价区域的反例，再展开 DP 累积与回溯。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "seam-princeton",
+      "url": "https://www.cs.princeton.edu/courses/archive/spring26/cos226/assignments/seam/specification.php",
+      "title": "Seam Carving Assignment",
+      "author": "Princeton COS 226",
+      "section": "Energy calculation / seam identification",
+      "observedDesign": "从 505×287 照片删 150 条纵缝的前后对照进入坐标小表、像素梯度能量和最小能量连续路径，把图像问题映射为隐式有向无环图。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器加载 HTTP 200 并读取页面，证据 evidence/seam-princeton.json/png。该作能量边界约定须与项目区别；它的‘保留最有趣特征’不是普适保证。"
+    },
+    {
+      "id": "seam-yaniv",
+      "url": "https://yanivle.github.io/graphics/2007/08/27/seam-carving.html",
+      "title": "Seam Carving",
+      "author": "Yaniv Leviathan",
+      "section": "pagoda / first seam / first 100 seams / three-method comparison",
+      "observedDesign": "宝塔照片依次展示缩放、裁切、第一条缝、前 100 条缝和最终并排对照；直观解释为什么只删最低能量整列会产生伪影。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读图文，未完整观看嵌入视频；文中后续讨论前向能量变体，应与基础后向能量版本明确区分。"
+    },
+    {
+      "id": "seam-def",
+      "url": "https://cs.brown.edu/courses/cs016/static/files/docs/seamcarving_original_paper.pdf",
+      "title": "Seam Carving for Content-Aware Image Resizing",
+      "author": "Shai Avidan and Ariel Shamir, ACM TOG 2007",
+      "section": "Section 3 / energy functions / seam dynamic programming",
+      "observedDesign": "定义每行一像素的八连通纵缝及能量和最小化，以累计能量递推和回溯求单条最优缝；论文指出没有一个能量函数适合全部图像。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已下载原论文到研究 evidence 并提取正文；仅研究使用，不将论文图片直接再发布。单条缝最优不等于任意连续多次缩图的全局视觉最优。"
+    }
+  ],
+  "pid": [
+    {
+      "id": "pid-v1",
+      "url": "https://www.mathworks.com/videos/series/understanding-pid-control.html",
+      "title": "Understanding PID Control",
+      "author": "Brian Douglas / MathWorks",
+      "section": "系列中P/I/D、调参、反馈各章节",
+      "observedDesign": "按反馈问题拆出各项作用，用响应曲线说明上升、超调与稳定；本轮读系列原文，未声称观看各视频。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "pid-v2",
+      "url": "https://ferrolho.github.io/projects/pid-control-explained/",
+      "title": "PID Control, Explained",
+      "author": "Henrique Ferrolho",
+      "section": "The system; What you can do",
+      "observedDesign": "小车受力箭头把P/I/D贡献与净力对应，单变量预设隔离积分、扰动和windup，模拟频率独立于屏幕刷新。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "pid-v3",
+      "url": "https://sriramsami.com/pid-flight-lab/",
+      "title": "PID Flight Lab",
+      "author": "Sriram Sami",
+      "section": "Overview; Drone altitude control",
+      "observedDesign": "从手动稳住无人机开始，再依次增加P、I、D，让观众体验每个控制项解决什么具体问题。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    },
+    {
+      "id": "pid-d1",
+      "url": "https://www.mathworks.com/help/control/ug/proportional-integral-derivative-pid-controllers.html",
+      "title": "Proportional-Integral-Derivative (PID) Controllers",
+      "author": "MathWorks",
+      "section": "Continuous-Time PID Controller Representations",
+      "observedDesign": "区分并联与标准参数形式、积分与微分滤波；制作时另写本项目离散化公式，避免参数混用。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "本轮查阅原作文本/图示说明，未完整观看视频或验证所有交互。"
+    }
+  ],
+  "kalman": [
+    {
+      "id": "kalman-bzarg",
+      "url": "https://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/",
+      "title": "How a Kalman filter works, in pictures",
+      "author": "Tim Babb",
+      "section": "robot state / Gaussian ellipses / prediction and update",
+      "observedDesign": "森林机器人例子把位置、速度和 GPS 噪声对应状态与观测；彩色高斯椭圆随预测平移拉伸，再与观测融合，展示协方差为何重要。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "kalman-becker",
+      "url": "https://kalmanfilter.net/kalman1d.html",
+      "title": "Kalman Filter in one dimension",
+      "author": "Alex Becker",
+      "section": "gold-bar measurements / gain derivation",
+      "observedDesign": "金条称重的真实值、测量值、估计值三色曲线配合概率分布宽度；从加权平均方差最小化逐步推出增益 P/(P+R)。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "二维位置/速度简化式略去交叉协方差，不应直接代替完整矩阵传播；最优性与误差收敛需说明模型、噪声与可观测性条件。"
+    },
+    {
+      "id": "kalman-levy",
+      "url": "https://simondlevy.github.io/ekf-tutorial/kalman_07.html",
+      "title": "The Extended Kalman Filter: Part 7 Running the Filter",
+      "author": "Simon D. Levy",
+      "section": "linear scalar Kalman filter before EKF extension",
+      "observedDesign": "按时间列表展示 x、观测 z、方差 p、估计与增益 g，图上并列真实/噪声/滤波曲线，可改初值、测量方差与衰减系数。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "该节仍是线性标量 Kalman，不把后面的 EKF 算作同算法。已读控件与规则未实测；作者注明演示噪声为均匀分布且本节无过程噪声。"
+    },
+    {
+      "id": "kalman-def",
+      "url": "https://filterpy.readthedocs.io/en/latest/kalman/KalmanFilter.html",
+      "title": "KalmanFilter",
+      "author": "Roger Labbe / FilterPy",
+      "section": "linear filter variables / predict / update",
+      "observedDesign": "明确 F/H/Q/R/P 的角色、预测与更新的顺序，以及创新、卡尔曼增益和先验/后验状态。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "particle-filter": [
+    {
+      "id": "pf-pythonrobotics",
+      "url": "https://atsushisakai.github.io/PythonRobotics/modules/2_localization/particle_filter_localization/particle_filter_localization.html",
+      "title": "Particle filter localization",
+      "author": "Atsushi Sakai / PythonRobotics contributors",
+      "section": "RFID landmark localization",
+      "observedDesign": "同场景区分真实轨迹、里程推算轨迹、粒子滤波估计轨迹；说明地标测距如何用于修正位置分布。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "pf-roboticsbook",
+      "url": "https://www.roboticsbook.org/S44_logistics_perception.html",
+      "title": "4.4 Localization",
+      "author": "Frank Dellaert and Seth Hutchinson",
+      "section": "4.4.4 Monte Carlo Localization",
+      "observedDesign": "仓库地图上以 500 个红点表示先验，再显示运动采样和观测似然加权；用 0.9/0.1 混合分布说明重采样为何偏向高权重群。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "pf-ut",
+      "url": "https://amrl.cs.utexas.edu/interactive-particle-filters/",
+      "title": "Interactive Robotics Algorithms: Particle Filter Localization",
+      "author": "Joydeep Biswas, Kelvin Zhang, William He",
+      "section": "motion model / sensor model / particle-filter simulator",
+      "observedDesign": "分别解释运动造成粒子扩散、传感器似然改变权重、重采样保留可信假设；提供粒子数、四类运动误差、传感半径与噪声控件。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "pf-def",
+      "url": "https://arxiv.org/pdf/1301.0607",
+      "title": "Particle Filters in Robotics",
+      "author": "Sebastian Thrun, UAI 2002",
+      "section": "Section 2 Particle Filters",
+      "observedDesign": "在部分可观测 Markov 系统中定义状态转移、观测模型与后验采样近似；走廊对称案例保留双峰，不应强迫所有粒子立即收敛到一点。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "模型独立性假设与有限粒子数带来误差；重采样可丢失少数但真实的假设。"
+    }
+  ],
+  "rrt": [
+    {
+      "id": "rrt-lavalle",
+      "url": "https://lavalle.pl/rrt/about.html",
+      "title": "About RRTs",
+      "author": "Steven M. LaValle",
+      "section": "construction frames / Voronoi bias",
+      "observedDesign": "方形区域中三幅树增长图对应随机采样、最近顶点、向样本延伸一步；通过较大 Voronoi 区域更容易被命中解释向未探索空间生长。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "原网页 NEAREST_VERTEX 伪代码返回行有明显变量笔误，项目应返回真正最近顶点；有障碍时须检查整段运动碰撞。"
+    },
+    {
+      "id": "rrt-sakai",
+      "url": "https://atsushisakai.github.io/PythonRobotics/modules/5_path_planning/rrt/rrt.html",
+      "title": "Rapidly-Exploring Random Trees",
+      "author": "Atsushi Sakai / PythonRobotics contributors",
+      "section": "Basic RRT",
+      "observedDesign": "黑色圆障碍、绿色探索树与红色起终点构成明确图例；基础 RRT 与后面的 RRT*、平滑等变体分节呈现。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "rrt-daniel",
+      "url": "https://d8maldon.github.io/projects/path-planning/rrt/",
+      "title": "Rapidly-Exploring Random Trees · Sample-Based Planning",
+      "author": "Daniel Maldonado Naranjo",
+      "section": "Diagnostic: Tree Growth and Final Path",
+      "observedDesign": "淡红探索树叠深色最终回溯路径，四种环境表比较树节点数与路径长度；用窄通道解释不断被拒绝的扩展。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "只借鉴树/父指针路径的分层图。原作声称复杂度不受维度影响过强；20 点采样碰撞检查可能漏过细障碍，比较数值不能外推。"
+    },
+    {
+      "id": "rrt-def",
+      "url": "https://lavalle.pl/planning/ch5.pdf",
+      "title": "Planning Algorithms Chapter 5",
+      "author": "Steven M. LaValle",
+      "section": "Section 5.5 Rapidly Exploring Dense Trees",
+      "observedDesign": "定义随机/稠密采样、最近点连接及碰撞截断，说明概率完备与有限迭代失败的区别，并说明旧版固定步长实现。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "本书 RDT 可连接边内部最近点；展项基础 RRT 若仅选顶点须明确这一实现区别。基础 RRT 不保证最短路径。"
+    }
+  ],
+  "potential-field": [
+    {
+      "id": "apf-mit",
+      "url": "https://people.csail.mit.edu/lpk/mars/temizer_2001/Potential_Field_Method/index.html",
+      "title": "Step by Step Construction of the Formula",
+      "author": "Selim Temizer / MIT CSAIL",
+      "section": "attractive and repulsive potential construction",
+      "observedDesign": "四幅吸引势能图与六幅排斥势能图把公式对应成碗形和尖峰；明确增益、障碍最近距离与影响半径。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "排斥尖峰为绘图被截断，并非真实公式有上界；仅借鉴场图形状与参数解释。"
+    },
+    {
+      "id": "apf-bugbot",
+      "url": "https://www.bugbotlab.com/learn/potential-fields/",
+      "title": "Potential field path planning explained, with demos",
+      "author": "BugBotLab",
+      "section": "goal pull / obstacle push / stuck local minimum",
+      "observedDesign": "俯视机器人轨迹配距离曲线，用同一程序只移动目标到方块后方制造停滞；改推力与影响半径解释局部极小值和窄门失败。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "apf-majid",
+      "url": "https://majid-mazouchi.github.io/autonomy/assets/posts/path-planning-field-guide.html",
+      "title": "A Field Guide to Path Planning",
+      "author": "Majid Mazouchi",
+      "section": "The Potential Field Method / Fig. 4.1",
+      "observedDesign": "在同一沙盘切换力箭头与势能颜色，拖动目标/障碍，调整排斥强度和影响半径，并建议用 U 形障碍主动制造陷阱。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读图文与控件说明未实测。每步工作量取决于障碍数量、距离查询和机器人模型，不能照搬‘恒定时间’泛化。"
+    },
+    {
+      "id": "apf-def",
+      "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/10-6-virtual-potential-fields/",
+      "title": "Modern Robotics 10.6 Virtual Potential Fields",
+      "author": "Kevin M. Lynch and Frank C. Park",
+      "section": "official lecture transcript",
+      "observedDesign": "用负梯度定义吸引/排斥作用，区分力控制、阻尼与直接速度控制；描述目标偏移、鞍点、局部极小值及有限控制点的机器人映射。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读完整原作者文字讲稿，未观看完整视频。讲稿一处‘equal to gradient’省略负号，结合前后文应为负梯度；本项目必须显式保留负号。"
+    }
+  ],
+  "pure-pursuit": [
+    {
+      "id": "pursuit-sakai",
+      "url": "https://atsushisakai.github.io/PythonRobotics/modules/6_path_tracking/pure_pursuit_tracking/pure_pursuit_tracking.html",
+      "title": "Pure pursuit tracking",
+      "author": "Atsushi Sakai / PythonRobotics contributors",
+      "section": "tracking simulation",
+      "observedDesign": "红色参考路径、绿色前视目标点、蓝色实际轨迹分开，展示追逐点不断向前移动。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "速度使用 PID，横向使用 Pure Pursuit，须标出二者职责；未完整观看 GIF 轨迹。"
+    },
+    {
+      "id": "pursuit-theers",
+      "url": "https://thomasfermi.github.io/Algorithms-for-Automated-Driving/Control/PurePursuit.html",
+      "title": "Pure Pursuit",
+      "author": "Mario Theers and Mankaran Singh",
+      "section": "Figures 27–28 / algorithm",
+      "observedDesign": "自行车模型上画前视圆、目标点、橙色车辆圆弧和洋红等腰三角形；用多个转向角对照后推导 arctan(2L sin α / ld)。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "pursuit-bugbot",
+      "url": "https://www.bugbotlab.com/learn/pure-pursuit/",
+      "title": "Pure pursuit path following explained, with demos",
+      "author": "BugBotLab",
+      "section": "arc geometry / short and long lookahead",
+      "observedDesign": "机器人追逐红点并显示预计红色圆弧，横向误差带正负号；同一弯道对比短前视振荡和长前视切弯。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "原作先沿路径弧长取目标，再用实际机器人至目标直线距离计算曲率；不能把弧长参数直接当曲率公式中的弦长。"
+    },
+    {
+      "id": "pursuit-def",
+      "url": "https://publications.ri.cmu.edu/storage/publications/pub_files/pub3/coulter_r_craig_1992_1/coulter_r_craig_1992_1.pdf",
+      "title": "Implementation of the Pure Pursuit Path Tracking Algorithm",
+      "author": "R. Craig Coulter / CMU, 1992",
+      "section": "Sections 2–4 / Figures 1–3",
+      "observedDesign": "几何推导曲率与前视距离；定义寻找路径点、变换到车体坐标、计算曲率、执行和更新；解释前视距离对回归路径及跟弯能力的影响。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "原文车体横轴命名与一些现代图不同；公式必须匹配坐标。基础方法不建模轮胎侧滑和执行器滞后。"
+    }
+  ],
+  "qlearning": [
+    {
+      "id": "qlearning-vlab",
+      "url": "https://ai1-iiith.vlabs.ac.in/exp/q-learning/simulation.html",
+      "title": "Q-Learning Virtual Lab",
+      "author": "IIIT Hyderabad / Virtual Labs",
+      "section": "simulation/index.html grid and calculation panel",
+      "observedDesign": "左右网格显示上一轮与当前轮，每格分 L/U/R/D 四个动作值；顶部算式区对应当前更新，可点障碍、双击奖励并调整 α、γ、ε。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际浏览器读取嵌入实验及控件，证据 evidence/qlearning-vlab.json；未运行完整收敛实验。"
+    },
+    {
+      "id": "qlearning-refined",
+      "url": "https://kenndanielso.github.io/mlrefined/blog_posts/18_Reinforcement_Learning_Foundations/18_2_Q_learning.html",
+      "title": "18.2 Q-Learning",
+      "author": "Jeremy Watt, Reza Borhani, Aggelos Katsaggelos / Machine Learning Refined",
+      "section": "training animations / testing / parameter tuning",
+      "observedDesign": "随机训练轨迹与利用已学 Q 的测试轨迹分开展示，强调探索不等于最终策略；改变训练轮数观察未见目标的失败。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "页面基础例子使用确定性特例 α=1、γ=1，不能作为一般随机环境更新公式；动画只展示每轮前 50 步，终止要另作说明。"
+    },
+    {
+      "id": "qlearning-dmj",
+      "url": "https://gridworld.dmj.one/",
+      "title": "GridWorld RL Lab",
+      "author": "Divya Mohan / dmj.one",
+      "section": "live update rule / learned values / cliff comparison",
+      "observedDesign": "网格、价值热图、实时数值代入、TD 误差与每轮奖励同步；提供迷宫/悬崖、打滑噪声和单步，编辑地图后重置学习。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读页面未实测。原作标注 AI 协助制作；只采纳可核对的显示设计。随机环境单次 TD 误差并不必然趋零，不能照搬此类过强收敛文案。"
+    },
+    {
+      "id": "qlearning-def",
+      "url": "https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf",
+      "title": "Q-Learning",
+      "author": "Christopher Watkins and Peter Dayan, Machine Learning 1992",
+      "section": "Section 2 / convergence theorem",
+      "observedDesign": "从观测状态、执行动作、获得奖励和下一状态到按最大后续动作价值更新；收敛需表格表示、充分访问、合适学习率与环境条件。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "不能用有限轮教学演示宣称已保证全局最优；终止状态后续价值应为零。"
+    }
+  ],
+  "minimax": [
+    {
+      "id": "minimax-aima",
+      "url": "https://aimacode.github.io/aima-javascript/5-Adversarial-Search/",
+      "title": "AIMA JavaScript — Adversarial Search",
+      "author": "AIMA JavaScript contributors",
+      "section": "Tic-tac-toe / tree evaluation / alpha-beta comparison",
+      "observedDesign": "先下井字棋再展开可能未来；叶子分数逐层回传，对比只看眼前与假设对手最佳回应的选择。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读演示叙事，未逐步操作。终局效用与深度截止估值应区分；深搜也不能保证不完善启发式的单调改进。"
+    },
+    {
+      "id": "minimax-berkeley",
+      "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/games/minimax.html",
+      "title": "CS 188 — Minimax",
+      "author": "UC Berkeley CS 188",
+      "section": "Pacman game tree; alpha-beta example",
+      "observedDesign": "用吃豆路径收益引出状态价值，再用上下三角区分 MAX/MIN，并以 3、2、2 的回传说明取舍。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "minimax-amrita",
+      "url": "https://ai-amrt.vlabs.ac.in/exp/mini-max-algorithm/procedure.html",
+      "title": "Mini-Max Algorithm — Visual experiment procedure",
+      "author": "Amrita Virtual Labs",
+      "section": "Steps 1–6",
+      "observedDesign": "棋盘、搜索记录、博弈树三栏联动；先单步评估再执行落子，悬停节点对应棋盘位置。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "实际读取原站逐步截图与操作说明，未跑完整棋局；AI 的效用视角必须固定，不随图中 MAX/MIN 名称误翻转。"
+    },
+    {
+      "id": "minimax-definition",
+      "url": "https://aima.cs.berkeley.edu/algorithms.pdf",
+      "title": "Artificial Intelligence: A Modern Approach — Algorithms",
+      "author": "Stuart Russell; Peter Norvig",
+      "section": "Figure 5.3, PDF p.11",
+      "observedDesign": "MAX/MIN 递归在终局调用相同根玩家效用，返回价值和动作；保证以有限完整博弈树及对手最优为前提。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "mcts": [
+    {
+      "id": "mcts-aingames",
+      "url": "https://aingames.cn/demo/mcts/index.html",
+      "title": "Playing with Monte-Carlo Tree Search",
+      "author": "Yunlong Zhao; Chengpeng Hu; Jialin Liu",
+      "section": "Algorithm; Figures 6–9",
+      "observedDesign": "四阶段各有可继续的棋局和树，选中、扩展节点分色；面板提供回合、动作、迭代次数与节点详情。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读图文及步骤说明，未完整交互。选择伪码 while 条件有歧义，应按仍可沿已展开节点选择/遇未扩展动作停止来实现。"
+    },
+    {
+      "id": "mcts-bradberry",
+      "url": "https://jeffbradberry.com/posts/2015/09/intro-to-monte-carlo-tree-search/",
+      "title": "Introduction to Monte Carlo Tree Search",
+      "author": "Jeff Bradberry",
+      "section": "Selection / Expansion / Simulation / Back-Propagation figures",
+      "observedDesign": "同一棵树在四张图中保留位置；粗体路径、虚线 rollout 与 wins/visits 数值清楚区分真实统计树和模拟过程。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "mcts-int8",
+      "url": "https://int8.io/monte-carlo-tree-search-beginners-guide/",
+      "title": "Monte Carlo Tree Search — beginners guide",
+      "author": "Kamil / Int8",
+      "section": "Nodes’ statistics / Game tree traversal / UCT",
+      "observedDesign": "用已展开、未展开的树色与 Q/N 统计解释选择分数，拆成平均回报和探索加成。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "只采用 MCTS 树与 UCT 拆解。文中 Minimax 公式玩家效用的符号混用不采用；有限模拟不保证最优。"
+    },
+    {
+      "id": "mcts-definition",
+      "url": "https://repository.essex.ac.uk/4117/1/MCTS-Survey.pdf",
+      "title": "A Survey of Monte Carlo Tree Search Methods",
+      "author": "Cameron Browne et al.",
+      "section": "§§3.1, 3.3.1; Figure 2",
+      "observedDesign": "四阶段循环受计算预算限制；区分树策略、默认模拟策略、统计回传与最终根动作选择。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "ucb": [
+    {
+      "id": "ucb-cornell",
+      "url": "https://sidbanerjee.orie.cornell.edu/courses/orie4154f26/bandit-lab/",
+      "title": "Multi-armed bandit lab — ORIE 4154",
+      "author": "Sid Banerjee / Cornell University",
+      "section": "Anytime UCB; state before decision",
+      "observedDesign": "单步展示样本均值、次数和上下界；实测第6轮 arm2 的 UCB=1.839 超过 arm1 的1.760，尽管均值更低。",
+      "checkedAt": "2026-10-26",
+      "verification": "interacted",
+      "role": "visual",
+      "limitations": "实际切换策略并前进5步，记录于 evidence/cornell-policy-test.json；Thompson 模式仍保留通用 UCB 卡片，不能当成它的决策依据。"
+    },
+    {
+      "id": "ucb-jake",
+      "url": "https://www.jakecuth.com/work/bandit-lab/",
+      "title": "Bandit Lab — Multi-armed bandit simulator",
+      "author": "Jacob Cuthbertson",
+      "section": "UCB1 optimism; Figure B",
+      "observedDesign": "并排累计遗憾和各臂尝试次数，含接近、欺骗初期样本的案例，说明奖励均值与探索加成的权衡。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读作者页面及控件，未运行全部场景；Math.random 并非可供用户固定的种子，本站应提供独立显式种子。"
+    },
+    {
+      "id": "ucb-weng",
+      "url": "https://lilianweng.github.io/posts/2018-01-23-multi-armed-bandit/",
+      "title": "The Multi-Armed Bandit Problem and Its Solutions",
+      "author": "Lilian Weng",
+      "section": "UCB1 / Case Study",
+      "observedDesign": "同一10臂实验用三联图展示累计遗憾、估计与真值、选臂频率，避免只凭一次中奖判断方法。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读图文及三联图说明；UCB1 公式中的 Q 应使用经验估计而非未知真值。文章的贝叶斯 UCB 图不作为 UCB1 公式。"
+    },
+    {
+      "id": "ucb-definition",
+      "url": "https://homes.di.unimi.it/~cesabian/Pubblicazioni/ml-02.pdf",
+      "title": "Finite-time Analysis of the Multiarmed Bandit Problem",
+      "author": "Peter Auer; Nicolò Cesa-Bianchi; Paul Fischer",
+      "section": "Section 2; Figure 1: UCB1",
+      "observedDesign": "先各臂试一次，再选经验均值+√(2 ln t/n) 最大者；对数遗憾界要求奖励在[0,1]、条件均值固定等前提，不可直接套用于任意非平稳奖励。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "thompson": [
+    {
+      "id": "thompson-cornell",
+      "url": "https://sidbanerjee.orie.cornell.edu/courses/orie4154f26/bandit-lab/",
+      "title": "Multi-armed bandit lab — ORIE 4154",
+      "author": "Sid Banerjee / Cornell University",
+      "section": "Thompson; posterior sampling",
+      "observedDesign": "切换策略后以 Beta(1+S,1+F) 采样决策；共享奖励序列便于对照，与确定的乐观上界策略区分。",
+      "checkedAt": "2026-10-26",
+      "verification": "interacted",
+      "role": "visual",
+      "limitations": "实际切换策略并前进5步，记录于 evidence/cornell-policy-test.json；Thompson 模式仍保留通用 UCB 卡片，不能当成它的决策依据。"
+    },
+    {
+      "id": "thompson-jake",
+      "url": "https://www.jakecuth.com/work/bandit-lab/",
+      "title": "Bandit Lab — Multi-armed bandit simulator",
+      "author": "Jacob Cuthbertson",
+      "section": "Thompson sampling; Figure C; Beta posteriors",
+      "observedDesign": "Beta 后验与累计遗憾并排，突出抽样赢家而非均值赢家；难例与分布漂移开关提供边界对照。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读作者页面及控件，未运行全部场景；Math.random 并非可供用户固定的种子，本站应提供独立显式种子。"
+    },
+    {
+      "id": "thompson-weng",
+      "url": "https://lilianweng.github.io/posts/2018-01-23-multi-armed-bandit/",
+      "title": "The Multi-Armed Bandit Problem and Its Solutions",
+      "author": "Lilian Weng",
+      "section": "Thompson Sampling / Case Study",
+      "observedDesign": "同一10臂实验用三联图展示累计遗憾、估计与真值、选臂频率，避免只凭一次中奖判断方法。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读图文及三联图说明；UCB1 公式中的 Q 应使用经验估计而非未知真值。文章的贝叶斯 UCB 图不作为 UCB1 公式。"
+    },
+    {
+      "id": "thompson-definition",
+      "url": "https://arxiv.org/pdf/1707.02038",
+      "title": "A Tutorial on Thompson Sampling",
+      "author": "Daniel Russo; Benjamin Van Roy; Abbas Kazerouni; Ian Osband; Zheng Wen",
+      "section": "Chapter 3; Algorithm 3.2",
+      "observedDesign": "每臂从后验抽取成功概率再取最大，只更新被选臂；抽的是可能的成功概率，不是下一次0/1结果。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "ahp": [
+    {
+      "id": "ahp-spicelogic",
+      "url": "https://spicelogic.com/docs/rational-will/ahp/analytic-hierarchy-process-software-213",
+      "title": "Getting Started with AHP",
+      "author": "SpiceLogic",
+      "section": "Car selection; pairwise comparison; priority and result charts",
+      "observedDesign": "汽车选择从 safety/comfort/cost 进入成对滑杆和矩阵，再展示0.243/0.088/0.669权重条与最终0.62/0.38方案得分；生活目标→成对取舍→权重→汇总。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "协作研究员已读完整图文，未操作商业软件；不采用 bias-free 宣传，一致性合格不等于偏好客观正确。"
+    },
+    {
+      "id": "ahp-bpmsg",
+      "url": "https://bpmsg.com/wordpress/wp-content/uploads/2012/04/AHPcalc-v2017-03-29.pdf",
+      "title": "AHP Excel Template with multiple Inputs",
+      "author": "Klaus D. Goepel",
+      "section": "6-page template guide; inputs, matrix, priorities and consistency",
+      "observedDesign": "输入判断、倒数矩阵、权重/排名和 CR 并列，不一致判断高亮；将判断来源和结果回连，便于追溯每一项取舍。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "协作研究员已读6页与首幅截图请求，未操作Excel；2017/Excel2013文档。输入页RGMM与汇总页EVM不同；不直接照搬0.1–0.2一致性阈值。"
+    },
+    {
+      "id": "ahp-illustrated",
+      "url": "https://tessy.lecturer.pens.ac.id/kuliah/db2/ahptutorial.pdf",
+      "title": "An Illustrated Guide to the Analytic Hierarchy Process",
+      "author": "Rainer Haas; Oliver Meixner (BOKU)",
+      "section": "Car goal hierarchy; balance analogy; 3×3 matrix powers",
+      "observedDesign": "汽车目标→style/reliability/fuel→方案的层次图搭配天平类比，3×3互反矩阵、矩阵幂和归一化逐步例子，把成对重要性与最终优先级连接。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "协作研究员已读20页文字及图题，后续截图超时，未审查像素或交互。作者在封面核实，链接是大学教学镜像。避免照搬 eigenvector best 绝对措辞。"
+    },
+    {
+      "id": "ahp-definition",
+      "url": "https://doi.org/10.1504/IJSSCI.2008.017590",
+      "title": "Decision making with the analytic hierarchy process",
+      "author": "Thomas L. Saaty",
+      "section": "2008 paper pp.2–3 definition; pp.5–7 synthesis examples",
+      "observedDesign": "层次分解、成对互反判断、1–9标度和主优先向量；权重按层乘加合成，CR检查判断的相对一致性。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "协作研究员已读出版摘要和全文镜像 https://untdfproyectos.wordpress.com/wp-content/uploads/2018/06/thomas-l-saaty-2008-decision-making-with-the-analytic-hierarchy-process.pdf 。主特征向量与行几何平均实现需区分；CR不验证偏好正确。"
+    }
+  ],
+  "topsis": [
+    {
+      "id": "topsis-radar",
+      "url": "https://decision-radar.com/topsis",
+      "title": "TOPSIS Calculator: Choosing a laptop",
+      "author": "Awby Studio",
+      "section": "Load example; Run Analysis; worked example",
+      "observedDesign": "从笔记本价格/性能/续航/重量进入收益与成本矩阵，运行后用排名卡片与理想/负理想距离表解释 Delta Air 0.669、Aurora 0.579。",
+      "checkedAt": "2026-10-26",
+      "verification": "interacted",
+      "role": "visual",
+      "limitations": "已加载例子并运行；未遍历全部输入。数值越大越优的标准与成本标准必须明确；页面至少3方案是产品限制而非算法数学要求。"
+    },
+    {
+      "id": "topsis-wmsd",
+      "url": "https://arxiv.org/pdf/2306.07706",
+      "title": "Towards Explainable TOPSIS: Visual Insights into the Effects of Weights and Aggregations on Rankings",
+      "author": "Robert Susmaga; Izabela Szczęch; Dariusz Brzezinski",
+      "section": "Figure 1; Sections 2.1, 3.4–3.5; Figure 6",
+      "observedDesign": "用同一组学生成绩依次映射矩阵、三维效用空间、二维均值/偏差空间；理想点/负理想点与距离三角形解释权重和相对接近度，热图展示评分曲面。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读全文相关段落及图注；没有交互。其有界效用/极差变换及 WMSD 是作者分析设定，不能当作所有 TOPSIS 实现统一的向量归一化规则。"
+    },
+    {
+      "id": "topsis-pymcdm",
+      "url": "https://pymcdm.readthedocs.io/en/master/example/MCDA_Example.html",
+      "title": "Simple example — TOPSIS and visualisation of rankings",
+      "author": "pymcdm authors",
+      "section": "Van decision matrix; TOPSIS preference/rank table; ranking_bar and ranking_flows",
+      "observedDesign": "十款电动车的成本/收益数据先生成 TOPSIS 接近度与名次，再用相连的彩色名次线比较 TOPSIS 与其他方法；同一车辆跨列追踪有助解释排序敏感性。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读计算表和图注，未执行库。Simple example 首节叙述过期：输出[3,4,1,2]却解释成[3,4,2,1]，且0.765才是最大；仅借鉴后续与数表一致的排名流图。默认min-max与经典向量归一化不同，必须声明。"
+    },
+    {
+      "id": "topsis-definition",
+      "url": "https://scikit-criteria.quatrope.org/en/latest/api/agg/topsis.html",
+      "title": "skcriteria.agg.topsis — official method documentation",
+      "author": "QuatroPe / Juan Cabral; Nadia Luczywo",
+      "section": "TOPSIS definition; linked source topsis()",
+      "observedDesign": "加权矩阵按收益/成本方向取理想与负理想，计算欧氏距离后以 d−/(d++d−) 降序；标准须单调，允许标准间补偿。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已读官方文档及原函数；归一化属于上游预处理，不可误认为函数自动完成；全相同方案导致分母0，须单独处理。"
+    }
+  ],
+  "regret": [
+    {
+      "id": "regret-moving",
+      "url": "https://www.movingai.com/gdc14/regret-strategy.html",
+      "title": "Regret Matching on Strategies Demo",
+      "author": "Nathan R. Sturtevant",
+      "section": "Rock/Paper/Scissors controls; Show AI Debug",
+      "observedDesign": "连续出石头后，调试表将 random/imitate/imitate+1/imitate+2 的累计遗憾并列，实测出现[0,0,3,-6]并选 imitate+1；动作、后悔值、下轮偏好形成可追踪反馈。",
+      "checkedAt": "2026-10-26",
+      "verification": "interacted",
+      "role": "visual",
+      "limitations": "已开启调试并连续出石头6轮；随机结果不保证重复相同。该版本匹配的是策略而非单动作；简化网页长期胜负表述不作为对任意对手的保证。"
+    },
+    {
+      "id": "regret-gdc",
+      "url": "https://www.movingai.com/gdc14/AISummit-MCTSIntro.pdf",
+      "title": "Algorithms on the Road to Monte Carlo Tree Search",
+      "author": "Nathan R. Sturtevant",
+      "section": "Regret Matching slides 12–14; PDF pages 28–45",
+      "observedDesign": "石头纸剪刀照片、当轮AI/对手和左侧遗憾条固定位置；同一轮先显示实际动作再用气泡列反事实，逐个累加红条，下一轮保留旧值，直观说明为什么改变概率。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已检查 PDF 第37、45页视觉及相邻图题；这是逐页动画讲义，未观看现场讲座。与配套网页是同作者不同媒介作品，不宣称独立学术证据。"
+    },
+    {
+      "id": "regret-aipt",
+      "url": "https://aipokertutorial.com/game-theory-foundation/",
+      "title": "Game Theory Foundation — Regret Matching",
+      "author": "AI Poker Tutorial",
+      "section": "Regret Matching table and two 10,000-step strategy plots",
+      "observedDesign": "十轮动作表横向对照单轮遗憾、累计遗憾、下轮概率；两组曲线用同色表示当前/平均策略，展示面对偏向石头的对手学习速度因随机样本而异。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读表格、公式和曲线图注，未观看嵌入视频。表格第二行 P2 利润符号疑似错误；公式全负情况应包含全零；只借鉴对应结构，所有值自行复算。不可将每轮策略都测试所有动作或必胜当作保证。"
+    },
+    {
+      "id": "regret-definition",
+      "url": "https://modelai.gettysburg.edu/2013/cfr/cfr.pdf",
+      "title": "An Introduction to Counterfactual Regret Minimization",
+      "author": "Todd W. Neller; Marc Lanctot",
+      "section": "Section 2.3 Regret Matching and Minimization, pages 4–6",
+      "observedDesign": "按反事实动作效用减实际/混合策略效用累积遗憾，仅将正累计遗憾归一化；全非正时均匀；区分当轮策略和平均策略，在两人零和自我对弈条件下讨论均衡。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已读教学原作相关节。这里是外部遗憾匹配教学变体，不能将 Hart–Mas-Colell 内部遗憾与一般博弈相关均衡结论混同；负累计值保留，不能擅自变成 RM+。"
+    }
+  ],
+  "boids": [
+    {
+      "id": "boids-reynolds",
+      "url": "https://www.red3d.com/cwr/boids/",
+      "title": "Boids: Background and Update",
+      "author": "Craig Reynolds",
+      "section": "Separation / Alignment / Cohesion / neighborhood",
+      "observedDesign": "三幅示意图区分避碰、方向同步、靠近邻域中心；距离和视角共同决定邻居。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "前次成功读取原作图文；本次复查超时。旧 Java 演示未运行。"
+    },
+    {
+      "id": "boids-noc",
+      "url": "https://natureofcode.com/autonomous-agents/",
+      "title": "The Nature of Code — Flocking",
+      "author": "Daniel Shiffman",
+      "section": "Figure 5.34; Example 5.11",
+      "observedDesign": "粗体主体与方向箭头拆解三个局部转向力，再用不同权重合成群体行为。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "boids-eater",
+      "url": "https://eater.net/boids",
+      "title": "Boids algorithm demonstration",
+      "author": "Ben Eater",
+      "section": "How does it work? / Visual range",
+      "observedDesign": "分离、聚合、对齐和视距四个滑条，辅以轨迹开关，适合隔离单条规则效果。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读页面与控件；未实际拖动或观看嵌入视频。Alignment 段误写 coherence slider，不复制该笔误。"
+    },
+    {
+      "id": "boids-definition",
+      "url": "https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/",
+      "title": "Flocks, Herds, and Schools: A Distributed Behavioral Model",
+      "author": "Craig Reynolds",
+      "section": "Simulated Flocks / Arbitration of Behaviors",
+      "observedDesign": "原论文给出按优先级避碰、速度匹配、群体居中以及局部感知；教学中的加权和是简化实现，需说明。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "life": [
+    {
+      "id": "life-edwin",
+      "url": "https://playgameoflife.com/",
+      "title": "Play John Conway’s Game of Life",
+      "author": "Edwin Martin",
+      "section": "Game of Life Rules",
+      "observedDesign": "出生、孤独死亡、拥挤死亡、存活各配前后格子图，规则紧贴画布。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "life-noc",
+      "url": "https://natureofcode.com/cellular-automata/",
+      "title": "The Nature of Code — The Game of Life",
+      "author": "Daniel Shiffman",
+      "section": "Figures 7.26–7.30; Example 7.2",
+      "observedDesign": "邻域示意后对照静物、振荡器和滑翔图案；明确移动是细胞开关造成的视觉效果。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "图中九格包含中心，计数时只有周围八邻居；使用旧代状态同时更新。未观看视频。"
+    },
+    {
+      "id": "life-stanford",
+      "url": "https://cs.stanford.edu/people/eroberts/courses/soco/projects/cellular-automata/beginning/howtoplay.html",
+      "title": "Game of Life — How To Play",
+      "author": "Carolyn Calcagni, David Chiu, Kimen Field / Stanford",
+      "section": "Survivals / Deaths / Births",
+      "observedDesign": "棋盘与棋子类比，三组图解对应条件；强调所有出生和死亡同时执行。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "life-definition",
+      "url": "https://www.ibiblio.org/lifepatterns/october1970.html",
+      "title": "The fantastic combinations of John Conway’s new solitaire game life",
+      "author": "Martin Gardner / Scientific American; ibiblio transcript",
+      "section": "Conway’s genetic laws; simultaneous-update procedure",
+      "observedDesign": "1970 年原文记录八邻域 B3/S23；用黑白棋子区分待出生和旧代，避免原地更新。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "原始文章的无限增长猜想已属历史，不作为当前结论；这里只采用规则与同步更新定义。"
+    }
+  ],
+  "perlin": [
+    {
+      "id": "perlin-adrian",
+      "url": "https://adrianb.io/2014/08/09/perlinnoise.html",
+      "title": "Understanding Perlin Noise",
+      "author": "Adrian Biagioli",
+      "section": "Logical Overview; Figures 1–5",
+      "observedDesign": "晶格、梯度箭头、点积影响区和缓动曲线串成推导；原版与 2002 改进版明确对照。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "部分图来自 Matt Zucker 等，不能把站点 CC BY 声明外推至全部图。正文距离向量方向表述与代码相反，以原论文 corner→query 为准。"
+    },
+    {
+      "id": "perlin-scratchapixel",
+      "url": "https://scratchapixel.com/lessons/procedural-generation-virtual-worlds/perlin-noise-part-2/perlin-noise.html",
+      "title": "Perlin Noise",
+      "author": "Scratchapixel",
+      "section": "Gradient vectors / dot products / lattice illustrations",
+      "observedDesign": "用角点梯度与角点到查询点的偏移构造点积，再平滑插值，区分 value noise 与 gradient noise。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "页面 CC BY-NC-ND；仅借鉴解释，素材自行绘制。本文主要是原版梯度噪声，不混称 simplex。"
+    },
+    {
+      "id": "perlin-bos",
+      "url": "https://thebookofshaders.com/11/",
+      "title": "The Book of Shaders — Noise",
+      "author": "Patricio Gonzalez Vivo; Jen Lowe",
+      "section": "Using Noise in Generative Designs; Improved Noise",
+      "observedDesign": "并排比较值噪声和梯度噪声，配三次/五次曲线及木纹应用，说明平滑过渡的视觉意义。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读图文与交互说明，未操作着色器。Improved Noise 段有混写 Simplex 的措辞，教学必须明确两者不同。"
+    },
+    {
+      "id": "perlin-definition",
+      "url": "https://www.cs.cmu.edu/~jkh/462_s07/paper445.pdf",
+      "title": "Improving Noise",
+      "author": "Ken Perlin",
+      "section": "Sections 2–3",
+      "observedDesign": "2002 原论文定义点积及晶格插值，五次 fade 端点一二阶导为零，并规定改进梯度集合。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "lsystem": [
+    {
+      "id": "lsystem-noc",
+      "url": "https://natureofcode.com/fractals/",
+      "title": "The Nature of Code — L-Systems",
+      "author": "Daniel Shiffman",
+      "section": "Figures 8.20–8.21; Examples 8.8–8.9",
+      "observedDesign": "先逐代重写 A/B，再把符号映射为海龟前进、转向、保存与恢复，最后生成分枝。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "lsystem-jennings",
+      "url": "https://cgjennings.ca/articles/l-systems/",
+      "title": "Lindenmayer systems",
+      "author": "Christopher G. Jennings",
+      "section": "From strings to nature / Enter the turtle / Trees and branches",
+      "observedDesign": "阶数控件与五十余预设连接字符串和图案；三阶段 Y 树解释分枝，海龟拿笔类比具体。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "lsystem-relint",
+      "url": "https://relint.de/l-systems.html",
+      "title": "L-systems explorer",
+      "author": "relint.de author",
+      "section": "Figures 1–2; parameter editor",
+      "observedDesign": "角度、层数、公理、规则和实时开关独立设置；示例将每个符号对应线段，展示栈高度与字符串长度。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "作者承认 tropism 实现有误，因此仅参考基础重写、海龟和栈，不采用其向性算法。"
+    },
+    {
+      "id": "lsystem-definition",
+      "url": "https://algorithmicbotany.org/papers/abop/abop.pdf",
+      "title": "The Algorithmic Beauty of Plants",
+      "author": "Przemysław Prusinkiewicz; Aristid Lindenmayer",
+      "section": "Chapter 1, §§1.2–1.3; printed pp.3–6",
+      "observedDesign": "定义字母表、公理、产生式与并行推导，所有旧字母同时替换；解释阶段的顺序绘图不等于顺序重写。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "原作者公开 PDF 已下载并读取第 15–16 页（书页3–4），证据保存在 evidence/abop.pdf。"
+    }
+  ],
+  "voronoi": [
+    {
+      "id": "voronoi-tufts",
+      "url": "https://www.eecs.tufts.edu/~vporok01/c163/",
+      "title": "Fortune’s algorithm presentation and interactive demo",
+      "author": "Tufts COMP 163 project (vporok01)",
+      "section": "The Beachline / Events / Circle Events / Interactive Demo",
+      "observedDesign": "逐页引入扫描线、抛物线与断点；圆事件被新点破坏时说明取消原因，支持添加点与调速。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读图文及控件说明，未运行全部交互。横向扫描按 x 排事件，与竖向 y 扫描不可混用。"
+    },
+    {
+      "id": "voronoi-pardhav",
+      "url": "https://pardhavmaradani.github.io/posts/interactive-voronoi/",
+      "title": "Interactive Voronoi",
+      "author": "Pardhav Maradani",
+      "section": "Voronoi Points / Kaleidoscope / Collage",
+      "observedDesign": "点击放种子生成分区，再旋转复制种子构成万花筒；拼图应用把分区变成可移动的照片布局，连接规则与用途。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读原作者图文与示例说明，未操作 trinket 嵌入；作者记录镜像点会触发其所用库的问题，不能视为 Voronoi 原理失效。"
+    },
+    {
+      "id": "voronoi-scipy",
+      "url": "https://docs.scipy.org/doc/scipy/tutorial/spatial.html#voronoi-diagrams",
+      "title": "Spatial Data Structures — Voronoi diagrams",
+      "author": "SciPy developers",
+      "section": "Voronoi diagrams",
+      "observedDesign": "先按最近点为采样格着色，再显示几何边界与无限射线，明确像素近似和精确多边形表达的差别。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "voronoi-definition",
+      "url": "https://doc.cgal.org/latest/Voronoi_diagram_2/index.html",
+      "title": "2D Voronoi Diagram Adaptor",
+      "author": "Menelaos Karavelas / CGAL",
+      "section": "Introduction",
+      "observedDesign": "以距离不等式的交集定义区域，等距集合定义边界；必须说明度量、重复点与并列距离处理。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "reaction-diffusion": [
+    {
+      "id": "rd-sims",
+      "url": "https://www.karlsims.com/rd.html",
+      "title": "Reaction-Diffusion Tutorial",
+      "author": "Karl Sims",
+      "section": "Feed / reaction / kill / diffusion; parameter map",
+      "observedDesign": "漫画小球分别解释补充 A、A+2B→3B、移除 B 和扩散；放大单格后连接到斑纹与参数地图。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "页面 all rights reserved；自行重绘。Δt=1 和特定 3×3 拉普拉斯只对应此离散模拟，不作为一般稳定条件。"
+    },
+    {
+      "id": "rd-munafo",
+      "url": "https://mrob.com/pub/comp/xmorphia/",
+      "title": "Reaction-Diffusion by the Gray-Scott Model",
+      "author": "Robert P. Munafo",
+      "section": "Colouring Gray-Scott for Serious Work; Formula; parameter atlas",
+      "observedDesign": "参数平面连接具体花纹；固定色标同时表达浓度与变化率，便于跨案例比较，避免自动拉伸造成误读。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读原作图文；未观看视频。离散拉普拉斯缩放须以数值推导为准，不照抄正文关于网格平方的模糊描述。"
+    },
+    {
+      "id": "rd-pm",
+      "url": "https://pmneila.github.io/jsexp/grayscott/",
+      "title": "Reaction diffusion system (Gray-Scott model)",
+      "author": "pmneila",
+      "section": "Canvas painting / presets / advanced settings",
+      "observedDesign": "画布涂入扰动，再选孤子、迷宫、孔洞等预设；feed/death 与固定色阶可调，初始扰动和参数各有角色。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "浏览器 HTTP 200，读取 12 个预设与默认 feed=0.037、death=0.06，截图保存在 evidence；尚未逐预设交互或像素审查。"
+    },
+    {
+      "id": "rd-definition",
+      "url": "https://arxiv.org/pdf/patt-sol/9304003",
+      "title": "Complex Patterns in a Simple System",
+      "author": "John E. Pearson",
+      "section": "Equations (1)–(2), pp.2–3",
+      "observedDesign": "原论文给出两反应与两条 PDE，B 的耗散为 (F+k)B；周期边界、Euler 离散与初始扰动须显式说明。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    }
+  ],
+  "wfc": [
+    {
+      "id": "wfc-boris",
+      "url": "https://www.boristhebrave.com/2020/04/13/wave-function-collapse-explained/",
+      "title": "Wave Function Collapse Explained",
+      "author": "BorisTheBrave",
+      "section": "Back to WFC / Example / Least Entropy",
+      "observedDesign": "3×3 四种瓦片先显示灰色候选缩略图，坍缩后彩色放大；逐格解释没有邻居支持时为何删去候选。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    },
+    {
+      "id": "wfc-marian",
+      "url": "https://marian42.de/article/wfc/",
+      "title": "Infinite procedurally generated city with WFC",
+      "author": "Marian Kleineberg",
+      "section": "Connectors / Reaching infinity / Boundary constraints",
+      "observedDesign": "建筑模块连接器截图与影响区域解释传播；展示分块不跨边界传播导致矛盾的失败案例。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读作者图文与截图说明，未观看行走视频或安装游戏；少选项仅在等权情况下等价低熵。"
+    },
+    {
+      "id": "wfc-gumin",
+      "url": "https://github.com/mxgmn/WaveFunctionCollapse",
+      "title": "WaveFunctionCollapse — original project",
+      "author": "Maxim Gumin",
+      "section": "Examples / Tilemap generation / Constrained synthesis",
+      "observedDesign": "未决定区域以候选平均颜色呈现，逐渐显露纹理；输入小样与生成大图并排，示例包括人工约束补全。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "visual",
+      "limitations": "已读原作 README 的示例与算法，不声称观看完整动画。不同示例素材分别核对许可；仅借鉴表达。"
+    },
+    {
+      "id": "wfc-definition",
+      "url": "https://pcgworkshop.com/archive/karth2017wavefunctioncollapse.pdf",
+      "title": "WaveFunctionCollapse is Constraint Solving in the Wild",
+      "author": "Isaac Karth; Adam M. Smith",
+      "section": "Section 4: The WFC Algorithm",
+      "observedDesign": "将图案提取、可行集合、观察与约束传播形式化；基本版本不回溯，矛盾可需重启，并非保证成功的量子算法。",
+      "checkedAt": "2026-10-26",
+      "verification": "read",
+      "role": "definition",
+      "limitations": "已阅读原作图文及图示说明；未完整观看视频或验证全部交互。"
+    }
+  ]
+};

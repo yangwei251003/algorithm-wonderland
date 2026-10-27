@@ -1,0 +1,460 @@
+{
+  "algorithmId": "thompson",
+  "pronunciations": {
+    "Thompson Sampling": "汤普森采样",
+    "Beta": "贝塔"
+  },
+  "beats": [
+    {
+      "id": "analogy",
+      "kind": "analogy",
+      "title": "每家摊位都保留一片可能性",
+      "text": "还不知道哪家摊位最好，不必钉死一个分数，先保留它可能有多好的分布。每次从各家分布抽一个值，挑最大的去试；观察反馈，只更新试过的摊位。汤普森采样用不确定性安排探索。",
+      "ruleIds": [
+        "thompson-choose"
+      ],
+      "panelExplanations": [
+        "分布概念示意：每家保留可能成功率，而非一个确定分数。",
+        "保留分布 → 独立抽样 → 选抽样最大者。",
+        "观察实际反馈，只更新亲自试过的选项。"
+      ]
+    },
+    {
+      "id": "prior-shape",
+      "kind": "rule",
+      "title": "本例的真实初始先验",
+      "text": "本例没有数据，三家都是贝塔一一：零到一之间均匀。",
+      "artwork": "../comics/thompson/rules.png",
+      "artworkRegion": [
+        0.01,
+        0.13,
+        0.33,
+        0.55
+      ],
+      "visualExplanation": "Beta(1,1) 的密度为1；这表示先验，不是下一次奖励。"
+    },
+    {
+      "id": "prior-a",
+      "kind": "event",
+      "title": "同样的先验，不同的一次抽样",
+      "text": "第一次，甲抽到约零点一二五，",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "thompson-choose"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "摊位 A"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "prior-b",
+      "kind": "event",
+      "title": "同样的先验，不同的一次抽样",
+      "text": "乙约零点一三二，",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "thompson-choose"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "摊位 B"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "prior-c",
+      "kind": "event",
+      "title": "同样的先验，不同的一次抽样",
+      "text": "丙约零点五六七。丙最大，选丙；抽到的是可能成功率，并非提前看到下一次结果。",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "thompson-choose"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "摊位 C"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "success",
+      "kind": "event",
+      "title": "得到好评，更新成功参数",
+      "text": "丙实际得到奖励一。把成功参数从一加到二，失败参数仍是一，后验成为贝塔二一；甲乙没有被试，保持原分布。起始的一和一是先验，不能把它们丢掉，只按成功次数直接填参数。",
+      "eventIds": [
+        "1"
+      ],
+      "ruleIds": [
+        "thompson-update"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "again",
+      "kind": "event",
+      "title": "再次抽样，不是固定选均值最大",
+      "text": "第二次重新抽样，丙约零点九五六，仍是最高。这一轮选择来自新抽样，不是固定挑历史均值最高者。",
+      "eventIds": [
+        "2"
+      ],
+      "ruleIds": [
+        "thompson-choose",
+        "thompson-update"
+      ],
+      "detailEventIds": [
+        "2"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "摊位 C"
+      ]
+    },
+    {
+      "id": "again-update",
+      "kind": "event",
+      "title": "第二次成功：Beta(3,1)",
+      "text": "丙再次成功，成功参数加到三、失败参数仍一。少试的选项以后仍可能抽到高值，得到机会。",
+      "eventIds": [
+        "3"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "detailEventIds": [
+        "3"
+      ]
+    },
+    {
+      "id": "alternative",
+      "kind": "comparison",
+      "title": "为什么第三次改选乙",
+      "text": "第三次，乙抽到约零点七四二，丙只有零点四二七。虽然丙已成功两次，这轮仍选乙。",
+      "eventIds": [
+        "4"
+      ],
+      "ruleIds": [
+        "thompson-choose",
+        "thompson-update"
+      ],
+      "detailEventIds": [
+        "4"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "摊位 B",
+        "摊位 C"
+      ]
+    },
+    {
+      "id": "failure-update",
+      "kind": "event",
+      "title": "失败只增加β",
+      "text": "乙没有奖励，失败参数从一加到二，成功参数仍一，成为贝塔一二。失败证据也参与下一轮判断。",
+      "eventIds": [
+        "5"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "detailEventIds": [
+        "5"
+      ]
+    },
+    {
+      "id": "repeat",
+      "kind": "recap",
+      "title": "同规则重复：抽样、试验、更新",
+      "text": "剩余过程按相同规则加速回放。成功参数等于成功次数加一，失败参数等于失败次数加一。证据增加通常让分布更集中，但仍有随机波动；不能把一次抽样当成真实成功率已经测准。",
+      "eventIds": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69",
+        "70",
+        "71",
+        "72",
+        "73",
+        "74",
+        "75",
+        "76",
+        "77"
+      ],
+      "ruleIds": [
+        "thompson-choose",
+        "thompson-update"
+      ]
+    },
+    {
+      "id": "finish-a",
+      "kind": "comparison",
+      "title": "预算结束，检查得到什么证据",
+      "text": "第四十次，甲约零点一七二，",
+      "eventIds": [
+        "78"
+      ],
+      "ruleIds": [
+        "thompson-choose",
+        "thompson-update"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "detailEventIds": [
+        "78"
+      ],
+      "candidateTargets": [
+        "摊位 A"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "finish-b",
+      "kind": "comparison",
+      "title": "预算结束，检查得到什么证据",
+      "text": "乙约零点三九四，",
+      "eventIds": [
+        "78"
+      ],
+      "ruleIds": [
+        "thompson-choose",
+        "thompson-update"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "detailEventIds": [
+        "78"
+      ],
+      "candidateTargets": [
+        "摊位 B"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "finish-c",
+      "kind": "comparison",
+      "title": "预算结束，检查得到什么证据",
+      "text": "丙约零点七一九，丙最高。每轮重新比较，没选中的记录保持不变。",
+      "eventIds": [
+        "78"
+      ],
+      "ruleIds": [
+        "thompson-choose",
+        "thompson-update"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "detailEventIds": [
+        "78"
+      ],
+      "candidateTargets": [
+        "摊位 C"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "final-update",
+      "kind": "event",
+      "title": "成功19次，失败10次，加上先验",
+      "text": "丙这次成功，累计试二十九次、成功十九次。加上先验，成功参数二十、失败参数十一，不能漏掉起始的一和一。",
+      "eventIds": [
+        "79"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "detailEventIds": [
+        "79"
+      ]
+    },
+    {
+      "id": "summary-1",
+      "kind": "summary",
+      "title": "让不确定度自然带来探索",
+      "text": "回看第三轮，即使丙已成功两次，仍能探索乙。",
+      "ruleIds": [
+        "thompson-choose",
+        "thompson-update"
+      ],
+      "panelExplanations": [
+        "回看第三轮：乙抽样0.742最高，探索仍可能发生。",
+        "固定种子40次：奖励23；丙29次成功19次。",
+        "适用二元反馈；单次抽样不是真值，旧数据会影响适应。"
+      ],
+      "artworkRegion": [
+        0.34,
+        0.25,
+        0.66,
+        0.59
+      ],
+      "panelIndex": 0
+    },
+    {
+      "id": "summary-2",
+      "kind": "summary",
+      "title": "让不确定度自然带来探索",
+      "text": "四十次总奖励二十三，是固定种子的小实验。",
+      "ruleIds": [
+        "thompson-choose",
+        "thompson-update"
+      ],
+      "panelExplanations": [
+        "回看第三轮：乙抽样0.742最高，探索仍可能发生。",
+        "固定种子40次：奖励23；丙29次成功19次。",
+        "适用二元反馈；单次抽样不是真值，旧数据会影响适应。"
+      ],
+      "artworkRegion": [
+        0.015,
+        0.6,
+        0.585,
+        0.975
+      ],
+      "panelIndex": 1
+    },
+    {
+      "id": "summary-3",
+      "kind": "summary",
+      "title": "让不确定度自然带来探索",
+      "text": "它适合重复推荐和点击率试验；一次抽样不是测准真值，旧数据可能拖慢环境变化后的适应。",
+      "ruleIds": [
+        "thompson-choose",
+        "thompson-update"
+      ],
+      "panelExplanations": [
+        "回看第三轮：乙抽样0.742最高，探索仍可能发生。",
+        "固定种子40次：奖励23；丙29次成功19次。",
+        "适用二元反馈；单次抽样不是真值，旧数据会影响适应。"
+      ],
+      "artworkRegion": [
+        0.6,
+        0.6,
+        0.99,
+        0.975
+      ],
+      "panelIndex": 2
+    }
+  ],
+  "artworkPanels": {
+    "analogy": [
+      [
+        0.3,
+        0.15,
+        0.99,
+        0.73
+      ],
+      [
+        0.025,
+        0.745,
+        0.43,
+        0.96
+      ],
+      [
+        0.46,
+        0.745,
+        0.84,
+        0.96
+      ]
+    ],
+    "summary": [
+      [
+        0.34,
+        0.25,
+        0.66,
+        0.59
+      ],
+      [
+        0.015,
+        0.6,
+        0.585,
+        0.975
+      ],
+      [
+        0.6,
+        0.6,
+        0.99,
+        0.975
+      ]
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "algorithmId": "pca",
+  "lessonVersion": 2,
+  "traceHash": "08edba2b9b764cb37e46146d318c077527f90d7ff2b7ad62c2bc2485d64432db",
+  "reviewedAt": "2026-10-25T18:53:17.721569+00:00",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "pca：生活类比",
+      "status": "passed",
+      "checks": [
+        "逐张查看：投影与中心化类比对应，方差大不等于任务重要。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "pca：核心规则",
+      "status": "passed",
+      "checks": [
+        "逐张查看：4点中心(25,35)，总体协方差各125，主方向(1,1)/√2，方差250/0，保留100%正确。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "pca：应用与局限",
+      "status": "passed",
+      "checks": [
+        "逐张查看：降维示意、可能丢失小方差判别信息、量纲和方差相等局限明确；无预测准确率承诺。"
+      ],
+      "corrections": []
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "科普场景含明确的示意，精确逐步数值以同版案例轨迹为准"
+  ]
+}

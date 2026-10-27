@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "algorithmId": "annealing",
+  "lessonVersion": 2,
+  "traceHash": "fbf462e16f25e56db640c5ecb02c0687b781c008ab439b32f5e5e5911c19188f",
+  "checkedAt": "2026-10-26",
+  "reviewedAt": "2026-10-26",
+  "reviewer": "Codex：逐张目视检查与真实事件对照",
+  "generator": "built-in imagegen",
+  "status": "accepted",
+  "assets": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "version": 2,
+      "notes": [
+        "高低温只改变同损失接受概率；抽签箱修正为是否接受，与候选生成分开。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "version": 3,
+      "notes": [
+        "最大化差值、p=exp(Δ/T)、两次抽签接受/拒绝数值正确；标明舍入与温度下限；修正记录本收益标签。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "version": 1,
+      "notes": [
+        "160轮25次接受下坡、位置24.29收益36.02与真实结果一致；返回历史最好且无全局保证。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    }
+  ],
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "高低温只改变同损失接受概率；抽签箱修正为是否接受，与候选生成分开。",
+      "status": "passed"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "最大化差值、p=exp(Δ/T)、两次抽签接受/拒绝数值正确；标明舍入与温度下限；修正记录本收益标签。",
+      "status": "passed"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "160轮25次接受下坡、位置24.29收益36.02与真实结果一致；返回历史最好且无全局保证。",
+      "status": "passed"
+    }
+  ],
+  "script": {
+    "file": "media/scripts/annealing.json",
+    "beats": 8,
+    "narrationCharacters": 677,
+    "hanCharacters": 609,
+    "status": "authored-and-event-checked",
+    "videoRendered": false
+  },
+  "limitations": [
+    "这是漫画与脚本审查，成片渲染及音频验收由统一媒体流程另行记录。",
+    "类比、局部规则示意与反例均不冒充额外真实执行记录。"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "algorithmId": "sha256",
+  "lessonVersion": 2,
+  "traceHash": "6e1e1289f79ad80aa1d38da68be11eefd7668ee40907553ba3cfa253f7b2ec8e",
+  "reviewedAt": "2026-10-26",
+  "reviewer": "AI visual inspection of each original and revised image",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "固定配方指纹流水线：分块、调度、64轮混合、链式继承。",
+      "status": "passed",
+      "checks": [
+        "逐张检查消息长度24位、512位块、64个调度字和64轮",
+        "修正同步交接依赖、移除错误箭头与公式符号，将完全不同改为两个不同",
+        "示意色块不冒充逐位实际值；122/256与标准实现对照一致"
+      ]
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "T1/T2与八寄存器同步更新，模2³²加法并保留旧状态依赖。",
+      "status": "passed",
+      "checks": [
+        "逐张检查消息长度24位、512位块、64个调度字和64轮",
+        "修正同步交接依赖、移除错误箭头与公式符号，将完全不同改为两个不同",
+        "示意色块不冒充逐位实际值；122/256与标准实现对照一致"
+      ]
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "abc与abd两份摘要有122/256位不同；不是加密且碰撞可能存在。",
+      "status": "passed",
+      "checks": [
+        "逐张检查消息长度24位、512位块、64个调度字和64轮",
+        "修正同步交接依赖、移除错误箭头与公式符号，将完全不同改为两个不同",
+        "示意色块不冒充逐位实际值；122/256与标准实现对照一致"
+      ]
+    }
+  ],
+  "limitations": [
+    "未进行真人零基础试学；艺术评价不等同于专业人士评审。"
+  ]
+}

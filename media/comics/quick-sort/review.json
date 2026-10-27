@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "algorithmId": "quick-sort",
+  "lessonVersion": 2,
+  "traceHash": "edb3c58158b0bf4faffd5e33be63775944b8fad230acb5364c6fdcada2d8c2b0",
+  "checkedAt": "2026-10-26",
+  "reviewedAt": "2026-10-26",
+  "reviewer": "Codex：逐张目视检查与真实事件对照",
+  "generator": "built-in imagegen",
+  "status": "accepted",
+  "assets": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "version": 1,
+      "notes": [
+        "≤4的两个2归左组，分界4独立，两个子区间仍需整理。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "version": 2,
+      "notes": [
+        "两次交换后[2,2,7,5,4]，再交换7与4，边界明确为左区后第一个位置。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "version": 1,
+      "notes": [
+        "结果[2,2,4,5,7]，6次比较和6次写入口径吻合；末尾枢轴在已排序输入上偏斜。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    }
+  ],
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "≤4的两个2归左组，分界4独立，两个子区间仍需整理。",
+      "status": "passed"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "两次交换后[2,2,7,5,4]，再交换7与4，边界明确为左区后第一个位置。",
+      "status": "passed"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "结果[2,2,4,5,7]，6次比较和6次写入口径吻合；末尾枢轴在已排序输入上偏斜。",
+      "status": "passed"
+    }
+  ],
+  "script": {
+    "file": "media/scripts/quick-sort.json",
+    "beats": 8,
+    "narrationCharacters": 668,
+    "hanCharacters": 587,
+    "status": "authored-and-event-checked",
+    "videoRendered": false,
+    "revision": "删去重复旁白，为150秒内成片保留收尾；规则、事件、对比未删减。"
+  },
+  "limitations": [
+    "这是漫画与脚本审查；未在本记录中宣称成片已渲染或已听评。",
+    "影视动画沿用真实eventIds；类比与反例图不冒充额外计算记录。"
+  ]
+}

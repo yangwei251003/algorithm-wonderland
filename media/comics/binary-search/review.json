@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "algorithmId": "binary-search",
+  "lessonVersion": 2,
+  "traceHash": "b952857db240eb0a04283094a8734a91c749764468c5997291a24d709f35025e",
+  "checkedAt": "2026-10-26",
+  "reviewer": "Codex：逐张目视检查与真实事件对照",
+  "generator": "built-in imagegen",
+  "status": "accepted",
+  "assets": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "version": 2,
+      "notes": [
+        "核对升序七价签3/8/12/17/23/31/42及检查17→31→23。",
+        "第一格已补明确目标23；三轮灰色排除范围正确。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "version": 1,
+      "notes": [
+        "17<23排除3/8/12/17；31>23排除31/42；保留23。",
+        "中点看位置、不看价格平均数，区间空才失败。",
+        "按实际记录完整覆盖三次比较、两次区间收缩。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "version": 2,
+      "notes": [
+        "初稿错误23<17已改正为17<23。",
+        "初稿两侧同时删除的误导已改为此例只保留右侧，注明升序前提。",
+        "反例明确为无序错误套用，七张卡无重复/漏值；原稿保留为summary-v1.png不用于成品。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    }
+  ],
+  "script": {
+    "file": "media/scripts/binary-search.json",
+    "beats": 8,
+    "narrationCharacters": 644,
+    "hanCharacters": 574,
+    "status": "authored-and-event-checked",
+    "videoRendered": false
+  },
+  "limitations": [
+    "这是漫画与脚本审查；未在本记录中宣称成片已渲染或已听评。",
+    "影视动画沿用真实eventIds；类比与反例图不冒充额外计算记录。"
+  ],
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "有序货架找23，检查17、31、23并逐次缩小范围。",
+      "status": "passed"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "根据升序证据排除左区间和右区间，三次比较命中23。",
+      "status": "passed"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "说明有序前提、错误用于无序列表的反例和排序准备成本。",
+      "status": "passed"
+    }
+  ],
+  "reviewedAt": "2026-10-26"
+}

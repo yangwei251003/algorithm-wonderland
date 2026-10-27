@@ -1,0 +1,46 @@
+{
+  "algorithmId": "naive-bayes",
+  "lessonVersion": 2,
+  "traceHash": "fdd908e2c7886ff23f3e6c13b2a2b844101124772e3acbc95e649c6950039454",
+  "reviewedAt": "2026-10-25T18:53:17.713689+00:00",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "naive-bayes：生活类比",
+      "status": "passed",
+      "checks": [
+        "逐张查看：产品测量与分类标签对应，证据逐项合并而非简单多数投票。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "naive-bayes：核心规则",
+      "status": "passed",
+      "checks": [
+        "逐张查看：均值(23,25)/(75.5,70)、方差(24,24)/(31.75,45)、先验0.5与案例一致；类别计数加1措辞准确。"
+      ],
+      "corrections": [
+        "将错误猫狗分类替换为产品类别；类别计数加1；移除双特征共用一轴图。"
+      ]
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "naive-bayes：应用与局限",
+      "status": "passed",
+      "checks": [
+        "逐张查看：宽度/高度档案替代错误一维双特征图，相关性仅标为示意，条件独立限制清楚。"
+      ],
+      "corrections": [
+        "将错误猫狗分类替换为产品类别；类别计数加1；移除双特征共用一轴图。"
+      ]
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "科普场景含明确的示意，精确逐步数值以同版案例轨迹为准"
+  ]
+}

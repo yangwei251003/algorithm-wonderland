@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "algorithmId": "kruskal",
+  "lessonVersion": 2,
+  "traceHash": "3be04df5897c2f3007f3f48262412e7eec1ab2420622d639cd5db70b241b3566",
+  "checkedAt": "2026-10-26",
+  "reviewedAt": "2026-10-26",
+  "reviewer": "Codex：逐张目视检查与真实事件对照",
+  "generator": "built-in imagegen",
+  "status": "accepted",
+  "assets": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "version": 2,
+      "notes": [
+        "B-D3、B-C6跨组；C-D11成环为局部规则示意；将长度误词改为费用。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "version": 1,
+      "notes": [
+        "费用排序3,6,7,8,8,9,11；A-B8闭环拒绝；组指针不当成道路。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "version": 2,
+      "notes": [
+        "最终边7+6+3+9=25，五村四边；A到B树内13对直达8；森林示意去掉误生成的环。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    }
+  ],
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "B-D3、B-C6跨组；C-D11成环为局部规则示意；将长度误词改为费用。",
+      "status": "passed"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "费用排序3,6,7,8,8,9,11；A-B8闭环拒绝；组指针不当成道路。",
+      "status": "passed"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "最终边7+6+3+9=25，五村四边；A到B树内13对直达8；森林示意去掉误生成的环。",
+      "status": "passed"
+    }
+  ],
+  "script": {
+    "file": "media/scripts/kruskal.json",
+    "beats": 8,
+    "narrationCharacters": 661,
+    "hanCharacters": 588,
+    "status": "authored-and-event-checked",
+    "videoRendered": false
+  },
+  "limitations": [
+    "这是漫画与脚本审查，成片渲染及音频验收由统一媒体流程另行记录。",
+    "类比、局部规则示意与反例均不冒充额外真实执行记录。"
+  ]
+}

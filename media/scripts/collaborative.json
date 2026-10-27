@@ -1,0 +1,375 @@
+{
+  "algorithmId": "collaborative",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "借别人的共同观影经验",
+      "text": "你没看过一部电影，怎么猜会不会喜欢？先借其他观众的共同评分，比较电影是否相近，再结合你对相近电影的评分。这是物品协同推荐。",
+      "ruleIds": [
+        "collaborative.initialize"
+      ],
+      "visualExplanation": "共同观众提供物品相似度；你自己的评分用于最后加权。电影海报只做类比，内容标签不参与。"
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "零是没评，不是差评",
+      "text": "本例你已评三部，另三部等待预测。只用两部都评过的观众，不把零当成讨厌。",
+      "ruleIds": [
+        "collaborative.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "pair",
+      "kind": "event",
+      "title": "一位共同观众贡献什么",
+      "text": "先比较星际远行和银河漫游。观众一给五分和四分，乘积二十；平方二十五和十六，分别累计。",
+      "ruleIds": [
+        "collaborative.similarity"
+      ],
+      "eventIds": [
+        "1"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "comparison"
+      ]
+    },
+    {
+      "id": "pairs",
+      "kind": "event",
+      "title": "逐个检查共同记录",
+      "text": "接着检查观众二到五，两部都有评分才纳入。这里比较电影，不是在找与你最像的观众。",
+      "ruleIds": [
+        "collaborative.similarity"
+      ],
+      "eventIds": [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "missing",
+      "kind": "event",
+      "title": "观众六为什么跳过",
+      "text": "观众六缺第一部，",
+      "ruleIds": [
+        "collaborative.similarity"
+      ],
+      "eventIds": [
+        "6"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "missing-seven",
+      "kind": "event",
+      "title": "观众七同样缺少一项",
+      "text": "观众七缺第二部。这两行都跳过，累计量保持不变，不能把缺失填成零分参与。",
+      "ruleIds": [
+        "collaborative.similarity"
+      ],
+      "eventIds": [
+        "7"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "last-person",
+      "kind": "event",
+      "title": "共同人数到六人",
+      "text": "观众八补入最后一项。六人贡献的乘积合计六十五，两列平方和七十二和六十三。",
+      "ruleIds": [
+        "collaborative.similarity"
+      ],
+      "eventIds": [
+        "8"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "similarity",
+      "kind": "event",
+      "title": "方向相似，还要给证据打折",
+      "text": "用乘积和除以两列长度，余弦约零点九六五；再乘六除以七，收缩到零点八二七，避免少量巧合权重过大。",
+      "ruleIds": [
+        "collaborative.similarity"
+      ],
+      "eventIds": [
+        "9"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "others",
+      "kind": "event",
+      "title": "换影片必须重新筛选",
+      "text": "另外两对重新筛共同观众，分别五人和七人。人数折扣后，相似度约零点八零八和零点五零一。",
+      "ruleIds": [
+        "collaborative.similarity"
+      ],
+      "eventIds": [
+        "18",
+        "27"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "neighbors",
+      "kind": "event",
+      "title": "保留相似度最高的两部",
+      "text": "邻居数设为二，保留相似度最高的两部。",
+      "ruleIds": [
+        "collaborative.predict"
+      ],
+      "eventIds": [
+        "28"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "星际远行",
+        "火星日记"
+      ]
+    },
+    {
+      "id": "neighbors-third",
+      "kind": "event",
+      "title": "第三部为什么被淘汰",
+      "text": "温暖邻居虽为正数，仍因排名第三而不进入加权。",
+      "ruleIds": [
+        "collaborative.predict"
+      ],
+      "eventIds": [
+        "28"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "温暖邻居"
+      ]
+    },
+    {
+      "id": "first-weight",
+      "kind": "event",
+      "title": "你的五分乘第一份权重",
+      "text": "先把你的五分乘第一部相似度，加入分子；相似度加入分母。分子不是预测分，还不能直接展示为评分。",
+      "ruleIds": [
+        "collaborative.predict"
+      ],
+      "eventIds": [
+        "29"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "second-weight",
+      "kind": "event",
+      "title": "把第二部也加入账本",
+      "text": "再把四分乘第二部相似度。分子累计约七点三六八，分母累计约一点六三五。",
+      "ruleIds": [
+        "collaborative.predict"
+      ],
+      "eventIds": [
+        "30"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "predict",
+      "kind": "event",
+      "title": "除以总权重才是预测",
+      "text": "用累计分子除以累计权重，银河漫游得到约四点五一。这是估计，并不保证你真的会给这个分。",
+      "ruleIds": [
+        "collaborative.predict"
+      ],
+      "eventIds": [
+        "31"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "完整记录加速回放",
+      "text": "回放所有共同观众检查和另外两部的独立预测。每部重新选邻居，不照搬前一部。",
+      "ruleIds": [
+        "collaborative.initialize",
+        "collaborative.similarity",
+        "collaborative.predict"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69",
+        "70",
+        "71",
+        "72",
+        "73",
+        "74",
+        "75",
+        "76",
+        "77",
+        "78",
+        "79",
+        "80",
+        "81",
+        "82",
+        "83",
+        "84",
+        "85",
+        "86",
+        "87",
+        "88",
+        "89",
+        "90",
+        "91",
+        "92",
+        "93",
+        "94"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "finish",
+      "kind": "event",
+      "title": "最后比较三项预测",
+      "text": "三个预测约四点五一、二点一一和一点九九，选择银河漫游。同分采用本例固定的较后候选约定。",
+      "ruleIds": [
+        "collaborative.predict"
+      ],
+      "eventIds": [
+        "94"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "从共同记录到个人推荐",
+      "text": "先筛共同评分，再比较相似，最后用个人评分加权。适合记录充足的推荐；新用户、新物品缺少连接时不能硬猜。未减均值也会受打分习惯影响，需要留出真实反馈检验。",
+      "ruleIds": [
+        "collaborative.predict"
+      ],
+      "visualExplanation": "漫画里的不同片名说明迁移场景；正式算例推荐银河漫游，预测不是已经发生的真实评分。"
+    }
+  ]
+}

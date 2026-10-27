@@ -1,0 +1,231 @@
+{
+  "algorithmId": "edit-distance",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "校对员每次只改一步",
+      "text": "把猫的英文改成剪切，只需替换中间字母。更长的字符串怎样保证改得最少？想象校对员每次只插入、删除或替换，算法逐格比较这三种结尾。",
+      "ruleIds": [
+        "edit-distance.initialize"
+      ],
+      "panelExplanations": [
+        "一次插入、删除或替换对应一次编辑；先解决较短前缀，再比较最后一步的三种来源。"
+      ]
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "每格回答一对前缀的问题",
+      "text": "插入、删除、替换各花一步。行是源串前缀，列是目标前缀，每格记录最少代价。圆点表示未计算，不能当作零。",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "edit-distance.initialize"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "empty",
+      "kind": "event",
+      "title": "两个空串，不必修改",
+      "text": "空串变空串，不必修改，左上角代价零，是整个表格的起点。",
+      "eventIds": [
+        "1"
+      ],
+      "ruleIds": [
+        "edit-distance.initialize"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "delete-boundary",
+      "kind": "recap",
+      "title": "源前缀变空串：逐字删除",
+      "text": "沿第一列，源前缀每多一个字符，变空串就多删一次，依次是一、二、三。",
+      "eventIds": [
+        "2",
+        "3",
+        "4"
+      ],
+      "ruleIds": [
+        "edit-distance.initialize"
+      ]
+    },
+    {
+      "id": "insert-boundary",
+      "kind": "recap",
+      "title": "空串变目标前缀：逐字插入",
+      "text": "沿第一行，空串变成目标前缀，每多一个字符，就多插一次。",
+      "eventIds": [
+        "5",
+        "6",
+        "7"
+      ],
+      "ruleIds": [
+        "edit-distance.initialize"
+      ]
+    },
+    {
+      "id": "first",
+      "kind": "event",
+      "title": "相同字符，不必付替换费",
+      "text": "首字符相同，左上零加匹配费零，得到零。上方再删除、左侧再插入都要两步，所以选对齐。完整成本包含此前的最少修改。",
+      "eventIds": [
+        "8"
+      ],
+      "ruleIds": [
+        "edit-distance.compare"
+      ],
+      "pageModes": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "insertion",
+      "kind": "comparison",
+      "title": "字符不同，也未必选替换",
+      "text": "下一格把一个字母变两个。对齐两步，删除三步，插入只一步。所以字符不同，也不能直接认定必须替换。",
+      "eventIds": [
+        "9"
+      ],
+      "ruleIds": [
+        "edit-distance.compare"
+      ],
+      "pageModes": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "remaining-start",
+      "kind": "recap",
+      "title": "每格继续比较三条来源",
+      "text": "接下来两格也比较三条来源，保留最小代价。",
+      "eventIds": [
+        "10",
+        "11"
+      ],
+      "ruleIds": [
+        "edit-distance.compare"
+      ]
+    },
+    {
+      "id": "middle",
+      "kind": "event",
+      "title": "中间不同：零加一次替换",
+      "text": "中间字符不同。左上原值零，加一次替换得一；另两条都是一加一等于二。因此选替换，写入一。",
+      "eventIds": [
+        "12"
+      ],
+      "ruleIds": [
+        "edit-distance.compare"
+      ],
+      "pageModes": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "rest",
+      "kind": "recap",
+      "title": "其他格沿同一规则填好",
+      "text": "其余格继续比较三个来源。同价时，本实现先选对齐，再删除，最后插入。",
+      "eventIds": [
+        "13",
+        "14",
+        "15"
+      ],
+      "ruleIds": [
+        "edit-distance.compare"
+      ]
+    },
+    {
+      "id": "last",
+      "kind": "event",
+      "title": "末尾相同，继承左上结果",
+      "text": "末尾字符相同，不加替换费。左上已有一步，右下也是一；删除、插入都要三步，更贵。",
+      "eventIds": [
+        "16"
+      ],
+      "ruleIds": [
+        "edit-distance.compare"
+      ],
+      "pageModes": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "backtrack-last",
+      "kind": "event",
+      "title": "从右下角倒着寻找动作",
+      "text": "知道最少一步，还要找动作。从右下角倒查：末尾相同，记录保留，沿达到最优值的对角前驱返回。",
+      "eventIds": [
+        "17"
+      ],
+      "ruleIds": [
+        "edit-distance.backtrack"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "backtrack-middle",
+      "kind": "event",
+      "title": "返回中间，记录替换",
+      "text": "中间记录原字母替换成目标字母，再沿对角返回。",
+      "eventIds": [
+        "18"
+      ],
+      "ruleIds": [
+        "edit-distance.backtrack"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "backtrack-first",
+      "kind": "event",
+      "title": "返回开头，记录保留",
+      "text": "开头相同，记录保留，返回两个空串的起点。",
+      "eventIds": [
+        "19"
+      ],
+      "ruleIds": [
+        "edit-distance.backtrack"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "forward",
+      "kind": "event",
+      "title": "把倒序记录反转",
+      "text": "倒查动作是反序。翻转后，保留开头、替换中间、保留末尾。保留不花费，只有一次编辑。",
+      "eventIds": [
+        "20"
+      ],
+      "ruleIds": [
+        "edit-distance.backtrack"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "最少修改，不等于意思最像",
+      "text": "它可用于拼写纠错、名称搜索、序列比较。这里按字符码点处理，组合文字未必是一个可见字。代价或允许动作改变，答案可能改变；距离小不保证语义相似。",
+      "ruleIds": [
+        "edit-distance.backtrack"
+      ]
+    }
+  ]
+}

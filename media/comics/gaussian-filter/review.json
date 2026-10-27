@@ -1,0 +1,52 @@
+{
+  "algorithmId": "gaussian-filter",
+  "lessonVersion": 2,
+  "traceHash": "54caa643e9e09d885cdd7eb97229ce6b7506908225412d207c628eafab524ae4",
+  "reviewedAt": "2026-10-26",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "高斯滤波按距离给邻居分配不同权重",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图片，中文与数字清晰",
+        "核对3×3核、原图读取、边界复制规则",
+        "实际首像素20.796与MSE 530.56→260.83对应教学trace"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "3×3真实权重和首个像素的加权计算",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图片，中文与数字清晰",
+        "核对3×3核、原图读取、边界复制规则",
+        "实际首像素20.796与MSE 530.56→260.83对应教学trace"
+      ],
+      "corrections": [
+        "移除幻造像素值，改为真实首窗口与正确加权和"
+      ]
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "降噪误差变化与边缘变模糊的代价",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图片，中文与数字清晰",
+        "核对3×3核、原图读取、边界复制规则",
+        "实际首像素20.796与MSE 530.56→260.83对应教学trace"
+      ],
+      "corrections": [
+        "合成图实算指标与房屋效果示意分开标注"
+      ]
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "房屋效果图为示意，非真实滤波前后像素截图"
+  ]
+}

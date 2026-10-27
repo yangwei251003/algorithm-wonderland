@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "algorithmId": "branch-bound",
+  "lessonVersion": 2,
+  "traceHash": "354bf4284e020b254f057330dc1a54157588bb5fe9b0b5be739d150f067cd43f",
+  "checkedAt": "2026-10-26",
+  "reviewedAt": "2026-10-26",
+  "reviewer": "Codex：逐张目视检查与真实事件对照",
+  "generator": "built-in imagegen",
+  "status": "accepted",
+  "assets": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "version": 2,
+      "notes": [
+        "2.4分成≤2和≥3、38<40剪枝均明确假设示意；去除误导四舍五入箭头和错误数量盒子。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "version": 2,
+      "notes": [
+        "根放松54.57、整数纪录48/50/52及A≥4上界46核对；修正为更好合法方案才更新。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "version": 2,
+      "notes": [
+        "A1 B5收益52及两项资源检验一致；9分支2剪枝、栈空证明，明确整个连续放松不可行才可整支拒绝。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    }
+  ],
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "2.4分成≤2和≥3、38<40剪枝均明确假设示意；去除误导四舍五入箭头和错误数量盒子。",
+      "status": "passed"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "根放松54.57、整数纪录48/50/52及A≥4上界46核对；修正为更好合法方案才更新。",
+      "status": "passed"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "A1 B5收益52及两项资源检验一致；9分支2剪枝、栈空证明，明确整个连续放松不可行才可整支拒绝。",
+      "status": "passed"
+    }
+  ],
+  "script": {
+    "file": "media/scripts/branch-bound.json",
+    "beats": 8,
+    "narrationCharacters": 672,
+    "hanCharacters": 600,
+    "status": "authored-and-event-checked",
+    "videoRendered": false
+  },
+  "limitations": [
+    "这是漫画与脚本审查，成片渲染及音频验收由统一媒体流程另行记录。",
+    "类比、局部规则示意与反例均不冒充额外真实执行记录。"
+  ]
+}

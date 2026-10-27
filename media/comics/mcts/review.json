@@ -1,0 +1,52 @@
+{
+  "algorithmId": "mcts",
+  "lessonVersion": 2,
+  "traceHash": "7d6cabcd43f18d8cac93b7ec106a18658d788292ee9504f2c152eedcdf863170",
+  "reviewedAt": "2026-10-26",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "试走路线对应选择、扩展、模拟及沿祖先回传",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图",
+        "所有数字、决策与固定种子真实trace核对",
+        "区分选择分、估计得分、真实成功率；概念示意与实验结果分开"
+      ],
+      "corrections": [
+        "移除指向未访问旁支的错误橙色箭头，回传仅沿两已访问节点"
+      ]
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "第八格扩展与第六格随机应对后的零分记账",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图",
+        "所有数字、决策与固定种子真实trace核对",
+        "区分选择分、估计得分、真实成功率；概念示意与实验结果分开"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "树内探索分与最终访问次数决策的区别",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图",
+        "所有数字、决策与固定种子真实trace核对",
+        "区分选择分、估计得分、真实成功率；概念示意与实验结果分开"
+      ],
+      "corrections": [
+        "删除模型虚构的9格统计，替换为5个真实合法候选16/6/6/6/6"
+      ]
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "数值仅代表固定种子小案例，不能推广为保证"
+  ]
+}

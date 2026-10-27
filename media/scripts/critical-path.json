@@ -1,0 +1,641 @@
+{
+  "algorithmId": "critical-path",
+  "pronunciations": {
+    "CPM": "关键路径法"
+  },
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "两条筹备线都得完成",
+      "text": "筹备活动，宣传和布置两组并行。开场必须等两边完成。",
+      "ruleIds": [
+        "critical-path.initialize"
+      ],
+      "artworkRegion": [
+        0.01,
+        0.283,
+        0.99,
+        0.664
+      ],
+      "panelExplanations": [
+        "宣传14结束，布置13结束。依赖两组，就等较晚完成的一组。"
+      ],
+      "artwork": "../comics/critical-path/analogy.png"
+    },
+    {
+      "id": "setup",
+      "kind": "event",
+      "title": "先确认能并行的假设",
+      "text": "本例时长固定，资源足够并行。",
+      "ruleIds": [
+        "critical-path.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ],
+      "detailEventIds": [
+        "0"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "poster-start",
+      "kind": "event",
+      "title": "需求完成，海报才能开始",
+      "text": "需求确认从零开始，用五。海报最早从五开始。",
+      "ruleIds": [
+        "critical-path.forward"
+      ],
+      "eventIds": [
+        "1"
+      ],
+      "detailEventIds": [
+        "1"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "purchase-start",
+      "kind": "event",
+      "title": "采购也等待需求完成",
+      "text": "采购同样等需求确认，最早也在五开始。",
+      "ruleIds": [
+        "critical-path.forward"
+      ],
+      "eventIds": [
+        "2"
+      ],
+      "detailEventIds": [
+        "2"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "publicity-start",
+      "kind": "event",
+      "title": "海报完成后接宣传",
+      "text": "海报从五开始，用四，在九完成。宣传从九开始。",
+      "ruleIds": [
+        "critical-path.forward"
+      ],
+      "eventIds": [
+        "3"
+      ],
+      "detailEventIds": [
+        "3"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "setup-start",
+      "kind": "event",
+      "title": "采购完成后接布置",
+      "text": "采购从五开始，用六，在十一完成。布置从十一开始。",
+      "ruleIds": [
+        "critical-path.forward"
+      ],
+      "eventIds": [
+        "4"
+      ],
+      "detailEventIds": [
+        "4"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "activity-first",
+      "kind": "event",
+      "title": "先读宣传的完成要求",
+      "text": "宣传用五，九加五等于十四，先记录活动要等到十四。",
+      "ruleIds": [
+        "critical-path.forward"
+      ],
+      "eventIds": [
+        "5"
+      ],
+      "detailEventIds": [
+        "5"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "wait-all",
+      "kind": "event",
+      "title": "还必须检查另一组",
+      "text": "布置十一加二等于十三。与十四取最大，仍是十四；必须等所有前置完成。",
+      "ruleIds": [
+        "critical-path.forward"
+      ],
+      "eventIds": [
+        "6"
+      ],
+      "detailEventIds": [
+        "6"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "review-start",
+      "kind": "event",
+      "title": "活动完成后才能复盘",
+      "text": "活动从十四开始，用四到十八结束，复盘从十八开始。",
+      "ruleIds": [
+        "critical-path.forward"
+      ],
+      "eventIds": [
+        "7"
+      ],
+      "detailEventIds": [
+        "7"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "finish",
+      "kind": "event",
+      "title": "终点工期此时才确定",
+      "text": "复盘再用三，最早二十一完成。以此作为反推截止。",
+      "ruleIds": [
+        "critical-path.backward"
+      ],
+      "eventIds": [
+        "8"
+      ],
+      "detailEventIds": [
+        "8"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "back-review",
+      "kind": "event",
+      "title": "从终点倒推",
+      "text": "复盘最迟二十一完成，减去三，最晚十八开始。",
+      "ruleIds": [
+        "critical-path.backward"
+      ],
+      "eventIds": [
+        "9"
+      ],
+      "detailEventIds": [
+        "9"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "back-activity",
+      "kind": "event",
+      "title": "活动要赶上复盘",
+      "text": "活动要赶上复盘，十八减四，最晚十四开始。",
+      "ruleIds": [
+        "critical-path.backward"
+      ],
+      "eventIds": [
+        "10"
+      ],
+      "detailEventIds": [
+        "10"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "back-setup",
+      "kind": "event",
+      "title": "布置服从活动的截止",
+      "text": "布置必须在十四前结束，减工期二，最晚十二开始。",
+      "ruleIds": [
+        "critical-path.backward"
+      ],
+      "eventIds": [
+        "11"
+      ],
+      "detailEventIds": [
+        "11"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "back-publicity",
+      "kind": "event",
+      "title": "宣传也服从活动的截止",
+      "text": "宣传同样在十四前完成，减五，最晚九开始。",
+      "ruleIds": [
+        "critical-path.backward"
+      ],
+      "eventIds": [
+        "12"
+      ],
+      "detailEventIds": [
+        "12"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "back-purchase",
+      "kind": "event",
+      "title": "继续沿依赖倒推",
+      "text": "采购赶上布置，十二减六，最晚六开始。",
+      "ruleIds": [
+        "critical-path.backward"
+      ],
+      "eventIds": [
+        "13"
+      ],
+      "detailEventIds": [
+        "13"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "back-poster",
+      "kind": "event",
+      "title": "海报赶上宣传",
+      "text": "海报赶上宣传，九减四，最晚五开始。",
+      "ruleIds": [
+        "critical-path.backward"
+      ],
+      "eventIds": [
+        "14"
+      ],
+      "detailEventIds": [
+        "14"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "tightest",
+      "kind": "event",
+      "title": "两个后继，服从更紧截止",
+      "text": "需求要赶上海报五和采购六，取较小的五，减自身工期五，最晚零开始。",
+      "ruleIds": [
+        "critical-path.backward"
+      ],
+      "eventIds": [
+        "15"
+      ],
+      "detailEventIds": [
+        "15"
+      ],
+      "pageModes": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "slack-demand",
+      "kind": "event",
+      "title": "两遍之后才计算时差",
+      "text": "现在最晚减最早。需求零减零，没有延误缓冲。",
+      "ruleIds": [
+        "critical-path.slack"
+      ],
+      "eventIds": [
+        "16"
+      ],
+      "detailEventIds": [
+        "16"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "slack-poster",
+      "kind": "event",
+      "title": "海报也没有缓冲",
+      "text": "海报五减五也是零，因此是关键任务。",
+      "ruleIds": [
+        "critical-path.slack"
+      ],
+      "eventIds": [
+        "17"
+      ],
+      "detailEventIds": [
+        "17"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "slack-purchase",
+      "kind": "event",
+      "title": "采购有一单位总时差",
+      "text": "采购最晚六，最早五，六减五等于一。",
+      "ruleIds": [
+        "critical-path.slack"
+      ],
+      "eventIds": [
+        "18"
+      ],
+      "detailEventIds": [
+        "18"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "slack-publicity",
+      "kind": "event",
+      "title": "宣传总时差为零",
+      "text": "宣传九减九等于零。",
+      "ruleIds": [
+        "critical-path.slack"
+      ],
+      "eventIds": [
+        "19"
+      ],
+      "detailEventIds": [
+        "19"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "slack-setup",
+      "kind": "event",
+      "title": "布置也有一单位总时差",
+      "text": "布置十二减十一等于一。",
+      "ruleIds": [
+        "critical-path.slack"
+      ],
+      "eventIds": [
+        "20"
+      ],
+      "detailEventIds": [
+        "20"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "slack-activity",
+      "kind": "event",
+      "title": "活动总时差为零",
+      "text": "活动十四减十四等于零。",
+      "ruleIds": [
+        "critical-path.slack"
+      ],
+      "eventIds": [
+        "21"
+      ],
+      "detailEventIds": [
+        "21"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "slack-review",
+      "kind": "event",
+      "title": "复盘总时差为零",
+      "text": "复盘十八减十八等于零。",
+      "ruleIds": [
+        "critical-path.slack"
+      ],
+      "eventIds": [
+        "22"
+      ],
+      "detailEventIds": [
+        "22"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "result",
+      "kind": "event",
+      "title": "五项零余量任务现在全部确认",
+      "text": "全部算完，五项时差为零，它们是关键任务。",
+      "ruleIds": [
+        "critical-path.stop"
+      ],
+      "eventIds": [
+        "23"
+      ],
+      "detailEventIds": [
+        "23"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "shared",
+      "kind": "comparison",
+      "title": "同一支线的缓冲不能重复花",
+      "text": "采购与布置串行，工期若各加一，就会超过原总工期。改变时长后必须重算。",
+      "ruleIds": [
+        "critical-path.stop"
+      ],
+      "artworkRegion": [
+        0.01,
+        0.421,
+        0.99,
+        0.594
+      ],
+      "panelExplanations": [
+        "两项总时差都为1，但同一支线共享缓冲。工期变化后要重新计算。"
+      ],
+      "artwork": "../comics/critical-path/summary.png"
+    },
+    {
+      "id": "recap-forward",
+      "kind": "recap",
+      "title": "复盘第一遍：等待较晚前置",
+      "text": "回放前推：把各个前置完成要求取最大。",
+      "ruleIds": [
+        "critical-path.initialize",
+        "critical-path.forward",
+        "critical-path.backward"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "detailEventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "recap-backward",
+      "kind": "recap",
+      "title": "复盘第二遍：服从最紧后继",
+      "text": "回放倒推：后继截止取最小，再减自身工期。",
+      "ruleIds": [
+        "critical-path.backward"
+      ],
+      "eventIds": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "detailEventIds": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "recap-slack",
+      "kind": "recap",
+      "title": "复盘第三遍：比较最晚与最早",
+      "text": "回放时差：最晚减最早，识别零余量环节。",
+      "ruleIds": [
+        "critical-path.slack",
+        "critical-path.stop"
+      ],
+      "eventIds": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23"
+      ],
+      "detailEventIds": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "应用与适用条件",
+      "text": "比赛筹备、工程计划都能用它；前提是无环依赖、可靠时长、资源足够。",
+      "ruleIds": [
+        "critical-path.stop"
+      ],
+      "artworkRegion": [
+        0.01,
+        0.903,
+        0.99,
+        0.985
+      ],
+      "panelExplanations": [
+        "可用于比赛筹备、工程计划、产品发布；需要无环依赖、可靠时长和可行资源条件。"
+      ],
+      "artwork": "../comics/critical-path/summary.png"
+    },
+    {
+      "id": "resource-limit",
+      "kind": "summary",
+      "title": "资源不足时还要另排程",
+      "text": "共用同一设备时要另做资源排程。多条关键路径并存，缩短一项未必缩短项目。",
+      "ruleIds": [
+        "critical-path.stop"
+      ],
+      "artworkRegion": [
+        0.01,
+        0.598,
+        0.99,
+        0.813
+      ],
+      "panelExplanations": [
+        "同一设备不能同时被占用。CPM的工期结论依赖资源足够的假设。"
+      ],
+      "artwork": "../comics/critical-path/summary.png"
+    }
+  ]
+}

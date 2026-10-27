@@ -1,0 +1,44 @@
+{
+  "algorithmId": "reaction-diffusion",
+  "lessonVersion": 2,
+  "traceHash": "2c2febc80c2f3c7d5e5e0bc5d152506b483102ec4dccc9b1c182f1099500aa15",
+  "reviewedAt": "2026-10-25T20:13:53.333407+00:00",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "Gray–Scott 反应扩散：生活类比",
+      "status": "passed",
+      "checks": [
+        "第2版将U自发分裂图纠正为U+2V→3V和反应强度UV²；扩散、补给U、移除V与同步更新含义明确，纹理不冒充真实输出。"
+      ],
+      "corrections": [
+        "保留整体人物、文字与布局，只把底部中间第2“反应”小区改准确。标题写“反应：V促进U转成V”。删除该小区所有颜料水滴数量图，改成大字反应式“U + 2V → 3V”，U青绿、V暖橙，式子不可缺字。式子下一行写“反应强度：UV²”。这表示已有V参与促进反应，不能只画一滴U自发分裂成几滴V。其他扩散、补给移除和示意声明保持原样。"
+      ]
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "Gray–Scott 反应扩散：规则与真实计算",
+      "status": "passed",
+      "checks": [
+        "核对格493首步旧V0.259617、扩散−0.071988、反应0.034707、移除0.025442、新V0.196894；核权重−1/0.2/0.05及同步、限幅说明正确。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "Gray–Scott 反应扩散：结果与适用边界",
+      "status": "passed",
+      "checks": [
+        "核对200步、V>0.1占39%、平均0.112、f=0.036/k=0.062及实际移除率f+k；清晰区分概念花纹、固定时域和稳定性。"
+      ],
+      "corrections": []
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "插画中的自由形态均作为概念示意，精确案例数值与关联教学轨迹核对；未把插画当逐格渲染结果"
+  ]
+}

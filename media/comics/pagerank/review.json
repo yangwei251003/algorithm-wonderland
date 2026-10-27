@@ -1,0 +1,42 @@
+{
+  "algorithmId": "pagerank",
+  "lessonVersion": 2,
+  "traceHash": "324471357a8736e1925dc2c61f5c0f01e945c84e48fb4c8abe470c0a03b5eb5b",
+  "reviewedAt": "2026-10-25T19:18:15.280253+00:00",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "pagerank：生活类比",
+      "status": "passed",
+      "checks": [
+        "查看随机沿链接、随机跳转与无出口回流的展馆类比。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "pagerank：规则计算",
+      "status": "passed",
+      "checks": [
+        "核对0.25×0.85÷2=0.10625，0.0375+0.053125=0.090625；同步旧轮分数和总和1准确。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "pagerank：应用与边界",
+      "status": "passed",
+      "checks": [
+        "核对C34.53%、A/D各23.40%、B18.67%与终值舍入一致；结构信号与真实性分清。"
+      ],
+      "corrections": []
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "示意场景不代表未经计算的新增实验"
+  ]
+}

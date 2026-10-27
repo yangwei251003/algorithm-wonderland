@@ -1,0 +1,48 @@
+{
+  "algorithmId": "bayes",
+  "lessonVersion": 2,
+  "traceHash": "4e13d82874550e7972eaa4937b95e8f6c28d169de5a0d3c624f00570c6547265",
+  "reviewedAt": "2026-10-26",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "贝叶斯更新：生活类比与核心思想",
+      "status": "passed",
+      "checks": [
+        "两条来源进入红灯集合，未将正常品当缺陷",
+        "图示为象征数量不作比例证据",
+        "类比限定产品筛查"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "贝叶斯更新：真实样例的计算规则",
+      "status": "passed",
+      "checks": [
+        "500+9500=10000，450+950=1400正确",
+        "450/1400约32.14%，分母箭头正确",
+        "灵敏度与后验条件已区分"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "贝叶斯更新：用途与适用边界",
+      "status": "passed",
+      "checks": [
+        "三类输入箭头共同决定后验",
+        "基率与假设依赖说明准确",
+        "人物文字清晰"
+      ],
+      "corrections": []
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "漫画为静态科普，逐步计算见同源交互轨迹"
+  ]
+}

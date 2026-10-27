@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "algorithmId": "dfs",
+  "lessonVersion": 2,
+  "traceHash": "3cb84f191209e7d2d7baf1b51c42c9441cf9108bb76f4e57b1e99c432b0e207d",
+  "checkedAt": "2026-10-26",
+  "reviewedAt": "2026-10-26",
+  "reviewer": "Codex：逐张目视检查与真实事件对照",
+  "generator": "built-in imagegen",
+  "status": "accepted",
+  "assets": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "version": 2,
+      "notes": [
+        "按右下左上顺序试路；死胡同格明确标规则示意，本成功案例未执行死路回退。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "version": 2,
+      "notes": [
+        "网格0至15、墙5/9、实际路径一致；回溯方向改为15→11→7→3→2→1→0。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "version": 2,
+      "notes": [
+        "实际7格6步，重新绘制4×4地图；明确DFS不保证最短，与BFS区分。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    }
+  ],
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "按右下左上顺序试路；死胡同格明确标规则示意，本成功案例未执行死路回退。",
+      "status": "passed"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "网格0至15、墙5/9、实际路径一致；回溯方向改为15→11→7→3→2→1→0。",
+      "status": "passed"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "实际7格6步，重新绘制4×4地图；明确DFS不保证最短，与BFS区分。",
+      "status": "passed"
+    }
+  ],
+  "script": {
+    "file": "media/scripts/dfs.json",
+    "beats": 8,
+    "narrationCharacters": 674,
+    "hanCharacters": 602,
+    "status": "authored-and-event-checked",
+    "videoRendered": false,
+    "revision": "删去重复旁白，为150秒内成片保留收尾；规则、事件、对比未删减。"
+  },
+  "limitations": [
+    "这是漫画与脚本审查；未在本记录中宣称成片已渲染或已听评。",
+    "影视动画沿用真实eventIds；类比与反例图不冒充额外计算记录。"
+  ]
+}

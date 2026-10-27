@@ -1,0 +1,509 @@
+{
+  "algorithmId": "ucb",
+  "pronunciations": {
+    "UCB1": "优西比一",
+    "UCB": "优西比"
+  },
+  "beats": [
+    {
+      "id": "analogy",
+      "kind": "analogy",
+      "title": "熟悉的好摊，还是没试够的新摊",
+      "text": "逛美食街，既想吃到好摊，又想给陌生摊位机会。UCB把经验均值与探索奖励合成比较分。每轮先比较，再亲自试一家；最初几次好运不代表一直好。反馈到来，只更新这家记录，下一轮重新计算。",
+      "ruleIds": [
+        "ucb-choose"
+      ],
+      "panelExplanations": [
+        "经验均值与探索奖励一起比较，兼顾收益和证据不足。",
+        "每轮比较选择分，再亲自试一家，观察实际反馈。",
+        "只更新亲自试过的摊位，下一轮重新计算。"
+      ]
+    },
+    {
+      "id": "untried",
+      "kind": "event",
+      "title": "没试过，先给一次机会",
+      "text": "初始三家都未试，选择分设为无穷大。甲乙丙同分，按固定顺序先试甲，另两家等待后续机会。",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "ucb-choose",
+        "ucb-update"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "摊位 A",
+        "摊位 B",
+        "摊位 C"
+      ]
+    },
+    {
+      "id": "first-feedback",
+      "kind": "event",
+      "title": "甲失败，只改甲的记录",
+      "text": "甲得到零奖励，尝试数加一，成功数仍为零；其他摊位记录不变。",
+      "eventIds": [
+        "1"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "first",
+      "kind": "event",
+      "title": "同规则重复：让每家都有样本",
+      "text": "第二次乙仍未试，优先试乙；",
+      "eventIds": [
+        "2"
+      ],
+      "ruleIds": [
+        "ucb-choose",
+        "ucb-update"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "second-feedback",
+      "kind": "event",
+      "title": "同规则重复：让每家都有样本",
+      "text": "实际得到奖励，记一次尝试、一次成功。",
+      "eventIds": [
+        "3"
+      ],
+      "ruleIds": [
+        "ucb-choose",
+        "ucb-update"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "third",
+      "kind": "event",
+      "title": "同规则重复：再试丙",
+      "text": "第三次试丙，",
+      "eventIds": [
+        "4"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "third-feedback",
+      "kind": "event",
+      "title": "同规则重复：再试丙",
+      "text": "没有奖励。现在三家各试一次，均值零、一、零；这还不足以断言乙永远最好。",
+      "eventIds": [
+        "5"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "score",
+      "kind": "event",
+      "title": "第四次的分数怎么算",
+      "text": "第四次，各试过一次。探索项是二乘四的自然对数，再开平方，约一点六六五。乙的均值一，加探索项得到二点六六五。",
+      "eventIds": [
+        "6"
+      ],
+      "ruleIds": [
+        "ucb-choose"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "detailEventIds": [
+        "6"
+      ]
+    },
+    {
+      "id": "score-a",
+      "kind": "comparison",
+      "title": "为什么本轮选乙",
+      "text": "甲只有一点六六五，",
+      "eventIds": [
+        "6"
+      ],
+      "detailEventIds": [
+        "6"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "摊位 A"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "score-b",
+      "kind": "comparison",
+      "title": "为什么本轮选乙",
+      "text": "乙达到二点六六五，",
+      "eventIds": [
+        "6"
+      ],
+      "detailEventIds": [
+        "6"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "摊位 B"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "score-c",
+      "kind": "comparison",
+      "title": "为什么本轮选乙",
+      "text": "丙也只有一点六六五。",
+      "eventIds": [
+        "6"
+      ],
+      "detailEventIds": [
+        "6"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "摊位 C"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "score-comparison",
+      "kind": "comparison",
+      "title": "为什么本轮选乙",
+      "text": "因此本轮选乙；分数超过一，是探索加成，不是成功概率。",
+      "eventIds": [
+        "6"
+      ],
+      "detailEventIds": [
+        "6"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "摊位 B"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "feedback",
+      "kind": "event",
+      "title": "失败也会改变下一次决策",
+      "text": "乙这次没有奖励，尝试变两次，成功仍一次，经验均值降为二分之一。失败会改变下一轮计分，不会永久淘汰乙。",
+      "eventIds": [
+        "7"
+      ],
+      "ruleIds": [
+        "ucb-update"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "repeat",
+      "kind": "recap",
+      "title": "同规则重复：重新计分再尝试",
+      "text": "剩余选择加速回放。试得少的摊位探索项较大，试得多就逐渐缩小；总轮次增长，又让被冷落的选项获得机会。每轮都重新比较，只更新真正尝试的一家。算法看不到模拟器里隐藏的真实成功率。",
+      "eventIds": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69",
+        "70",
+        "71",
+        "72",
+        "73",
+        "74",
+        "75",
+        "76",
+        "77"
+      ],
+      "ruleIds": [
+        "ucb-choose",
+        "ucb-update"
+      ]
+    },
+    {
+      "id": "last-a",
+      "kind": "comparison",
+      "title": "最后一轮，为何选丙",
+      "text": "第四十次，甲约一点三一二，",
+      "eventIds": [
+        "78"
+      ],
+      "ruleIds": [
+        "ucb-choose",
+        "ucb-update"
+      ],
+      "detailEventIds": [
+        "78"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "摊位 A"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "last-b",
+      "kind": "comparison",
+      "title": "最后一轮，为何选丙",
+      "text": "乙约一点三零七，",
+      "eventIds": [
+        "78"
+      ],
+      "ruleIds": [
+        "ucb-choose",
+        "ucb-update"
+      ],
+      "detailEventIds": [
+        "78"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "摊位 B"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "last",
+      "kind": "comparison",
+      "title": "最后一轮，为何选丙",
+      "text": "丙约一点三六九。因此丙最高，获得本轮试验机会。",
+      "eventIds": [
+        "78"
+      ],
+      "ruleIds": [
+        "ucb-choose",
+        "ucb-update"
+      ],
+      "detailEventIds": [
+        "78"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "摊位 C"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "last-feedback",
+      "kind": "event",
+      "title": "试验结果到来以后再更新",
+      "text": "丙得到奖励，成功九次、尝试十四次。",
+      "eventIds": [
+        "79"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "outcome",
+      "kind": "comparison",
+      "title": "试验结果到来以后再更新",
+      "text": "全程累计二十四份奖励，尝试最多的是乙；这是固定种子记录，不是最终裁决。",
+      "eventIds": [],
+      "pageModes": [],
+      "artwork": "../comics/ucb/summary.png",
+      "artworkRegion": [
+        0,
+        0.13,
+        0.56,
+        0.715
+      ],
+      "panelExplanations": [
+        "四十次试验的真实记录：甲7次、乙19次、丙14次，累计奖励24。尝试最多不等于已经证明永远最好。"
+      ]
+    },
+    {
+      "id": "summary-use",
+      "kind": "summary",
+      "title": "用探索补足证据",
+      "text": "它适合能反复试、成本接近的方案测试和推荐实验。",
+      "ruleIds": [
+        "ucb-choose",
+        "ucb-update"
+      ],
+      "panelExplanations": [
+        "适用：反复试验、反馈可比较、成本接近。"
+      ],
+      "artwork": "../comics/ucb/summary.png",
+      "artworkRegion": [
+        0,
+        0.735,
+        0.44,
+        0.96
+      ]
+    },
+    {
+      "id": "summary-evaluate",
+      "kind": "summary",
+      "title": "用探索补足证据",
+      "text": "期望遗憾用隐藏真值评价错失收益，仅供实验比较。",
+      "ruleIds": [
+        "ucb-choose",
+        "ucb-update"
+      ],
+      "panelExplanations": [
+        "本例累计奖励24、期望遗憾5.21；隐藏真值只用于评估，不会参与算法选择。"
+      ],
+      "artwork": "../comics/ucb/summary.png",
+      "artworkRegion": [
+        0,
+        0.13,
+        0.56,
+        0.715
+      ]
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "用探索补足证据",
+      "text": "环境中途改变时旧记录仍保留，可能拖慢适应；应改变场景、重复多次，看长期趋势。",
+      "ruleIds": [
+        "ucb-choose",
+        "ucb-update"
+      ],
+      "panelExplanations": [
+        "环境变化后旧记录仍保留，可能拖慢适应；改变场景并重复试验，观察长期趋势。"
+      ],
+      "artwork": "../comics/ucb/summary.png",
+      "artworkRegion": [
+        0.575,
+        0.13,
+        0.99,
+        0.715
+      ]
+    }
+  ],
+  "artworkPanels": {
+    "analogy": [
+      [
+        0.29,
+        0.11,
+        0.99,
+        0.65
+      ],
+      [
+        0.01,
+        0.66,
+        0.675,
+        0.91
+      ],
+      [
+        0.695,
+        0.66,
+        0.99,
+        0.91
+      ]
+    ],
+    "summary": [
+      [
+        0,
+        0.735,
+        0.44,
+        0.96
+      ],
+      [
+        0,
+        0.13,
+        0.56,
+        0.715
+      ],
+      [
+        0.575,
+        0.13,
+        0.99,
+        0.715
+      ]
+    ]
+  }
+}

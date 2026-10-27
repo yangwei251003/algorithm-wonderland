@@ -1,0 +1,345 @@
+{
+  "algorithmId": "topological",
+  "beats": [
+    {
+      "id": "intro-goal",
+      "kind": "analogy",
+      "title": "每项前置是一把锁",
+      "text": "装配项目有先后依赖。每个未完成前置像一把锁；装配要等备料和加工都完成。",
+      "ruleIds": [
+        "topological.initialize"
+      ],
+      "panelExplanations": [
+        "每个前置条件像一把锁；指向任务的每条边贡献一个入度。",
+        "完成A只打开它对应的锁。多个前置的任务可能仍需等待。",
+        "剩余前置全为零才进入可做队列。取出任务后逐条更新后继，不能全部直接解锁。"
+      ],
+      "artworkRegion": [
+        0.012,
+        0.155,
+        0.988,
+        0.394
+      ],
+      "panelIndex": 0
+    },
+    {
+      "id": "intro-partial",
+      "kind": "analogy",
+      "title": "完成一个，只开对应的锁",
+      "text": "备料完成，加工可以开始；装配却仍要等加工。完成一个前置，不代表全部满足。",
+      "ruleIds": [
+        "topological.initialize"
+      ],
+      "panelExplanations": [
+        "每个前置条件像一把锁；指向任务的每条边贡献一个入度。",
+        "完成A只打开它对应的锁。多个前置的任务可能仍需等待。",
+        "剩余前置全为零才进入可做队列。取出任务后逐条更新后继，不能全部直接解锁。"
+      ],
+      "artworkRegion": [
+        0.012,
+        0.403,
+        0.988,
+        0.675
+      ],
+      "panelIndex": 1
+    },
+    {
+      "id": "intro-ready",
+      "kind": "analogy",
+      "title": "全部归零，才可入队",
+      "text": "两项都完成，装配的剩余前置才降到零，进入可做队列。下面逐条计算完整五任务案例。",
+      "ruleIds": [
+        "topological.initialize"
+      ],
+      "panelExplanations": [
+        "每个前置条件像一把锁；指向任务的每条边贡献一个入度。",
+        "完成A只打开它对应的锁。多个前置的任务可能仍需等待。",
+        "剩余前置全为零才进入可做队列。取出任务后逐条更新后继，不能全部直接解锁。"
+      ],
+      "artworkRegion": [
+        0.012,
+        0.683,
+        0.988,
+        0.926
+      ],
+      "panelIndex": 2
+    },
+    {
+      "id": "setup",
+      "kind": "event",
+      "title": "每条指入边贡献一个前置",
+      "text": "五项任务的前置数依次为零、一、二、二、二。只有A为零，可以入队。",
+      "eventIds": [
+        "0"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "first",
+      "kind": "event",
+      "title": "先取A，再解锁B",
+      "text": "取出A，沿它到B的边减一。B从一降到零，加入队列。",
+      "eventIds": [
+        "1",
+        "2"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "wait-c",
+      "kind": "event",
+      "title": "A完成，C仍有一把锁",
+      "text": "沿A到C的边，C从二减到一，仍需等待。",
+      "eventIds": [
+        "3"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "wait-d",
+      "kind": "event",
+      "title": "D也要分别检查",
+      "text": "再沿A到D的边，D也是二减一，不能提前开始。每条边各减少一个前置。",
+      "eventIds": [
+        "4"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "second",
+      "kind": "event",
+      "title": "B完成，C才全部满足",
+      "text": "取出B，沿B到C的边减一。C由一降到零，现在才可入队。",
+      "eventIds": [
+        "5",
+        "6"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "wait-e",
+      "kind": "event",
+      "title": "E仍有一个前置未完成",
+      "text": "B到E的边也减一，但E由二变一，所以暂缓。若有多项可做，本版按先进先出。",
+      "eventIds": [
+        "7"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "unlock-d",
+      "kind": "event",
+      "title": "取出C，解锁D",
+      "text": "取出C，沿C到D减一。D的最后一个前置解除，可以入队。",
+      "eventIds": [
+        "8",
+        "9"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "unlock-e",
+      "kind": "event",
+      "title": "取出D，解锁E",
+      "text": "然后取出D，沿D到E减一。E也归零，加入队列。",
+      "eventIds": [
+        "10",
+        "11"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "finish",
+      "kind": "event",
+      "title": "执行E，核对全部完成",
+      "text": "取出E，再检查完成数等于五。得到A、B、C、D、E这个合法顺序。",
+      "eventIds": [
+        "12",
+        "13"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "cycle",
+      "kind": "comparison",
+      "title": "真实反例：三个任务互相等待",
+      "text": "换成A指向B、B指向C、C又指向A。三项入度都是一，没有零入度任务。队列一开始就空，完成数为零，算法明确报告循环依赖。",
+      "caseFile": "topological-review-counterexample.json",
+      "caseEventIds": [
+        "0",
+        "1"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after",
+      "ruleIds": [
+        "topological.initialize",
+        "topological.stop"
+      ]
+    },
+    {
+      "id": "cycle-outside",
+      "kind": "summary",
+      "title": "被堵住，不等于在环上",
+      "text": "再看示意：X和Y互相等待，Z只依赖Y。Z也无法开始，但不在环里。因此未安排的点，不一定全属于环。",
+      "ruleIds": [
+        "topological.stop"
+      ],
+      "panelExplanations": [
+        "本例依次安排A、B、C、D、E，每项执行时剩余前置均为零。",
+        "互相等待形成环；依赖环的外部任务也会被堵住，剩下的点未必全在环里。",
+        "课程先修、安装依赖、制造步骤可用拓扑排序。只处理先后，不计算工期与资源。"
+      ],
+      "artworkRegion": [
+        0.012,
+        0.368,
+        0.988,
+        0.597
+      ],
+      "panelIndex": 1
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "每次解锁都有一条边",
+      "text": "加速复盘同一组记录：反复应用零入度入队、逐边减一的规则，最后检查覆盖数量。先后是否合法，与工期多长，是两个问题。",
+      "ruleIds": [
+        "topological.initialize",
+        "topological.select",
+        "topological.unlock",
+        "topological.stop"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ]
+    },
+    {
+      "id": "finish-use",
+      "kind": "summary",
+      "title": "什么时候想到拓扑排序",
+      "text": "课程先修、安装依赖和制造步骤，都可用这种方法。它不自动计算工期，也不分配人员。",
+      "ruleIds": [
+        "topological.stop"
+      ],
+      "panelExplanations": [
+        "有明确前置关系，就先检查依赖能否排开。拓扑排序只给合法先后，不处理时长与人手。"
+      ],
+      "artworkRegion": [
+        0.012,
+        0.82,
+        0.988,
+        0.993
+      ],
+      "panelIndex": 2
+    },
+    {
+      "id": "finish-question",
+      "kind": "summary",
+      "title": "完成一个前置，就能开工吗？",
+      "text": "判断题：完成一个前置就能开工吗？不能。只有剩余前置数降到零，才可以。",
+      "ruleIds": [
+        "topological.initialize"
+      ],
+      "panelExplanations": [
+        "不能。图中备料完成只解除对应的一项前置，装配仍需等待加工。"
+      ],
+      "artwork": "../comics/topological/analogy.png",
+      "artworkRegion": [
+        0.012,
+        0.403,
+        0.988,
+        0.675
+      ],
+      "panelIndex": 1
+    }
+  ],
+  "artworkPanels": {
+    "analogy": [
+      [
+        0.012,
+        0.155,
+        0.988,
+        0.394
+      ],
+      [
+        0.012,
+        0.403,
+        0.988,
+        0.675
+      ],
+      [
+        0.012,
+        0.683,
+        0.988,
+        0.926
+      ]
+    ],
+    "summary": [
+      [
+        0.012,
+        0.076,
+        0.988,
+        0.362
+      ],
+      [
+        0.012,
+        0.368,
+        0.988,
+        0.597
+      ],
+      [
+        0.012,
+        0.603,
+        0.988,
+        0.816
+      ],
+      [
+        0.012,
+        0.82,
+        0.988,
+        0.993
+      ]
+    ]
+  }
+}

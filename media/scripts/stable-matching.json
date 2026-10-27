@@ -1,0 +1,207 @@
+{
+  "algorithmId": "stable-matching",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "申请是暂时接受的过程",
+      "text": "学生各有导师志愿，导师也有学生偏好。学生按志愿逐个申请，导师暂时保留最喜欢的申请者，以后收到更喜欢的人才替换。被拒者继续申请下一志愿。这套延迟接受规则追求的是稳定。",
+      "ruleIds": [
+        "stable-matching.initialize"
+      ],
+      "panelExplanations": [
+        "学生1先申请导师3。空缺时先暂留，后续仍可以更换。",
+        "导师3更喜欢学生3，于是保留学生3，让学生1重新成为自由申请者。",
+        "学生1下一志愿是导师1。按固定志愿继续，不重试已经拒绝过的导师。"
+      ]
+    },
+    {
+      "id": "setup",
+      "kind": "event",
+      "title": "完整偏好，没有并列",
+      "text": "本例有三位学生和三位导师，双方都有完整、不并列的偏好。初始全部空缺，学生自由队列按编号排列，每人记录下一志愿，不重复申请已试对象。",
+      "ruleIds": [
+        "stable-matching.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "first",
+      "kind": "event",
+      "title": "空缺导师为何先答应",
+      "text": "学生一先向导师三申请。导师三空缺，暂时接受。接受条件是尚无搭配，或者更喜欢新申请者；暂时接受并不永久锁定。",
+      "ruleIds": [
+        "stable-matching.propose",
+        "stable-matching.choose"
+      ],
+      "eventIds": [
+        "1",
+        "2"
+      ],
+      "detailEventIds": [
+        "2"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "second",
+      "kind": "event",
+      "title": "学生二另投导师一",
+      "text": "学生二申请导师一。导师一也空缺，因此接受。两位学生各自按志愿行动，不是所有人同时争同一名导师。",
+      "ruleIds": [
+        "stable-matching.propose",
+        "stable-matching.choose"
+      ],
+      "eventIds": [
+        "3",
+        "4"
+      ],
+      "detailEventIds": [
+        "4"
+      ],
+      "pageModes": [
+        "rule",
+        "comparison"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "replace",
+      "kind": "event",
+      "title": "导师三为什么换人",
+      "text": "学生三也申请导师三。导师三把学生三排第一，原搭配学生一排第三，所以留下更喜欢的学生三。学生一回到自由队列。只改变当前搭配，比较始终依据原来的偏好排名。",
+      "ruleIds": [
+        "stable-matching.propose",
+        "stable-matching.choose"
+      ],
+      "eventIds": [
+        "5",
+        "6"
+      ],
+      "detailEventIds": [
+        "6"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "reject",
+      "kind": "event",
+      "title": "导师一为什么拒绝",
+      "text": "学生一接着申请导师一。导师一把新来的学生一排第三，把现有学生二排第二，因此拒绝新申请，保留更喜欢的学生二。",
+      "ruleIds": [
+        "stable-matching.propose",
+        "stable-matching.choose"
+      ],
+      "eventIds": [
+        "7",
+        "8"
+      ],
+      "detailEventIds": [
+        "8"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "retry",
+      "kind": "event",
+      "title": "被拒后改投下一志愿",
+      "text": "学生一再申请尚未试过的导师二。导师二空缺，接受。最终学生一配导师二，学生二配导师一，学生三配导师三，共五次提议。",
+      "ruleIds": [
+        "stable-matching.propose",
+        "stable-matching.choose"
+      ],
+      "eventIds": [
+        "9",
+        "10"
+      ],
+      "detailEventIds": [
+        "10"
+      ],
+      "pageModes": [
+        "rule",
+        "comparison"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "why",
+      "kind": "comparison",
+      "title": "被拒绝以后为什么不用回头",
+      "text": "某学生若更想去另一位导师，他必然已经向更高志愿申请过并被拒绝。导师拒绝时已有更喜欢的人，以后只会保留更喜欢的。因此这位导师不会同时愿意与他另组一对。正是双方都想换的配对不存在，才叫稳定。",
+      "ruleIds": [
+        "stable-matching.stop"
+      ],
+      "eventIds": [
+        "11"
+      ],
+      "detailEventIds": [
+        "11"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "回放五次提议",
+      "text": "现在连起来回放全部五次提议。留意未试志愿按序申请，导师只换更喜欢的人，落选者继续试。",
+      "ruleIds": [
+        "stable-matching.initialize",
+        "stable-matching.propose",
+        "stable-matching.choose",
+        "stable-matching.stop"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ]
+    },
+    {
+      "id": "recap-result",
+      "kind": "event",
+      "title": "稳定并不是满意度加总最高",
+      "text": "本例核对得到零个阻挡配对。但稳定不等于总满意度最大，也不保证每个人获得第一志愿；换由另一方主动申请，结果可能变化。",
+      "ruleIds": [
+        "stable-matching.stop"
+      ],
+      "eventIds": [
+        "11"
+      ],
+      "detailEventIds": [
+        "11"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "双向偏好的匹配工具",
+      "text": "导师选择、项目组招募等双方都有偏好的场景，可先考虑稳定匹配。真实问题如果有名额、并列或不可接受对象，需要相应变体。按最高未试志愿申请，接收方只向更喜欢者换，落选者继续试。",
+      "ruleIds": [
+        "stable-matching.stop"
+      ],
+      "panelExplanations": [
+        "本例最终配对：学生1—导师2、学生2—导师1、学生3—导师3；五次提议。",
+        "匿名人物只是阻挡配对的定义示意：未搭配的双方都更想换到对方。本例没有这种配对。",
+        "稳定不等于总满意度最高。完整无并列偏好、一对一是本版假设，其他条件需要变体。"
+      ]
+    }
+  ]
+}

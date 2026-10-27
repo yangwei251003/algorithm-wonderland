@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "algorithmId": "interval-scheduling",
+  "lessonVersion": 2,
+  "traceHash": "bd188e4ca5a78ddc32f32a74067fdbdf5cd0c08fd62a78c70b1a4aa9646eb870",
+  "checkedAt": "2026-10-26",
+  "reviewedAt": "2026-10-26",
+  "reviewer": "Codex：逐张目视检查与真实事件对照",
+  "generator": "built-in imagegen",
+  "status": "accepted",
+  "assets": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "version": 1,
+      "notes": [
+        "活动3的4–10先选，活动4/6在6开始冲突，活动1的15–20可接。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "version": 2,
+      "notes": [
+        "按结束时刻重新排列画格，活动1先于超时26/28两场；冲突与超上限区分。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "version": 1,
+      "notes": [
+        "最大数量2，早结束交换理由与加权目标边界明确；首尾相接为演示约定。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    }
+  ],
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "活动3的4–10先选，活动4/6在6开始冲突，活动1的15–20可接。",
+      "status": "passed"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "按结束时刻重新排列画格，活动1先于超时26/28两场；冲突与超上限区分。",
+      "status": "passed"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "最大数量2，早结束交换理由与加权目标边界明确；首尾相接为演示约定。",
+      "status": "passed"
+    }
+  ],
+  "script": {
+    "file": "media/scripts/interval-scheduling.json",
+    "beats": 8,
+    "narrationCharacters": 651,
+    "hanCharacters": 583,
+    "status": "authored-and-event-checked",
+    "videoRendered": false
+  },
+  "limitations": [
+    "这是漫画与脚本审查，成片渲染及音频验收由统一媒体流程另行记录。",
+    "类比、局部规则示意与反例均不冒充额外真实执行记录。"
+  ]
+}

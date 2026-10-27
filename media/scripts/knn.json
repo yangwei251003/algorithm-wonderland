@@ -1,0 +1,230 @@
+{
+  "algorithmId": "knn",
+  "pronunciations": {
+    "KNN": "K近邻"
+  },
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "让相似的水果来投票",
+      "text": "新水果不知属于哪类，分拣员量出宽高，找几个外形最像、类别已知的水果投票。颜色只是类别标记，不参与远近计算。关键是，谁有资格投票？",
+      "ruleIds": [
+        "knn.initialize"
+      ]
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "训练八点，留出两点",
+      "text": "十个点中，每五个留出一个验证，剩下八个才是候选邻居。空心点不参与训练，不能给自己投票。本例取三个邻居，同距离按训练输入顺序处理。",
+      "ruleIds": [
+        "knn.initialize"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "eventIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "first-distance",
+      "kind": "event",
+      "title": "横差六、纵差四",
+      "text": "第一个验证点坐标十二、二十，候选坐标十八、二十四。横向差六，纵向差四，平方相加得到五十二。不开平方，也不会改变远近次序。",
+      "ruleIds": [
+        "knn.distance"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "calculationKeys": [
+        "x",
+        "y",
+        "qx",
+        "qy"
+      ],
+      "operandsPerPage": 4,
+      "eventIds": [
+        "1"
+      ]
+    },
+    {
+      "id": "all-distance",
+      "kind": "recap",
+      "title": "其余七个也逐一测量",
+      "text": "其余七个候选重复相同计算。不能遇到同类就停，也不能先按颜色筛选。所有候选都先量距离，此时还没有投票。",
+      "ruleIds": [
+        "knn.distance"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "eventIds": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ]
+    },
+    {
+      "id": "choose",
+      "kind": "event",
+      "title": "完整排序，截取前三",
+      "text": "八个距离排好后，最小三个是五十二、一百四十八、一百六十四，只有这三位进入投票。",
+      "ruleIds": [
+        "knn.choose"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "eventIds": [
+        "9"
+      ]
+    },
+    {
+      "id": "reject",
+      "kind": "event",
+      "title": "第四名为何不能投票",
+      "text": "三百八十八排在第四，超过三个名额，所以本次不入选。不是这个训练点无用；换查询点，就要重新比较。",
+      "ruleIds": [
+        "knn.choose"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "2"
+      ],
+      "eventIds": [
+        "9"
+      ]
+    },
+    {
+      "id": "vote",
+      "kind": "event",
+      "title": "每位邻居一票",
+      "text": "入选三位全是绿色零类，橙色一类得零票。每人一票，不按远近加权。先判为零类，最后才和留出点的真实类别核对。",
+      "ruleIds": [
+        "knn.vote"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "eventIds": [
+        "10"
+      ]
+    },
+    {
+      "id": "repeat-distances",
+      "kind": "recap",
+      "title": "第二题重新量全部距离",
+      "text": "换成第二个验证点后，旧的邻居不能沿用。再对全部八位候选计算距离，逐项记录。",
+      "ruleIds": [
+        "knn.distance"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "eventIds": [
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18"
+      ]
+    },
+    {
+      "id": "repeat-choose",
+      "kind": "event",
+      "title": "第二题重新排序",
+      "text": "新排序的前三个距离平方是五十二、八十和一百六十四。选中的训练点和上一题不同。",
+      "ruleIds": [
+        "knn.choose"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "eventIds": [
+        "19"
+      ]
+    },
+    {
+      "id": "repeat-vote",
+      "kind": "event",
+      "title": "第二题独立投票",
+      "text": "三位入选者都属于橙色一类，三票对零票，预测一类，再与真实类别核对。",
+      "ruleIds": [
+        "knn.vote"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "eventIds": [
+        "20"
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "event",
+      "title": "两题答对，结论有边界",
+      "text": "两个留出点都答对，但这么小的一次验证，不能证明未来永远正确。",
+      "ruleIds": [
+        "knn.vote"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "eventIds": [
+        "21"
+      ]
+    },
+    {
+      "id": "contrast",
+      "kind": "comparison",
+      "title": "先问用什么尺度量",
+      "text": "宽度用毫米，高度却用米，一维可能支配距离。先统一尺度，再讨论谁更近。邻居数太小怕噪声，太大又可能混进别类。",
+      "ruleIds": [
+        "knn.distance",
+        "knn.choose"
+      ],
+      "artwork": "../comics/knn/summary.png",
+      "artworkRegion": [
+        0.463,
+        0.477,
+        0.997,
+        0.797
+      ],
+      "panelExplanations": [
+        "这里比较测量尺度；换单位会改变两维对距离的相对贡献。"
+      ]
+    },
+    {
+      "id": "finish",
+      "kind": "summary",
+      "title": "量距离、取近邻、再投票",
+      "text": "KNN适合相似样本分类与简单识别。每次查询重新找邻居，只让入选者投票，再用独立样本核对。距离怎么设计，往往比投票更重要。",
+      "ruleIds": [
+        "knn.distance",
+        "knn.choose",
+        "knn.vote"
+      ],
+      "artworkRegion": [
+        0.478,
+        0.137,
+        0.995,
+        0.475
+      ],
+      "panelExplanations": [
+        "相似样本给新对象投票；可靠性仍需独立验证。"
+      ]
+    }
+  ]
+}

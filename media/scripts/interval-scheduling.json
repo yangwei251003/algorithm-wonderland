@@ -1,0 +1,265 @@
+{
+  "algorithmId": "interval-scheduling",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "一个场地怎样多办几场",
+      "text": "校园只有一个场地，活动时段固定，目标是数量最多。",
+      "ruleIds": [
+        "interval-scheduling.initialize"
+      ],
+      "panelExplanations": [
+        "单一场地、固定时段，每场同等计数；目标是尽量多安排活动。"
+      ],
+      "artwork": "../comics/interval-scheduling/analogy.png",
+      "artworkRegion": [
+        0,
+        0.085,
+        1,
+        0.341
+      ]
+    },
+    {
+      "id": "intro-greedy",
+      "kind": "analogy",
+      "title": "一个场地怎样多办几场",
+      "text": "先选结束最早的可行活动，给后面留时间，不是开始最早或持续最短优先。",
+      "ruleIds": [
+        "interval-scheduling.initialize"
+      ],
+      "panelExplanations": [
+        "先比较结束时间，再检查与已选场次能否相接；不是开始早或时间短就先选。"
+      ],
+      "artwork": "../comics/interval-scheduling/analogy.png",
+      "artworkRegion": [
+        0,
+        0.348,
+        1,
+        0.602
+      ]
+    },
+    {
+      "id": "setup",
+      "kind": "event",
+      "title": "先按结束时刻排队",
+      "text": "本例时段上限二十五，六场结束时刻排成十、十二、十五、二十、二十六、二十八。每次都检查重叠和是否超出可用时段。",
+      "ruleIds": [
+        "interval-scheduling.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "choose",
+      "kind": "event",
+      "title": "第一场为什么接受",
+      "text": "活动三从四开始、十结束。四不早于初始可用时刻零，十也不超过上限二十五，所以接受，",
+      "ruleIds": [
+        "interval-scheduling.choose"
+      ],
+      "eventIds": [
+        "1"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ],
+      "operandsPerPage": 4,
+      "stateView": "before"
+    },
+    {
+      "id": "choose-write",
+      "kind": "event",
+      "title": "第一场为什么接受",
+      "text": "并把上次结束时刻改成十。",
+      "ruleIds": [
+        "interval-scheduling.choose"
+      ],
+      "eventIds": [
+        "1"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "conflict",
+      "kind": "event",
+      "title": "十二结束也可能冲突",
+      "text": "活动四六开始、十二结束，开始六小于已选末尾十，发生重叠，因此拒绝。结束较早还不够，必须与已经选中的场次兼容。",
+      "ruleIds": [
+        "interval-scheduling.choose"
+      ],
+      "eventIds": [
+        "2"
+      ],
+      "detailEventIds": [
+        "2"
+      ]
+    },
+    {
+      "id": "conflict-six",
+      "kind": "event",
+      "title": "活动六为何同样拒绝",
+      "text": "活动六也是六开始，到十五结束，六仍小于已选末尾十，因此拒绝。这是区间冲突，不是名字靠后或持续较长造成的。",
+      "ruleIds": [
+        "interval-scheduling.choose"
+      ],
+      "eventIds": [
+        "3"
+      ],
+      "detailEventIds": [
+        "3"
+      ]
+    },
+    {
+      "id": "next",
+      "kind": "event",
+      "title": "十五开始，可以接上",
+      "text": "活动一十五开始、二十结束。十五不早于十，二十不超过上限二十五，因此接受，",
+      "ruleIds": [
+        "interval-scheduling.choose"
+      ],
+      "eventIds": [
+        "4"
+      ],
+      "detailEventIds": [
+        "4"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "operandsPerPage": 4,
+      "stateView": "before"
+    },
+    {
+      "id": "next-write",
+      "kind": "event",
+      "title": "十五开始，可以接上",
+      "text": "将已选末尾更新到二十。",
+      "ruleIds": [
+        "interval-scheduling.choose"
+      ],
+      "eventIds": [
+        "4"
+      ],
+      "detailEventIds": [
+        "4"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "late-five",
+      "kind": "event",
+      "title": "不重叠，仍可能超时",
+      "text": "活动五二十一开始，没有重叠，却到二十六才结束，比上限二十五晚，必须拒绝。兼容已选场次与放得进可用时段，是两项独立检查。",
+      "ruleIds": [
+        "interval-scheduling.choose"
+      ],
+      "eventIds": [
+        "5"
+      ],
+      "detailEventIds": [
+        "5"
+      ]
+    },
+    {
+      "id": "late-two",
+      "kind": "event",
+      "title": "另一个超时活动也拒绝",
+      "text": "活动二同样二十一开始，但到二十八结束，也越过二十五的截止。不能只看开始时刻合法，就忽略结束时刻。",
+      "ruleIds": [
+        "interval-scheduling.choose"
+      ],
+      "eventIds": [
+        "6"
+      ],
+      "detailEventIds": [
+        "6"
+      ]
+    },
+    {
+      "id": "proof",
+      "kind": "comparison",
+      "title": "早结束为什么能保证数量",
+      "text": "把某个最优安排的第一场，换成结束更早的可行活动，不会挤掉后续场次。因此总存在最优安排从它开始。选定以后，对剩余时间重复同样理由，得到数量最优。",
+      "ruleIds": [],
+      "artwork": "../comics/interval-scheduling/summary.png",
+      "artworkRegion": [
+        0,
+        0.365,
+        1,
+        0.62
+      ],
+      "panelExplanations": [
+        "交换论证示意（不是本例的活动编号）：把第一场换成结束更早的可行场次，原本能接上的后续场次仍能接上；对剩余时段重复。"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "六次判断，各有原因",
+      "text": "完整回放按结束时刻检查，",
+      "ruleIds": [
+        "interval-scheduling.initialize",
+        "interval-scheduling.choose",
+        "interval-scheduling.stop"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "result",
+      "kind": "event",
+      "title": "六次判断，各有原因",
+      "text": "接受活动三与一，拒绝两个重叠和两个超时活动，最后两场。这里允许首尾相接，清场时间要另入约束。",
+      "ruleIds": [
+        "interval-scheduling.initialize",
+        "interval-scheduling.choose",
+        "interval-scheduling.stop"
+      ],
+      "eventIds": [
+        "7"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "目标改变，方法也要变",
+      "text": "会议室预约和固定时段观看计划可用。活动收入不同，最多场未必收入最高。先确认单一资源、固定时段和最大数量目标，才能沿用最早结束保证。",
+      "ruleIds": [
+        "interval-scheduling.stop"
+      ],
+      "panelExplanations": [
+        "适用：单一资源、固定时段、最大数量。若每场收入不同，最多场不等于最高收入；清场时间也需加入约束。"
+      ],
+      "artwork": "../comics/interval-scheduling/summary.png",
+      "artworkRegion": [
+        0,
+        0.625,
+        1,
+        0.833
+      ]
+    }
+  ]
+}

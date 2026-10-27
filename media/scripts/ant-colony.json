@@ -1,0 +1,425 @@
+{
+  "algorithmId": "ant-colony",
+  "pronunciations": {
+    "ACS": "蚁群系统"
+  },
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "留下会淡去的路标",
+      "text": "蚂蚁留下会淡去的路标，伙伴结合记号和距离选择下一城。走完短路线，留下更多记号；旧记号先褪色，减少对旧选择的依赖。这是算法类比，不是昆虫行为全貌。",
+      "ruleIds": [
+        "ant-colony.initialize",
+        "ant-colony.deposit"
+      ],
+      "panelExplanations": [
+        "路标强度与距离共同决定权重，只去未访问城市。漫画距离6和3仅为类比，不冒充本例数据。",
+        "整条闭环越短，每条经过边获得的新增记号越多；需要走回起点才能评价。",
+        "每轮所有旧记号先蒸发，再由所有蚂蚁沿各自完整路线补充，不只冠军留信号。"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "setup",
+      "kind": "event",
+      "title": "先规定本版规则",
+      "text": "本例四城、三只蚂蚁、五轮，初始信息素为一。只在未访问城市中选择。权重是信息素除以距离平方，再除以所有候选权重之和，变成概率。",
+      "ruleIds": [
+        "ant-colony.initialize",
+        "ant-colony.choose"
+      ],
+      "eventIds": [
+        "0",
+        "1"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "choose",
+      "kind": "event",
+      "title": "抽签落在哪一段就去哪里",
+      "text": "首步去二、三、四的概率约百分之三十一、十九、五十。抽签约零点七二三，落入四的区间，因此去四。二和三留待后面，不能说它们是坏路线。",
+      "ruleIds": [
+        "ant-colony.choose"
+      ],
+      "eventIds": [
+        "2"
+      ],
+      "detailEventIds": [
+        "2"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "continue-two",
+      "kind": "event",
+      "title": "从四出发，选中城市二",
+      "text": "到四后再选二。",
+      "ruleIds": [
+        "ant-colony.choose",
+        "ant-colony.evaluate"
+      ],
+      "eventIds": [
+        "3"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "rule"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "continue-one",
+      "kind": "event",
+      "title": "只剩城市三，概率为一",
+      "text": "剩下三只有一个候选，概率为一。已访问城市不能重选，直到每城都访问过。",
+      "ruleIds": [
+        "ant-colony.choose",
+        "ant-colony.evaluate"
+      ],
+      "eventIds": [
+        "4"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "rule"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "evaluate",
+      "kind": "event",
+      "title": "回到起点，才能比较整圈",
+      "text": "从三回到一，闭环长约一百二十点七九，更新最好记录。必须计入回程，不能只量到达最后一城前的路。",
+      "ruleIds": [
+        "ant-colony.choose",
+        "ant-colony.evaluate"
+      ],
+      "eventIds": [
+        "5"
+      ],
+      "detailEventIds": [
+        "5"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "rare-choice",
+      "kind": "event",
+      "title": "第二只为什么没选概率最大的",
+      "text": "第二只从二出发，去四的概率约七成，却抽到三：随机数落进三的区间。概率最大不等于必选，其他城市只是本步未中。",
+      "ruleIds": [
+        "ant-colony.choose"
+      ],
+      "eventIds": [
+        "6",
+        "7"
+      ],
+      "detailEventIds": [
+        "7"
+      ],
+      "pageModes": [
+        "rule",
+        "comparison"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "others",
+      "kind": "event",
+      "title": "其余完整路线也参与评价",
+      "text": "剩余访问遵守相同规则。每只都完成自己的闭环再记录长度；不能在走到一半时就按暂时短路给奖励。",
+      "ruleIds": [
+        "ant-colony.choose",
+        "ant-colony.evaluate"
+      ],
+      "eventIds": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "compact"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "evaporate",
+      "kind": "event",
+      "title": "先让所有旧信号褪色",
+      "text": "整轮结束，所有旧信息素统一乘零点七五，本例一变零点七五。蒸发减弱偏好，不会缩短道路，也不把未中边清零。",
+      "ruleIds": [
+        "ant-colony.evaporate",
+        "ant-colony.deposit"
+      ],
+      "eventIds": [
+        "16"
+      ],
+      "detailEventIds": [
+        "16"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "deposit",
+      "kind": "event",
+      "title": "再沿第一只整圈加信号",
+      "text": "第一只闭环长约一百二十点七九，每条经过边双向各加一百除以路长，约零点八二八。路线越短，每边留得越多。",
+      "ruleIds": [
+        "ant-colony.evaporate",
+        "ant-colony.deposit"
+      ],
+      "eventIds": [
+        "17"
+      ],
+      "detailEventIds": [
+        "17"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "all-contribute",
+      "kind": "event",
+      "title": "第二与第三只也留下记号",
+      "text": "第二和第三只各沿完整路线沉积。本例三圈同长，增量相同；所有蚂蚁都贡献，不是只让冠军留信号。",
+      "ruleIds": [
+        "ant-colony.evaporate",
+        "ant-colony.deposit"
+      ],
+      "eventIds": [
+        "18",
+        "19"
+      ],
+      "detailEventIds": [
+        "18",
+        "19"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "重复构造与更新记忆",
+      "text": "回放抽未访问城市、回起点评价，再蒸发、逐只沉积。",
+      "ruleIds": [
+        "ant-colony.initialize",
+        "ant-colony.choose",
+        "ant-colony.evaluate",
+        "ant-colony.evaporate",
+        "ant-colony.deposit",
+        "ant-colony.stop"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69",
+        "70",
+        "71",
+        "72",
+        "73",
+        "74",
+        "75",
+        "76",
+        "77",
+        "78",
+        "79",
+        "80",
+        "81",
+        "82",
+        "83",
+        "84",
+        "85",
+        "86",
+        "87",
+        "88",
+        "89",
+        "90",
+        "91",
+        "92",
+        "93",
+        "94",
+        "95"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "final-record",
+      "kind": "event",
+      "title": "固定预算结束，查看历史最好",
+      "text": "五轮后最好闭环一、四、二、三、回一，长约一百二十点七九。强信号不是最优证书。",
+      "ruleIds": [
+        "ant-colony.stop"
+      ],
+      "eventIds": [
+        "96"
+      ],
+      "detailEventIds": [
+        "96"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "用集体经验指导组合搜索",
+      "text": "旅行与配送可借鉴基础蚂蚁系统。有限轮数不保证最短；比较参数时，保持城市和评价预算一致，多种子检查稳定性。",
+      "ruleIds": [
+        "ant-colony.stop"
+      ],
+      "panelExplanations": [
+        "4城3只蚂蚁5轮；本次最好闭环1→4→2→3→1，长约120.79。访问顺序不是地图坐标。",
+        "先概率选未访问城市，再算完整闭环，最后统一蒸发并由全部蚂蚁沉积。中间图是任意闭环规则示意。",
+        "短路线每边留更多信号，下一轮仍重新抽签。适合路线搜索，强信息素不保证全局最优。"
+      ],
+      "operandsPerPage": 4
+    }
+  ],
+  "artworkPanels": {
+    "analogy": [
+      [
+        0,
+        0.09,
+        1,
+        0.387
+      ],
+      [
+        0,
+        0.396,
+        1,
+        0.667
+      ],
+      [
+        0,
+        0.676,
+        1,
+        0.931
+      ]
+    ],
+    "rules": [
+      [
+        0,
+        0.095,
+        1,
+        0.324
+      ],
+      [
+        0,
+        0.333,
+        1,
+        0.634
+      ],
+      [
+        0,
+        0.642,
+        1,
+        0.938
+      ]
+    ],
+    "summary": [
+      [
+        0,
+        0.19,
+        1,
+        0.325
+      ],
+      [
+        0,
+        0.33,
+        1,
+        0.687
+      ],
+      [
+        0,
+        0.692,
+        1,
+        0.99
+      ]
+    ]
+  }
+}

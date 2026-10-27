@@ -1,0 +1,156 @@
+{
+  "algorithmId": "hill-climbing",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "雾中只看附近的高处",
+      "text": "在雾里爬山，你看不见远处，只能试探左右一小步。哪边更高就过去，附近都不更高就停。把高度换成方案收益，把位置换成可调整的参数，就得到爬山法：每次接受局部严格改善，找到附近较好方案。",
+      "ruleIds": [
+        "hill-climbing.initialize"
+      ],
+      "panelExplanations": [
+        "固定步长3，只能试探当前位置左右一小步；位置对应可调参数，高度对应收益。",
+        "到局部峰后邻居都不更高就停止。远峰是局限示意，不是本次搜索已经检查的位置。",
+        "比较全部邻居，只接受严格改善；无改进便停止。规则没有主动下坡的分支。"
+      ]
+    },
+    {
+      "id": "setup",
+      "kind": "event",
+      "title": "先说清楚附近有多大",
+      "text": "本例从位置十五开始，收益约二十五点三三，固定步长三，只比较左边十二、原地十五、右边十八。位置限制在零到一百。邻域是具体候选，改变步长就改变可见范围。",
+      "ruleIds": [
+        "hill-climbing.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "first",
+      "kind": "event",
+      "title": "右边更高，所以移动",
+      "text": "比较全部局部候选，位置十八的收益约三十点五六，高于当前位置二十五点三三；左邻也不如它，所以选择十八。比较完成后才更新位置。",
+      "ruleIds": [
+        "hill-climbing.compare",
+        "hill-climbing.move"
+      ],
+      "eventIds": [
+        "1",
+        "2"
+      ],
+      "detailEventIds": [
+        "1"
+      ]
+    },
+    {
+      "id": "step21",
+      "kind": "event",
+      "title": "在十八重新比较邻居",
+      "text": "以十八为中心重新看左右邻居。二十一收益约三十四点四四，比当前三十点五六更高，因此移动。邻域随位置更新，不是盲目沿第一次方向走。",
+      "ruleIds": [
+        "hill-climbing.compare",
+        "hill-climbing.move"
+      ],
+      "eventIds": [
+        "3",
+        "4"
+      ],
+      "detailEventIds": [
+        "3"
+      ]
+    },
+    {
+      "id": "step24",
+      "kind": "event",
+      "title": "再比较，才走到二十四",
+      "text": "下一轮以二十一为中心，二十四收益约三十六点零二，高于当前三十四点四四，所以再前进一步。这里只使用已计算的邻居值。",
+      "ruleIds": [
+        "hill-climbing.compare",
+        "hill-climbing.move"
+      ],
+      "eventIds": [
+        "5",
+        "6"
+      ],
+      "detailEventIds": [
+        "5"
+      ]
+    },
+    {
+      "id": "stop",
+      "kind": "event",
+      "title": "附近无改进，究竟证明什么",
+      "text": "到二十四后，左右一小步都没有严格更高的收益，所以停止。它只证明当前步长对应的邻居不更好，并未检查远处的其他峰。本版用极小改善阈值防数值误差，并设一百二十轮预算。",
+      "ruleIds": [
+        "hill-climbing.compare",
+        "hill-climbing.stop"
+      ],
+      "eventIds": [
+        "7",
+        "8"
+      ],
+      "detailEventIds": [
+        "7"
+      ]
+    },
+    {
+      "id": "escape",
+      "kind": "comparison",
+      "title": "为什么不能主动下坡",
+      "text": "如果更高山峰藏在谷地另一侧，这种只接受上坡的方法就无法穿过去。规则没有主动下降的探索机制。换起点、改变邻域或用允许暂时变差的方法，可能找到不同方案，但都需要重新计算。",
+      "ruleIds": [
+        "hill-climbing.move",
+        "hill-climbing.stop"
+      ],
+      "eventIds": [
+        "8"
+      ],
+      "detailEventIds": [
+        "8"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "当前位置就是本次最好记录",
+      "text": "完整回放是十五到十八、二十一、二十四，收益每次严格增加，最后停在局部位置。因为从不接受变差，当前位置也是这条运行轨迹的最好值。这是当前最好收益，走上山顶不证明全局最优。",
+      "ruleIds": [
+        "hill-climbing.initialize",
+        "hill-climbing.compare",
+        "hill-climbing.move",
+        "hill-climbing.stop"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ]
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "快速改善一个已有方案",
+      "text": "调节小规模参数、改进排程或在有限时间寻找可用方案时，可以想到邻域搜索。先定义收益与允许改动，再看停止是否只说明附近无改进。爬山法简单直接，优势是每步有提升，局限也来自同一条只上不下的规则。",
+      "ruleIds": [
+        "hill-climbing.stop"
+      ],
+      "panelExplanations": [
+        "真实轨迹15→18→21→24；本次最好收益约36.02，来自实际候选计算。",
+        "谷地另一侧的高峰属于局限示意。只上不下可能被困在局部，不能推出全局最优。",
+        "适合快速改进已有方案。换起点或邻域必须重算，效果并无全局保证。"
+      ]
+    }
+  ]
+}

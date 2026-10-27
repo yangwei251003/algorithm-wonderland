@@ -1,0 +1,24 @@
+{
+  "file": "algorithm-wonderland-v2-open-assets-f95f37d36baaa6f2.zip",
+  "bytes": 486519608,
+  "sha256": "f95f37d36baaa6f24e156b23081f9f05b7e1c3f1168881b14ebe816e516f2c6e",
+  "files": 347,
+  "comics": 252,
+  "frozenCases": 95,
+  "rewrittenPortableScripts": [
+    "media/scripts/critical-path.json",
+    "media/scripts/graph-coloring.json",
+    "media/scripts/kalman.json",
+    "media/scripts/particle-filter.json",
+    "media/scripts/pure-pursuit.json",
+    "media/scripts/rrt.json",
+    "media/scripts/thompson.json"
+  ],
+  "excluded": [
+    "downloaded reference PDF/image/page/DOM files",
+    "private configuration and production state",
+    "third-party skill bodies",
+    "dependency environments",
+    "unaccepted full MP4/WAV review media"
+  ]
+}

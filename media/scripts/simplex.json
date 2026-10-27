@@ -1,0 +1,567 @@
+{
+  "algorithmId": "simplex",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "工厂的生产与余量账本",
+      "text": "工厂要增加利润，先选值得增产的方向，再看哪项资源最先用完。单纯形法把产量和资源余额记成等式账本，每次改进都要同时满足收益与限制。",
+      "ruleIds": [
+        "simplex.initialize"
+      ],
+      "panelExplanations": [
+        "产量消耗资源，余额作为账本中的余量变量；当前是零产量的可行方案。",
+        "三个正比值7、4、8比较，最紧资源只允许甲增加4；不能任选一个步长。",
+        "甲进入基变量，替换耗尽的余量；每次换基都要保持等式等价。"
+      ]
+    },
+    {
+      "id": "setup",
+      "kind": "event",
+      "title": "先建立可行账本",
+      "text": "目标是五倍甲加四倍乙。总量至多七，两倍甲加乙至多八，单品也有上限。零产量可行，余额成为初始基变量。",
+      "ruleIds": [
+        "simplex.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "enter",
+      "kind": "event",
+      "title": "先找改善方向",
+      "text": "目标行用负号记利润。甲负五，先成为入基候选。",
+      "ruleIds": [
+        "simplex.enter"
+      ],
+      "eventIds": [
+        "1"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "enter-other",
+      "kind": "event",
+      "title": "乙为什么先等一等",
+      "text": "乙负四，没有甲更负，暂缓而非淘汰。目标系数不是资源余量。",
+      "ruleIds": [
+        "simplex.enter"
+      ],
+      "eventIds": [
+        "2"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "ratio",
+      "kind": "event",
+      "title": "第一资源允许多少",
+      "text": "甲增产时，第一资源允许七除以一，等于七。",
+      "ruleIds": [
+        "simplex.leave"
+      ],
+      "eventIds": [
+        "7"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "ratio-tight",
+      "kind": "event",
+      "title": "第二资源更紧",
+      "text": "第二允许八除以二，等于四。取更小值，才守住所有限制。",
+      "ruleIds": [
+        "simplex.leave"
+      ],
+      "eventIds": [
+        "8"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "limits",
+      "kind": "event",
+      "title": "第三资源较宽松",
+      "text": "第三行允许八，比四宽松，不决定步长。",
+      "ruleIds": [
+        "simplex.leave"
+      ],
+      "eventIds": [
+        "9"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "limits-zero",
+      "kind": "event",
+      "title": "零系数不限制这个方向",
+      "text": "第四行甲系数为零，不限制增产。不能把余额九当成步长。",
+      "ruleIds": [
+        "simplex.leave"
+      ],
+      "eventIds": [
+        "10"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "normalize",
+      "kind": "event",
+      "title": "整行除以主元二",
+      "text": "第二资源行整体除以二。先看甲系数，二除以二变一。",
+      "ruleIds": [
+        "simplex.pivot"
+      ],
+      "eventIds": [
+        "11"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "normalize-rhs",
+      "kind": "event",
+      "title": "右侧也要同除",
+      "text": "右侧八除以二变四。其余格同样除以二，保持等式等价。",
+      "ruleIds": [
+        "simplex.pivot"
+      ],
+      "eventIds": [
+        "17"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "eliminate",
+      "kind": "event",
+      "title": "消去第一行的甲系数",
+      "text": "第一行减去标准化的第二行。甲系数一减一，变零。",
+      "ruleIds": [
+        "simplex.pivot"
+      ],
+      "eventIds": [
+        "18"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "eliminate-rhs",
+      "kind": "event",
+      "title": "右侧也要相减",
+      "text": "右侧七减四，变三。其余格同样消元，不能只改甲这一列。",
+      "ruleIds": [
+        "simplex.pivot"
+      ],
+      "eventIds": [
+        "24"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "first-finish",
+      "kind": "event",
+      "title": "继续消元",
+      "text": "其余行重复消元，目标行也同时更新。",
+      "ruleIds": [
+        "simplex.pivot",
+        "simplex.enter"
+      ],
+      "eventIds": [
+        "39",
+        "40",
+        "45"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "first-basis",
+      "kind": "event",
+      "title": "第一次换基完成",
+      "text": "甲替换余量入基，当前收益二十。",
+      "ruleIds": [
+        "simplex.pivot",
+        "simplex.enter"
+      ],
+      "eventIds": [
+        "46"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "first-next",
+      "kind": "event",
+      "title": "还能继续改善吗",
+      "text": "乙的新目标系数负一点五，仍有改善空间。",
+      "ruleIds": [
+        "simplex.pivot",
+        "simplex.enter"
+      ],
+      "eventIds": [
+        "48"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "second-limit",
+      "kind": "event",
+      "title": "乙也要重新比较限制",
+      "text": "增加乙，第一行三除以零点五，允许六。",
+      "ruleIds": [
+        "simplex.leave"
+      ],
+      "eventIds": [
+        "53"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "second-eight",
+      "kind": "event",
+      "title": "第二行允许八",
+      "text": "第二行允许八，比六宽松。",
+      "ruleIds": [
+        "simplex.leave"
+      ],
+      "eventIds": [
+        "54"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "second-negative",
+      "kind": "event",
+      "title": "负系数不限制增加",
+      "text": "第三行系数为负，不限制这个方向，不能算成负步长。",
+      "ruleIds": [
+        "simplex.leave"
+      ],
+      "eventIds": [
+        "55"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "second-nine",
+      "kind": "event",
+      "title": "第四行允许九",
+      "text": "第四行允许九，所以仍选最小的六。",
+      "ruleIds": [
+        "simplex.leave"
+      ],
+      "eventIds": [
+        "56"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "second-pivot",
+      "kind": "event",
+      "title": "再次等价消元",
+      "text": "按同样规则，重新标准化并消元，更新整张表。",
+      "ruleIds": [
+        "simplex.pivot"
+      ],
+      "eventIds": [
+        "57",
+        "63",
+        "70",
+        "91"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "second-result",
+      "kind": "event",
+      "title": "第二次换基完成",
+      "text": "换基完成：甲一、乙六，收益二十九。",
+      "ruleIds": [
+        "simplex.pivot"
+      ],
+      "eventIds": [
+        "92"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "stop",
+      "kind": "event",
+      "title": "停止需要最优证据",
+      "text": "最终目标行已没有负的改进系数，当前方案又满足限制，因此这个线性模型已最优。",
+      "ruleIds": [
+        "simplex.stop"
+      ],
+      "eventIds": [
+        "99",
+        "100"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "方向、步长与等式变换",
+      "text": "回放两次换基：选改善方向，找最紧限制，再整理等式账本。每一步都有代数依据。",
+      "ruleIds": [
+        "simplex.initialize",
+        "simplex.enter",
+        "simplex.leave",
+        "simplex.pivot",
+        "simplex.stop"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69",
+        "70",
+        "71",
+        "72",
+        "73",
+        "74",
+        "75",
+        "76",
+        "77",
+        "78",
+        "79",
+        "80",
+        "81",
+        "82",
+        "83",
+        "84",
+        "85",
+        "86",
+        "87",
+        "88",
+        "89",
+        "90",
+        "91",
+        "92",
+        "93",
+        "94",
+        "95",
+        "96",
+        "97",
+        "98",
+        "99",
+        "100"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "连续配比的优化工具",
+      "text": "适合线性生产配比和资源分配。本版允许小数，整件要求不能靠四舍五入解决。若仍有改进方向却无限制，是无界；仅耗尽预算不能宣称最优。",
+      "ruleIds": [
+        "simplex.stop"
+      ],
+      "panelExplanations": [
+        "本例两次换基：甲1、乙6，收益29。",
+        "目标行无负的改进系数，同时方案可行，构成本版的最优停止条件。",
+        "整数条件、无界或预算耗尽各需单独处理；本例不是所有线性规划情形的通用求解器。"
+      ]
+    }
+  ],
+  "artworkPanels": {
+    "analogy": [
+      [
+        0,
+        0.078,
+        1,
+        0.36
+      ],
+      [
+        0,
+        0.368,
+        1,
+        0.616
+      ],
+      [
+        0,
+        0.625,
+        1,
+        0.897
+      ]
+    ],
+    "rules": [
+      [
+        0,
+        0.083,
+        1,
+        0.34
+      ],
+      [
+        0,
+        0.354,
+        1,
+        0.636
+      ],
+      [
+        0,
+        0.643,
+        1,
+        0.99
+      ]
+    ],
+    "summary": [
+      [
+        0,
+        0.08,
+        1,
+        0.36
+      ],
+      [
+        0,
+        0.375,
+        1,
+        0.59
+      ],
+      [
+        0,
+        0.599,
+        1,
+        0.99
+      ]
+    ]
+  }
+}

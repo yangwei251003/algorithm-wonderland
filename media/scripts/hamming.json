@@ -1,0 +1,390 @@
+{
+  "algorithmId": "hamming",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "交叉检查，定位一个坏位",
+      "text": "七箱一处出错，交叉检查定位。汉明码用位置编号分组；覆盖坏位的组会失败。",
+      "ruleIds": [
+        "hamming.initialize"
+      ],
+      "panelExplanations": [
+        "三名检查员各查一组；位置3同时属于校验1和2，不属于校验4，因此单独损坏会使前两组失败。"
+      ]
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "二进制编号决定覆盖",
+      "text": "把位置一到七写成三位二进制。右起三位决定是否属于一、二、四组。位置三是零一一，只属前两组。",
+      "ruleIds": [
+        "hamming.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "data",
+      "kind": "recap",
+      "title": "一二四留校验，其余放数据",
+      "text": "一、二、四留作校验。数据一零一一，写到三、五、六、七；空点表示未写入。",
+      "ruleIds": [
+        "hamming.encode"
+      ],
+      "eventIds": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "id": "parity-first",
+      "kind": "event",
+      "title": "从零开始，逐位异或",
+      "text": "异或把相同两位变零，不同变一。第一组从零开始，逐个纳入覆盖的位置。",
+      "ruleIds": [
+        "hamming.encode"
+      ],
+      "eventIds": [
+        "5"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "parity-one",
+      "kind": "recap",
+      "title": "第一组处理完，校验位才定稿",
+      "text": "继续纳入三、五、七。校验位暂存累加值，整组处理完才定稿，让一的数量为偶数。",
+      "ruleIds": [
+        "hamming.encode"
+      ],
+      "eventIds": [
+        "6",
+        "7",
+        "8"
+      ]
+    },
+    {
+      "id": "parity-two",
+      "kind": "recap",
+      "title": "第二组独立计算",
+      "text": "第二组覆盖二、三、六、七。从零累加，写入校验位二，不改其他校验位。",
+      "ruleIds": [
+        "hamming.encode"
+      ],
+      "eventIds": [
+        "9",
+        "10",
+        "11",
+        "12"
+      ]
+    },
+    {
+      "id": "parity-four",
+      "kind": "recap",
+      "title": "第四组也逐位累加",
+      "text": "第四组覆盖四、五、六、七，同样逐位累加。",
+      "ruleIds": [
+        "hamming.encode"
+      ],
+      "eventIds": [
+        "13",
+        "14",
+        "15"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "parity-done",
+      "kind": "recap",
+      "title": "三组全部算完，发送码定稿",
+      "text": "最后一位算完，三组就绪，形成发送码。",
+      "ruleIds": [
+        "hamming.encode"
+      ],
+      "eventIds": [
+        "16"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "channel",
+      "kind": "event",
+      "title": "只翻转第三位",
+      "text": "制造损坏：第三位从一变零，其他位保留。上行发送码，下行收到的内容。",
+      "ruleIds": [
+        "hamming.channel"
+      ],
+      "eventIds": [
+        "17"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "no-second",
+      "kind": "event",
+      "title": "第二个开关为零，不再翻转",
+      "text": "第二开关为零，不再翻转。",
+      "ruleIds": [
+        "hamming.channel"
+      ],
+      "eventIds": [
+        "18"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "check-one",
+      "kind": "recap",
+      "title": "重新检查第一组",
+      "text": "用收到的位重算第一组。一、三、五、七逐位异或，整组完成才判断失败。",
+      "ruleIds": [
+        "hamming.syndrome"
+      ],
+      "eventIds": [
+        "19",
+        "20",
+        "21",
+        "22"
+      ],
+      "detailEventIds": [
+        "19"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "syndrome-one",
+      "kind": "event",
+      "title": "第一组失败，记录一",
+      "text": "第一组结果一，奇数个一，检查失败。把它的组号一记入综合征。",
+      "ruleIds": [
+        "hamming.syndrome"
+      ],
+      "eventIds": [
+        "23"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "check-two",
+      "kind": "recap",
+      "title": "第二组也重新计算",
+      "text": "再查二、三、六、七，逐位累加；本次要使用损坏后的第三位。",
+      "ruleIds": [
+        "hamming.syndrome"
+      ],
+      "eventIds": [
+        "24",
+        "25",
+        "26",
+        "27"
+      ]
+    },
+    {
+      "id": "syndrome-two",
+      "kind": "event",
+      "title": "第二组失败，再加二",
+      "text": "第二组也失败，再加二，综合征变三。此时第四组还没查完。",
+      "ruleIds": [
+        "hamming.syndrome"
+      ],
+      "eventIds": [
+        "28"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "check-four",
+      "kind": "recap",
+      "title": "最后重查第四组",
+      "text": "最后查四、五、六、七，仍逐位累加。",
+      "ruleIds": [
+        "hamming.syndrome"
+      ],
+      "eventIds": [
+        "29",
+        "30",
+        "31"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "check-four-end",
+      "kind": "recap",
+      "title": "算完全部覆盖位，结果为零",
+      "text": "整组异或为零，通过检查。",
+      "ruleIds": [
+        "hamming.syndrome"
+      ],
+      "eventIds": [
+        "32"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "syndrome-four",
+      "kind": "recap",
+      "title": "第四组通过，不增加组号",
+      "text": "不增加综合征，仍是三。",
+      "ruleIds": [
+        "hamming.syndrome"
+      ],
+      "eventIds": [
+        "33"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "correct",
+      "kind": "event",
+      "title": "单错前提下，翻回位置三",
+      "text": "综合征三对应零一一。在最多一位错误前提下，翻回第三位，恢复发送码。",
+      "ruleIds": [
+        "hamming.correct"
+      ],
+      "eventIds": [
+        "34"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "extract",
+      "kind": "event",
+      "title": "取出四个数据位再核对",
+      "text": "取三、五、六、七，得到一零一一。沙盘用已知原文核对一致；真实接收方没有原文。",
+      "ruleIds": [
+        "hamming.correct"
+      ],
+      "eventIds": [
+        "35"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "two-flips",
+      "kind": "comparison",
+      "title": "反例：依次制造两位损坏",
+      "text": "换个运行，先翻第三位。",
+      "ruleIds": [
+        "hamming.channel"
+      ],
+      "caseFile": "review-counterexample-hamming.json",
+      "caseEventIds": [
+        "17"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "two-flips-second",
+      "kind": "comparison",
+      "title": "又翻第五位，现有两处错误",
+      "text": "再翻第五位，超出了单错保证。",
+      "ruleIds": [
+        "hamming.channel"
+      ],
+      "caseFile": "review-counterexample-hamming.json",
+      "caseEventIds": [
+        "18"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "two-checks",
+      "kind": "recap",
+      "title": "照原规则重查，会出现另一综合征",
+      "text": "继续按同样三组重查，每次异或都实际计算。两个错误可能伪装成另一个位置，不能当作单错。",
+      "ruleIds": [
+        "hamming.syndrome"
+      ],
+      "caseFile": "review-counterexample-hamming.json",
+      "caseEventIds": [
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "two-wrong",
+      "kind": "comparison",
+      "title": "错误指向第六位，反而改坏",
+      "text": "综合征六，算法翻了原本正确的第六位。",
+      "ruleIds": [
+        "hamming.correct"
+      ],
+      "caseFile": "review-counterexample-hamming.json",
+      "caseEventIds": [
+        "34"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "two-wrong-output",
+      "kind": "comparison",
+      "title": "取出数据：未恢复原文",
+      "text": "取数据得到零一零一，未恢复。普通七四汉明码，不是增加总校验的扩展版本。",
+      "ruleIds": [
+        "hamming.correct"
+      ],
+      "caseFile": "review-counterexample-hamming.json",
+      "caseEventIds": [
+        "35"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    }
+  ]
+}

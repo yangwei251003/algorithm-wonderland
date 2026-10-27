@@ -1,0 +1,32 @@
+import {useState} from 'react';
+import type {AlgorithmDefinition,LabInput,Params,RunResult} from '../engine/types';
+import {rng} from '../engine/utils';
+import {Icon} from './Primitives';
+
+const missions:Record<string,{title:string;role:string;data:string;goal:string;try:string}>={
+ 'binary-search':{title:'猜价挑战',role:'你在给一件神秘商品估价。每次只能得到“高了”或“低了”的提示。',data:'1—100 元的整数价格，提示可靠，价格不会中途变化。',goal:'用尽量少的询问锁定价格。',try:'每次试剩余区间的中间值，再与随意猜测比较。'},
+ astar:{title:'校园配送',role:'你要从宿舍把物品送到实验楼，路上有施工区和比较费力的路段。',data:'20×12 格教学地图；绿点出发、粉点送达；每格只能上下左右移动。',goal:'在可通行的前提下，让累计地形代价尽量低。',try:'先记下原路线，再点格子封住一段路。改变蓝色地形代价，看看“最近”和“最省力”是否相同。'},
+ knapsack:{title:'比赛预算',role:'你要为比赛挑选物资，每件东西只能买一次，预算不能超支。',data:'把右侧文本中的“名称:占用:价值”当成候选项目表；占用按同一预算单位计。',goal:'在预算内，让整组物资的总价值尽量高。',try:'把“总容量/预算”设为 10 与 12，分别记录方案。多出的 2 单位预算换来了多少价值？'},
+ 'ant-colony':{title:'旅行优化',role:'你要串起多个景点，走遍所有地点，最后回到出发处。',data:'平面教学坐标；地点之间可直达；距离作为旅行成本。',goal:'寻找一条较短的完整巡回路线；这里记录的是当前最好，不保证全局最优。',try:'保持种子和地点数一致，比较少量与更多迭代。多算几轮带来的改善值得吗？'},
+ 'exponential-smoothing':{title:'店铺备货',role:'你要根据最近的销售变化，预测下一步需要多少货。',data:'一条带随机扰动的教学需求曲线；可改变噪声和需求变化情境。',goal:'在追上趋势和减少偶然波动之间取舍，观察实际预测误差。',try:'对同一组数据分别使用较小、较大的平滑系数。销量突然改变时，哪一种更快适应？'},
+ kmeans:{title:'顾客分群',role:'你想了解顾客是否存在几种不同的消费习惯，而不是先给每个人贴标签。',data:'两个标准化特征构成散点图；坐标可理解为购买频次与客单价。',goal:'探索有用的分组结构；组内距离变小不等于分组一定有业务价值。',try:'先分成 2 组，再分成 4 组；点击添加一个远处的顾客，观察中心是否被拉走。'},
+ collaborative:{title:'电影推荐',role:'你要给用户推荐没看过的电影，希望利用别人留下的评分。',data:'小型匿名评分表；空白表示未知，不能当作不喜欢。',goal:'观察相似评分如何影响推荐，并识别评分太少时的冷启动。',try:'比较评分丰富和冷启动案例。同样给出高分，证据是否同样充分？'},
+ hamming:{title:'消息纠错',role:'你正传送一条短消息，途中一个比特可能被干扰翻转。',data:'4 个数据位加入 3 个校验位，形成 7 位教学码。',goal:'让接收方检测并纠正一个错误，同时看见多错时的限制。',try:'先尝试单比特翻转，再切换双错误案例；观察“得到一条结果”和“真的还原正确”有什么区别。'},
+ 'median-filter':{title:'照片去噪',role:'一张小照片出现零散的黑白坏点，你想去掉它们又尽量保住轮廓。',data:'左边为带噪声的合成图；右边为实际滤波结果，不上传个人照片。',goal:'让坏点减少，同时留意图像细节和误差指标。',try:'比较小窗口与大窗口。窗口变大后，细小结构还在吗？再提高坏点比例，观察当多数邻居也变坏时会怎样。'},
+ pid:{title:'无人机悬停',role:'你控制一架简化的飞行器，让它到达目标高度，并在扰动后稳住。',data:'一维教学动力学、目标高度、推力和外部扰动；不代表实机飞控。',goal:'同时关注最终误差、最大超调和振荡，不只看“到没到过”。',try:'先运行平稳案例，再增大反应强度。记录两种设置，检查更快是否也更稳。'},
+ topsis:{title:'项目选择',role:'团队有多个参赛项目，各有收益、成本与实现难度，需要说明如何取舍。',data:'候选方案指标表；正向指标越大越好，成本型指标方向相反。',goal:'在明确权重后比较接近理想方案的程度；排名反映偏好，不是客观真理。',try:'先重视价值，再提高成本的重要性，看看第一名是否改变。把选择理由和权重一起带走。'},
+ boids:{title:'鸟群世界',role:'你不安排每只鸟的路线，只给它们几条局部行为规则。',data:'每只鸟感知邻居，调整分离、对齐与聚合；使用固定种子重演。',goal:'观察局部规则如何形成集体运动，以及过强的规则怎样破坏平衡。',try:'先看正常鸟群，再增强聚合或减弱分离。它们是在一起飞，还是挤成一团？'},
+};
+type Snapshot={seed:number;params:Params;input:string;metrics:RunResult['metrics'];summary:string};
+function PriceGame({seed}:{seed:number}){
+ const secret=1+Math.floor(rng(seed+901)()*100),[low,setLow]=useState(1),[high,setHigh]=useState(100),[guess,setGuess]=useState(50),[history,setHistory]=useState<{guess:number;hint:string}[]>([]),[done,setDone]=useState(false);
+ const attempt=(v:number)=>{if(done||!Number.isInteger(v)||v<low||v>high)return;const hint=v===secret?'猜中了':v<secret?'低了':'高了';setHistory(old=>[...old,{guess:v,hint}]);if(v===secret){setDone(true);return;}const l=v<secret?v+1:low,h=v>secret?v-1:high;setLow(l);setHigh(h);setGuess(Math.floor((l+h)/2));};
+ return <div className="price-game"><div><strong>{done?'找到了！'+secret+' 元':'现在可能的价格：'+low+'—'+high+' 元'}</strong><p>{done?'你用了 '+history.length+' 次询问。对 1—100 的范围，一直二分最多需要 7 次。':'先猜一个数，再看下一次该保留哪一半。'}</p></div><div className="price-game-controls"><label>这次猜<input aria-label="猜测价格" type="number" min={low} max={high} value={guess} disabled={done} onChange={e=>setGuess(Number(e.target.value))}/></label><button className="button secondary" disabled={done||guess<low||guess>high||!Number.isInteger(guess)} onClick={()=>attempt(guess)}>试一试</button><button className="button primary" disabled={done} onClick={()=>attempt(Math.floor((low+high)/2))}>用中间数猜</button><button className="text-button" onClick={()=>{setLow(1);setHigh(100);setGuess(50);setHistory([]);setDone(false);}}>重新挑战</button></div>{history.length>0&&<div className="guess-history">{history.map((h,i)=><span key={i}>{i+1}. {h.guess} 元 · {h.hint}</span>)}</div>}</div>;
+}
+export function ApplicationMission({algorithm:a,result,params,input,seed}:{algorithm:AlgorithmDefinition;result:RunResult|null;params:Params;input:LabInput;seed:number}){
+ const mission=missions[a.id];const [snapshots,setSnapshots]=useState<(Snapshot|null)[]>([null,null]);if(!mission)return null;
+ const capture=(slot:number)=>{if(!result)return;const saved={seed,params:{...params},input:JSON.stringify(input),metrics:result.metrics,summary:result.summary};setSnapshots(s=>s.map((old,i)=>i===slot?saved:old));};
+ const [first,second]=snapshots;const keys=first&&second?Object.keys(first.metrics).filter(key=>typeof first.metrics[key]==='number'&&typeof second.metrics[key]==='number').slice(0,6):[];
+ return <section className="application-mission"><div className="mission-heading"><div><span className="eyebrow">PUT IT TO WORK · 应用沙盘</span><h2>{mission.title}</h2><p>{mission.role}</p></div><Icon name="Flag" size={27}/></div><div className="mission-facts"><div><span>01 · 手里的数据</span><p>{mission.data}</p></div><div><span>02 · 想达到的目标</span><p>{mission.goal}</p></div><div><span>03 · 亲手做个对比</span><p>{mission.try}</p></div></div>{a.id==='binary-search'?<PriceGame key={seed} seed={seed}/>:<><div className="mission-record"><p>调整上方条件，留下两次观察。每次记录均来自完整计算的最终结果。</p><div>{[0,1].map(slot=><button key={slot} className="button secondary" disabled={!result} onClick={()=>capture(slot)}><Icon name={snapshots[slot]?'Check':'Save'} size={15}/>{snapshots[slot]?'更新':'记录'}方案 {slot===0?'A':'B'}</button>)}</div></div>{(first||second)&&<div className="mission-snapshots">{snapshots.map((s,i)=><article key={i}><strong>方案 {i===0?'A':'B'}{s&&<small>种子 {s.seed}</small>}</strong><p>{s?.summary??'调整条件后，在这里记下另一次结果。'}</p>{s&&<details><summary>查看记录时的条件</summary><p>{a.controls.map(c=>c.label+'：'+String(s.params[c.key])).join('；')}</p></details>}</article>)}</div>}{keys.length>0&&<div className="comparison-table-wrap"><table className="mission-table"><thead><tr><th>观察指标</th><th>方案 A</th><th>方案 B</th><th>B 相对 A</th></tr></thead><tbody>{keys.map(k=>{const diff=Number(second!.metrics[k])-Number(first!.metrics[k]);return <tr key={k}><th>{k}</th><td>{first!.metrics[k]}</td><td>{second!.metrics[k]}</td><td>{diff>0?'+':''}{Number(diff.toFixed(4))}</td></tr>;})}</tbody></table></div>}{first&&second&&<p className="fine-print">{first.seed!==second.seed||first.input!==second.input?'两次记录的数据或种子不同，变化可能同时来自输入和参数；不能只归因于参数。':'两次记录使用相同种子和自定义输入；如果更改了生成数据的控件，数据本身仍会改变。'}指标增减是否更好，要结合上方目标判断。记录保留在当前实验页，离开前可导出观察结果。</p>}</>}</section>;
+}
+

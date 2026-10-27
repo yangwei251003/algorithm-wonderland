@@ -1,0 +1,211 @@
+{
+  "algorithmId": "content-recommendation",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "给口味画一支方向箭头",
+      "text": "用冒险、幽默、科学三个旋钮表达口味，电影也用同样标签。像比较两支箭头，内容推荐看方向是否接近，不只看数值总和。",
+      "ruleIds": [
+        "content-recommendation.initialize"
+      ],
+      "visualExplanation": "旋钮对应三维偏好，箭头只示意比例；实际计算保留三个维度，不把三维夹角冒充画面中的二维角度。"
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "先把三种标签对齐",
+      "text": "偏好为四、二、五，标签顺序和尺度必须一致。数值是教学标注，不是对作品的客观评分。",
+      "ruleIds": [
+        "content-recommendation.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "adventure",
+      "kind": "event",
+      "title": "第一项：冒险贡献",
+      "text": "星际救援的标签为五、一、五。先看冒险，四乘五得二十；两边各自平方，分别是十六和二十五。",
+      "ruleIds": [
+        "content-recommendation.cosine"
+      ],
+      "eventIds": [
+        "1"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "humor",
+      "kind": "event",
+      "title": "第二项：幽默贡献",
+      "text": "幽默二乘一得二，累计点积从二十变二十二。平方和也各自增加四和一，不能把两列混加。",
+      "ruleIds": [
+        "content-recommendation.cosine"
+      ],
+      "eventIds": [
+        "2"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "science",
+      "kind": "event",
+      "title": "第三项：科学贡献",
+      "text": "科学五乘五得二十五，点积合计四十七。三个维度完成后，偏好平方和四十五，影片平方和五十一。",
+      "ruleIds": [
+        "content-recommendation.cosine"
+      ],
+      "eventIds": [
+        "3"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "normalize",
+      "kind": "event",
+      "title": "为什么还要除以长度",
+      "text": "四十七除以四十五乘五十一的平方根，得到约零点九八一。归一化去掉整体长度的影响，留下方向相似程度。",
+      "ruleIds": [
+        "content-recommendation.cosine"
+      ],
+      "eventIds": [
+        "4"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "second-dimensions",
+      "kind": "event",
+      "title": "另一部重新累计",
+      "text": "欢乐假期标签一、五、零。对齐同样的三维逐项相乘、累计；不能沿用上一部的分子和影片长度。",
+      "ruleIds": [
+        "content-recommendation.cosine"
+      ],
+      "eventIds": [
+        "5",
+        "6",
+        "7"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "second-score",
+      "kind": "event",
+      "title": "相似更低，不是质量更差",
+      "text": "这一部点积十四，影片平方和二十六，余弦约零点四零九。它偏幽默，与当前冒险和科学较强的方向差得更远。",
+      "ruleIds": [
+        "content-recommendation.cosine"
+      ],
+      "eventIds": [
+        "8"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "完整记录加速回放",
+      "text": "回放七部影片的全部计算。每部独立归一化后才能公平比较，动画速度不表示推荐质量。",
+      "ruleIds": [
+        "content-recommendation.initialize",
+        "content-recommendation.cosine",
+        "content-recommendation.choose"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "choose",
+      "kind": "event",
+      "title": "从全部候选中选最大",
+      "text": "星际救援约零点九八一，高于其余六部，因此排第一。同分保留输入顺序较早者，不用影片名决定相似度。",
+      "ruleIds": [
+        "content-recommendation.choose"
+      ],
+      "eventIds": [
+        "29"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "comparison"
+      ],
+      "maxCandidates": 3
+    },
+    {
+      "id": "contrast",
+      "kind": "comparison",
+      "title": "把偏好同时翻倍会怎样",
+      "text": "把三个偏好同时乘二，点积乘二，偏好长度也乘二，两者抵消，余弦不变。只提高幽默则改变方向，排序才可能变化。零向量没有方向，不能正常计算余弦。",
+      "ruleIds": []
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "它理解的是标签，不是你本人",
+      "text": "对齐标签，累计乘积与平方和，除以长度，再比较相似度。适合有标签的新物品；标签遗漏的特点看不到。相似度不等于喜欢概率，也不等于作品质量，仍需真实反馈。",
+      "ruleIds": [
+        "content-recommendation.choose"
+      ],
+      "visualExplanation": "漫画对应标签可解释、新物品可用、漏标与零偏好的局限；本例最高的是星际救援。"
+    }
+  ]
+}

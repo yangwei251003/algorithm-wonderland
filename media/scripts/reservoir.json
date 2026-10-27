@@ -1,0 +1,252 @@
+{
+  "algorithmId": "reservoir",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "队伍多长还不知道",
+      "text": "报名者陆续出现，总人数未知，却只能保留三个名额。蓄水池抽样只保存三个样本，通过适时替换，让每位已到达的人拥有相同的入选概率。",
+      "ruleIds": [
+        "reservoir.draw"
+      ],
+      "artwork": "../comics/reservoir/analogy.png",
+      "artworkRegion": [
+        0,
+        0.091,
+        1,
+        0.347
+      ],
+      "panelExplanations": [
+        "三个固定席位对应三个样本槽；不储存全部报名者，也不用预知最终人数。"
+      ]
+    },
+    {
+      "id": "fill",
+      "kind": "event",
+      "title": "先填满三个固定槽",
+      "text": "席位编号零、一、二。最初三位报名者先全部进入，不需要抽签。槽内数字表示人的编号，不是人数或概率。",
+      "eventIds": [
+        "0",
+        "1",
+        "2"
+      ],
+      "ruleIds": [
+        "reservoir.fill",
+        "reservoir.draw",
+        "reservoir.stop"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation",
+        "compact"
+      ]
+    },
+    {
+      "id": "fourth",
+      "kind": "event",
+      "title": "第四人抽四张签",
+      "text": "第四人到达，在零到三中均匀抽签。零、一、二对应三个席位，三表示不替换。本次抽二，第四人换掉槽二里的第三人。",
+      "eventIds": [
+        "3"
+      ],
+      "ruleIds": [
+        "reservoir.fill",
+        "reservoir.draw",
+        "reservoir.stop"
+      ],
+      "pageModes": [
+        "rule",
+        "comparison"
+      ]
+    },
+    {
+      "id": "fifth",
+      "kind": "event",
+      "title": "第五人改变抽签范围",
+      "text": "第五人改在零到四中抽签，本次仍抽二，替换槽二，样本成为一、二、五。",
+      "eventIds": [
+        "4"
+      ],
+      "ruleIds": [
+        "reservoir.fill",
+        "reservoir.draw",
+        "reservoir.stop"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "sixth",
+      "kind": "event",
+      "title": "抽到槽外的签就不替换",
+      "text": "第六人从零到五抽签。本次抽五，不小于三个名额，所以不进入。没有变化也有明确判断依据。",
+      "eventIds": [
+        "5"
+      ],
+      "ruleIds": [
+        "reservoir.fill",
+        "reservoir.draw",
+        "reservoir.stop"
+      ],
+      "pageModes": [
+        "rule",
+        "comparison"
+      ]
+    },
+    {
+      "id": "seventh",
+      "kind": "event",
+      "title": "第七人的签也在槽外",
+      "text": "第七人从零到六抽签，抽到四，同样不替换，保留一、二、五。",
+      "eventIds": [
+        "6"
+      ],
+      "ruleIds": [
+        "reservoir.fill",
+        "reservoir.draw",
+        "reservoir.stop"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "eighth",
+      "kind": "event",
+      "title": "第八人替换第二个槽",
+      "text": "第八人从零到七抽签，抽一，替换槽一里的第二人。样本变成一、八、五。人的编号与槽号要分清。",
+      "eventIds": [
+        "7"
+      ],
+      "ruleIds": [
+        "reservoir.fill",
+        "reservoir.draw",
+        "reservoir.stop"
+      ],
+      "pageModes": [
+        "rule",
+        "comparison"
+      ]
+    },
+    {
+      "id": "stop",
+      "kind": "event",
+      "title": "随时结束都保留均匀样本",
+      "text": "流到此结束。本次名单是一、八、五。换随机种子，名单可能不同，但均匀抽签和替换规则不变。",
+      "eventIds": [
+        "8"
+      ],
+      "ruleIds": [
+        "reservoir.fill",
+        "reservoir.draw",
+        "reservoir.stop"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "new",
+      "kind": "rule",
+      "title": "新人有三个入口",
+      "text": "第六人面对六张等概率签，只有零、一、二让他进入，所以入选机会是六分之三。一般第几人到达，就用三除以这个人数。",
+      "ruleIds": [
+        "reservoir.draw"
+      ],
+      "artwork": "../comics/reservoir/rules.png",
+      "artworkRegion": [
+        0,
+        0.25,
+        1,
+        0.525
+      ],
+      "panelExplanations": [
+        "图中i=6，三张有效签各占1/6；其他签不改变样本。"
+      ]
+    },
+    {
+      "id": "old",
+      "kind": "comparison",
+      "title": "已入选的人如何保留",
+      "text": "任一早来者，上一轮入选机会为三除以前一轮人数。已经在池里时，只有抽中他所在的那个槽才会替换他。",
+      "ruleIds": [
+        "reservoir.draw"
+      ],
+      "artwork": "../comics/reservoir/rules.png",
+      "artworkRegion": [
+        0,
+        0.532,
+        1,
+        0.772
+      ],
+      "panelExplanations": [
+        "条件是该人上一轮已在池中；本轮被替换概率1/i，存活概率1−1/i。"
+      ]
+    },
+    {
+      "id": "equal",
+      "kind": "rule",
+      "title": "两段机会相乘，正好相同",
+      "text": "上一轮入选机会乘以本轮保留机会，等于三除以当前人数，恰好与新人相同。公平指概率相等，不保证一次抽样的名单看起来平均。",
+      "ruleIds": [
+        "reservoir.draw"
+      ],
+      "artwork": "../comics/reservoir/rules.png",
+      "artworkRegion": [
+        0,
+        0.777,
+        1,
+        0.95
+      ],
+      "panelExplanations": [
+        "3/(i−1)乘(1−1/i)=3/i；这里比较任一旧人与新人的入选概率。"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "回放真实抽签记录",
+      "text": "回放八人案例。每次只检查本次签号是否落在三个槽内，再按记录替换或保留。最终每人的理论入选机会都是八分之三。",
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "ruleIds": [
+        "reservoir.fill",
+        "reservoir.draw",
+        "reservoir.stop"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "持续数据流的小样本",
+      "text": "直播报名、日志记录，都可以用固定空间保留均匀样本。前提是每次抽签均匀；如果要求每个群体各有名额，就需要另外做分层设计。",
+      "ruleIds": [
+        "reservoir.draw"
+      ],
+      "artwork": "../comics/reservoir/summary.png",
+      "artworkRegion": [
+        0,
+        0.566,
+        1,
+        0.834
+      ],
+      "panelExplanations": [
+        "只保留固定数量的样本；均匀抽样不等于每类人都有代表。"
+      ]
+    }
+  ]
+}

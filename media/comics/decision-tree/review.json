@@ -1,0 +1,44 @@
+{
+  "algorithmId": "decision-tree",
+  "lessonVersion": 2,
+  "traceHash": "d7fe33d5817f94de8d3513d2ea4c38edc2459977366d9d8a00ebecc91f3e2971",
+  "reviewedAt": "2026-10-25T18:53:17.674390+00:00",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "decision-tree：生活类比",
+      "status": "passed",
+      "checks": [
+        "逐张查看：生活分类场景、阈值提问与分支对应，人物肢体与文字完整。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "decision-tree：核心规则",
+      "status": "passed",
+      "checks": [
+        "逐张查看：主阈值x<50纯分组；候选x<27为左3右5，右Gini0.32，加权0.2，算式正确。"
+      ],
+      "corrections": [
+        "候选阈值x<27的左右数量与Gini算式已重绘并核对。"
+      ]
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "decision-tree：应用与局限",
+      "status": "passed",
+      "checks": [
+        "逐张查看：可解释规则与过拟合边界明确，未宣称训练纯分组保证泛化。"
+      ],
+      "corrections": []
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "科普场景含明确的示意，精确逐步数值以同版案例轨迹为准"
+  ]
+}

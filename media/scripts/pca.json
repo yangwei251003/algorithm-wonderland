@@ -1,0 +1,268 @@
+{
+  "algorithmId": "pca",
+  "pronunciations": {
+    "PCA": "主成分分析"
+  },
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "给一串珠子找影子轴",
+      "text": "一串珠子有横纵两个坐标，想用轴上的一个位置数描述它们。先找数据中心，再找影子最展开的方向。主成分分析把展开程度定义为方差，不把它当成任务的重要性。",
+      "ruleIds": [
+        "pca.initialize"
+      ],
+      "visualExplanation": "珠子对应数据点，影子轴对应保留方向；投影丢掉垂直方向的信息。"
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "到底优化哪个指标",
+      "text": "保留一维时，最大化投影方差，也等价于最小化垂直方向的平方重建误差。这不是分类正确率。",
+      "ruleIds": [
+        "pca.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "sum",
+      "kind": "event",
+      "title": "先累计坐标，不急着报中心",
+      "text": "依次加入四点，分别累计横坐标和纵坐标。中心必须等总和除以点数后才得到。",
+      "ruleIds": [
+        "pca.center"
+      ],
+      "eventIds": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "center",
+      "kind": "event",
+      "title": "总和除以四，得到中心",
+      "text": "横向总和一百、纵向一百四十，各除以四，中心二十五、三十五。之后比较每点相对中心的偏差。",
+      "ruleIds": [
+        "pca.center"
+      ],
+      "eventIds": [
+        "5"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "cov-first",
+      "kind": "event",
+      "title": "第一点怎样贡献共同变化",
+      "text": "第一点十、二十，两个偏差都是负十五。横向平方、横纵乘积、纵向平方都为二百二十五；同向变化产生正乘积。",
+      "ruleIds": [
+        "pca.covariance"
+      ],
+      "eventIds": [
+        "6"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "calculation"
+      ],
+      "calculationKeys": [
+        "dx",
+        "dy",
+        "dx2",
+        "dxdy"
+      ]
+    },
+    {
+      "id": "cov-rest",
+      "kind": "event",
+      "title": "其他点也按同样规则累计",
+      "text": "其余点偏差依次是负五、五、十五。逐点累计三个量，不把正负偏差直接相加抵消。",
+      "ruleIds": [
+        "pca.covariance"
+      ],
+      "eventIds": [
+        "7",
+        "8",
+        "9"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "direction",
+      "kind": "event",
+      "title": "为什么对角方向胜出",
+      "text": "三个累计量都是五百，除以四得到协方差矩阵各格一百二十五。求出的单位方向约零点七零七、零点七零七。",
+      "ruleIds": [
+        "pca.direction"
+      ],
+      "eventIds": [
+        "10"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "calculation"
+      ],
+      "calculationKeys": [
+        "xx",
+        "xy",
+        "yy",
+        "theta"
+      ]
+    },
+    {
+      "id": "compare",
+      "kind": "event",
+      "title": "另一个方向为何舍弃",
+      "text": "沿主方向的方差二百五十，垂直方向为零。只保留一维时，选择更大的二百五十；没有把纵坐标简单删掉。",
+      "ruleIds": [
+        "pca.direction"
+      ],
+      "eventIds": [
+        "10"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "project1",
+      "kind": "event",
+      "title": "第一点变成哪个位置数",
+      "text": "第一点两个偏差均为负十五，各乘方向分量后相加，得到负二十一点二一。这一个数描述它沿主轴的位置。",
+      "ruleIds": [
+        "pca.project"
+      ],
+      "eventIds": [
+        "11"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule",
+        "calculation"
+      ],
+      "calculationKeys": [
+        "x",
+        "y",
+        "mx",
+        "my"
+      ]
+    },
+    {
+      "id": "project2",
+      "kind": "event",
+      "title": "第二点重新做点积",
+      "text": "第二点两个偏差都是负五，同样点积得到负七点零七。负号表示位于中心沿轴反方向，不表示错误。",
+      "ruleIds": [
+        "pca.project"
+      ],
+      "eventIds": [
+        "12"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "project-rest",
+      "kind": "event",
+      "title": "中心另一侧的位置数为正",
+      "text": "第三、第四点同样投影，得到正的位置数。沿方向乘回分数再加中心，是重建；本例共线，恰好能还原。",
+      "ruleIds": [
+        "pca.project"
+      ],
+      "eventIds": [
+        "13",
+        "14"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "result",
+      "kind": "event",
+      "title": "百分之百保留的是什么",
+      "text": "二百五十除以二百五十加零，保留方差百分之百。一般数据有垂直偏离，就会丢失；没有预测全对的保证。",
+      "ruleIds": [
+        "pca.project"
+      ],
+      "eventIds": [
+        "15"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "完整记录加速回放",
+      "text": "回放居中、累计协方差、选择方向、投影。数字与坐标始终来自同一套数据。",
+      "ruleIds": [
+        "pca.initialize",
+        "pca.center",
+        "pca.covariance",
+        "pca.direction",
+        "pca.project"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "operandsPerPage": 4,
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "finish",
+      "kind": "summary",
+      "title": "先居中，再找方向，最后投影",
+      "text": "适合降维、压缩和探索变化。先检查单位尺度，再决定允许丢什么。类别线索可能藏在小方差方向；方差相同则主方向不唯一，全点重合时保留比例没有实际意义。",
+      "ruleIds": [
+        "pca.center",
+        "pca.covariance",
+        "pca.project"
+      ],
+      "visualExplanation": "漫画是投影用途与限制的示意；正式四点恰好共线，100%仅指保留方差。"
+    }
+  ]
+}

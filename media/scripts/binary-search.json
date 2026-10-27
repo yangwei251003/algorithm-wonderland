@@ -1,0 +1,274 @@
+{
+  "algorithmId": "binary-search",
+  "artworkPanels": {
+    "analogy": [
+      [
+        0,
+        0.09,
+        1,
+        0.3
+      ],
+      [
+        0,
+        0.31,
+        1,
+        0.51
+      ],
+      [
+        0,
+        0.52,
+        1,
+        0.72
+      ]
+    ],
+    "summary": [
+      [
+        0,
+        0,
+        1,
+        0.41
+      ],
+      [
+        0,
+        0.42,
+        1,
+        0.72
+      ],
+      [
+        0,
+        0.73,
+        1,
+        0.97
+      ]
+    ]
+  },
+  "beats": [
+    {
+      "id": "intro-left",
+      "kind": "analogy",
+      "title": "十七偏小，排除左半边",
+      "text": "价格从低到高排列。找二十三元商品，中间十七元还便宜，左边只会更便宜，因此可以一起排除。",
+      "artwork": "../comics/binary-search/analogy.png",
+      "artworkRegion": [
+        0,
+        0.095,
+        1,
+        0.303
+      ],
+      "panelExplanations": [
+        "17<23；有序保证左侧的3、8、12也小于23。只保留右侧候选。"
+      ],
+      "ruleIds": [
+        "binary-search.initialize",
+        "binary-search.discard"
+      ]
+    },
+    {
+      "id": "intro-right",
+      "kind": "analogy",
+      "title": "三十一偏大，排除右半边",
+      "text": "余下货架中间是三十一元，比目标贵。它和右边更贵的商品都不可能是答案。",
+      "artwork": "../comics/binary-search/analogy.png",
+      "artworkRegion": [
+        0,
+        0.31,
+        1,
+        0.512
+      ],
+      "panelExplanations": [
+        "31>23；31和42一起排除，留下23。排除方向由本次比较决定。"
+      ],
+      "ruleIds": [
+        "binary-search.discard"
+      ]
+    },
+    {
+      "id": "intro-found",
+      "kind": "analogy",
+      "title": "剩下二十三，相等才停止",
+      "text": "最后核对二十三，确实相等，才返回位置。二分的排除证据，始终来自已经有序。",
+      "artwork": "../comics/binary-search/analogy.png",
+      "artworkRegion": [
+        0,
+        0.52,
+        1,
+        0.717
+      ],
+      "panelExplanations": [
+        "当前价23等于目标23，命中停止。不能仅因范围只剩一个就免去核对。"
+      ],
+      "ruleIds": [
+        "binary-search.stop"
+      ]
+    },
+    {
+      "id": "setup",
+      "kind": "event",
+      "title": "先说清楚前提",
+      "text": "本例七个数已经升序，目标二十三，初始候选覆盖整列。网页先准备有序输入，本段只计查找次数；排序的准备成本没有消失。",
+      "ruleIds": [
+        "binary-search.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "middle",
+      "kind": "event",
+      "title": "为什么先看十七？",
+      "text": "两端下标是零和六，中点向下取整得到三，即第四张十七。取的是位置中点，不是最小最大价格的平均。当前十七小于目标二十三。",
+      "ruleIds": [
+        "binary-search.compare"
+      ],
+      "eventIds": [
+        "1"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ],
+      "calculationKeys": [
+        "low",
+        "high"
+      ]
+    },
+    {
+      "id": "left",
+      "kind": "event",
+      "title": "左半边为何全都不可能？",
+      "text": "升序保证十七左边都不大于十七，所以前三张连同中点都小于二十三。它们有证据被排除，只留下右边三个候选。",
+      "ruleIds": [
+        "binary-search.discard"
+      ],
+      "eventIds": [
+        "2"
+      ],
+      "pageModes": [
+        "rule",
+        "comparison"
+      ]
+    },
+    {
+      "id": "right-middle",
+      "kind": "event",
+      "title": "新范围的中点是三十一",
+      "text": "新范围下标四到六，中点是五，对应值三十一。三十一大于二十三，接下来要排除更大的那一边。",
+      "eventIds": [
+        "3"
+      ],
+      "ruleIds": [
+        "binary-search.compare"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ],
+      "calculationKeys": [
+        "low",
+        "high"
+      ]
+    },
+    {
+      "id": "right-discard",
+      "kind": "event",
+      "title": "为何这次排除右边？",
+      "text": "三十一和右边的四十二都不小于三十一，因此不可能等于目标二十三。排除它们后，只剩下标四。",
+      "eventIds": [
+        "4"
+      ],
+      "ruleIds": [
+        "binary-search.discard"
+      ],
+      "pageModes": [
+        "rule",
+        "comparison"
+      ]
+    },
+    {
+      "id": "found",
+      "kind": "event",
+      "title": "最后一个候选也要比较",
+      "text": "现在两端下标都是四，中点还是四，值二十三与目标相等。第三次比较命中，才可以返回这个位置。",
+      "eventIds": [
+        "5"
+      ],
+      "ruleIds": [
+        "binary-search.compare"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ],
+      "calculationKeys": [
+        "low",
+        "high"
+      ]
+    },
+    {
+      "id": "found-stop",
+      "kind": "event",
+      "title": "命中后返回位置",
+      "text": "返回第五个位置，共查看三次。若区间先变空则不存在；若有重复值，本实现不承诺返回最左边那个。",
+      "eventIds": [
+        "6",
+        "7"
+      ],
+      "ruleIds": [
+        "binary-search.stop"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "detailEventIds": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "wrong",
+      "kind": "comparison",
+      "title": "无序清单不能照搬排除规则",
+      "text": "看这幅错误用法示意：二十三藏在十七左边。如果不检查有序，就因为十七偏小而砍掉左半边，会把目标一起删掉。",
+      "artwork": "../comics/binary-search/summary.png",
+      "artworkRegion": [
+        0.51,
+        0.425,
+        0.995,
+        0.716
+      ],
+      "panelExplanations": [
+        "这是故意绕过有序前提的错误示意，不是网页算法的输出。无序时，“左边都更小”不再成立。"
+      ],
+      "ruleIds": [
+        "binary-search.initialize",
+        "binary-search.discard"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "完整回放，带走规则",
+      "text": "回放全部真实步骤，观察候选区间怎样缩小。适合有序、能直接访问中间位置的清单。先证明哪部分不可能，再排除，才是二分查找能放心使用的原因。",
+      "ruleIds": [
+        "binary-search.initialize",
+        "binary-search.compare",
+        "binary-search.discard",
+        "binary-search.stop"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    }
+  ]
+}

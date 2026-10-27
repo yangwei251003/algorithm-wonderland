@@ -1,0 +1,15 @@
+import type {LabInput,Params,Scene,VisualNode} from '../engine/types';
+import {clamp,gaussian,num,palette,rng,round,str} from '../engine/utils';
+const mint=palette[0],amber=palette[1],blue=palette[2];
+const limit=(p:Params,k:string,d:number,a:number,b:number)=>clamp(num(p,k,d),a,b);
+export const mean=(a:number[])=>a.length?a.reduce((s,v)=>s+v,0)/a.length:0;
+export const sigmoid=(x:number)=>x>=0?1/(1+Math.exp(-x)):Math.exp(x)/(1+Math.exp(x));
+export const accuracy=(data:Datum[],fn:(x:number,y:number)=>number)=>data.length?round(100*data.filter(d=>(fn(d.x,d.y)>=.5?1:0)===d.c).length/data.length):0;
+export const textScene=(title:string,text:string[]):Scene=>({kind:'text',title,text});
+export const bars=(title:string,values:number[],labels?:string[]):Scene=>({kind:'bars',title,values,labels});
+export function histogram(values:number[],bins=16):Scene{const lo=Math.min(...values),hi=Math.max(...values),w=(hi-lo||1)/bins,counts=Array(bins).fill(0);for(const x of values)counts[Math.min(bins-1,Math.max(0,Math.floor((x-lo)/w)))]++;return {kind:'bars',title:'多次实验的结果分布',values:counts,labels:counts.map((_,i)=>String(round(lo+(i+.5)*w,1)))};}
+export function sales(p:Params,seed:number){const random=rng(seed),noise=limit(p,'noise',8,0,30),jump=limit(p,'jump',20,0,60);return Array.from({length:32},(_,i)=>Math.max(1,round(45+i*.7+8*Math.sin(i*.4)+gaussian(random)*noise+(i>=21?jump:0),1)));}
+export interface Datum{x:number;y:number;c:number;}
+export function dataset(input:LabInput,p:Params,seed:number):Datum[]{if(input.points?.length)return input.points.slice(0,150).map(d=>({x:clamp(d.x,0,100),y:clamp(d.y,0,100),c:d.value===1||d.label==='1'?1:d.value===0||d.label==='0'?0:(d as VisualNode & {c?:number}).c??(d.x>=50?1:0)}));const random=rng(seed),shape=str(p,'shape','clusters'),noise=limit(p,'noise',5,0,25);return Array.from({length:80},(_,i)=>{const c=i%2;let x=0,y=0;if(shape==='rings'){const a=random()*Math.PI*2,r=c?30:13;x=50+Math.cos(a)*r;y=50+Math.sin(a)*r;}else if(shape==='moons'){const a=random()*Math.PI;x=c?40+28*Math.cos(a):58+28*Math.cos(a);y=c?60-24*Math.sin(a):37+24*Math.sin(a);}else if(shape==='xor'){x=15+random()*70;y=15+random()*70;return {x:clamp(x+gaussian(random)*noise,2,98),y:clamp(y+gaussian(random)*noise,2,98),c:Number((x>50)!==(y>50))};}else{x=30+c*40+gaussian(random)*8;y=35+c*25+gaussian(random)*9;}return{x:clamp(x+gaussian(random)*noise,2,98),y:clamp(y+gaussian(random)*noise,2,98),c};});}
+export function surface(data:Datum[],fn:(x:number,y:number)=>number,title:string):Scene{const cols=28,rows=20;return{kind:'scatter',yUp:true,title,note:'横轴向右、纵轴向上增大。底色是模型判断；圆点颜色是真实类别；◇是未参与训练的验证点。',cols,rows,cells:Array.from({length:cols*rows},(_,i)=>{const v=clamp(fn((i%cols+.5)/cols*100,(Math.floor(i/cols)+.5)/rows*100),0,1);return v>.5?'#b77e42':'#3f9d88';}),nodes:data.map((d,i)=>({x:d.x,y:d.y,color:d.c?amber:mint,r:1.5,value:d.c,label:i%5===0?'◇':undefined}))};}
+export function split(data:Datum[]){return {train:data.filter((_,i)=>i%5!==0),test:data.filter((_,i)=>i%5===0)};}

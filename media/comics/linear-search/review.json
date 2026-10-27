@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "algorithmId": "linear-search",
+  "lessonVersion": 2,
+  "traceHash": "e7531892ee3d0bd9f4069e383760c2a9abf2eed5d5573e1fd91578930f5fbf90",
+  "checkedAt": "2026-10-26",
+  "reviewer": "Codex：逐张目视检查与真实事件对照",
+  "generator": "built-in imagegen",
+  "status": "accepted",
+  "assets": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "version": 1,
+      "notes": [
+        "三格口袋按1→2→3检查，第四袋仍关闭。",
+        "钥匙的出现对应命中，未先打开所有口袋。",
+        "核心中文及失败要检查全部的提示清晰正确。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "version": 1,
+      "notes": [
+        "逐项核对12、7、20、7及12≠20、7≠20、20=20。",
+        "指针分别只指第一、第二、第三位置；第四项保持未检查。",
+        "最终第三位置、查看3次与真实记录一致。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "version": 1,
+      "notes": [
+        "找20查看3次、找99检查四项的情境明确区分。",
+        "第一格勾下有第N次查看标注，表示已查看而非每项匹配。",
+        "短无序清单适用、最坏全扫、首匹配停止局限正确。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    }
+  ],
+  "script": {
+    "file": "media/scripts/linear-search.json",
+    "beats": 8,
+    "narrationCharacters": 672,
+    "hanCharacters": 597,
+    "status": "authored-and-event-checked",
+    "videoRendered": false
+  },
+  "limitations": [
+    "这是漫画与脚本审查；未在本记录中宣称成片已渲染或已听评。",
+    "影视动画沿用真实eventIds；类比与反例图不冒充额外计算记录。"
+  ],
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "按口袋顺序找钥匙，命中后停止，未检查的口袋仍保留。",
+      "status": "passed"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "依次比较12、7、20，三次检查找到第三位置。",
+      "status": "passed"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "对比成功早停和失败全扫，说明无序短清单的应用边界。",
+      "status": "passed"
+    }
+  ],
+  "reviewedAt": "2026-10-26"
+}

@@ -1,0 +1,44 @@
+{
+  "algorithmId": "huffman",
+  "lessonVersion": 2,
+  "traceHash": "a921dacc123b9e961fb251bfc935065f036fce82aa5f5e566aa08bd9b94269f2",
+  "reviewedAt": "2026-10-25T19:36:33.675383+00:00",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "Huffman 编码：生活类比",
+      "status": "passed",
+      "checks": [
+        "第二版核对A3直接短叶，B1/N2同在较深子树，删除错误可数信封；频率牌准确。"
+      ],
+      "corrections": [
+        "修正右侧树的叶深度：根左边直接是叶A（只走1条边），根右边是一个内部节点，内部节点再分到叶B和叶N（各走2条边）。不能让低频B走短路而A走长路。树没有边数字也可。左侧频数台的可数信封全部移除，三个台只留“A：3次”“N：2次”“B：1次”文字牌，避免信封数量与频数不符。全部其他中文与人物保留。"
+      ]
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "Huffman 编码：规则与计算",
+      "status": "passed",
+      "checks": [
+        "核对B1+N2=3、再与A3合并6；边0/1与A0、B10、N11码表一致。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "Huffman 编码：结果与边界",
+      "status": "passed",
+      "checks": [
+        "核对BANANA逐字符10/0/11/0/11/0载荷9位；码表20字节、补齐载荷2字节共176位。"
+      ],
+      "corrections": []
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "生活类比为原理示意；精确计算以规则图及关联教学轨迹为准"
+  ]
+}

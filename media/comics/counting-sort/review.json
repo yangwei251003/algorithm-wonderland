@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "algorithmId": "counting-sort",
+  "lessonVersion": 2,
+  "traceHash": "7bd463f5f8e0889bce062a0059300601f91675ccab1a7dbf875e06523dfb2cd9",
+  "checkedAt": "2026-10-26",
+  "reviewedAt": "2026-10-26",
+  "reviewer": "Codex：逐张目视检查与真实事件对照",
+  "generator": "built-in imagegen",
+  "status": "accepted",
+  "assets": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "version": 1,
+      "notes": [
+        "输入[2,-1,2,0,-1]分盒计数[2,1,0,2]，负数作为活动积分合理。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "version": 1,
+      "notes": [
+        "2−(−1)=3与−1−(−1)=0正确；区分下标与数值。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "version": 2,
+      "notes": [
+        "重建重复值和小值域条件准确；删除可能误读成完全无比较成本的表述。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    }
+  ],
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "输入[2,-1,2,0,-1]分盒计数[2,1,0,2]，负数作为活动积分合理。",
+      "status": "passed"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "2−(−1)=3与−1−(−1)=0正确；区分下标与数值。",
+      "status": "passed"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "重建重复值和小值域条件准确；删除可能误读成完全无比较成本的表述。",
+      "status": "passed"
+    }
+  ],
+  "script": {
+    "file": "media/scripts/counting-sort.json",
+    "beats": 8,
+    "narrationCharacters": 670,
+    "hanCharacters": 591,
+    "status": "authored-and-event-checked",
+    "videoRendered": false,
+    "revision": "删去重复旁白，为150秒内成片保留收尾；规则、事件、对比未删减。"
+  },
+  "limitations": [
+    "这是漫画与脚本审查；未在本记录中宣称成片已渲染或已听评。",
+    "影视动画沿用真实eventIds；类比与反例图不冒充额外计算记录。"
+  ]
+}

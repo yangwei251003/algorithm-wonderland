@@ -1,0 +1,329 @@
+{
+  "algorithmId": "kmp",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "印章对不上，不必把布倒回去",
+      "text": "长条字母布上找固定图案，前四位对上，第五位却不同。要倒回去吗？先记录图案内部重复，失配时复用已证明相同的部分。",
+      "ruleIds": [
+        "kmp.initialize"
+      ],
+      "panelExplanations": [
+        "布对应文本；印章对应模式。模式内部的重复决定失配后还能保留多长的匹配。"
+      ]
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "先给模式制作回退表",
+      "text": "回退表记录每段开头与结尾相同的最长长度，不能包含整段自己。单字符没有更短的非空片段，首项零；圆点是未计算。",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "kmp.initialize"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "prefix-first",
+      "kind": "event",
+      "title": "第二个字母与开头不同",
+      "text": "第二个字母与开头不同，候选长度已是零，不能再缩短。",
+      "eventIds": [
+        "1"
+      ],
+      "ruleIds": [
+        "kmp.prefix"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "prefix-zero",
+      "kind": "event",
+      "title": "没有可复用部分，填零",
+      "text": "第二项填零，继续下一字符。填好的表项以后可以查。",
+      "eventIds": [
+        "2"
+      ],
+      "ruleIds": [
+        "kmp.prefix"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "prefix-one",
+      "kind": "recap",
+      "title": "第三位延长出一个相同字符",
+      "text": "第三位与开头相同，前后缀长度从零延长到一。",
+      "eventIds": [
+        "3",
+        "4"
+      ],
+      "ruleIds": [
+        "kmp.prefix"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "prefix-two",
+      "kind": "recap",
+      "title": "第四位延长到两个字符",
+      "text": "第四位继续相同，长度变二。前后两段都是甲乙。",
+      "eventIds": [
+        "5",
+        "6"
+      ],
+      "ruleIds": [
+        "kmp.prefix"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "prefix-fail",
+      "kind": "event",
+      "title": "第五位与候选不相同",
+      "text": "第五位与候选不同，不能沿用长度二。",
+      "eventIds": [
+        "7"
+      ],
+      "ruleIds": [
+        "kmp.prefix"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "prefix-fallback",
+      "kind": "event",
+      "title": "查更短片段，不移动新字符",
+      "text": "查已算表项，长度从二退到零，新字符不动。",
+      "eventIds": [
+        "8"
+      ],
+      "ruleIds": [
+        "kmp.prefix"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "prefix-retest",
+      "kind": "event",
+      "title": "退到零后再次比较",
+      "text": "再比较仍不同，",
+      "eventIds": [
+        "9"
+      ],
+      "ruleIds": [
+        "kmp.prefix"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "prefix-end",
+      "kind": "event",
+      "title": "末项填零，回退表完成",
+      "text": "末项填零。完整表现在才是零、零、一、二、零。",
+      "eventIds": [
+        "10"
+      ],
+      "ruleIds": [
+        "kmp.prefix"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "compare-first",
+      "kind": "event",
+      "title": "文本与模式逐字对齐",
+      "text": "开始搜索。上行文本，下行模式，金色是本次比较。相同才允许两个指针前进。",
+      "eventIds": [
+        "11"
+      ],
+      "ruleIds": [
+        "kmp.search"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "advance-first",
+      "kind": "event",
+      "title": "相同之后，两个指针共同前进",
+      "text": "首字相同，两个指针各加一。绿色是已确认的部分。",
+      "eventIds": [
+        "12"
+      ],
+      "ruleIds": [
+        "kmp.search"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "first-rest",
+      "kind": "recap",
+      "title": "同一规则继续比较与前进",
+      "text": "接下来重复比较；每次确认相同，才推进两个指针。",
+      "eventIds": [
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18"
+      ],
+      "ruleIds": [
+        "kmp.search"
+      ]
+    },
+    {
+      "id": "mismatch",
+      "kind": "event",
+      "title": "期待第五位，却遇到不同字符",
+      "text": "已匹配四位，期待模式末字，却遇到不同字。文本位置四先停住，不能算匹配。",
+      "eventIds": [
+        "19"
+      ],
+      "ruleIds": [
+        "kmp.search"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "fallback",
+      "kind": "event",
+      "title": "保留末尾已证实相同的两位",
+      "text": "已匹配片段的前后两位相同。查表，匹配长度四退二，文本仍是四。模式右移，复用末尾两位，避免重查。",
+      "eventIds": [
+        "20"
+      ],
+      "ruleIds": [
+        "kmp.search"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "retest",
+      "kind": "recap",
+      "title": "同一文本字符重新对齐后再比",
+      "text": "从同一文本字符继续比，逐步补足模式。只复用已证明相同的部分，没有跳过未知字符。",
+      "eventIds": [
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26"
+      ],
+      "ruleIds": [
+        "kmp.search"
+      ]
+    },
+    {
+      "id": "match",
+      "kind": "event",
+      "title": "完整匹配，记录真实起点",
+      "text": "五位全齐，文本位置七减模式长度五，起点二，即第三个字符。记录后按表退回，继续找。",
+      "eventIds": [
+        "27"
+      ],
+      "ruleIds": [
+        "kmp.match"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "repeat",
+      "kind": "recap",
+      "title": "继续匹配、失配回退与补齐",
+      "text": "余下文本按相同规则：匹配就前进，失配就查表，文本始终不倒退。",
+      "eventIds": [
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43"
+      ],
+      "ruleIds": [
+        "kmp.search"
+      ]
+    },
+    {
+      "id": "second",
+      "kind": "event",
+      "title": "第二次完整出现",
+      "text": "第二次凑齐，十四减五得九，即第十个字符起，记录这次出现。",
+      "eventIds": [
+        "44"
+      ],
+      "ruleIds": [
+        "kmp.match"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "finish",
+      "kind": "event",
+      "title": "搜索完成，比较了十六次",
+      "text": "文本到头，搜索共比较十六次。本例两处没有重叠；算法也能保留重叠出现的机会。",
+      "eventIds": [
+        "45"
+      ],
+      "ruleIds": [
+        "kmp.match"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "准确查找固定图案",
+      "text": "它适合精确子串与重复模式搜索，回退表可多次复用。近似拼写、相似词义需要其他方法；动画速度不是效率证据。",
+      "ruleIds": [
+        "kmp.match"
+      ]
+    }
+  ]
+}

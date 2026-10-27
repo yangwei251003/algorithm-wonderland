@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "algorithmId": "floyd-warshall",
+  "lessonVersion": 2,
+  "traceHash": "d9d9849f72dc1feac4ff938fb27007ca1b0941d06fa3a1238de909afc2d9d689",
+  "checkedAt": "2026-10-26",
+  "reviewedAt": "2026-10-26",
+  "reviewer": "Codex：逐张目视检查与真实事件对照",
+  "generator": "built-in imagegen",
+  "status": "accepted",
+  "assets": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "version": 1,
+      "notes": [
+        "A到C无直达；经B8+6=14；经D7+11=18保留14。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "version": 2,
+      "notes": [
+        "逐轮新增中转k，并保留先前允许中转；∞不作零。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "version": 2,
+      "notes": [
+        "A-C14、A-D7、B-C6与最终表一致；移除错误铁路连线，负环局限准确。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    }
+  ],
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "A到C无直达；经B8+6=14；经D7+11=18保留14。",
+      "status": "passed"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "逐轮新增中转k，并保留先前允许中转；∞不作零。",
+      "status": "passed"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "A-C14、A-D7、B-C6与最终表一致；移除错误铁路连线，负环局限准确。",
+      "status": "passed"
+    }
+  ],
+  "script": {
+    "file": "media/scripts/floyd-warshall.json",
+    "beats": 8,
+    "narrationCharacters": 646,
+    "hanCharacters": 582,
+    "status": "authored-and-event-checked",
+    "videoRendered": false
+  },
+  "limitations": [
+    "这是漫画与脚本审查，成片渲染及音频验收由统一媒体流程另行记录。",
+    "类比、局部规则示意与反例均不冒充额外真实执行记录。"
+  ]
+}

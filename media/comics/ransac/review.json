@@ -1,0 +1,57 @@
+{
+  "algorithmId": "ransac",
+  "lessonVersion": 2,
+  "traceHash": "2917e746eed400f77734e444856ee9baaaae04f8e13524c3acc0f24233ed0856",
+  "reviewedAt": "2026-10-26",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "随机两点提案并逐个点检查支持",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图片",
+        "点线垂距公式与容差3准确",
+        "11首轮支持、39最佳支持、方程和24轮核对trace"
+      ],
+      "corrections": [
+        "删除伪坐标人物地图",
+        "删除逐渐变宽的错误容差色带"
+      ]
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "垂直距离、容差和真实首轮支持判断",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图片",
+        "点线垂距公式与容差3准确",
+        "11首轮支持、39最佳支持、方程和24轮核对trace"
+      ],
+      "corrections": [
+        "删除伪坐标人物地图",
+        "删除逐渐变宽的错误容差色带"
+      ]
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "24次尝试后39点支持的候选与变体边界",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图片",
+        "点线垂距公式与容差3准确",
+        "11首轮支持、39最佳支持、方程和24轮核对trace"
+      ],
+      "corrections": [
+        "删除伪坐标人物地图",
+        "删除逐渐变宽的错误容差色带"
+      ]
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "插图为关系示意；真实实验数字单独标注"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "algorithmId": "exponential-smoothing",
+  "lessonVersion": 2,
+  "traceHash": "195e1ce52de33c58588fdf7d960e36768b9c01fc408a97e555fe53bdccf72bc8",
+  "reviewedAt": "2026-10-26",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "指数平滑：生活类比与核心思想",
+      "status": "passed",
+      "checks": [
+        "30和12.5各半，21.25结果正确",
+        "机械架替代多余手，现人物两臂",
+        "旧估计包含历史映射正确"
+      ],
+      "corrections": [
+        "首稿出现多余手，使用imagegen重绘为机械混合架，已复查两臂与全部数值。"
+      ]
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "指数平滑：真实样例的计算规则",
+      "status": "passed",
+      "checks": [
+        "32×.5+21.25×.5=26.625准确",
+        "箭头先乘权重再求和",
+        "α大小的影响正确"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "指数平滑：用途与适用边界",
+      "status": "passed",
+      "checks": [
+        "公式两项权重和为1",
+        "指数指历史衰减的文字正确",
+        "季节/趋势适用边界清楚"
+      ],
+      "corrections": []
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "漫画为静态科普，逐步计算见同源交互轨迹"
+  ]
+}

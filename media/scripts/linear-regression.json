@@ -1,0 +1,260 @@
+{
+  "algorithmId": "linear-regression",
+  "pronunciations": {
+    "RMSE": "均方根误差"
+  },
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "给散点摆一把趋势尺",
+      "text": "观测点像散落的图钉，直线像趋势尺。我们计算每点到直线的竖直偏差，先平方再相加，选择总和最小的线，正负偏差不能抵消。",
+      "ruleIds": [
+        "linear-regression.initialize"
+      ],
+      "panelExplanations": [
+        "竖直虚线表示观测值减去预测值；正五与负五平方都等于二十五。"
+      ]
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "先拟合两个点，再增加样本",
+      "text": "本例拟合带截距的直线，先用前两点，再加入新点重算。",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "linear-regression.initialize"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "sum",
+      "kind": "event",
+      "title": "先把坐标分别相加",
+      "text": "前两点是十、二十和二十、三十。分别累计横坐标与纵坐标，只使用这两点。",
+      "eventIds": [
+        "1",
+        "2"
+      ],
+      "ruleIds": [
+        "linear-regression.center"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "detailEventIds": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "id": "center",
+      "kind": "event",
+      "title": "均值中心是十五、二十五",
+      "text": "横坐标总和三十，纵坐标总和五十，各除以二，中心是十五、二十五。带截距的拟合线经过此点。",
+      "eventIds": [
+        "3"
+      ],
+      "ruleIds": [
+        "linear-regression.center"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "first-deviation",
+      "kind": "event",
+      "title": "第一个点的两种偏差",
+      "text": "第一个点横纵都比均值少五，乘积为二十五，横向偏差平方也为二十五。前者看共同变化，后者衡量横向变化。",
+      "eventIds": [
+        "4"
+      ],
+      "ruleIds": [
+        "linear-regression.fit"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "second-deviation",
+      "kind": "event",
+      "title": "第二点贡献相同",
+      "text": "第二个点横纵都多五，两项贡献也都是二十五。分别累计后，分子、分母均为五十。",
+      "eventIds": [
+        "5"
+      ],
+      "ruleIds": [
+        "linear-regression.fit"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "fit",
+      "kind": "event",
+      "title": "用比值确定斜率",
+      "text": "五十除以五十，斜率为一。再用纵向均值二十五减去一乘十五，截距是十，得到纵坐标等于横坐标加十。",
+      "eventIds": [
+        "6"
+      ],
+      "ruleIds": [
+        "linear-regression.fit"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "repeat3",
+      "kind": "event",
+      "title": "加入第三点，完整重算",
+      "text": "加入第三点，按已讲规则重新求和、求均值、累计偏差和拟合。重复计算完整回放。",
+      "eventIds": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "ruleIds": [
+        "linear-regression.center",
+        "linear-regression.fit"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "repeat4",
+      "kind": "event",
+      "title": "第四点加入，仍按相同规则",
+      "text": "再加入第四点，重新计算均值与每点贡献，不能沿用上一批样本的均值。",
+      "eventIds": [
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23"
+      ],
+      "ruleIds": [
+        "linear-regression.center",
+        "linear-regression.fit"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "final-fit",
+      "kind": "event",
+      "title": "四点的最终比值",
+      "text": "四点均值是二十五、三十五。分子与分母均为五百，斜率仍为一，截距仍为十。",
+      "eventIds": [
+        "24"
+      ],
+      "ruleIds": [
+        "linear-regression.fit"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "error-one",
+      "kind": "event",
+      "title": "从第一个残差开始核对",
+      "text": "先代回第一个横坐标十，预测二十。实际也是二十，残差为零，平方仍为零。",
+      "eventIds": [
+        "25"
+      ],
+      "ruleIds": [
+        "linear-regression.evaluate"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "errors",
+      "kind": "event",
+      "title": "其他三点也逐一核对",
+      "text": "其余三点依次核对实际值与预测值，累计残差平方。这组数据恰好共线，四个残差都是零。",
+      "eventIds": [
+        "26",
+        "27",
+        "28"
+      ],
+      "ruleIds": [
+        "linear-regression.evaluate"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "rmse",
+      "kind": "event",
+      "title": "样本内零误差不保证未来",
+      "text": "平方误差取平均再开方，得到均方根误差。此例为零，只说明这四点拟合完美，不保证新数据也在这条线上。",
+      "eventIds": [
+        "29"
+      ],
+      "ruleIds": [
+        "linear-regression.evaluate"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "contrast",
+      "kind": "comparison",
+      "title": "只改变一个点，趋势就会改变",
+      "text": "把最后一点的纵坐标五十改成九十，重新拟合。斜率从一变成二点二。平方放大大的偏差，所以单个离群点可能明显拉动直线。",
+      "ruleIds": [
+        "linear-regression.fit"
+      ],
+      "caseFile": "review-counterexample-linear-regression.json",
+      "caseEventIds": [
+        "24"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "finish",
+      "kind": "summary",
+      "title": "看趋势，也要检查适用范围",
+      "text": "最小二乘适合概括近似线性关系。先检查离群点，再用新样本验证。全部横坐标相同时，斜率无法唯一确定；相关趋势也不证明因果。",
+      "ruleIds": [
+        "linear-regression.center",
+        "linear-regression.fit",
+        "linear-regression.evaluate"
+      ],
+      "panelExplanations": [
+        "离群点、样本外预测与因果解释是不同的限制；本例成功拟合不能替代这些检查。"
+      ]
+    }
+  ]
+}

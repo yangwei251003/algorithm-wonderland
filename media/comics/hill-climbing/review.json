@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "algorithmId": "hill-climbing",
+  "lessonVersion": 2,
+  "traceHash": "aff6cdff83ff3d9d6fe5d595890decb0c4d5e561f942e50d54b4367ad04717aa",
+  "checkedAt": "2026-10-26",
+  "reviewedAt": "2026-10-26",
+  "reviewer": "Codex：逐张目视检查与真实事件对照",
+  "generator": "built-in imagegen",
+  "status": "accepted",
+  "assets": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "version": 1,
+      "notes": [
+        "步长3位置15、18、21、24；远峰明确标为未搜索局限示意。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "version": 2,
+      "notes": [
+        "三个候选比较及19.76、25.33、30.56、34.44、36.02值核对；移除生成器编造连续曲线。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "version": 1,
+      "notes": [
+        "位置24收益36.02与轨迹准确；边界示意和真实结果分开，不承诺全局最优。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    }
+  ],
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "步长3位置15、18、21、24；远峰明确标为未搜索局限示意。",
+      "status": "passed"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "三个候选比较及19.76、25.33、30.56、34.44、36.02值核对；移除生成器编造连续曲线。",
+      "status": "passed"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "位置24收益36.02与轨迹准确；边界示意和真实结果分开，不承诺全局最优。",
+      "status": "passed"
+    }
+  ],
+  "script": {
+    "file": "media/scripts/hill-climbing.json",
+    "beats": 8,
+    "narrationCharacters": 666,
+    "hanCharacters": 599,
+    "status": "authored-and-event-checked",
+    "videoRendered": false
+  },
+  "limitations": [
+    "这是漫画与脚本审查，成片渲染及音频验收由统一媒体流程另行记录。",
+    "类比、局部规则示意与反例均不冒充额外真实执行记录。"
+  ]
+}

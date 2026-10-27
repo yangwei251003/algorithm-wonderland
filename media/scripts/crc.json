@@ -1,0 +1,339 @@
+{
+  "algorithmId": "crc",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "发送前补章，收到后重算",
+      "text": "寄消息前，算一枚余数章。接收方重新核对，检查是否符合约定关系。就像带校验章的信件，但章不能告诉你哪里坏了，也不会修复。",
+      "ruleIds": [
+        "crc.initialize"
+      ],
+      "panelExplanations": [
+        "发送方补余数章，接收方重新校验；发现不符合就拒绝，零余数也不是绝对没变的证明。"
+      ]
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "预留三位给余数",
+      "text": "数据一一零一，规则一零一一。规则长四位，最高次数三，末尾补三个零。七位工作串才是待除对象。",
+      "ruleIds": [
+        "crc.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "leading",
+      "kind": "event",
+      "title": "先看当前首位",
+      "text": "从位置零开始，首位一，需要对齐规则来消去它；首位零就右移。这里算异或，相同得零，不同得一。",
+      "ruleIds": [
+        "crc.divide"
+      ],
+      "eventIds": [
+        "1"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "first-xor",
+      "kind": "event",
+      "title": "第一对相同，消去最高位",
+      "text": "第一对，一异或一得零，只改这一位。另外三位还没处理，不能跳到下个起点。",
+      "ruleIds": [
+        "crc.divide"
+      ],
+      "eventIds": [
+        "2"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "calculationKeys": [
+        "old",
+        "polynomialBit"
+      ]
+    },
+    {
+      "id": "next-xor",
+      "kind": "recap",
+      "title": "把对齐的四位全部处理完",
+      "text": "逐位处理剩下三对。规则的零也参与核对，它会保留原位。没有借位或进位。",
+      "ruleIds": [
+        "crc.divide"
+      ],
+      "eventIds": [
+        "3",
+        "4",
+        "5"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "repeat",
+      "kind": "recap",
+      "title": "右移起点，重复已讲的规则",
+      "text": "后面三个起点重复同一规则。本例首位都是一，每次都对齐四位异或；工作串按记录逐位更新。",
+      "ruleIds": [
+        "crc.divide"
+      ],
+      "eventIds": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ]
+    },
+    {
+      "id": "remainder",
+      "kind": "event",
+      "title": "除完才取低三位",
+      "text": "高位全部处理完，最后三位是零零一。接在原数据后，发送码成为一一零一零零一。",
+      "ruleIds": [
+        "crc.divide"
+      ],
+      "eventIds": [
+        "21"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "channel",
+      "kind": "recap",
+      "title": "先处理不翻转的位置",
+      "text": "模拟传输：掩码零保持，一翻转。前六位掩码都是零，每处理一位，收到的前缀才增长一位。",
+      "ruleIds": [
+        "crc.channel"
+      ],
+      "eventIds": [
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "flip",
+      "kind": "event",
+      "title": "末位真的翻转",
+      "text": "最后掩码一，一异或一变零。七位全部收到，变成一一零一零零零。",
+      "ruleIds": [
+        "crc.channel"
+      ],
+      "eventIds": [
+        "28"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "calculationKeys": [
+        "encoded",
+        "mask"
+      ]
+    },
+    {
+      "id": "verify",
+      "kind": "recap",
+      "title": "对收到的整串重新求余",
+      "text": "接收方对收到的整串重做对齐和异或。不用先知道哪里坏了；保留原收到串，下方工作串逐步消去高位。",
+      "ruleIds": [
+        "crc.divide"
+      ],
+      "eventIds": [
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "verify-rem",
+      "kind": "event",
+      "title": "读取接收余数",
+      "text": "除完才读最后三位，零零一非零，不满足发送方构造的整除关系。",
+      "ruleIds": [
+        "crc.divide"
+      ],
+      "eventIds": [
+        "49"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "detect",
+      "kind": "event",
+      "title": "检测失败，并没有修好",
+      "text": "报告检出错误，收到的位没有恢复。实际系统可以重传，或使用额外纠错方法。",
+      "ruleIds": [
+        "crc.detect"
+      ],
+      "eventIds": [
+        "50"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "miss-channel",
+      "kind": "recap",
+      "title": "另一组掩码，逐位处理",
+      "text": "换成掩码一零一一，右端对齐。依次处理：零保持，一翻转。",
+      "ruleIds": [
+        "crc.channel"
+      ],
+      "caseFile": "review-counterexample-crc.json",
+      "caseEventIds": [
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "miss-channel-end",
+      "kind": "recap",
+      "title": "七位收完，共三位改变",
+      "text": "七位全部收到，共三位改变。",
+      "ruleIds": [
+        "crc.channel"
+      ],
+      "caseFile": "review-counterexample-crc.json",
+      "caseEventIds": [
+        "28"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "miss-check",
+      "kind": "recap",
+      "title": "重算前三个起点",
+      "text": "重算前三个起点，仍对齐规则，逐位异或。",
+      "ruleIds": [
+        "crc.divide"
+      ],
+      "caseFile": "review-counterexample-crc.json",
+      "caseEventIds": [
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "miss-skip",
+      "kind": "recap",
+      "title": "最后首位是零，跳过这一组",
+      "text": "最后起点首位零，右移，不做这组异或。",
+      "ruleIds": [
+        "crc.divide"
+      ],
+      "caseFile": "review-counterexample-crc.json",
+      "caseEventIds": [
+        "44"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "miss-result",
+      "kind": "event",
+      "title": "零余数仍然可能漏检",
+      "text": "余数全零，却有三位变化。错误模式本身能被规则整除，因此漏检。零只表示通过检查，不保证没变。",
+      "ruleIds": [
+        "crc.detect"
+      ],
+      "caseFile": "review-counterexample-crc.json",
+      "caseEventIds": [
+        "45",
+        "46"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "适合检错，边界由规则决定",
+      "text": "补零、求余、拼接、传输、再求余，就是完整流程。适合通信和存储的偶发错误检查，不等于防恶意篡改的密码认证。",
+      "ruleIds": [
+        "crc.detect"
+      ],
+      "panelExplanations": [
+        "本例末位翻转使接收余数为001，因此拒绝；未执行恢复。真实多位反例同时说明零余数也会漏检。"
+      ]
+    }
+  ]
+}

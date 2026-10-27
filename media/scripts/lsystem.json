@@ -1,0 +1,372 @@
+{
+  "algorithmId": "lsystem",
+  "pronunciations": {
+    "L-system": "林德迈尔系统",
+    "F": "前进符号"
+  },
+  "beats": [
+    {
+      "id": "analogy",
+      "kind": "analogy",
+      "title": "一张会自我扩写的种树说明书",
+      "text": "最初的种树说明只有向前画一段。每轮把旧说明里的每个前进符号，换成一串包含主干和侧枝的新指令，画笔再从头执行。林德迈尔系统用简单重写规则，逐代生成看似复杂的分枝。",
+      "ruleIds": [
+        "lsystem-rewrite"
+      ],
+      "panelExplanations": [
+        "只扩写上一代符号，再按新指令画图。",
+        "分叉前保存位置和方向，像夹一张书签。",
+        "恢复最近一张书签，不画返回线。"
+      ]
+    },
+    {
+      "id": "start",
+      "kind": "event",
+      "title": "从一个符号开始",
+      "text": "初始符号为前进。",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "lsystem-rewrite",
+        "lsystem-draw",
+        "lsystem-finish"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "initial-draw",
+      "kind": "event",
+      "title": "从原点朝上画一单位",
+      "text": "画笔从原点朝上，走一单位。",
+      "eventIds": [
+        "1"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "calculationKeys": [
+        "旧x",
+        "旧y",
+        "旧角度°"
+      ]
+    },
+    {
+      "id": "initial-fit",
+      "kind": "event",
+      "title": "完整指令执行完，再等比例显示",
+      "text": "显示时等比例放进画布，只改变大小，不改变角度或枝条比例。每代都先准备完整指令，再执行，不能一边扩写一边无止境替换刚出生的符号。",
+      "eventIds": [
+        "2"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "rewrite",
+      "kind": "event",
+      "title": "一次替换，变成五段生长",
+      "text": "本例规则把一个前进换成：前进，保存后转右画侧枝，恢复，前进，保存后转左画侧枝，恢复，再前进。第一代得到十一条符号，其中五个负责画线。新产生的前进，要等下一代才继续替换。",
+      "eventIds": [
+        "3"
+      ],
+      "ruleIds": [
+        "lsystem-rewrite"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "detailEventIds": [
+        "3"
+      ]
+    },
+    {
+      "id": "bookmark",
+      "kind": "event",
+      "title": "分叉前，先夹一张书签",
+      "text": "画完主干第一段。",
+      "eventIds": [
+        "4"
+      ],
+      "ruleIds": [
+        "lsystem-draw",
+        "lsystem-stack"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "push",
+      "kind": "event",
+      "title": "保存位置和朝向：栈深0→1",
+      "text": "左方括号把当前位置和朝向一起压入栈，好像夹好书签。",
+      "eventIds": [
+        "5"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "calculationKeys": [
+        "旧x",
+        "旧y",
+        "旧角度°",
+        "旧栈深"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "turn",
+      "kind": "event",
+      "title": "只转方向，不挪位置",
+      "text": "接着加号顺时针转二十五度，只改变方向，不改变位置。此处屏幕纵坐标向下，所以正角是顺时针。",
+      "eventIds": [
+        "6"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "calculationKeys": [
+        "旧角度°",
+        "旧栈深"
+      ],
+      "detailEventIds": [
+        "6"
+      ]
+    },
+    {
+      "id": "branch",
+      "kind": "event",
+      "title": "画侧枝，再恢复而不画回程",
+      "text": "下一次前进到约零点四二三、负一点九零六，形成右侧枝。",
+      "eventIds": [
+        "7"
+      ],
+      "ruleIds": [
+        "lsystem-draw",
+        "lsystem-stack"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "calculationKeys": [
+        "旧x",
+        "旧y",
+        "旧角度°"
+      ],
+      "detailEventIds": [
+        "7"
+      ]
+    },
+    {
+      "id": "pop",
+      "kind": "event",
+      "title": "恢复最近书签，不画返回线",
+      "text": "遇到右方括号，就恢复最近书签的位置和原朝向，不画一条返回线。这个后放先取的栈，让嵌套分叉也能准确回到各自出发点。",
+      "eventIds": [
+        "8"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "calculationKeys": [
+        "旧x",
+        "旧y",
+        "旧角度°",
+        "旧栈深"
+      ],
+      "operandsPerPage": 4,
+      "detailEventIds": [
+        "8"
+      ]
+    },
+    {
+      "id": "first",
+      "kind": "recap",
+      "title": "同规则重复：完成第一代",
+      "text": "剩余符号按同样规则加速执行：继续主干，保存、转左、画枝、恢复，最后再前进。转弯没有画线，恢复也没有画线，只有前进才新增线段。这样能解释图里每根枝从哪里来。",
+      "eventIds": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "ruleIds": [
+        "lsystem-draw",
+        "lsystem-stack",
+        "lsystem-finish"
+      ]
+    },
+    {
+      "id": "second",
+      "kind": "event",
+      "title": "同规则重复：第二代更细密",
+      "text": "第二代只替换上一代的五个前进，每个又生成五个，因此共有二十五条线段。",
+      "eventIds": [
+        "16"
+      ],
+      "ruleIds": [
+        "lsystem-rewrite",
+        "lsystem-draw",
+        "lsystem-stack",
+        "lsystem-finish"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "detailEventIds": [
+        "16"
+      ]
+    },
+    {
+      "id": "second-run",
+      "kind": "recap",
+      "title": "同规则重复：执行第二代61个符号",
+      "text": "其余括号和转弯符号保留，逐个执行到最后。",
+      "eventIds": [
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69",
+        "70",
+        "71",
+        "72",
+        "73",
+        "74",
+        "75",
+        "76",
+        "77"
+      ]
+    },
+    {
+      "id": "second-finish",
+      "kind": "event",
+      "title": "第二代结束：25线段与12次保存",
+      "text": "本例累计十二次分叉保存，树形来自重复局部规则，并非预先画好的图片。",
+      "eventIds": [
+        "78"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "detailEventIds": [
+        "78"
+      ]
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "小规则，自相似的结构",
+      "text": "它适合植物图形、分形和生成艺术。改角度会改变张开程度，改重写规则会改变结构，增加代数会快速增加复杂度。它没有养分、阳光和植物力学，只解释几何生成；不要把枝叶图案当成真实生长预测。",
+      "visualExplanation": "旧代符号同时重写 → 逐条画线转向 → 栈保存与恢复。\n几何生成规则不是真实植物生长模型。",
+      "ruleIds": [
+        "lsystem-rewrite",
+        "lsystem-draw",
+        "lsystem-stack",
+        "lsystem-finish"
+      ],
+      "panelExplanations": [
+        "只改转角会改变形状，不改变同代F数量。",
+        "适合植物造型、分形纹样和程序装饰。",
+        "展开深度迅速增加指令；它不是植物生长预测。"
+      ]
+    }
+  ],
+  "artworkPanels": {
+    "analogy": [
+      [
+        0.01,
+        0.12,
+        0.495,
+        0.78
+      ],
+      [
+        0.5,
+        0.12,
+        0.697,
+        0.43
+      ],
+      [
+        0.5,
+        0.44,
+        0.697,
+        0.75
+      ]
+    ],
+    "summary": [
+      [
+        0.29,
+        0.12,
+        0.53,
+        0.34
+      ],
+      [
+        0.015,
+        0.84,
+        0.505,
+        0.995
+      ],
+      [
+        0.515,
+        0.84,
+        0.985,
+        0.995
+      ]
+    ]
+  }
+}

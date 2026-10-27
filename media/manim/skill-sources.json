@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "skills": [
+    {
+      "name": "creative-manim-video",
+      "repo": "NousResearch/hermes-agent",
+      "path": "skills/creative/manim-video",
+      "commit": "d05095663342556788cf2a198bfa7844cc7968ab",
+      "license": "MIT"
+    },
+    {
+      "name": "manim-skill",
+      "repo": "awesome-skills/manim-skill",
+      "path": ".",
+      "commit": "e2cdc1e9f5d2f39392cdafd30b2b04b31b673d60",
+      "license": "README declares MIT; no separate LICENSE detected"
+    },
+    {
+      "name": "math-concept-film",
+      "repo": "liangdabiao/math-concept-film",
+      "path": ".",
+      "commit": "e46ad0e404dafb139d44300e03c7ec49ca7b4ebb",
+      "license": "not declared; consulted locally, no source copied into product"
+    }
+  ]
+}

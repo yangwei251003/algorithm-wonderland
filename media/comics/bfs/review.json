@@ -1,0 +1,42 @@
+{
+  "algorithmId": "bfs",
+  "lessonVersion": 2,
+  "traceHash": "2f05a27e5bb99a151de0c6faff1f02ec6a919fcf04c6cb643ca8a258afa3b41b",
+  "reviewedAt": "2026-10-26",
+  "reviewer": "AI visual inspection of each original and revised image",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "逐层询问朋友，对应先入先出的待处理名单。",
+      "status": "passed",
+      "checks": [
+        "逐张检查汉字、节点编号与队列顺序，修正父节点箭头并复查",
+        "区分障碍/越界/已发现与尚待处理；8步与已导出真实记录一致"
+      ]
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "真实5×5地图：右下左上检查、首次登记及队列追加。",
+      "status": "passed",
+      "checks": [
+        "逐张检查汉字、节点编号与队列顺序，修正父节点箭头并复查",
+        "区分障碍/越界/已发现与尚待处理；8步与已导出真实记录一致"
+      ]
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "找到8步路线；等代价条件下保证最少边数。",
+      "status": "passed",
+      "checks": [
+        "逐张检查汉字、节点编号与队列顺序，修正父节点箭头并复查",
+        "区分障碍/越界/已发现与尚待处理；8步与已导出真实记录一致"
+      ]
+    }
+  ],
+  "limitations": [
+    "未进行真人零基础试学；艺术评价不等同于专业人士评审。"
+  ]
+}

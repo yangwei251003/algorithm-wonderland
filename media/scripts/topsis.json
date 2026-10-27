@@ -1,0 +1,439 @@
+{
+  "algorithmId": "topsis",
+  "pronunciations": {
+    "TOPSIS": "理想解排序法"
+  },
+  "beats": [
+    {
+      "id": "analogy-1",
+      "kind": "analogy",
+      "title": "离梦想清单近，离踩雷清单远",
+      "text": "选比赛项目时，可以拼出一份梦想清单：预算低、价值高、实施负担轻。",
+      "ruleIds": [
+        "topsis-ideal"
+      ],
+      "panelExplanations": [
+        "理想参照：预算低、价值高、实施负担轻。"
+      ],
+      "artwork": "../comics/topsis/analogy.png",
+      "artworkRegion": [
+        0.45,
+        0.14,
+        0.75,
+        0.49
+      ]
+    },
+    {
+      "id": "analogy-2",
+      "kind": "analogy",
+      "title": "离梦想清单近，离踩雷清单远",
+      "text": "再拼出相反的踩雷清单，看看每个项目离它们多远。",
+      "ruleIds": [
+        "topsis-ideal"
+      ],
+      "panelExplanations": [
+        "最差参照：预算高、价值低、实施负担重。"
+      ],
+      "artwork": "../comics/topsis/analogy.png",
+      "artworkRegion": [
+        0.73,
+        0.18,
+        1,
+        0.54
+      ]
+    },
+    {
+      "id": "analogy-3",
+      "kind": "analogy",
+      "title": "离梦想清单近，离踩雷清单远",
+      "text": "理想解排序法用两段距离的比例，帮助我们把多项取舍放在一起。",
+      "ruleIds": [
+        "topsis-ideal"
+      ],
+      "panelExplanations": [
+        "候选先统一尺度、乘权重，再比较到两个参照的距离。"
+      ],
+      "artwork": "../comics/topsis/analogy.png",
+      "artworkRegion": [
+        0.03,
+        0.62,
+        0.99,
+        0.985
+      ]
+    },
+    {
+      "id": "raw",
+      "kind": "event",
+      "title": "不同单位，先统一尺度",
+      "text": "本例比较校园配送、节能助手、视觉检测和教学工具。元、评分、负担系数不能直接相加。",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "topsis-normalize"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "before",
+      "visualFocus": "raw"
+    },
+    {
+      "id": "normalize",
+      "kind": "event",
+      "title": "不同单位，先统一尺度",
+      "text": "每一列先平方求和再开方，用原值除以这个长度。例如配送预算三千九百九十九，归一化后约零点三一八。",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "topsis-normalize"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "visualFocus": "normalized"
+    },
+    {
+      "id": "weight-input",
+      "kind": "event",
+      "title": "把重视程度乘进去",
+      "text": "预算、价值、负担的原始权重是五、五、四。先除以总和十四，再乘到各列。",
+      "eventIds": [
+        "1"
+      ],
+      "ruleIds": [
+        "topsis-weight"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "visualFocus": "weights"
+    },
+    {
+      "id": "weight",
+      "kind": "event",
+      "title": "把重视程度乘进去",
+      "text": "预算和价值各占十四分之五，负担占十四分之四；零权重会使该指标不影响距离，权重不能为负。",
+      "eventIds": [
+        "1"
+      ],
+      "ruleIds": [
+        "topsis-weight"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after",
+      "visualFocus": "weighted"
+    },
+    {
+      "id": "direction",
+      "kind": "event",
+      "title": "理想组合未必真的存在",
+      "text": "注意方向：价值越大越好，而预算和负担越小越好。",
+      "eventIds": [
+        "2"
+      ],
+      "ruleIds": [
+        "topsis-ideal"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "before",
+      "visualFocus": "directions"
+    },
+    {
+      "id": "ideal",
+      "kind": "event",
+      "title": "理想组合未必真的存在",
+      "text": "逐列拿最好值拼成理想点，拿最差值拼成另一点。三种最好属性可以来自不同项目，因此理想点只是比较参照，不一定能直接选择购买。",
+      "eventIds": [
+        "2"
+      ],
+      "ruleIds": [
+        "topsis-ideal"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "visualFocus": "ideal"
+    },
+    {
+      "id": "distance",
+      "kind": "event",
+      "title": "算到两个参照的距离",
+      "text": "逐列算差，平方相加再开方，得到距离。校园配送到理想约零点零七四八，到最差约零点一七六四。",
+      "eventIds": [
+        "3"
+      ],
+      "ruleIds": [
+        "topsis-distance"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "visualFocus": "distances",
+      "hideResult": true
+    },
+    {
+      "id": "closeness",
+      "kind": "event",
+      "title": "算到两个参照的距离",
+      "text": "用离最差的距离，除以两段距离之和，得到贴近度约零点七零二。",
+      "eventIds": [
+        "3"
+      ],
+      "ruleIds": [
+        "topsis-distance"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after",
+      "visualFocus": "closeness"
+    },
+    {
+      "id": "others",
+      "kind": "recap",
+      "title": "同规则重复：评价其余候选",
+      "text": "节能助手和视觉检测，也按同一距离公式计算。这里加速回放已讲过的规则。",
+      "eventIds": [
+        "4",
+        "5"
+      ],
+      "ruleIds": [
+        "topsis-distance"
+      ],
+      "stateView": "after",
+      "visualFocus": "closeness"
+    },
+    {
+      "id": "teaching-distance",
+      "kind": "event",
+      "title": "教学工具的两段真实距离",
+      "text": "单独看教学工具：到理想约零点零六四，到最差约零点一六七，贴近度约零点七二三。",
+      "eventIds": [
+        "6"
+      ],
+      "detailEventIds": [
+        "6"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "visualFocus": "closeness"
+    },
+    {
+      "id": "coincide",
+      "kind": "event",
+      "title": "教学工具的两段真实距离",
+      "text": "若所有属性重合、两段距离都为零，本演示才约定二分之一，避免除零。",
+      "eventIds": [
+        "6"
+      ],
+      "detailEventIds": [
+        "6"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after",
+      "visualFocus": "boundary"
+    },
+    {
+      "id": "rank-delivery",
+      "kind": "comparison",
+      "title": "校园配送：0.702",
+      "text": "校园配送约零点七零二，有竞争力，但还不是本轮最高分。",
+      "eventIds": [
+        "7"
+      ],
+      "detailEventIds": [
+        "7"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "校园配送"
+      ],
+      "stateView": "after",
+      "visualFocus": "candidate:校园配送"
+    },
+    {
+      "id": "rank-energy",
+      "kind": "comparison",
+      "title": "节能助手：0.590",
+      "text": "节能助手约零点五九零，综合贴近度也低于最佳候选。",
+      "eventIds": [
+        "7"
+      ],
+      "detailEventIds": [
+        "7"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "节能助手"
+      ],
+      "stateView": "after",
+      "visualFocus": "candidate:节能助手"
+    },
+    {
+      "id": "rank-vision",
+      "kind": "comparison",
+      "title": "视觉检测：0.280",
+      "text": "视觉检测价值最高，但预算和负担也大，约零点二八零。",
+      "eventIds": [
+        "7"
+      ],
+      "detailEventIds": [
+        "7"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "视觉检测"
+      ],
+      "stateView": "after",
+      "visualFocus": "candidate:视觉检测"
+    },
+    {
+      "id": "rank-teaching",
+      "kind": "comparison",
+      "title": "教学工具：0.723",
+      "text": "教学工具约零点七二三，四者最高。因此在当前权重下推荐它。",
+      "eventIds": [
+        "7"
+      ],
+      "detailEventIds": [
+        "7"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "教学工具"
+      ],
+      "stateView": "after",
+      "visualFocus": "candidate:教学工具"
+    },
+    {
+      "id": "summary-1",
+      "kind": "summary",
+      "title": "排名依赖这张比较清单",
+      "text": "这些是相对比较分，不是成功概率，适合采购、选址和比赛方案讨论。",
+      "ruleIds": [
+        "topsis-normalize",
+        "topsis-ideal",
+        "topsis-distance",
+        "topsis-rank"
+      ],
+      "panelExplanations": [
+        "本轮四个相对比较分；贴近度不是成功概率。"
+      ],
+      "artwork": "../comics/topsis/summary.png",
+      "artworkRegion": [
+        0.25,
+        0.145,
+        0.75,
+        0.6
+      ]
+    },
+    {
+      "id": "summary-2",
+      "kind": "summary",
+      "title": "排名依赖这张比较清单",
+      "text": "换权重、改成本方向、增减候选，都可能改变尺度和排名。",
+      "ruleIds": [
+        "topsis-normalize",
+        "topsis-ideal",
+        "topsis-distance",
+        "topsis-rank"
+      ],
+      "panelExplanations": [
+        "换权重、改指标方向、增减候选，都须重新计算。"
+      ],
+      "artwork": "../comics/topsis/summary.png",
+      "artworkRegion": [
+        0.01,
+        0.62,
+        0.75,
+        0.965
+      ]
+    },
+    {
+      "id": "summary-3",
+      "kind": "summary",
+      "title": "排名依赖这张比较清单",
+      "text": "理想组合可能不存在；先解释偏好，再用名次，不能当成永久结论。",
+      "ruleIds": [
+        "topsis-normalize",
+        "topsis-ideal",
+        "topsis-distance",
+        "topsis-rank"
+      ],
+      "panelExplanations": [
+        "理想组合未必存在；重合约定0.5，排名不是永久结论。"
+      ],
+      "artwork": "../comics/topsis/summary.png",
+      "artworkRegion": [
+        0.755,
+        0.62,
+        0.99,
+        0.965
+      ]
+    }
+  ],
+  "artworkPanels": {
+    "analogy": [
+      [
+        0.45,
+        0.14,
+        0.75,
+        0.49
+      ],
+      [
+        0.73,
+        0.18,
+        1,
+        0.54
+      ],
+      [
+        0.03,
+        0.62,
+        0.99,
+        0.985
+      ]
+    ],
+    "summary": [
+      [
+        0.25,
+        0.145,
+        0.75,
+        0.6
+      ],
+      [
+        0.01,
+        0.62,
+        0.75,
+        0.965
+      ],
+      [
+        0.755,
+        0.62,
+        0.99,
+        0.965
+      ]
+    ]
+  }
+}

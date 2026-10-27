@@ -1,0 +1,58 @@
+{
+  "checkedAt": "2026-10-26T08:48:57.372623+00:00",
+  "scope": "fresh public-source staging with verified necessary assets; Windows, Node 24.15",
+  "install": {
+    "command": "npm ci --no-audit --no-fund",
+    "packages": 274,
+    "exitCode": 0
+  },
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "entry": "index-CQgkFFQz.js"
+  },
+  "tests": {
+    "command": "npm test",
+    "passed": 380,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 50499.931
+  },
+  "sensitivePatternScan": {
+    "scope": "published project text plus frozen synthetic inputs; excludes installed dependencies",
+    "findings": 0,
+    "patterns": [
+      "private key header",
+      "GitHub token",
+      "service key",
+      "AWS access key",
+      "original Windows user paths"
+    ],
+    "limitations": "Pattern scanning is bounded, not proof of absence of every possible secret"
+  },
+  "assets": {
+    "file": "algorithm-wonderland-v2-open-assets-f95f37d36baaa6f2.zip",
+    "bytes": 486519608,
+    "sha256": "f95f37d36baaa6f24e156b23081f9f05b7e1c3f1168881b14ebe816e516f2c6e",
+    "files": 347,
+    "comics": 252,
+    "frozenCases": 95,
+    "rewrittenPortableScripts": [
+      "media/scripts/critical-path.json",
+      "media/scripts/graph-coloring.json",
+      "media/scripts/kalman.json",
+      "media/scripts/particle-filter.json",
+      "media/scripts/pure-pursuit.json",
+      "media/scripts/rrt.json",
+      "media/scripts/thompson.json"
+    ],
+    "excluded": [
+      "downloaded reference PDF/image/page/DOM files",
+      "private configuration and production state",
+      "third-party skill bodies",
+      "dependency environments",
+      "unaccepted full MP4/WAV review media"
+    ]
+  },
+  "fullAudiovisualPassed": 0
+}

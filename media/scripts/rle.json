@@ -1,0 +1,234 @@
+{
+  "algorithmId": "rle",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "一段同色，只报一次数",
+      "text": "描述彩色纸带，与其连续说六遍同色，不如说这个颜色六格。游程编码记录字符和连续次数；相同还要紧挨着，否则另开一段。",
+      "ruleIds": [
+        "rle.initialize"
+      ],
+      "panelExplanations": [
+        "纸带相邻同色对应连续相同字符；换色就新增记录，展开时按原顺序重复。"
+      ]
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "先约定每条记录的格式",
+      "text": "每条记录含一字节字符长度、字符本身的字节、四字节次数。次数也占空间，不能只数屏幕卡片。",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "rle.initialize"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "first",
+      "kind": "event",
+      "title": "第一个字符建立第一段",
+      "text": "从首字开始，还没有记录，先建立次数一的第一段。金框是当前读取位置。",
+      "eventIds": [
+        "1"
+      ],
+      "ruleIds": [
+        "rle.encode"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "repeat-a",
+      "kind": "recap",
+      "title": "相邻相同，增加当前段次数",
+      "text": "接下来字符与当前段相同，每读一个就加一，只增加这一段，不统计整篇总数。",
+      "eventIds": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "ruleIds": [
+        "rle.encode"
+      ]
+    },
+    {
+      "id": "b-start",
+      "kind": "event",
+      "title": "遇到新字符，另开一段",
+      "text": "新字母与当前末段不同。保留前段次数六，新建第二条，次数从一开始。",
+      "eventIds": [
+        "7"
+      ],
+      "ruleIds": [
+        "rle.encode"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "b-repeat",
+      "kind": "recap",
+      "title": "第二段继续累加",
+      "text": "后两位与第二段相同，分别加一，第二段最终次数三。",
+      "eventIds": [
+        "8",
+        "9"
+      ],
+      "ruleIds": [
+        "rle.encode"
+      ]
+    },
+    {
+      "id": "c-start",
+      "kind": "event",
+      "title": "再换字符，建立第三段",
+      "text": "再遇到不同字母，第二段结束，另建第三段，次数一。",
+      "eventIds": [
+        "10"
+      ],
+      "ruleIds": [
+        "rle.encode"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "c-repeat",
+      "kind": "event",
+      "title": "相邻相同，第三段变二",
+      "text": "下一位相同，第三段次数由一加到二。",
+      "eventIds": [
+        "11"
+      ],
+      "ruleIds": [
+        "rle.encode"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "last-start",
+      "kind": "comparison",
+      "title": "又出现开头字母，为什么仍另开",
+      "text": "后面又出现开头字母，却隔着其他段。它与当前末段不同，必须另建第四条。并入第一条会丢掉中间字符的位置。",
+      "eventIds": [
+        "12"
+      ],
+      "ruleIds": [
+        "rle.encode"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "last-repeat",
+      "kind": "recap",
+      "title": "按相同规则完成编码",
+      "text": "余下三位继续累加第四段。四条记录保留原序，最后一段次数四。",
+      "eventIds": [
+        "13",
+        "14",
+        "15"
+      ],
+      "ruleIds": [
+        "rle.encode"
+      ]
+    },
+    {
+      "id": "decode-first",
+      "kind": "event",
+      "title": "第一条记录展开成六个字符",
+      "text": "第一条按次数输出六个同字。下行是真正已还原的内容，未输出位置是空点，不能提前显示原文。",
+      "eventIds": [
+        "16"
+      ],
+      "ruleIds": [
+        "rle.decode"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "decode-second",
+      "kind": "event",
+      "title": "第二条追加三个字符",
+      "text": "再读第二条，重复三次，追加到已有内容后面。记录的先后顺序不能交换。",
+      "eventIds": [
+        "17"
+      ],
+      "ruleIds": [
+        "rle.decode"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "decode-third",
+      "kind": "event",
+      "title": "第三条追加两个字符",
+      "text": "第三条重复两次，继续追加，不覆盖已经还原的内容。",
+      "eventIds": [
+        "18"
+      ],
+      "ruleIds": [
+        "rle.decode"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "decode-fourth",
+      "kind": "event",
+      "title": "第四条追加四个字符",
+      "text": "最后一条重复四次。现在全部还原，逐字对照原文一致，才称得上无损。",
+      "eventIds": [
+        "19"
+      ],
+      "ruleIds": [
+        "rle.decode"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "size",
+      "kind": "event",
+      "title": "卡片少了，完整格式却更大",
+      "text": "原文十五个单字节字符，共一百二十位。每条记录六字节，也就是四十八位；四条共一百九十二位。这个短例子反而变大，不能漏算格式开销。",
+      "eventIds": [
+        "20"
+      ],
+      "ruleIds": [
+        "rle.size"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "长连续段才更值得期待",
+      "text": "它适合长连续重复的图像行或数据。交替内容可能每字都新增记录，开销很大。效果要看完整大小与还原一致性；本教学格式不等于通用图片文件。",
+      "ruleIds": [
+        "rle.size"
+      ]
+    }
+  ]
+}

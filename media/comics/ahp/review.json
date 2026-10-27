@@ -1,0 +1,71 @@
+{
+  "algorithmId": "ahp",
+  "lessonVersion": 2,
+  "traceHash": "a8472cde55d92e9cc9a3eba95867c5f7a3b7dcdc5ea84d77e462e989350ea616",
+  "reviewedAt": "2026-10-26",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "购物时两两比较价格、性能、便携重要性",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看所有文字、矩阵与分数",
+        "互反矩阵、7/6+7/3+7/12=49/12、权重2/7/4/7/1/7核对",
+        "指标偏好与产品排名分开；均衡款0.350最高，CR=0不证明客观正确"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "互反矩阵和归一化幂迭代的真实分数",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看所有文字、矩阵与分数",
+        "互反矩阵、7/6+7/3+7/12=49/12、权重2/7/4/7/1/7核对",
+        "指标偏好与产品排名分开；均衡款0.350最高，CR=0不证明客观正确"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "最重视性能与推荐均衡款分别呈现",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看所有文字、矩阵与分数",
+        "互反矩阵、7/6+7/3+7/12=49/12、权重2/7/4/7/1/7核对",
+        "指标偏好与产品排名分开；均衡款0.350最高，CR=0不证明客观正确"
+      ],
+      "corrections": []
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "数值取固定教学案例；不代表客观正确或未来保证"
+  ],
+  "previousTraceHash": "15c7e0aa37998f23139f9731e89fdb76464e5c57dbb56b6450fa7f57a3c7a539",
+  "recordingRecheck": {
+    "date": "2026-10-26",
+    "reason": "Added immutable original attributes, names and actual normalized attributes to trace; all pre-existing records, scenes and results remain byte-value equivalent.",
+    "oldTraceHash": "15c7e0aa37998f23139f9731e89fdb76464e5c57dbb56b6450fa7f57a3c7a539",
+    "newTraceHash": "a8472cde55d92e9cc9a3eba95867c5f7a3b7dcdc5ea84d77e462e989350ea616",
+    "actualImagesViewed": [
+      "analogy",
+      "rules",
+      "summary"
+    ],
+    "confirmed": [
+      "Reciprocal comparison ratios 1/2,2,4",
+      "Old weights 1/3; products 7/6,7/3,7/12; sum49/12",
+      "Weights2/7,4/7,1/7 and CR0",
+      "Candidate scores0.323,0.350,0.327 and balanced winner"
+    ],
+    "comicHashes": {
+      "analogy": "9529cb31f4d5f302ba251b0c110674f4e4b109e94738b1b3b3f1707dbb3adfcb",
+      "rules": "2d61774e2b0914eba04bffe6929686e5b9e24f4b4cb5fe92d773d86153f262d0",
+      "summary": "3044d787dfe7c508a986794aaa7a5f6c2f9b27ff18c38e23330aac3d0c8b9e53"
+    }
+  }
+}

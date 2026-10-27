@@ -1,0 +1,42 @@
+{
+  "algorithmId": "logistic-regression",
+  "lessonVersion": 2,
+  "traceHash": "c93ee11d28f36c443ce7644ce2cf79e0381f1da345ceed5440fd5c72202e8578",
+  "reviewedAt": "2026-10-25T18:53:17.706676+00:00",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "logistic-regression：生活类比",
+      "status": "passed",
+      "checks": [
+        "逐张查看：宽度权重、高度权重和偏置三旋钮对应模型，输出限定0到1。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "logistic-regression：核心规则",
+      "status": "passed",
+      "checks": [
+        "逐张查看：平均梯度-0.328125，0-0.5×(-0.328125)=0.1640625；误差p减标签，更新逻辑正确。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "logistic-regression：应用与局限",
+      "status": "passed",
+      "checks": [
+        "逐张查看：线性边界可分与内外圈失败示意，训练20轮不证明收敛、概率不保证校准文字清楚。"
+      ],
+      "corrections": []
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "科普场景含明确的示意，精确逐步数值以同版案例轨迹为准"
+  ]
+}

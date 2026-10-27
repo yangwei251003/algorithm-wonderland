@@ -1,0 +1,42 @@
+{
+  "algorithmId": "astar",
+  "lessonVersion": 2,
+  "traceHash": "af659008e912535715a97d0b1ae472acde6ced74f4bdbee097e94c3e72072eb2",
+  "reviewedAt": "2026-10-26",
+  "reviewer": "AI visual inspection of each original and revised image",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "快递员同时记录已经花费和预计剩余代价。",
+      "status": "passed",
+      "checks": [
+        "逐张检查g/h/f、待处理含义，删除虚构候选值并重绘错误结果地图",
+        "修正代价24为编号24，最终代价14与真实记录一致"
+      ]
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "真实候选：1号f=11，5号f=8；未选中只是等待。",
+      "status": "passed",
+      "checks": [
+        "逐张检查g/h/f、待处理含义，删除虚构候选值并重绘错误结果地图",
+        "修正代价24为编号24，最终代价14与真实记录一致"
+      ]
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "本例最短代价14；低估剩余代价的启发式和非负边是条件。",
+      "status": "passed",
+      "checks": [
+        "逐张检查g/h/f、待处理含义，删除虚构候选值并重绘错误结果地图",
+        "修正代价24为编号24，最终代价14与真实记录一致"
+      ]
+    }
+  ],
+  "limitations": [
+    "未进行真人零基础试学；艺术评价不等同于专业人士评审。"
+  ]
+}

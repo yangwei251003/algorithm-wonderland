@@ -1,0 +1,44 @@
+{
+  "algorithmId": "kmp",
+  "lessonVersion": 2,
+  "traceHash": "6229a022356881bcfa1e92fcd8bd544d59a90851bf75fe00c1adc533ed16db3e",
+  "reviewedAt": "2026-10-25T19:36:33.610933+00:00",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "KMP 字符串匹配：生活类比",
+      "status": "passed",
+      "checks": [
+        "核对ABABC模板、ABAB的前后AB复用及文本不回退；生活纸带只是示意。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "KMP 字符串匹配：规则与计算",
+      "status": "passed",
+      "checks": [
+        "核对ABABC的lps为0/0/1/2/0、最长真前后缀AB长2，失配4→2且文本不退。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "KMP 字符串匹配：结果与边界",
+      "status": "passed",
+      "checks": [
+        "第二版删除错误虚构aba文本/表格；核对人类位置3/10对应零起始2/9，完整命中后继续。"
+      ],
+      "corrections": [
+        "保留风格、标题和女主，彻底删除所有带小写a/b的文本条、三字母图案aba、001表格和命中框，它们不是本例数据。上方四个流程框只保留文字和非字母图标“先算回退表 → 向前扫描 → 失配复用 → 完整命中后继续”，不要任何文本或模式字母。中间结果区域只留两张数字卡“第3个字符起”“第10个字符起”，下方写“从0计数为2、9”。无需画长字符串，无需下划线，不要增编例子。底部与右侧应用边界保持原文字。"
+      ]
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "生活类比为原理示意；精确计算以规则图及关联教学轨迹为准"
+  ]
+}

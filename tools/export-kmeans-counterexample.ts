@@ -1,0 +1,15 @@
+import {writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+import {kmeans} from '../src/algorithms/intelligence';
+import {lessonById} from '../src/content/lessons';
+import {replayTrace} from '../src/engine/teaching';
+const input={points:[14,34].flatMap(radius=>Array.from({length:24},(_,i)=>({x:50+radius*Math.cos(i*Math.PI/12),y:50+radius*Math.sin(i*Math.PI/12)})))},params={k:2,noise:0,shape:'clusters'},seed=42;
+const run=await kmeans(input,params,seed),trace=run.trace!;
+assert.deepEqual(replayTrace(trace),trace.finalState);
+const labels=trace.finalState.labels as number[];
+assert.equal(new Set(labels.slice(0,24)).size,2);
+assert.equal(new Set(labels.slice(24)).size,2);
+const traceHash=createHash('sha256').update(JSON.stringify(trace)).digest('hex');
+await writeFile('media/exports/kmeans-counterexample.json',JSON.stringify({schemaVersion:1,algorithm:{id:'kmeans',name:'K-means',subtitle:'同心双环反例'},lesson:{...lessonById.kmeans,teachingCase:{input,params,seed}},run,traceHash},null,2));
+console.log(JSON.stringify({events:trace.events.length,metrics:run.metrics,traceHash,innerGroupCounts:labels.slice(0,24).reduce((c,n)=>{c[n]=(c[n]??0)+1;return c;},{} as Record<number,number>)}));

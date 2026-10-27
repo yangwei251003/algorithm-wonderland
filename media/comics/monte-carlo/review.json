@@ -1,0 +1,52 @@
+{
+  "algorithmId": "monte-carlo",
+  "lessonVersion": 2,
+  "traceHash": "47e0014084b6797b2907517fa01c71dfc2dfdedda3676bcfdb1cb9cb351155b8",
+  "reviewedAt": "2026-10-26",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "蒙特卡洛模拟：生活类比与核心思想",
+      "status": "passed",
+      "checks": [
+        "4个主工序有序串行",
+        "每遍重抽的映射清晰",
+        "时钟为图示而非数据读数"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "蒙特卡洛模拟：真实样例的计算规则",
+      "status": "passed",
+      "checks": [
+        "4工序数与总和113.14正确",
+        "17+23=40，17/40=42.5%准确",
+        "删去错误数量图标，保留实际统计"
+      ],
+      "corrections": [
+        "首稿48图标而非40/17，imagegen改成17按时23未按时两数，复查通过。"
+      ]
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "蒙特卡洛模拟：用途与适用边界",
+      "status": "passed",
+      "checks": [
+        "遗漏共同风险无法由加次数修复",
+        "示意曲线已明确标示",
+        "移除伪实际轮次，保留三制作概念"
+      ],
+      "corrections": [
+        "首稿轮次标签搭配虚构分布，改为模型假设/独立抽样/结果统计，曲线明确示意图。"
+      ]
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "漫画为静态科普，逐步计算见同源交互轨迹"
+  ]
+}

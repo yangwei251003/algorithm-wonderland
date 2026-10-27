@@ -1,0 +1,42 @@
+{
+  "algorithmId": "lz77",
+  "lessonVersion": 2,
+  "traceHash": "4aecaffae4fa6dc14543037a61beb31da923727c258d53b9412c1d7afbba339d",
+  "reviewedAt": "2026-10-25T19:36:33.713654+00:00",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "LZ77 滑动窗口压缩：生活类比",
+      "status": "passed",
+      "checks": [
+        "查看窗口回看、长度与新字符三字段类比，说明同长取近和重叠复制；纸带是原理示意。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "LZ77 滑动窗口压缩：规则与计算",
+      "status": "passed",
+      "checks": [
+        "逐一数过初始1A、复制后6A、再附加B，指令回看1复制5正确；逐字符动态读写解释准确。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "LZ77 滑动窗口压缩：结果与边界",
+      "status": "passed",
+      "checks": [
+        "核对三条(0,0,A)/(1,5,B)/(7,6,空)，原始与教学格式均104位；窗口外限制和非ZIP声明准确。"
+      ],
+      "corrections": []
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "生活类比为原理示意；精确计算以规则图及关联教学轨迹为准"
+  ]
+}

@@ -1,0 +1,484 @@
+{
+  "algorithmId": "ahp",
+  "pronunciations": {
+    "AHP": "层次分析法",
+    "CR": "一致性比率"
+  },
+  "beats": [
+    {
+      "id": "analogy-1",
+      "kind": "analogy",
+      "title": "先问更看重什么，再给方案排名",
+      "text": "买一件随身设备，价格、性能、便携都重要，可是重要到什么程度？",
+      "ruleIds": [
+        "ahp-matrix"
+      ],
+      "panelExplanations": [
+        "先说偏好：价格友好、性能优秀、便于携带。"
+      ],
+      "artwork": "../comics/ahp/analogy.png",
+      "artworkRegion": [
+        0.44,
+        0.12,
+        0.97,
+        0.41
+      ]
+    },
+    {
+      "id": "analogy-2",
+      "kind": "analogy",
+      "title": "先问更看重什么，再给方案排名",
+      "text": "层次分析法先让你两两比较，把模糊偏好变成比例，",
+      "ruleIds": [
+        "ahp-matrix"
+      ],
+      "panelExplanations": [
+        "两两比较表达相对重要性，不是产品得分。"
+      ],
+      "artwork": "../comics/ahp/analogy.png",
+      "artworkRegion": [
+        0.395,
+        0.415,
+        0.98,
+        0.74
+      ]
+    },
+    {
+      "id": "analogy-3",
+      "kind": "analogy",
+      "title": "先问更看重什么，再给方案排名",
+      "text": "再合成权重、检查有没有自相矛盾，最后才给候选方案打分。",
+      "ruleIds": [
+        "ahp-matrix"
+      ],
+      "panelExplanations": [
+        "合成权重 → 检查协调 → 比较候选产品。"
+      ],
+      "artwork": "../comics/ahp/analogy.png",
+      "artworkRegion": [
+        0.015,
+        0.75,
+        0.78,
+        0.975
+      ]
+    },
+    {
+      "id": "matrix",
+      "kind": "event",
+      "title": "每个反向比较都取倒数",
+      "text": "本例认为价格友好相对性能的重要性是二分之一，价格相对便携是二，性能相对便携是四。",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "ahp-matrix"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "visualFocus": "direct"
+    },
+    {
+      "id": "reciprocal",
+      "kind": "event",
+      "title": "每个反向比较都取倒数",
+      "text": "矩阵对角线都是一，反方向填倒数。例如性能对价格为二，而便携对性能是四分之一。",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "ahp-matrix"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after",
+      "visualFocus": "reciprocal"
+    },
+    {
+      "id": "old-weights",
+      "kind": "event",
+      "title": "把比较关系合成权重",
+      "text": "开始先给三个指标相同权重，各三分之一。",
+      "eventIds": [
+        "1"
+      ],
+      "ruleIds": [
+        "ahp-power"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "before",
+      "visualFocus": "weights",
+      "hideResult": true
+    },
+    {
+      "id": "multiply",
+      "kind": "event",
+      "title": "把比较关系合成权重",
+      "text": "矩阵的每一行与旧权重相乘再相加，得到约一点一六七、二点三三三、零点五八三。",
+      "eventIds": [
+        "1"
+      ],
+      "ruleIds": [
+        "ahp-power"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "calculationKeys": [
+        "第1行乘积和",
+        "第2行乘积和",
+        "第3行乘积和"
+      ],
+      "stateView": "after",
+      "visualFocus": "products",
+      "hideResult": true
+    },
+    {
+      "id": "normalize-weights",
+      "kind": "event",
+      "title": "把比较关系合成权重",
+      "text": "再除以三者总和，就把比例换成总和为一的权重。",
+      "eventIds": [
+        "1"
+      ],
+      "ruleIds": [
+        "ahp-power"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after",
+      "visualFocus": "normalize"
+    },
+    {
+      "id": "weights",
+      "kind": "event",
+      "title": "同一规则再算一次：权重已稳定",
+      "text": "新权重约为价格百分之二十八点六、性能百分之五十七点一、便携百分之十四点三。第二轮把这个向量再乘矩阵、再归一化，权重已经稳定。此时只能说最看重性能，尚未比较任何候选产品。",
+      "eventIds": [
+        "2"
+      ],
+      "ruleIds": [
+        "ahp-power"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after",
+      "visualFocus": "normalize"
+    },
+    {
+      "id": "repeat",
+      "kind": "recap",
+      "title": "同规则重复：固定十八轮",
+      "text": "其余乘法按相同规则加速回放，直到本例约定的十八轮。每一步保留旧权重、乘积和与新权重。本案例结构一致所以很快稳定，但固定十八轮不代表所有输入都获得严格收敛证明。",
+      "eventIds": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18"
+      ],
+      "ruleIds": [
+        "ahp-power"
+      ],
+      "stateView": "after",
+      "visualFocus": "normalize"
+    },
+    {
+      "id": "transitive",
+      "kind": "event",
+      "title": "偏好比例是否互相打架",
+      "text": "本例二分之一乘四等于二，三组比较相互协调。",
+      "eventIds": [
+        "19"
+      ],
+      "ruleIds": [
+        "ahp-consistency"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "before",
+      "visualFocus": "relations",
+      "hideResult": true
+    },
+    {
+      "id": "consistency",
+      "kind": "event",
+      "title": "偏好比例是否互相打架",
+      "text": "由矩阵乘权重的比值估计出的特征值为三，一致性比率得到零。超过零点一时建议重审比较；通过检查只能说明协调，不能证明偏好客观正确。",
+      "eventIds": [
+        "19"
+      ],
+      "ruleIds": [
+        "ahp-consistency"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "operandsPerPage": 4,
+      "stateView": "after",
+      "visualFocus": "consistency"
+    },
+    {
+      "id": "attributes",
+      "kind": "event",
+      "title": "再用权重评价具体候选",
+      "text": "现在才读取三款设备的教学属性，所有属性都已按越大越好设置。",
+      "eventIds": [
+        "20"
+      ],
+      "ruleIds": [
+        "ahp-score"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "before",
+      "visualFocus": "attributes"
+    },
+    {
+      "id": "score",
+      "kind": "event",
+      "title": "再用权重评价具体候选",
+      "text": "每列先除以列和，再乘对应权重相加。偏好权重相同，产品属性不同，就会得到不同的综合分。",
+      "eventIds": [
+        "20"
+      ],
+      "ruleIds": [
+        "ahp-score"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after",
+      "visualFocus": "normalized"
+    },
+    {
+      "id": "compare-light",
+      "kind": "comparison",
+      "title": "逐款比较：为什么均衡款胜出",
+      "text": "轻便款约零点三二三，",
+      "eventIds": [
+        "20"
+      ],
+      "detailEventIds": [
+        "20"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "轻便款"
+      ],
+      "stateView": "after",
+      "visualFocus": "candidate:轻便款"
+    },
+    {
+      "id": "compare-balanced",
+      "kind": "comparison",
+      "title": "逐款比较：为什么均衡款胜出",
+      "text": "均衡款零点三五零，",
+      "eventIds": [
+        "20"
+      ],
+      "detailEventIds": [
+        "20"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "均衡款"
+      ],
+      "stateView": "after",
+      "visualFocus": "candidate:均衡款"
+    },
+    {
+      "id": "compare-performance",
+      "kind": "comparison",
+      "title": "逐款比较：为什么均衡款胜出",
+      "text": "性能款零点三二七。",
+      "eventIds": [
+        "20"
+      ],
+      "detailEventIds": [
+        "20"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "性能款"
+      ],
+      "stateView": "after",
+      "visualFocus": "candidate:性能款"
+    },
+    {
+      "id": "winner",
+      "kind": "comparison",
+      "title": "逐款比较：为什么均衡款胜出",
+      "text": "最高的是均衡款；只看名称里的性能，不能代替加权比较。",
+      "eventIds": [
+        "20"
+      ],
+      "detailEventIds": [
+        "20"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "candidateTargets": [
+        "均衡款"
+      ],
+      "stateView": "after",
+      "visualFocus": "candidate:均衡款"
+    },
+    {
+      "id": "summary-weight",
+      "kind": "summary",
+      "title": "可追溯的取舍，不是客观答案机器",
+      "text": "性能权重最高，也不等于直接选性能款。",
+      "ruleIds": [
+        "ahp-matrix",
+        "ahp-power",
+        "ahp-consistency",
+        "ahp-score"
+      ],
+      "panelExplanations": [
+        "偏好权重：价格2/7，性能4/7，便携1/7。"
+      ],
+      "artwork": "../comics/ahp/summary.png",
+      "artworkRegion": [
+        0.01,
+        0.16,
+        0.39,
+        0.7
+      ]
+    },
+    {
+      "id": "summary-score",
+      "kind": "summary",
+      "title": "可追溯的取舍，不是客观答案机器",
+      "text": "权重与候选属性共同作用，本例推荐均衡款。它适合选型、采购和方案讨论。",
+      "ruleIds": [
+        "ahp-matrix",
+        "ahp-power",
+        "ahp-consistency",
+        "ahp-score"
+      ],
+      "panelExplanations": [
+        "候选综合分：当前均衡款最高，不是名称决定。"
+      ],
+      "artwork": "../comics/ahp/summary.png",
+      "artworkRegion": [
+        0.64,
+        0.16,
+        0.99,
+        0.7
+      ]
+    },
+    {
+      "id": "summary-recalculate",
+      "kind": "summary",
+      "title": "可追溯的取舍，不是客观答案机器",
+      "text": "改偏好或数据要重算；",
+      "ruleIds": [
+        "ahp-matrix",
+        "ahp-power",
+        "ahp-consistency",
+        "ahp-score"
+      ],
+      "panelExplanations": [
+        "改变偏好或候选数据，必须重新计算。"
+      ],
+      "artwork": "../comics/ahp/summary.png",
+      "artworkRegion": [
+        0.64,
+        0.89,
+        0.99,
+        0.982
+      ]
+    },
+    {
+      "id": "summary-limit",
+      "kind": "summary",
+      "title": "可追溯的取舍，不是客观答案机器",
+      "text": "比较协调，不代表判断客观正确。",
+      "ruleIds": [
+        "ahp-matrix",
+        "ahp-power",
+        "ahp-consistency",
+        "ahp-score"
+      ],
+      "panelExplanations": [
+        "一致性检验通过，不等于判断客观正确。"
+      ],
+      "artwork": "../comics/ahp/summary.png",
+      "artworkRegion": [
+        0.335,
+        0.89,
+        0.63,
+        0.982
+      ]
+    }
+  ],
+  "artworkPanels": {
+    "analogy": [
+      [
+        0.44,
+        0.12,
+        0.97,
+        0.41
+      ],
+      [
+        0.395,
+        0.415,
+        0.98,
+        0.74
+      ],
+      [
+        0.015,
+        0.75,
+        0.78,
+        0.975
+      ]
+    ],
+    "summary": [
+      [
+        0.01,
+        0.16,
+        0.39,
+        0.7
+      ],
+      [
+        0.64,
+        0.16,
+        0.99,
+        0.7
+      ],
+      [
+        0.015,
+        0.89,
+        0.985,
+        0.975
+      ]
+    ]
+  }
+}

@@ -1,0 +1,398 @@
+{
+  "algorithmId": "huffman",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "常用符号，给它更短的口令",
+      "text": "邮局把字符换成零和一。常用字符用短码，消息可能更省。霍夫曼编码反复合并最轻两组，让低频字符承担较深路径。",
+      "ruleIds": [
+        "huffman.frequency"
+      ],
+      "artworkRegion": [
+        0.01,
+        0.12,
+        0.62,
+        0.8
+      ],
+      "panelExplanations": [
+        "相同字符归入同一类，频数表示出现次数；这里只借邮局分类类比，下面使用本例真实建树规则。"
+      ]
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "先统计完整消息",
+      "text": "先准备空频数表，按原序读六个字母。相同字符即使隔开，也累加到同一类。",
+      "ruleIds": [
+        "huffman.frequency"
+      ],
+      "eventIds": [
+        "0"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "counts",
+      "kind": "recap",
+      "title": "当前字母，让对应频数加一",
+      "text": "金框逐格移动，每读一个字母，对应次数加一。只显示已读次数，不提前填总数。",
+      "ruleIds": [
+        "huffman.frequency"
+      ],
+      "eventIds": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    {
+      "id": "count-end",
+      "kind": "event",
+      "title": "最后一字完成频数",
+      "text": "最后再读一个字母A。完成后A三次，N两次，B一次；总和仍是六。",
+      "ruleIds": [
+        "huffman.frequency"
+      ],
+      "eventIds": [
+        "6"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "merge1",
+      "kind": "comparison",
+      "title": "一和二入选，三暂缓",
+      "text": "候选权重一、二、三。取最小两个，合成三。原来的三暂缓，并未被删掉；下轮要和新子树重新比较。",
+      "ruleIds": [
+        "huffman.merge"
+      ],
+      "eventIds": [
+        "7"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "merge2",
+      "kind": "event",
+      "title": "两个三再次合并",
+      "text": "现在两个候选同为三。按创建顺序，旧的A在左，新子树在右，合并得到根六。约定左零右一。",
+      "ruleIds": [
+        "huffman.merge"
+      ],
+      "eventIds": [
+        "8"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "code-a",
+      "kind": "event",
+      "title": "走到A：码字零",
+      "text": "从根向左到A叶子，",
+      "ruleIds": [
+        "huffman.code"
+      ],
+      "eventIds": [
+        "9"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "detailEventIds": [],
+      "stateView": "after"
+    },
+    {
+      "id": "record-a",
+      "kind": "event",
+      "title": "走到A：码字零",
+      "text": "记录零。字符只放叶子，走到这里就能确定字符。",
+      "ruleIds": [
+        "huffman.code"
+      ],
+      "eventIds": [
+        "10"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "detailEventIds": [],
+      "stateView": "after"
+    },
+    {
+      "id": "code-b",
+      "kind": "event",
+      "title": "走到B：码字一零",
+      "text": "回根向右，",
+      "ruleIds": [
+        "huffman.code"
+      ],
+      "eventIds": [
+        "11"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "detailEventIds": [],
+      "stateView": "after"
+    },
+    {
+      "id": "left-b",
+      "kind": "event",
+      "title": "走到B：码字一零",
+      "text": "再向左，来到B叶子。把沿途的一、零连起来，",
+      "ruleIds": [
+        "huffman.code"
+      ],
+      "eventIds": [
+        "12"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "detailEventIds": [],
+      "stateView": "after"
+    },
+    {
+      "id": "record-b",
+      "kind": "event",
+      "title": "走到B：码字一零",
+      "text": "记录码字一零。",
+      "ruleIds": [
+        "huffman.code"
+      ],
+      "eventIds": [
+        "13"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "detailEventIds": [],
+      "stateView": "after"
+    },
+    {
+      "id": "code-n",
+      "kind": "event",
+      "title": "走到N：码字一一",
+      "text": "同一子树再向右，来到N叶子，",
+      "ruleIds": [
+        "huffman.code"
+      ],
+      "eventIds": [
+        "14"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "detailEventIds": [],
+      "stateView": "after"
+    },
+    {
+      "id": "record-n",
+      "kind": "event",
+      "title": "走到N：码字一一",
+      "text": "记录一一。完整码字不会是另一完整码字的开头。",
+      "ruleIds": [
+        "huffman.code"
+      ],
+      "eventIds": [
+        "15"
+      ],
+      "pageModes": [
+        "compact"
+      ],
+      "detailEventIds": [],
+      "stateView": "after"
+    },
+    {
+      "id": "encode-b",
+      "kind": "event",
+      "title": "先替换原文第一字",
+      "text": "按原文顺序编码。第一字是B，查表后追加一零。不能按频数高低重排原文。",
+      "ruleIds": [
+        "huffman.code"
+      ],
+      "eventIds": [
+        "16"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "encode-a",
+      "kind": "event",
+      "title": "再追加A的零",
+      "text": "第二字是A，追加零，已有位串由一零变为一零零。",
+      "ruleIds": [
+        "huffman.code"
+      ],
+      "eventIds": [
+        "17"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "encode-rest",
+      "kind": "recap",
+      "title": "继续替换，得到九位载荷",
+      "text": "其余字符依次查表追加。",
+      "ruleIds": [
+        "huffman.code"
+      ],
+      "eventIds": [
+        "18",
+        "19",
+        "20"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "encode-end",
+      "kind": "recap",
+      "title": "继续替换，得到九位载荷",
+      "text": "完成后载荷九位，还没计入码表和按字节补齐的空间。",
+      "ruleIds": [
+        "huffman.code"
+      ],
+      "eventIds": [
+        "21"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "decode-one",
+      "kind": "event",
+      "title": "读一：还没到叶子",
+      "text": "还原时，从根读取第一位一，向右进入内部节点。暂未到叶子，不能输出字符。",
+      "ruleIds": [
+        "huffman.decode"
+      ],
+      "eventIds": [
+        "22"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "decode-zero",
+      "kind": "event",
+      "title": "再读零：输出B并回根",
+      "text": "再读零，走到B叶子，输出B，然后回到根，等待下一位。",
+      "ruleIds": [
+        "huffman.decode"
+      ],
+      "eventIds": [
+        "23"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "decode-a",
+      "kind": "event",
+      "title": "根上读零：直接输出A",
+      "text": "下一位零从根向左，直接到A叶子，输出A并再次回根。",
+      "ruleIds": [
+        "huffman.decode"
+      ],
+      "eventIds": [
+        "24"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "decode-rest",
+      "kind": "recap",
+      "title": "逐位重复，完整还原",
+      "text": "剩余各位重复规则：沿边走，到叶子才输出，随后回根。",
+      "ruleIds": [
+        "huffman.decode"
+      ],
+      "eventIds": [
+        "25",
+        "26",
+        "27",
+        "28",
+        "29"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "decode-end",
+      "kind": "recap",
+      "title": "逐位重复，完整还原",
+      "text": "最终还原六字，与原文一致。",
+      "ruleIds": [
+        "huffman.decode"
+      ],
+      "eventIds": [
+        "30"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "size",
+      "kind": "event",
+      "title": "九位载荷，不等于完整文件",
+      "text": "本格式码表含头共二十字节，九位载荷补齐为两字节。合计一百七十六位，反比原文四十八位大。小消息可能不划算。",
+      "ruleIds": [
+        "huffman.size"
+      ],
+      "eventIds": [
+        "31"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "最优前缀载荷，也要算格式开销",
+      "text": "它适合长且频率不均的数据。同频可能产生不同合法码字，双方需共用码表；最优前缀载荷不保证完整文件更小。",
+      "ruleIds": [
+        "huffman.size"
+      ]
+    }
+  ],
+  "pronunciations": {
+    "Huffman": "霍夫曼",
+    "A": "诶",
+    "B": "比",
+    "N": "恩"
+  }
+}

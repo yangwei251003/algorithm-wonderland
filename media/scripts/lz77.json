@@ -1,0 +1,440 @@
+{
+  "algorithmId": "lz77",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "写过的片段，用回看指令代替",
+      "text": "抄写重复文字，可以记下往前多远、复制几个、再添哪个字。接收方按规则还原。窗口压缩就用引用替代重复片段。",
+      "ruleIds": [
+        "lz77.initialize"
+      ],
+      "panelExplanations": [
+        "纸带的已写部分对应可回看的历史，距离、长度、下个新字是三元记录；图示文字与随后实际输入不同。"
+      ]
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "先约定窗口与比较规则",
+      "text": "本例最多回看八字，匹配最长十五字，允许重叠复制。同长选近距离，匹配不足二则直接记字。",
+      "ruleIds": [
+        "lz77.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "first",
+      "kind": "event",
+      "title": "开头没有历史，只能写原字",
+      "text": "开头没有历史，只能按原字记录。",
+      "ruleIds": [
+        "lz77.token"
+      ],
+      "eventIds": [
+        "1",
+        "2"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "first-record",
+      "kind": "event",
+      "title": "开头没有历史，只能写原字",
+      "text": "记录距离零、长度零、新字A，建立一字历史。",
+      "ruleIds": [
+        "lz77.token"
+      ],
+      "eventIds": [
+        "3"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "start-one",
+      "kind": "event",
+      "title": "位置一，回看距离一",
+      "text": "来到位置一，之前只有一个A。回看一，把当前与左边一格比较。",
+      "ruleIds": [
+        "lz77.search"
+      ],
+      "eventIds": [
+        "4",
+        "5"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "extend",
+      "kind": "recap",
+      "title": "相同就延长，逐对比较",
+      "text": "每对相同，长度就加一。允许重叠，来源可跨过当前起点；接收时也必须逐字扩展。",
+      "ruleIds": [
+        "lz77.search"
+      ],
+      "eventIds": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ]
+    },
+    {
+      "id": "mismatch",
+      "kind": "event",
+      "title": "目标B，与来源A不同",
+      "text": "目标变B，来源仍是A。不同就停止，这个距离只能匹配五字。",
+      "ruleIds": [
+        "lz77.search"
+      ],
+      "eventIds": [
+        "10"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "best-one",
+      "kind": "event",
+      "title": "把长度五写成引用",
+      "text": "五比零更长，更新最好。",
+      "ruleIds": [
+        "lz77.token"
+      ],
+      "eventIds": [
+        "11"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "record-one",
+      "kind": "event",
+      "title": "把长度五写成引用",
+      "text": "记录回看一、复制五、再添B，消费六个源字符。",
+      "ruleIds": [
+        "lz77.token"
+      ],
+      "eventIds": [
+        "12"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "new-position",
+      "kind": "event",
+      "title": "后半段先试近处，却撞上B",
+      "text": "来到位置七，重找最好方案。",
+      "ruleIds": [
+        "lz77.search"
+      ],
+      "eventIds": [
+        "13"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "distance-one",
+      "kind": "event",
+      "title": "后半段先试近处，却撞上B",
+      "text": "回看一遇到B，和目标A不同。",
+      "ruleIds": [
+        "lz77.search"
+      ],
+      "eventIds": [
+        "14"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "zero-match",
+      "kind": "event",
+      "title": "后半段先试近处，却撞上B",
+      "text": "匹配零字，不改善已有方案。",
+      "ruleIds": [
+        "lz77.search"
+      ],
+      "eventIds": [
+        "15"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "distance-two",
+      "kind": "event",
+      "title": "回看二，只能匹配一字",
+      "text": "回看二，首字相同。",
+      "ruleIds": [
+        "lz77.search"
+      ],
+      "eventIds": [
+        "16"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "second-mismatch",
+      "kind": "event",
+      "title": "回看二，只能匹配一字",
+      "text": "第二字撞上B，停在一字。",
+      "ruleIds": [
+        "lz77.search"
+      ],
+      "eventIds": [
+        "17"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "best-two",
+      "kind": "event",
+      "title": "回看二，只能匹配一字",
+      "text": "一比零长，暂时最好，还要试其他距离。",
+      "ruleIds": [
+        "lz77.search"
+      ],
+      "eventIds": [
+        "18"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "other-distances",
+      "kind": "recap",
+      "title": "其余距离重复同一规则",
+      "text": "继续逐距离、逐字比较。不同就结束该距离，只在更长时更新最好；同长保留先试的近距离。",
+      "ruleIds": [
+        "lz77.search"
+      ],
+      "eventIds": [
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40"
+      ]
+    },
+    {
+      "id": "distance-seven",
+      "kind": "recap",
+      "title": "回看七，逐字比到末尾",
+      "text": "尝试距离七，继续逐字比较。不能因距离远就排除，首先看匹配有多长。",
+      "ruleIds": [
+        "lz77.search"
+      ],
+      "eventIds": [
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ]
+    },
+    {
+      "id": "best-last",
+      "kind": "event",
+      "title": "长度六胜过五，写末条记录",
+      "text": "六比五长，更新最好。",
+      "ruleIds": [
+        "lz77.token"
+      ],
+      "eventIds": [
+        "47"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "record-last",
+      "kind": "event",
+      "title": "长度六胜过五，写末条记录",
+      "text": "记录距离七、长度六；已到末尾，新字为空。",
+      "ruleIds": [
+        "lz77.token"
+      ],
+      "eventIds": [
+        "48"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "decode-first",
+      "kind": "event",
+      "title": "解码先照字面写A",
+      "text": "解码先写A；空点尚未输出。",
+      "ruleIds": [
+        "lz77.decode"
+      ],
+      "eventIds": [
+        "49"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "copy-first",
+      "kind": "event",
+      "title": "当前长度减距离，就是来源",
+      "text": "第二条先复制一次：输出长度一减距离一，取位置零的A，追加到末尾。",
+      "ruleIds": [
+        "lz77.decode"
+      ],
+      "eventIds": [
+        "50"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "copy-overlap",
+      "kind": "recap",
+      "title": "新写出的字，也能成为下一次来源",
+      "text": "继续从末尾回看一，刚写的A也能成为来源。",
+      "ruleIds": [
+        "lz77.decode"
+      ],
+      "eventIds": [
+        "51",
+        "52",
+        "53"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "overlap-end",
+      "kind": "recap",
+      "title": "新写出的字，也能成为下一次来源",
+      "text": "剩余四次复制完成。",
+      "ruleIds": [
+        "lz77.decode"
+      ],
+      "eventIds": [
+        "54"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "append-b",
+      "kind": "event",
+      "title": "复制完成，再添B",
+      "text": "五次复制完，再添新字B。复制部分和附字要分开算。",
+      "ruleIds": [
+        "lz77.decode"
+      ],
+      "eventIds": [
+        "55"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "decode-last",
+      "kind": "recap",
+      "title": "最后六次复制，也按实际输出取值",
+      "text": "最后一条距离七，仍逐字复制，不再附字。",
+      "ruleIds": [
+        "lz77.decode"
+      ],
+      "eventIds": [
+        "56",
+        "57",
+        "58",
+        "59",
+        "60"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "decode-end",
+      "kind": "recap",
+      "title": "最后六次复制，也按实际输出取值",
+      "text": "完成后与十三字原文一致。",
+      "ruleIds": [
+        "lz77.decode"
+      ],
+      "eventIds": [
+        "61"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "size",
+      "kind": "event",
+      "title": "三条记录，也要计完整格式",
+      "text": "本格式四十位头，加上三条记录的距离、长度、字符字节数及内容，共一百零四位，和原文相同。窗口外不搜索；本教学格式不代表压缩软件大小。",
+      "ruleIds": [
+        "lz77.size"
+      ],
+      "eventIds": [
+        "62"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    }
+  ],
+  "pronunciations": {
+    "A": "诶",
+    "B": "比",
+    "LZ77": "L Z 七七"
+  }
+}

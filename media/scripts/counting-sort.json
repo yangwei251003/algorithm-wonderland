@@ -1,0 +1,350 @@
+{
+  "algorithmId": "counting-sort",
+  "beats": [
+    {
+      "id": "intro-box",
+      "kind": "analogy",
+      "title": "先给每个数值一个盒子",
+      "text": "积分卡有重复分数。先给每个可能的整数准备一个盒子，按数值从小到大排列。",
+      "artwork": "../comics/counting-sort/analogy.png",
+      "artworkRegion": [
+        0,
+        0.1,
+        1,
+        0.353
+      ],
+      "panelExplanations": [
+        "输入积分卡是2、-1、2、0、-1；连续值域对应-1、0、1、2四个盒子。"
+      ],
+      "ruleIds": [
+        "counting-sort.initialize"
+      ]
+    },
+    {
+      "id": "intro-count",
+      "kind": "analogy",
+      "title": "每来一张，对应盒子加一",
+      "text": "每读一张卡，对应盒子就加一次计数。同值进同盒，但每张都要数，重复也不省掉。",
+      "artwork": "../comics/counting-sort/analogy.png",
+      "artworkRegion": [
+        0,
+        0.36,
+        1,
+        0.592
+      ],
+      "panelExplanations": [
+        "盒中卡片数量对应频数，四盒最终分别有2、1、0、2张。"
+      ],
+      "ruleIds": [
+        "counting-sort.count"
+      ]
+    },
+    {
+      "id": "intro-output",
+      "kind": "analogy",
+      "title": "最后按盒子顺序重新排出",
+      "text": "从最小号盒子开始，按次数重新发卡。顺序来自盒子排列，不靠卡片两两比较。",
+      "artwork": "../comics/counting-sort/analogy.png",
+      "artworkRegion": [
+        0,
+        0.598,
+        1,
+        0.88
+      ],
+      "panelExplanations": [
+        "每个盒子出现几次，就输出几个对应值，空盒不输出。"
+      ],
+      "ruleIds": [
+        "counting-sort.rebuild"
+      ]
+    },
+    {
+      "id": "range",
+      "kind": "event",
+      "title": "负数怎样安排位置",
+      "text": "最小值负一，最大值二，需要四个盒子。下标不能直接用负数，就用数值减最小值：负一对应下标零，二对应下标三。",
+      "ruleIds": [
+        "counting-sort.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "count-first",
+      "kind": "event",
+      "title": "第一张二：次数从0到1",
+      "text": "第一张二，减去负一，定位下标三。次数从零变一，其余盒子不变。",
+      "eventIds": [
+        "1"
+      ],
+      "ruleIds": [
+        "counting-sort.count"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "count-negative",
+      "kind": "event",
+      "title": "第二张负一进入哪个盒？",
+      "text": "第二张负一减负一，得到下标零。只给这个盒子加一，次数变一。",
+      "eventIds": [
+        "2"
+      ],
+      "ruleIds": [
+        "counting-sort.count"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "count-duplicate",
+      "kind": "event",
+      "title": "第二次遇到二，不新建盒子",
+      "text": "再次遇到二，仍定位下标三。原先一次，再加一成为两次，不新建盒子。",
+      "eventIds": [
+        "3"
+      ],
+      "ruleIds": [
+        "counting-sort.count"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "count-zero",
+      "kind": "event",
+      "title": "零也有自己的盒子",
+      "text": "接着读零。零减负一等于一，因此下标一的盒子计数从零变一。盒子下标与数值要区分。",
+      "eventIds": [
+        "4"
+      ],
+      "ruleIds": [
+        "counting-sort.count"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "count-last",
+      "kind": "event",
+      "title": "最后的负一再加一次",
+      "text": "最后再读负一，下标零累计两次。统计完成：数值负一、零、一、二的次数分别是二、一、零、二。",
+      "eventIds": [
+        "5"
+      ],
+      "ruleIds": [
+        "counting-sort.count"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "output-negative",
+      "kind": "event",
+      "title": "负一要写两次",
+      "text": "从最小数值负一开始。它有两次，就依次写出两个负一，每写一个输出位置前进一步。重复项完整保留。",
+      "eventIds": [
+        "6",
+        "7",
+        "8"
+      ],
+      "ruleIds": [
+        "counting-sort.rebuild",
+        "counting-sort.move"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "detailEventIds": [
+        "6",
+        "7",
+        "8"
+      ]
+    },
+    {
+      "id": "output-zero",
+      "kind": "event",
+      "title": "零的盒子只写一次",
+      "text": "然后读数值零的盒子，次数一，所以只输出一个零。重建依据是频数，不是原来的到达顺序。",
+      "eventIds": [
+        "9",
+        "10"
+      ],
+      "ruleIds": [
+        "counting-sort.rebuild",
+        "counting-sort.move"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "detailEventIds": [
+        "9",
+        "10"
+      ]
+    },
+    {
+      "id": "empty-one",
+      "kind": "event",
+      "title": "数值一的盒子为何跳过？",
+      "text": "数值一的次数为零，没有卡片需要输出。空盒直接越过，也不会凭空补一个一。",
+      "eventIds": [
+        "11"
+      ],
+      "ruleIds": [
+        "counting-sort.rebuild"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "output-two",
+      "kind": "event",
+      "title": "最后写出两个二",
+      "text": "数值二的次数为二，再依次写出两个二。至此总共输出五项，和原输入数量相同。",
+      "eventIds": [
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "ruleIds": [
+        "counting-sort.rebuild",
+        "counting-sort.move",
+        "counting-sort.stop"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "detailEventIds": [
+        "12",
+        "13",
+        "14",
+        "15"
+      ]
+    },
+    {
+      "id": "limit",
+      "kind": "comparison",
+      "title": "先看值域，别只看数量",
+      "text": "比较两种条件：成绩零到一百，只需一百零一个盒子；只有一和一百万两个数，却要跨越巨大值域，准备很多空盒，浪费内存。",
+      "artwork": "../comics/counting-sort/summary.png",
+      "artworkRegion": [
+        0,
+        0.351,
+        1,
+        0.673
+      ],
+      "panelExplanations": [
+        "这是值域大小的条件对照，不是主案例输出。盒子数量取决于最大值减最小值加1。"
+      ],
+      "ruleIds": [
+        "counting-sort.initialize",
+        "counting-sort.rebuild"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "数清楚，再还原",
+      "text": "完整回放先找范围，逐项计数，再按值重建，输出负一、负一、零、二、二。零次两两比较不等于零工作：输入、范围和计数盒都要扫描。",
+      "ruleIds": [
+        "counting-sort.initialize",
+        "counting-sort.count",
+        "counting-sort.rebuild",
+        "counting-sort.move",
+        "counting-sort.stop"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "整数、范围和内存决定是否合适",
+      "text": "小范围整数积分和离散等级适合分类计数。本版只重建数值，没有追踪同值记录身份，不能据此断言所有计数排序都不稳定。先看值域，再看可用内存。",
+      "artwork": "../comics/counting-sort/summary.png",
+      "artworkRegion": [
+        0,
+        0.678,
+        1,
+        0.918
+      ],
+      "panelExplanations": [
+        "五次写回之外，还有扫描输入和计数盒的成本。数值重建版不演示带身份记录的稳定排列。"
+      ],
+      "ruleIds": [
+        "counting-sort.stop"
+      ]
+    }
+  ],
+  "artworkPanels": {
+    "analogy": [
+      [
+        0,
+        0.1,
+        1,
+        0.353
+      ],
+      [
+        0,
+        0.36,
+        1,
+        0.592
+      ],
+      [
+        0,
+        0.598,
+        1,
+        0.88
+      ]
+    ],
+    "summary": [
+      [
+        0,
+        0.08,
+        1,
+        0.344
+      ],
+      [
+        0,
+        0.351,
+        1,
+        0.673
+      ],
+      [
+        0,
+        0.678,
+        1,
+        0.918
+      ]
+    ]
+  }
+}

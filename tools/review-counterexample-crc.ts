@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {readFile,writeFile} from 'node:fs/promises';
+import {runners} from '../src/algorithms/intelligence';
+import {replayTrace,teachingJSON} from '../src/engine/teaching';
+import {normalizeInput,normalizeParams} from '../src/engine/validation';
+import {byId} from '../src/content/catalog';
+const id='crc';
+const base=JSON.parse(await readFile(`media/exports/${id}.json`,'utf8'));
+const input=base.lesson.teachingCase.input,params={...base.lesson.teachingCase.params,error:'1011'},seed=base.lesson.teachingCase.seed;
+const run=await runners[id](input,params,seed);
+const normalized=await runners[id](normalizeInput(input),normalizeParams(byId[id],params),seed);
+assert.equal(teachingJSON(run.trace),teachingJSON(normalized.trace));
+assert.ok(run.trace?.complete);assert.deepEqual(replayTrace(run.trace!),run.trace!.finalState);
+const state=run.trace!.finalState;
+assert.equal(state.actualFlips,3);assert.equal(state.remainder,'000');assert.equal(state.detected,false);assert.notEqual(state.encoded,state.received);
+
+const traceHash=createHash('sha256').update(teachingJSON(run.trace)).digest('hex');
+await writeFile('media/exports/review-counterexample-crc.json',teachingJSON({...base,lesson:{...base.lesson,teachingCase:{input,params,seed}},run,traceHash},2));
+console.log({traceHash,events:run.trace!.events.length,state});

@@ -1,0 +1,229 @@
+{
+  "algorithmId": "exponential-smoothing",
+  "pronunciations": {
+    "α": "阿尔法"
+  },
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "把旧经验浓缩成一个数",
+      "text": "店长调整备货，只存一个旧估计，再用最新销量修正它。就像调饮料，新消息和老经验按比例混合；结果又成为明天的老经验。",
+      "ruleIds": [
+        "exponential-smoothing.initialize",
+        "exponential-smoothing.update"
+      ]
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "从第一天起步",
+      "text": "第一天观察十杯，就把估计设成十。这是初始化，首日误差为零不能算预测成功。",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "exponential-smoothing.initialize"
+      ]
+    },
+    {
+      "id": "first",
+      "kind": "event",
+      "title": "两项权重必须相加为一",
+      "text": "新观察与旧估计的权重各为零点五，相加为一。首日两份贡献是五和五，合为十，表示信息加权而非销量相加。",
+      "eventIds": [
+        "1"
+      ],
+      "ruleIds": [
+        "exponential-smoothing.update"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "second",
+      "kind": "event",
+      "title": "第二天：六加五等于十一",
+      "text": "第二天销量十二，乘一半贡献六；旧估计十也取一半，贡献五。合起来十一，预测第三天。",
+      "eventIds": [
+        "2"
+      ],
+      "ruleIds": [
+        "exponential-smoothing.update"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "calculationKeys": [
+        "recent",
+        "history"
+      ]
+    },
+    {
+      "id": "third",
+      "kind": "event",
+      "title": "第三天：七加五点五",
+      "text": "第三天销量十四贡献七；此前估计十一贡献五点五，合为十二点五。旧估计包含更早的销量，它们的影响又乘了一半。",
+      "eventIds": [
+        "3"
+      ],
+      "ruleIds": [
+        "exponential-smoothing.update"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "calculationKeys": [
+        "recent",
+        "history"
+      ]
+    },
+    {
+      "id": "jump",
+      "kind": "event",
+      "title": "第四天突然卖出三十杯",
+      "text": "第四天卖三十杯，新观察贡献十五，旧估计贡献六点二五，合为二十一点二五。它没直接跳到三十，因为还保留一半旧经验。",
+      "eventIds": [
+        "4"
+      ],
+      "ruleIds": [
+        "exponential-smoothing.update"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "calculationKeys": [
+        "recent",
+        "history"
+      ]
+    },
+    {
+      "id": "last",
+      "kind": "event",
+      "title": "第五天：十六加十点六二五",
+      "text": "第五天卖三十二杯，贡献十六。旧估计贡献十点六二五，合为二十六点六二五，这是下一天的估计。",
+      "eventIds": [
+        "5"
+      ],
+      "ruleIds": [
+        "exponential-smoothing.update"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "calculationKeys": [
+        "recent",
+        "history"
+      ]
+    },
+    {
+      "id": "error-two",
+      "kind": "event",
+      "title": "只核对提前给出的预测",
+      "text": "现在核对第二天：实际十二，此前预测十，绝对误差二。不能拿后来更新的十一替换原先预测。",
+      "eventIds": [
+        "6"
+      ],
+      "ruleIds": [
+        "exponential-smoothing.evaluate"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "error-three",
+      "kind": "event",
+      "title": "第三天的误差",
+      "text": "第三天实际十四，原先预测十一，绝对误差三。",
+      "eventIds": [
+        "7"
+      ],
+      "ruleIds": [
+        "exponential-smoothing.evaluate"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "error-four",
+      "kind": "event",
+      "title": "突增当天误差最大",
+      "text": "第四天实际三十，原先预测十二点五，相差十七点五。这正体现预测跟不上突然热销。",
+      "eventIds": [
+        "8"
+      ],
+      "ruleIds": [
+        "exponential-smoothing.evaluate"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "error-five",
+      "kind": "event",
+      "title": "第五天仍有滞后",
+      "text": "第五天实际三十二，原先预测二十一点二五，绝对误差十点七五。",
+      "eventIds": [
+        "9"
+      ],
+      "ruleIds": [
+        "exponential-smoothing.evaluate"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "average",
+      "kind": "event",
+      "title": "未知的明天不参与评分",
+      "text": "四次误差平均约八点三一杯。首日初始化和未知的下一天都不参与评分。",
+      "eventIds": [
+        "10"
+      ],
+      "ruleIds": [
+        "exponential-smoothing.evaluate"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "contrast",
+      "kind": "comparison",
+      "title": "同一销量，新观察权重改为一",
+      "text": "独立对照把新观察权重改为一。第四天贡献三十，旧历史贡献零，新估计直接变三十。反应更快，也更容易跟随偶然波动。",
+      "ruleIds": [
+        "exponential-smoothing.update"
+      ],
+      "caseFile": "review-counterexample-exponential-smoothing.json",
+      "caseEventIds": [
+        "4"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "calculationKeys": [
+        "alpha",
+        "recent",
+        "history"
+      ]
+    },
+    {
+      "id": "finish",
+      "kind": "summary",
+      "title": "指数说的是记忆衰减",
+      "text": "指数指历史影响逐轮衰减，并非销量指数增长。它适合平稳需求的短期估计；趋势、季节和突变需要另建模型。",
+      "ruleIds": [
+        "exponential-smoothing.update",
+        "exponential-smoothing.evaluate"
+      ]
+    }
+  ]
+}

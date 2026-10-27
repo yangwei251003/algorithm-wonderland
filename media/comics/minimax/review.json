@@ -1,0 +1,49 @@
+{
+  "algorithmId": "minimax",
+  "lessonVersion": 2,
+  "traceHash": "0cd3b7a7ff9a83c1505f57656628e66070f745b8c37188160a5c1c822b70b22f",
+  "reviewedAt": "2026-10-26",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "两层岔路树展示对手取最小、我方取最大",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图",
+        "类比数值5/−2、1/3回传−2和1正确；真实棋盘与108/0/−107候选核对"
+      ],
+      "corrections": [
+        "淡化未选5和3，修正回传向上高亮"
+      ]
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "真实井字棋初盘与五个根候选回传值",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图",
+        "类比数值5/−2、1/3回传−2和1正确；真实棋盘与108/0/−107候选核对"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "完整搜索与有限深度估计的区别",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图",
+        "类比数值5/−2、1/3回传−2和1正确；真实棋盘与108/0/−107候选核对"
+      ],
+      "corrections": [
+        "小型min/max图回传箭头改为向上"
+      ]
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "类比树与真实棋局分别标注，概念图不表示真实搜索规模"
+  ]
+}

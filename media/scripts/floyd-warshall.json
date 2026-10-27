@@ -1,0 +1,336 @@
+{
+  "algorithmId": "floyd-warshall",
+  "pronunciations": {
+    "Floyd–Warshall": "弗洛伊德沃舍尔"
+  },
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "不断开放新的中转站",
+      "text": "旅行服务台最初只知道直达票价。每允许一个新中转站，就为所有起终点问一次：不经过它的旧报价，和经过它的两段报价，哪个更低？这不是只寻找一条路线，而是逐步建立任意两站之间的最低费用表。",
+      "ruleIds": [
+        "floyd-warshall.initialize",
+        "floyd-warshall.intermediate"
+      ],
+      "panelExplanations": [
+        "初始只知直达票价。A到C没有直达边，暂记∞，不是负票价。",
+        "允许B作新中转后，A→B与B→C两段相加8+6=14，比未知路线更好。",
+        "以后允许D，候选7+11=18比14贵，所以保留旧值。旧中转仍可使用。"
+      ]
+    },
+    {
+      "id": "setup",
+      "kind": "event",
+      "title": "初始表有什么依据",
+      "text": "四个站之间，自身到自身记零，有直达边填费用，没有直达边暂记无穷。无穷不是零，也不是实际票价。本例甲到丙没有直达连接。",
+      "ruleIds": [
+        "floyd-warshall.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "outer",
+      "kind": "event",
+      "title": "本轮新增甲站中转",
+      "text": "先允许甲站作中转，其他地点对都要检查。每轮只新增一个允许的中转点，已允许的仍能使用，不是只准经过一个站。",
+      "ruleIds": [
+        "floyd-warshall.intermediate",
+        "floyd-warshall.compare"
+      ],
+      "eventIds": [
+        "1"
+      ],
+      "detailEventIds": [
+        "1"
+      ]
+    },
+    {
+      "id": "unreachable",
+      "kind": "event",
+      "title": "一段不可达，不能拼成路",
+      "text": "看甲到丙经甲的候选：甲到甲是零，但甲到丙仍未知。有一段不可达，就不能得到有限报价，原记录保持无穷。",
+      "ruleIds": [
+        "floyd-warshall.intermediate",
+        "floyd-warshall.compare"
+      ],
+      "eventIds": [
+        "4"
+      ],
+      "detailEventIds": [
+        "4"
+      ]
+    },
+    {
+      "id": "expand",
+      "kind": "event",
+      "title": "整轮检查后再新增乙站",
+      "text": "甲站这一轮仍检查全部起终点，包括不改善的情况。",
+      "ruleIds": [
+        "floyd-warshall.intermediate",
+        "floyd-warshall.compare"
+      ],
+      "eventIds": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "expand-b",
+      "kind": "event",
+      "title": "完成一轮，新增乙站中转",
+      "text": "完成后再额外允许乙站，甲也仍然可用，候选路线集合逐步扩大。",
+      "eventIds": [
+        "18"
+      ],
+      "ruleIds": [
+        "floyd-warshall.intermediate"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "improve",
+      "kind": "event",
+      "title": "八加六为什么更新十四",
+      "text": "现在只看甲到丙经乙：甲到乙八，乙到丙六，相加十四，小于旧值无穷，",
+      "ruleIds": [
+        "floyd-warshall.compare"
+      ],
+      "eventIds": [
+        "21"
+      ],
+      "detailEventIds": [
+        "21"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "improve-write",
+      "kind": "event",
+      "title": "把更低的报价写入表格",
+      "text": "所以更新甲丙距离为十四。新报价来自两段已知路线。",
+      "eventIds": [
+        "21"
+      ],
+      "ruleIds": [
+        "floyd-warshall.compare"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "reverse",
+      "kind": "event",
+      "title": "反向也单独计算",
+      "text": "丙到甲同样要检查，丙到乙六，加乙到甲八，得到十四，比旧值无穷小，",
+      "ruleIds": [
+        "floyd-warshall.compare"
+      ],
+      "eventIds": [
+        "27"
+      ],
+      "detailEventIds": [
+        "27"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "reverse-write",
+      "kind": "event",
+      "title": "反向这一格也要独立更新",
+      "text": "因此这一个表格位置也更新。不是自动复制另一个格子。",
+      "eventIds": [
+        "27"
+      ],
+      "ruleIds": [
+        "floyd-warshall.compare"
+      ],
+      "pageModes": [
+        "comparison"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "reject",
+      "kind": "event",
+      "title": "十八为什么不能替换十四",
+      "text": "之后允许丁站时，甲到丁七，丁到丙十一，候选十八。已有十四更低，因此拒绝十八，保留原记录。相等时也不必改写。",
+      "ruleIds": [
+        "floyd-warshall.intermediate",
+        "floyd-warshall.compare"
+      ],
+      "eventIds": [
+        "55"
+      ],
+      "detailEventIds": [
+        "55"
+      ]
+    },
+    {
+      "id": "boundary",
+      "kind": "comparison",
+      "title": "负环为什么没有有限答案",
+      "text": "如果一圈路的总成本为负，反复绕圈就能不断降低费用，相关最短距离便没有有限最小值。本例没有负边和负环，因此不存在这个问题。",
+      "ruleIds": [],
+      "artwork": "../comics/floyd-warshall/summary.png",
+      "artworkRegion": [
+        0,
+        0.664,
+        1,
+        0.887
+      ],
+      "panelExplanations": [
+        "如果可以沿负成本环反复绕行，每多绕一圈，费用就再降低；能够利用该环的相关路线没有有限最小值。本例没有负边。"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "复盘所有中转轮次",
+      "text": "完整回放从直达表开始，依次新增四个中转站，每轮检查所有起终点。",
+      "ruleIds": [
+        "floyd-warshall.initialize",
+        "floyd-warshall.intermediate",
+        "floyd-warshall.compare",
+        "floyd-warshall.stop"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "66",
+        "67",
+        "68"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "result",
+      "kind": "event",
+      "title": "计算完成，读取全站距离表",
+      "text": "完成后甲丙十四、甲丁七、乙丙六。没有改善的比较也是计算，不能只看更新次数。",
+      "eventIds": [
+        "69"
+      ],
+      "ruleIds": [
+        "floyd-warshall.stop"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "反复查询很多地点对",
+      "text": "地点规模不大，却经常查询很多不同起终点时，可以想到这张全站距离表。计算量随中转点、起点、终点三层组合增长。它的直觉是保留旧答案，再问经过新中转能否更便宜；不是把所有直达边都画成最终路线。",
+      "ruleIds": [
+        "floyd-warshall.stop"
+      ],
+      "panelExplanations": [
+        "小规模地点、频繁查询很多起终点：保存全站距离表。每个新增中转点都检查每个起点和终点，三层组合决定工作量。"
+      ],
+      "artwork": "../comics/floyd-warshall/summary.png",
+      "artworkRegion": [
+        0,
+        0.437,
+        1,
+        0.66
+      ]
+    }
+  ]
+}

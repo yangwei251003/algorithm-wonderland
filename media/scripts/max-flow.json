@@ -1,0 +1,715 @@
+{
+  "algorithmId": "max-flow",
+  "pronunciations": {
+    "Dinic": "迪尼克"
+  },
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "城市供水的最窄管段",
+      "text": "一条供水路线能再送多少，由最窄剩余管段决定。多条路线不能超容量，内部流入等于流出，目标是总输送量最大。",
+      "ruleIds": [
+        "max-flow.initialize"
+      ],
+      "panelExplanations": [
+        "一条路线三段容量4、1、4，中间最窄处限制整条路线。",
+        "本次最多增送min(4,1,4)=1；入口大不能消除中途瓶颈。",
+        "正向余量减1、反向记录加1。反向是撤回旧分配的权限，不是新水管。"
+      ]
+    },
+    {
+      "id": "residual",
+      "kind": "event",
+      "title": "正向可加，反向可撤回",
+      "text": "正向余量是还能增加多少，反向余量是能撤回多少旧分配，初始为零。反向不是新水管，它让早先安排能够调整。",
+      "ruleIds": [
+        "max-flow.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "levels",
+      "kind": "event",
+      "title": "沿正余量边逐层建层号",
+      "text": "沿正余量逐层搜索，首次发现的层号是前驱加一。",
+      "ruleIds": [
+        "max-flow.level",
+        "max-flow.push"
+      ],
+      "eventIds": [
+        "1",
+        "2",
+        "3",
+        "6",
+        "9",
+        "12"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "levels-result",
+      "kind": "event",
+      "title": "沿正余量边逐层建层号",
+      "text": "本轮源点零层，一与二在一层，三与四在二层，终点三层。",
+      "ruleIds": [
+        "max-flow.level",
+        "max-flow.push"
+      ],
+      "eventIds": [
+        "12"
+      ],
+      "detailEventIds": [
+        "12"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "same-layer",
+      "kind": "event",
+      "title": "有容量也不能走同层边",
+      "text": "送流只沿层号增加一的边。一到二虽然余量二，层号却是一到一，所以当前阶段拒绝。重新分层以后仍可能使用。",
+      "ruleIds": [
+        "max-flow.level",
+        "max-flow.push"
+      ],
+      "eventIds": [
+        "20"
+      ],
+      "detailEventIds": [
+        "20"
+      ],
+      "pageModes": [
+        "rule",
+        "comparison"
+      ]
+    },
+    {
+      "id": "bottle",
+      "kind": "event",
+      "title": "瓶颈把四缩成一",
+      "text": "源点到一、到三、到终点，容量四、一、四。传入四遇到余量一，取小值变成一；后面容量四不能重新放大，本次只增送一。",
+      "ruleIds": [
+        "max-flow.push",
+        "max-flow.residual"
+      ],
+      "eventIds": [
+        "21"
+      ],
+      "detailEventIds": [
+        "21"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "update",
+      "kind": "event",
+      "title": "沿整条路正减反增",
+      "text": "三到终点正向四减一为三，反向加一；",
+      "ruleIds": [
+        "max-flow.push",
+        "max-flow.residual"
+      ],
+      "eventIds": [
+        "26"
+      ],
+      "detailEventIds": [
+        "26"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "update-middle",
+      "kind": "event",
+      "title": "沿整条路正减反增",
+      "text": "一到三正向变零；",
+      "ruleIds": [
+        "max-flow.push",
+        "max-flow.residual"
+      ],
+      "eventIds": [
+        "27"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "update-source",
+      "kind": "event",
+      "title": "沿整条路正减反增",
+      "text": "源点到一正向剩三。",
+      "ruleIds": [
+        "max-flow.push",
+        "max-flow.residual"
+      ],
+      "eventIds": [
+        "28"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "update-total",
+      "kind": "event",
+      "title": "沿整条路正减反增",
+      "text": "沿整条路径正减反增后，总流量增加一。",
+      "ruleIds": [
+        "max-flow.push",
+        "max-flow.residual"
+      ],
+      "eventIds": [
+        "29"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "second",
+      "kind": "event",
+      "title": "同一层图再送一",
+      "text": "经二和四再送一，",
+      "ruleIds": [
+        "max-flow.level",
+        "max-flow.push",
+        "max-flow.residual",
+        "max-flow.stop"
+      ],
+      "eventIds": [
+        "40",
+        "41",
+        "42",
+        "43"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "second-total",
+      "kind": "event",
+      "title": "同一层图再送一",
+      "text": "总流量到二。",
+      "ruleIds": [
+        "max-flow.level",
+        "max-flow.push",
+        "max-flow.residual",
+        "max-flow.stop"
+      ],
+      "eventIds": [
+        "44"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "relevel",
+      "kind": "event",
+      "title": "同一层图再送一",
+      "text": "当前层图走不通后，重新建层，给较长剩余路线机会。",
+      "ruleIds": [
+        "max-flow.level",
+        "max-flow.push",
+        "max-flow.residual",
+        "max-flow.stop"
+      ],
+      "eventIds": [
+        "52"
+      ],
+      "detailEventIds": [
+        "52"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "stages",
+      "kind": "event",
+      "title": "更长路线分两轮增加",
+      "text": "重建层图后，每次检查余量和层号，继续尝试长路线。",
+      "ruleIds": [
+        "max-flow.level",
+        "max-flow.push",
+        "max-flow.residual",
+        "max-flow.stop"
+      ],
+      "eventIds": [
+        "83",
+        "84",
+        "85",
+        "86",
+        "87",
+        "88",
+        "92",
+        "120",
+        "121",
+        "122",
+        "123",
+        "124",
+        "125"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "stages-total",
+      "kind": "event",
+      "title": "更长路线分两轮增加",
+      "text": "两轮分别增送一，总流量到四。",
+      "ruleIds": [
+        "max-flow.level",
+        "max-flow.push",
+        "max-flow.residual",
+        "max-flow.stop"
+      ],
+      "eventIds": [
+        "126"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "unreachable",
+      "kind": "event",
+      "title": "何时不能继续增加",
+      "text": "最后重新分层，",
+      "ruleIds": [
+        "max-flow.level",
+        "max-flow.push",
+        "max-flow.residual",
+        "max-flow.stop"
+      ],
+      "eventIds": [
+        "139",
+        "140",
+        "141",
+        "142",
+        "143",
+        "144",
+        "145",
+        "146",
+        "147",
+        "148",
+        "149",
+        "150"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "unreachable-result",
+      "kind": "event",
+      "title": "何时不能继续增加",
+      "text": "剩余网络里已到不了终点，才结束增广。这指没有正余量通路，不是原图没有连接。",
+      "ruleIds": [
+        "max-flow.level",
+        "max-flow.push",
+        "max-flow.residual",
+        "max-flow.stop"
+      ],
+      "eventIds": [
+        "151"
+      ],
+      "detailEventIds": [
+        "151"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "source-side",
+      "kind": "event",
+      "title": "找出剩余网络的分界",
+      "text": "从源点沿正余量边找可达点。",
+      "ruleIds": [
+        "max-flow.cut",
+        "max-flow.stop"
+      ],
+      "eventIds": [
+        "152",
+        "153",
+        "154",
+        "155",
+        "156",
+        "157",
+        "158",
+        "159",
+        "160",
+        "161"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "source-side-result",
+      "kind": "event",
+      "title": "找出剩余网络的分界",
+      "text": "源点、一、二、四组成源侧。用这组点把原图分成两侧。",
+      "ruleIds": [
+        "max-flow.cut",
+        "max-flow.stop"
+      ],
+      "eventIds": [
+        "162"
+      ],
+      "detailEventIds": [
+        "162"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "cut",
+      "kind": "event",
+      "title": "三条割边给出上界",
+      "text": "原图从源侧跨出去的边，一到三容量一；",
+      "ruleIds": [
+        "max-flow.cut",
+        "max-flow.stop"
+      ],
+      "eventIds": [
+        "166"
+      ],
+      "detailEventIds": [
+        "166"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "cut-second",
+      "kind": "event",
+      "title": "三条割边给出上界",
+      "text": "四到三容量二；",
+      "ruleIds": [
+        "max-flow.cut",
+        "max-flow.stop"
+      ],
+      "eventIds": [
+        "168"
+      ],
+      "detailEventIds": [
+        "168"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "cut-total",
+      "kind": "event",
+      "title": "三条割边给出上界",
+      "text": "四到终点容量一。相加得四，任何方案都不能突破这个总容量。",
+      "ruleIds": [
+        "max-flow.cut",
+        "max-flow.stop"
+      ],
+      "eventIds": [
+        "170"
+      ],
+      "detailEventIds": [
+        "170"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "optimal",
+      "kind": "comparison",
+      "title": "方案四恰好等于上限四",
+      "text": "已实现流量四，割容量又把上限限制在四，两边相等，证明最优。不能仅凭没有继续找到路线就省略这份上界证据。",
+      "ruleIds": [
+        "max-flow.cut",
+        "max-flow.stop"
+      ],
+      "eventIds": [
+        "171"
+      ],
+      "detailEventIds": [
+        "171"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "不能只盯一条最粗管",
+      "text": "回放按层找路、瓶颈增送、正减反增、重建层图。",
+      "ruleIds": [
+        "max-flow.initialize",
+        "max-flow.level",
+        "max-flow.push",
+        "max-flow.residual",
+        "max-flow.cut",
+        "max-flow.stop"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69",
+        "70",
+        "71",
+        "72",
+        "73",
+        "74",
+        "75",
+        "76",
+        "77",
+        "78",
+        "79",
+        "80",
+        "81",
+        "82",
+        "83",
+        "84",
+        "85",
+        "86",
+        "87",
+        "88",
+        "89",
+        "90",
+        "91",
+        "92",
+        "93",
+        "94",
+        "95",
+        "96",
+        "97",
+        "98",
+        "99",
+        "100",
+        "101",
+        "102",
+        "103",
+        "104",
+        "105",
+        "106",
+        "107",
+        "108",
+        "109",
+        "110",
+        "111",
+        "112",
+        "113",
+        "114",
+        "115",
+        "116",
+        "117",
+        "118",
+        "119",
+        "120",
+        "121",
+        "122",
+        "123",
+        "124",
+        "125",
+        "126",
+        "127",
+        "128",
+        "129",
+        "130",
+        "131",
+        "132",
+        "133",
+        "134",
+        "135",
+        "136",
+        "137",
+        "138",
+        "139",
+        "140",
+        "141",
+        "142",
+        "143",
+        "144",
+        "145",
+        "146",
+        "147",
+        "148",
+        "149",
+        "150",
+        "151",
+        "152",
+        "153",
+        "154",
+        "155",
+        "156",
+        "157",
+        "158",
+        "159",
+        "160",
+        "161",
+        "162",
+        "163",
+        "164",
+        "165",
+        "166",
+        "167",
+        "168",
+        "169",
+        "170",
+        "171"
+      ],
+      "detailEventIds": [],
+      "pageModes": [
+        "compact"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "recap-result",
+      "kind": "event",
+      "title": "不能只盯一条最粗管",
+      "text": "最大流四等于最小割四，入口粗也会受中途限制。",
+      "ruleIds": [
+        "max-flow.initialize",
+        "max-flow.level",
+        "max-flow.push",
+        "max-flow.residual",
+        "max-flow.cut",
+        "max-flow.stop"
+      ],
+      "eventIds": [
+        "171"
+      ],
+      "detailEventIds": [
+        "171"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after"
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "容量网络的分配思维",
+      "text": "运输和网络吞吐可建容量模型。本例未计费用、损耗、时间。反向记录能撤回，分层组织搜索，割提供上界。",
+      "ruleIds": [
+        "max-flow.stop"
+      ],
+      "panelExplanations": [
+        "结束时源侧为{s,1,2,4}，跨割原容量为1、2、1，总和4。",
+        "已实现流量4，任何方案又不能超过割容量4；上下界相同，证明最优。",
+        "剩余网络到不了终点才结束。模型未计费用、损耗、时间，迁移时需检查这些条件。"
+      ]
+    }
+  ]
+}

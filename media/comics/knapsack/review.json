@@ -1,0 +1,42 @@
+{
+  "algorithmId": "knapsack",
+  "lessonVersion": 2,
+  "traceHash": "5d047ae815c90f4b0f02301ab2e4a0d465c94942edadc249a68236eaf66f1060",
+  "reviewedAt": "2026-10-26",
+  "reviewer": "AI visual inspection of each original and revised image",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "容量5的行李选择：雨衣、水、相机各一件。",
+      "status": "passed",
+      "checks": [
+        "逐张核查3件物品重量价值，雨衣占用4修订为2",
+        "删除虚构的第四件急救包，5容量最优9和贪心7均可独立核对"
+      ]
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "状态表比较带与不带，相机在容量5处得到最大价值9。",
+      "status": "passed",
+      "checks": [
+        "逐张核查3件物品重量价值，雨衣占用4修订为2",
+        "删除虚构的第四件急救包，5容量最优9和贪心7均可独立核对"
+      ]
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "雨衣加相机价值9，单位价值贪心只得7；不可拆分、价值可加。",
+      "status": "passed",
+      "checks": [
+        "逐张核查3件物品重量价值，雨衣占用4修订为2",
+        "删除虚构的第四件急救包，5容量最优9和贪心7均可独立核对"
+      ]
+    }
+  ],
+  "limitations": [
+    "未进行真人零基础试学；艺术评价不等同于专业人士评审。"
+  ]
+}

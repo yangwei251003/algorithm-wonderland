@@ -1,0 +1,479 @@
+{
+  "algorithmId": "hungarian",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "看全队总账，不让人抢岗",
+      "text": "三人分三任务，每人一项，每项一人，总工时要最少。抢最省时的岗位会冲突，用比较账探索换岗。",
+      "ruleIds": [
+        "hungarian.initialize"
+      ],
+      "panelExplanations": [
+        "甲乙丙对应三行，任务对应三列；每人一项，每项一人，比较全队工时之和。",
+        "任务有人占用时，沿旧队员继续寻找安排；探索不等于已经换岗。",
+        "行势与列势只是比较基准。8−8−0=0是余量，原工时仍为8。"
+      ]
+    },
+    {
+      "id": "setup",
+      "kind": "event",
+      "title": "原工时不变，另建比较账",
+      "text": "行势、列势初始为零；余量就是原工时减行势、再减列势。",
+      "ruleIds": [
+        "hungarian.initialize",
+        "hungarian.reduced"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "reduced",
+      "kind": "event",
+      "title": "甲到任务一，余量如何算",
+      "text": "甲到任务一，八减两个零得八，记下余量。",
+      "ruleIds": [
+        "hungarian.reduced"
+      ],
+      "eventIds": [
+        "3"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "scan-other",
+      "kind": "event",
+      "title": "把三个任务都检查完",
+      "text": "另两项余量十和十七，都大于八。",
+      "ruleIds": [
+        "hungarian.reduced"
+      ],
+      "eventIds": [
+        "4",
+        "5"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "raise-first",
+      "kind": "event",
+      "title": "最小余量决定调整量",
+      "text": "最小余量八是调整量，甲的行势增到八。",
+      "ruleIds": [
+        "hungarian.adjust"
+      ],
+      "eventIds": [
+        "6"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "slack-first",
+      "kind": "event",
+      "title": "同一调整量逐项扣减",
+      "text": "各任务余量依次减八；最小那项归零，原工时不变。",
+      "ruleIds": [
+        "hungarian.adjust"
+      ],
+      "eventIds": [
+        "7",
+        "8",
+        "9"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "first",
+      "kind": "event",
+      "title": "沿零余量找到空任务",
+      "text": "任务一是空位，沿前驱链交给甲，完成一项分配。",
+      "ruleIds": [
+        "hungarian.augment"
+      ],
+      "eventIds": [
+        "10",
+        "11"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "second-scan",
+      "kind": "event",
+      "title": "乙重复逐项比较",
+      "text": "乙入场，同规则逐项算余量，记下最小项。",
+      "ruleIds": [
+        "hungarian.initialize",
+        "hungarian.reduced"
+      ],
+      "eventIds": [
+        "12",
+        "13",
+        "14",
+        "15",
+        "16"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "second-adjust",
+      "kind": "event",
+      "title": "重复统一调势",
+      "text": "重复调势、扣减余量，产生新零边。",
+      "ruleIds": [
+        "hungarian.adjust"
+      ],
+      "eventIds": [
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "second-assign",
+      "kind": "event",
+      "title": "空任务二交给乙",
+      "text": "任务二为空，交给乙，人数再加一。",
+      "ruleIds": [
+        "hungarian.augment"
+      ],
+      "eventIds": [
+        "21",
+        "22"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "third-scan",
+      "kind": "event",
+      "title": "轮到丙，重新比较",
+      "text": "轮到丙，重新逐项比价，还没有分配。",
+      "ruleIds": [
+        "hungarian.initialize",
+        "hungarian.reduced"
+      ],
+      "eventIds": [
+        "23",
+        "24",
+        "25",
+        "26",
+        "27"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "third-adjust",
+      "kind": "event",
+      "title": "按丙的最小余量调整",
+      "text": "最小余量七，先更新行势，再逐项扣减余量。",
+      "ruleIds": [
+        "hungarian.adjust"
+      ],
+      "eventIds": [
+        "28",
+        "29",
+        "30",
+        "31"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "occupied",
+      "kind": "event",
+      "title": "遇到占用，扩展搜索",
+      "text": "任务一已有甲，沿甲寻找替代，跳过已入树任务。",
+      "ruleIds": [
+        "hungarian.augment",
+        "hungarian.reduced"
+      ],
+      "eventIds": [
+        "32",
+        "33",
+        "34"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "alternative",
+      "kind": "event",
+      "title": "甲到任务二：为什么改记",
+      "text": "甲到任务二，十减八得二，比旧值六小，更新。二也小于任务三的五。",
+      "ruleIds": [
+        "hungarian.reduced"
+      ],
+      "eventIds": [
+        "35"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "reject",
+      "kind": "event",
+      "title": "甲到任务三：为什么拒绝",
+      "text": "新余量九不如旧值五，保留五。拒绝差报价，不是删除任务三。",
+      "ruleIds": [
+        "hungarian.reduced"
+      ],
+      "eventIds": [
+        "36"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "adjust-inside",
+      "kind": "event",
+      "title": "树内行列配对调整",
+      "text": "最小余量二；树内行势加二、对应列势减二，保持紧边。",
+      "ruleIds": [
+        "hungarian.adjust"
+      ],
+      "eventIds": [
+        "37",
+        "38"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "adjust-outside",
+      "kind": "event",
+      "title": "树外余量统一减二",
+      "text": "树外余量依次减二，最小那项归零；取最小量才不减过头。",
+      "ruleIds": [
+        "hungarian.adjust"
+      ],
+      "eventIds": [
+        "39",
+        "40"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "occupied-two",
+      "kind": "event",
+      "title": "任务二也有人",
+      "text": "任务二已有乙，沿乙继续，跳过树内任务。",
+      "ruleIds": [
+        "hungarian.augment",
+        "hungarian.reduced"
+      ],
+      "eventIds": [
+        "41",
+        "42",
+        "43",
+        "44"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "reject-two",
+      "kind": "event",
+      "title": "乙到任务三：仍保留旧账",
+      "text": "新余量十不如旧值三，仍保留三，调整量取三。",
+      "ruleIds": [
+        "hungarian.reduced"
+      ],
+      "eventIds": [
+        "45"
+      ],
+      "pageModes": [
+        "calculation"
+      ],
+      "operandsPerPage": 4
+    },
+    {
+      "id": "last-adjust",
+      "kind": "event",
+      "title": "重复调势，余量三归零",
+      "text": "同规则调势：改树内行列、扣树外余量，产生新零边。",
+      "ruleIds": [
+        "hungarian.adjust"
+      ],
+      "eventIds": [
+        "46",
+        "47",
+        "48",
+        "49"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "finish",
+      "kind": "event",
+      "title": "空任务三交给丙",
+      "text": "空任务三沿前驱链交给丙；甲乙不用换岗。",
+      "ruleIds": [
+        "hungarian.augment"
+      ],
+      "eventIds": [
+        "50",
+        "51"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "result",
+      "kind": "event",
+      "title": "下界与实际总工时相等",
+      "text": "总工时八加一加十二，等于二十一。余量都非负，每种完整分配至少花行列势之和二十一。达到下界，所以最优。",
+      "ruleIds": [
+        "hungarian.stop"
+      ],
+      "eventIds": [
+        "52"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "compare",
+      "kind": "comparison",
+      "title": "局部七更低，整体却更贵",
+      "text": "丙抢任务一花七，乙花一，甲只剩十七，总账二十五。单项便宜未必全队最省。",
+      "ruleIds": [],
+      "artwork": "../comics/hungarian/summary.png",
+      "artworkRegion": [
+        0.01,
+        0.421,
+        0.995,
+        0.695
+      ],
+      "panelExplanations": [
+        "同一工时表的另一种合法分配：丙→1、乙→2、甲→3，总工时7+1+17=25，高于21。"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "完整回放，同一套规则",
+      "text": "回放全部记录：比较、调势、扩展；找到空任务，才落实增广。",
+      "ruleIds": [
+        "hungarian.initialize",
+        "hungarian.reduced",
+        "hungarian.adjust",
+        "hungarian.augment",
+        "hungarian.stop"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "适用条件：一对一、总成本",
+      "text": "适用一对一、总成本最小。并行最晚完成时间是另一目标，不能沿用最优结论。",
+      "ruleIds": [],
+      "artworkRegion": [
+        0.01,
+        0.698,
+        0.995,
+        0.995
+      ],
+      "panelExplanations": [
+        "每人一项、每项一人，优化的是总成本。最晚完成时间、容量和额外禁配约束需要另建模型。"
+      ]
+    }
+  ]
+}

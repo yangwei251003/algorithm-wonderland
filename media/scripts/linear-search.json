@@ -1,0 +1,276 @@
+{
+  "algorithmId": "linear-search",
+  "artworkPanels": {
+    "analogy": [
+      [
+        0,
+        0.09,
+        1,
+        0.34
+      ],
+      [
+        0,
+        0.35,
+        1,
+        0.59
+      ],
+      [
+        0,
+        0.6,
+        1,
+        0.84
+      ]
+    ],
+    "summary": [
+      [
+        0,
+        0.1,
+        1,
+        0.37
+      ],
+      [
+        0,
+        0.38,
+        1,
+        0.64
+      ],
+      [
+        0,
+        0.65,
+        1,
+        0.9
+      ]
+    ]
+  },
+  "beats": [
+    {
+      "id": "intro-start",
+      "kind": "analogy",
+      "title": "从第一个口袋开始",
+      "text": "出门找钥匙，先打开第一个口袋。按口袋编号检查，就对应清单从第一个位置开始扫描。",
+      "artwork": "../comics/linear-search/analogy.png",
+      "artworkRegion": [
+        0,
+        0.09,
+        1,
+        0.34
+      ],
+      "panelExplanations": [
+        "第一个口袋对应清单第一个位置。钥匙就是要寻找的目标。"
+      ],
+      "ruleIds": [
+        "linear-search.initialize"
+      ]
+    },
+    {
+      "id": "intro-next",
+      "kind": "analogy",
+      "title": "不是它，才看下一个",
+      "text": "第一个不是，再看第二个。每次不相等，只能排除刚检查的位置；后面还没打开的口袋仍然未知。",
+      "artwork": "../comics/linear-search/analogy.png",
+      "artworkRegion": [
+        0,
+        0.35,
+        1,
+        0.59
+      ],
+      "panelExplanations": [
+        "笔和橡皮都不是钥匙，因此前两个口袋被排除，第三、第四仍待查。"
+      ],
+      "ruleIds": [
+        "linear-search.compare"
+      ]
+    },
+    {
+      "id": "intro-found",
+      "kind": "analogy",
+      "title": "找到，就停下来",
+      "text": "第三个口袋找到钥匙，就停下。第四个不用再查，这对应找到第一个匹配项便返回。",
+      "artwork": "../comics/linear-search/analogy.png",
+      "artworkRegion": [
+        0,
+        0.6,
+        1,
+        0.84
+      ],
+      "panelExplanations": [
+        "第三口袋命中目标，扫描立即停止；第四口袋的问号表示尚未检查。"
+      ],
+      "ruleIds": [
+        "linear-search.stop"
+      ]
+    },
+    {
+      "id": "setup",
+      "kind": "event",
+      "title": "无序也能开始",
+      "text": "换成数字卡：十二、七、二十、七，目标二十。数据不必先有序。从第一张开始，不能因为我们看得到答案就跳过去。",
+      "ruleIds": [
+        "linear-search.initialize"
+      ],
+      "eventIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "first",
+      "kind": "event",
+      "title": "十二不是二十，排除谁？",
+      "text": "十二不等于二十，只排除第一张。十二偏小也不能推断后面的大小，因为清单没有顺序保证。余下三个位置仍是候选。",
+      "ruleIds": [
+        "linear-search.compare"
+      ],
+      "eventIds": [
+        "1"
+      ]
+    },
+    {
+      "id": "second",
+      "kind": "event",
+      "title": "下一步必须是第二项",
+      "text": "第二次检查值七，仍不等于二十，排除第二张。卡片没有移动；我们也没有把后面的七一起排除，依据只来自当前比较。",
+      "ruleIds": [
+        "linear-search.compare"
+      ],
+      "eventIds": [
+        "2"
+      ]
+    },
+    {
+      "id": "found",
+      "kind": "event",
+      "title": "第三项相等，命中成立",
+      "text": "第三次比较二十与二十，相等。找到第一个匹配项就停止，后面的卡片不需要再比较。",
+      "eventIds": [
+        "3"
+      ],
+      "ruleIds": [
+        "linear-search.compare"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation",
+        "comparison"
+      ]
+    },
+    {
+      "id": "stop",
+      "kind": "event",
+      "title": "返回第三个位置",
+      "text": "返回的是第三个位置，这次共查看三项。如果要找齐全部重复值，就必须修改停止规则，不能第一次命中后就结束。",
+      "eventIds": [
+        "4"
+      ],
+      "ruleIds": [
+        "linear-search.stop"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "missing-scan",
+      "kind": "comparison",
+      "title": "另一组输入：目标改为99",
+      "text": "把目标改成九十九，清单不变。现在重新运行同一算法。每次不等，都只能排除当前项；在最后一项之前，尚未查看的位置仍可能包含目标。",
+      "ruleIds": [
+        "linear-search.compare"
+      ],
+      "caseFile": "linear-search-review-counterexample.json",
+      "caseLabel": "独立真实计算 · 目标99",
+      "caseEventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "missing-stop",
+      "kind": "comparison",
+      "title": "四项都排除，才能说不存在",
+      "text": "四个位置全部比较过，仍然没有相等项，才能报告不存在。成功能提前停，失败必须检查到末尾；这次实际做了四次比较。",
+      "ruleIds": [
+        "linear-search.stop"
+      ],
+      "caseFile": "linear-search-review-counterexample.json",
+      "caseLabel": "独立真实计算 · 未找到",
+      "caseEventIds": [
+        "5"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "把完整检查再看一次",
+      "text": "回到目标二十的原案例，回放完整记录。请观察已排除的位置如何增加，命中又在哪里停止。工作量由真实比较次数决定，播放更快并不会少做检查。",
+      "ruleIds": [
+        "linear-search.initialize",
+        "linear-search.compare",
+        "linear-search.stop"
+      ],
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "finish-hit",
+      "kind": "summary",
+      "title": "相等就停，返回第一个匹配",
+      "text": "记住：逐项比较，只排除当前项。相等就停，本例三次找到第一个匹配项。",
+      "artworkRegion": [
+        0,
+        0.1,
+        1,
+        0.37
+      ],
+      "panelExplanations": [
+        "目标20：检查12、7、20后停止；最后一项仍未检查。"
+      ]
+    },
+    {
+      "id": "finish-missing",
+      "kind": "summary",
+      "title": "走到末尾，才能确认没有",
+      "text": "走到末尾仍未找到，才能报告不存在。本例找九十九，要检查四个位置。",
+      "artworkRegion": [
+        0,
+        0.38,
+        1,
+        0.64
+      ],
+      "panelExplanations": [
+        "目标99：四次比较全不相等，才能报告不存在。"
+      ]
+    },
+    {
+      "id": "finish-application",
+      "kind": "summary",
+      "title": "未整理的短清单，先想到它",
+      "text": "未整理的短清单、少量物品检查，都可用顺序查找。最坏情况下，要看遍全部数据。",
+      "artworkRegion": [
+        0,
+        0.65,
+        1,
+        0.9
+      ],
+      "panelExplanations": [
+        "适用：少量数据、无序清单。最坏情况逐项检查全部位置。"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,365 @@
+{
+  "algorithmId": "apriori",
+  "beats": [
+    {
+      "id": "intro",
+      "kind": "analogy",
+      "title": "黄油少，大套餐也不会多",
+      "text": "小店想找常被一起买的商品。黄油若只出现一篮，含黄油的大套餐也最多出现一篮。利用包含关系，就能提前删掉不必检查的大组合。",
+      "ruleIds": [
+        "apriori.prune"
+      ],
+      "artworkRegion": [
+        0.01,
+        0.13,
+        0.665,
+        0.77
+      ],
+      "panelExplanations": [
+        "包含黄油的大组合出现的篮子，一定也包含黄油；大组合次数不能超过黄油自身。"
+      ]
+    },
+    {
+      "id": "init",
+      "kind": "event",
+      "title": "先把门槛变成次数",
+      "text": "五个购物篮，支持度门槛百分之四十，至少两篮才保留。同一篮买同一商品多件，也只计一次。",
+      "eventIds": [
+        "0"
+      ],
+      "ruleIds": [
+        "apriori.initialize"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "first-basket",
+      "kind": "event",
+      "title": "当前篮子完整包含候选吗",
+      "text": "先检查牛奶。第一篮包含它，计数加一。每步只核对一个候选和一个篮子。",
+      "eventIds": [
+        "1"
+      ],
+      "ruleIds": [
+        "apriori.support"
+      ],
+      "pageModes": [
+        "rule",
+        "comparison"
+      ]
+    },
+    {
+      "id": "milk-count",
+      "kind": "recap",
+      "title": "依次核对剩余四篮",
+      "text": "依次看其余四篮。有牛奶才加一，没有就保持，不重复计算同一篮。",
+      "eventIds": [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "ruleIds": [
+        "apriori.support"
+      ]
+    },
+    {
+      "id": "milk-result",
+      "kind": "event",
+      "title": "牛奶三篮，达到门槛",
+      "text": "牛奶共三篮，大于等于两篮，进入频繁单品集合。",
+      "eventIds": [
+        "6"
+      ],
+      "ruleIds": [
+        "apriori.support"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "other-singles",
+      "kind": "recap",
+      "title": "换商品，重新从零计数",
+      "text": "换商品，从零计数，核对五篮，再比较门槛。相同规则用于面包、鸡蛋和黄油。",
+      "eventIds": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23"
+      ],
+      "ruleIds": [
+        "apriori.support"
+      ]
+    },
+    {
+      "id": "butter",
+      "kind": "comparison",
+      "title": "黄油一篮，因此可以剪枝",
+      "text": "黄油只有一篮，小于两篮，淘汰。含黄油的大组合都不能超过一篮，也可提前排除。",
+      "eventIds": [
+        "24"
+      ],
+      "ruleIds": [
+        "apriori.support",
+        "apriori.prune"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "join",
+      "kind": "event",
+      "title": "连接通过的单品",
+      "text": "把牛奶和面包合成两件候选，再检查所有少一件商品的子集。",
+      "eventIds": [
+        "25"
+      ],
+      "ruleIds": [
+        "apriori.prune"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "subsets",
+      "kind": "event",
+      "title": "依次确认两个直接子集",
+      "text": "面包和牛奶各自都已频繁，",
+      "eventIds": [
+        "26",
+        "27"
+      ],
+      "ruleIds": [
+        "apriori.prune"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "subsets-ready",
+      "kind": "event",
+      "title": "子集过关，只获得受检资格",
+      "text": "候选通过子集检查。但这只代表值得统计，不能宣布组合已经频繁。",
+      "eventIds": [
+        "28"
+      ],
+      "ruleIds": [
+        "apriori.prune"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "other-pairs",
+      "kind": "recap",
+      "title": "连接、检查子集、去重",
+      "text": "其余单品也连接、检查子集。相同候选只保存一份。",
+      "eventIds": [
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36"
+      ],
+      "ruleIds": [
+        "apriori.prune"
+      ]
+    },
+    {
+      "id": "pair-count",
+      "kind": "recap",
+      "title": "完整包含两件，才计一次",
+      "text": "回到五篮。必须同时有牛奶和面包，这个组合的计数才加一。",
+      "eventIds": [
+        "37",
+        "38",
+        "39",
+        "40",
+        "41"
+      ],
+      "ruleIds": [
+        "apriori.support"
+      ]
+    },
+    {
+      "id": "pair-result",
+      "kind": "event",
+      "title": "两篮等于门槛，也要保留",
+      "text": "正好两篮，也要保留。判断是大于等于；严格大于会错误删除它。",
+      "eventIds": [
+        "42"
+      ],
+      "ruleIds": [
+        "apriori.support"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "remaining-pairs",
+      "kind": "recap",
+      "title": "其他两件组合也逐篮核对",
+      "text": "其余两件组合也逐篮统计，不沿用单品次数。",
+      "eventIds": [
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54"
+      ],
+      "ruleIds": [
+        "apriori.support"
+      ]
+    },
+    {
+      "id": "triple-candidates",
+      "kind": "recap",
+      "title": "从两件尝试三件",
+      "text": "接着尝试三件候选，检查每个两件子集。不同连接生成的同一候选，只留一份。",
+      "eventIds": [
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69"
+      ],
+      "ruleIds": [
+        "apriori.prune"
+      ]
+    },
+    {
+      "id": "triple-count",
+      "kind": "recap",
+      "title": "三件必须同时出现",
+      "text": "统计三件组合，三种商品必须同时在一篮，才算一次。",
+      "eventIds": [
+        "70",
+        "71",
+        "72",
+        "73",
+        "74"
+      ],
+      "ruleIds": [
+        "apriori.support"
+      ]
+    },
+    {
+      "id": "triple-result",
+      "kind": "comparison",
+      "title": "小组合频繁，不保证整体频繁",
+      "text": "三件同时出现只有一篮，被淘汰。子集都频繁，不能反过来保证整体频繁。",
+      "eventIds": [
+        "75"
+      ],
+      "ruleIds": [
+        "apriori.support",
+        "apriori.prune"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "bread-milk",
+      "kind": "comparison",
+      "title": "面包到牛奶：分母是四篮",
+      "text": "面包到牛奶，以四个买面包的篮子为分母，其中两篮也买牛奶。二除以四，低于百分之六十，不保留。",
+      "eventIds": [
+        "76"
+      ],
+      "ruleIds": [
+        "apriori.confidence"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "milk-bread",
+      "kind": "comparison",
+      "title": "牛奶到面包：分母是三篮",
+      "text": "反过来，分母是三个买牛奶的篮子。二除以三，超过门槛，保留。",
+      "eventIds": [
+        "77"
+      ],
+      "ruleIds": [
+        "apriori.confidence"
+      ],
+      "pageModes": [
+        "calculation"
+      ]
+    },
+    {
+      "id": "other-rules",
+      "kind": "recap",
+      "title": "每换方向，重查条件人群",
+      "text": "其余方向也分别计算。共同购买次数相同，不代表分母相同。",
+      "eventIds": [
+        "78",
+        "79",
+        "80",
+        "81"
+      ],
+      "ruleIds": [
+        "apriori.confidence"
+      ]
+    },
+    {
+      "id": "finish",
+      "kind": "summary",
+      "title": "四条方向规则，不是因果证明",
+      "text": "最终留下四条方向规则，可探索商品搭配。但五篮样本很小，一起购买不证明因果，促销还需更多数据和试验。",
+      "eventIds": [
+        "82"
+      ],
+      "ruleIds": [
+        "apriori.confidence"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    }
+  ]
+}

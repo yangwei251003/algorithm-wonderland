@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "algorithmId": "heap-sort",
+  "lessonVersion": 2,
+  "traceHash": "75991c6b3ec5170eedee13eca329793d51dc3cd3c864561c2dba458e01b6186f",
+  "checkedAt": "2026-10-26",
+  "reviewedAt": "2026-10-26",
+  "reviewer": "Codex：逐张目视检查与真实事件对照",
+  "generator": "built-in imagegen",
+  "status": "accepted",
+  "assets": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "version": 1,
+      "notes": [
+        "堆[7,5,1,3,2]取7后剩余修复成[5,3,1,2]，父子连线核对。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "version": 1,
+      "notes": [
+        "3与7交换后继续与5交换，未把大顶堆当作已排序数组。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "version": 1,
+      "notes": [
+        "最终[1,2,3,5,7]；原地与不保证稳定为算法特征，不指教学回放内存。"
+      ],
+      "status": "accepted",
+      "verification": "viewed-generated-image",
+      "copyright": "原创生成，未复制外站图片"
+    }
+  ],
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "堆[7,5,1,3,2]取7后剩余修复成[5,3,1,2]，父子连线核对。",
+      "status": "passed"
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "3与7交换后继续与5交换，未把大顶堆当作已排序数组。",
+      "status": "passed"
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "最终[1,2,3,5,7]；原地与不保证稳定为算法特征，不指教学回放内存。",
+      "status": "passed"
+    }
+  ],
+  "script": {
+    "file": "media/scripts/heap-sort.json",
+    "beats": 8,
+    "narrationCharacters": 684,
+    "hanCharacters": 606,
+    "status": "authored-and-event-checked",
+    "videoRendered": false,
+    "revision": "删去重复旁白，为150秒内成片保留收尾；规则、事件、对比未删减。"
+  },
+  "limitations": [
+    "这是漫画与脚本审查；未在本记录中宣称成片已渲染或已听评。",
+    "影视动画沿用真实eventIds；类比与反例图不冒充额外计算记录。"
+  ]
+}

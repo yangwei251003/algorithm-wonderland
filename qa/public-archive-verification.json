@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-10-26T09:15:39.420108+00:00",
+  "publicSource": {
+    "repo": "yangwei251003/algorithm-wonderland",
+    "url": "https://github.com/yangwei251003/algorithm-wonderland",
+    "private": false,
+    "verifiedCodeCommit": "80a3a78ac57e179db33b9f1d0bd842cf3d20d802",
+    "license": "MIT",
+    "topics": [
+      "algorithm-visualization",
+      "chinese",
+      "education",
+      "manim",
+      "react",
+      "remotion",
+      "typescript",
+      "website"
+    ]
+  },
+  "release": {
+    "url": "https://github.com/yangwei251003/algorithm-wonderland/releases/tag/v2-source-review-2026-10-26",
+    "tag": "v2-source-review-2026-10-26",
+    "prerelease": true,
+    "draft": false
+  },
+  "asset": {
+    "id": 677566656,
+    "name": "algorithm-wonderland-v2-open-assets-f95f37d36baaa6f2.zip",
+    "url": "https://github.com/yangwei251003/algorithm-wonderland/releases/download/v2-source-review-2026-10-26/algorithm-wonderland-v2-open-assets-f95f37d36baaa6f2.zip",
+    "bytes": 486519608,
+    "sha256": "f95f37d36baaa6f24e156b23081f9f05b7e1c3f1168881b14ebe816e516f2c6e",
+    "anonymousFullDownloadVerified": true
+  },
+  "publicV1": {
+    "url": "https://yangwei251003.github.io/algorithm-wonderland-site/",
+    "commit": "bf21468dbdb15e17ad90b0488f02169319db0011",
+    "unchanged": true
+  },
+  "scope": {
+    "publicOriginalComics": 252,
+    "publicFrozenCases": 95,
+    "localFullReviewFilms": 84,
+    "localThemePackages": 12,
+    "fullAudiovisualPassed": 0,
+    "publicV2SiteUpdated": false
+  }
+}

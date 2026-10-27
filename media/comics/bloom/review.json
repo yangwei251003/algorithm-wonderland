@@ -1,0 +1,44 @@
+{
+  "algorithmId": "bloom",
+  "lessonVersion": 2,
+  "traceHash": "7863d4513756b8cb0f0b7abe9431bb5233c07e9e019672845dd10f03479219f4",
+  "reviewedAt": "2026-10-25T19:36:33.864132+00:00",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "Bloom Filter 布隆过滤器：生活类比",
+      "status": "passed",
+      "checks": [
+        "逐张查看只插不删共享灯板、任何必要灯灭可排除、全亮仅可能存在，人物与箭头清楚。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "Bloom Filter 布隆过滤器：规则与计算",
+      "status": "passed",
+      "checks": [
+        "核对a7/2/13、b10/15/4、c13/12/7及7个已亮位；d8/9/14均未亮，结论正确。"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "Bloom Filter 布隆过滤器：结果与边界",
+      "status": "passed",
+      "checks": [
+        "第二版分别显示红门110排除、绿门111查真名单；只插不删无假阴性与禁止随意清位的前提明确。"
+      ],
+      "corrections": [
+        "修正门中央状态面板的误导：现在同一块110面板同时靠近红绿两个分支，错误暗示有0也能去真实名单。移除中央110面板。改成红色左门独立小面板“110”，配现有“必要位有0 → 直接排除”；绿色右门独立小面板“111”，配现有“必要位全1 → 查真实名单”。两块面板清楚分别在对应门边，其他文字图像全部不变。"
+      ]
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "生活类比为原理示意；精确计算以规则图及关联教学轨迹为准"
+  ]
+}

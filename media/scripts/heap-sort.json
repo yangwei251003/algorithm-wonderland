@@ -1,0 +1,404 @@
+{
+  "algorithmId": "heap-sort",
+  "beats": [
+    {
+      "id": "intro-parent",
+      "kind": "analogy",
+      "title": "家长不小于孩子",
+      "text": "把数字放上父子奖牌架，每位家长都不小于孩子。顺着父子关系往上，最大者一定在根。",
+      "ruleIds": [
+        "heap-sort.heap"
+      ],
+      "artwork": "../comics/heap-sort/analogy.png",
+      "artworkRegion": [
+        0,
+        0.11,
+        1,
+        0.373
+      ],
+      "panelExplanations": [
+        "7不小于5和1；5不小于3和2。父子大小保证根最大，并不保证整排有序。"
+      ]
+    },
+    {
+      "id": "intro-finish",
+      "kind": "analogy",
+      "title": "先把冠军送到队尾",
+      "text": "把冠军七和末尾二交换，七留在完成区。新的根二不合格，还要修复。",
+      "ruleIds": [
+        "heap-sort.heap"
+      ],
+      "artwork": "../comics/heap-sort/analogy.png",
+      "artworkRegion": [
+        0,
+        0.381,
+        1,
+        0.645
+      ],
+      "panelExplanations": [
+        "本格是取出冠军后的瞬间：7已归位，2进入根；剩余树尚待修复。"
+      ]
+    },
+    {
+      "id": "intro-repair",
+      "kind": "analogy",
+      "title": "让较大的孩子上升",
+      "text": "比较父子，让较大孩子上升，直到剩余架子重新合格，再选下一位冠军。",
+      "ruleIds": [
+        "heap-sort.heap"
+      ],
+      "artwork": "../comics/heap-sort/analogy.png",
+      "artworkRegion": [
+        0,
+        0.652,
+        1,
+        0.89
+      ],
+      "panelExplanations": [
+        "本格显示剩余堆修复后的5、3、1、2，完成区7不再参与。"
+      ]
+    },
+    {
+      "id": "setup",
+      "kind": "event",
+      "title": "数组位置就是树的位置",
+      "text": "输入三、七、一、五、二。位置从零算，孩子在二倍位置加一和加二。先修下面父节点七，再处理根三。",
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "ruleIds": [
+        "heap-sort.heap",
+        "heap-sort.compare",
+        "heap-sort.move"
+      ]
+    },
+    {
+      "id": "choose-seven",
+      "kind": "event",
+      "title": "七比三大，改选七",
+      "text": "根三先与左孩子七比。七较大，更新当前最大候选；右孩子尚未检查。",
+      "eventIds": [
+        "6"
+      ],
+      "ruleIds": [
+        "heap-sort.heap",
+        "heap-sort.compare",
+        "heap-sort.move"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "reject-one",
+      "kind": "event",
+      "title": "一不能取代七",
+      "text": "右孩子一不大于当前候选七，保留七。选完两边，才知道该交换谁。",
+      "eventIds": [
+        "7"
+      ],
+      "ruleIds": [
+        "heap-sort.heap",
+        "heap-sort.compare",
+        "heap-sort.move"
+      ],
+      "pageModes": [
+        "rule",
+        "calculation"
+      ]
+    },
+    {
+      "id": "swap-root",
+      "kind": "event",
+      "title": "七上升，三下沉",
+      "text": "交换三和七。三落到下面后，还可能小于孩子，修复必须继续。",
+      "eventIds": [
+        "8"
+      ],
+      "ruleIds": [
+        "heap-sort.heap",
+        "heap-sort.compare",
+        "heap-sort.move"
+      ],
+      "pageModes": [
+        "rule"
+      ]
+    },
+    {
+      "id": "sink",
+      "kind": "event",
+      "title": "在新位置选最大孩子",
+      "text": "三与五、二比较，五最大；交换三和五。三到达叶子，没有有效孩子，停止。得到七、五、一、三、二。",
+      "eventIds": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "ruleIds": [
+        "heap-sort.heap",
+        "heap-sort.compare",
+        "heap-sort.move"
+      ],
+      "detailEventIds": [
+        "12"
+      ]
+    },
+    {
+      "id": "extract",
+      "kind": "event",
+      "title": "冠军归位，缩小范围",
+      "text": "交换堆顶七与末尾二，再缩小堆的范围。七已在最终位置，后面不再参与比较。",
+      "eventIds": [
+        "15",
+        "16"
+      ],
+      "ruleIds": [
+        "heap-sort.heap",
+        "heap-sort.compare",
+        "heap-sort.move"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "detailEventIds": [
+        "15",
+        "16"
+      ]
+    },
+    {
+      "id": "repair-first",
+      "kind": "event",
+      "title": "新根二先与五交换",
+      "text": "新根二的孩子是五和一。五最大，交换二和五；此时下面仍可能需要修复。",
+      "eventIds": [
+        "17",
+        "18",
+        "19"
+      ],
+      "ruleIds": [
+        "heap-sort.heap",
+        "heap-sort.compare",
+        "heap-sort.move"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "repair-second",
+      "kind": "event",
+      "title": "二继续与三交换",
+      "text": "二与孩子三比较，三更大。另一个位置已经属于完成区，不能参与；交换二和三。",
+      "eventIds": [
+        "20",
+        "21",
+        "22"
+      ],
+      "ruleIds": [
+        "heap-sort.heap",
+        "heap-sort.compare",
+        "heap-sort.move"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "detailEventIds": [
+        "20",
+        "21",
+        "22"
+      ]
+    },
+    {
+      "id": "repair-leaf",
+      "kind": "event",
+      "title": "没有有效孩子就停止",
+      "text": "落到叶子的二没有有效孩子，停止修复。其余轮次继续用相同规则。",
+      "eventIds": [
+        "23",
+        "24",
+        "25"
+      ],
+      "ruleIds": [
+        "heap-sort.heap",
+        "heap-sort.compare",
+        "heap-sort.move"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "limit",
+      "kind": "comparison",
+      "title": "左孩子一定比右孩子大吗？",
+      "text": "看独立案例九、二、八。九不小于两个孩子，已经是合法大顶堆；左二小于右八完全允许，堆并不规定兄弟大小。",
+      "ruleIds": [
+        "heap-sort.heap",
+        "heap-sort.compare"
+      ],
+      "caseFile": "review-counterexample-heap-sort.json",
+      "caseEventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "recap",
+      "kind": "recap",
+      "title": "每轮归位一个最大值",
+      "text": "完整回放：建堆、冠军归位、缩小范围、下沉修复。完成区逐步增长，",
+      "eventIds": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "ruleIds": [
+        "heap-sort.initialize",
+        "heap-sort.heap",
+        "heap-sort.compare",
+        "heap-sort.move",
+        "heap-sort.stop"
+      ],
+      "pageModes": [
+        "compact"
+      ]
+    },
+    {
+      "id": "result",
+      "kind": "event",
+      "title": "全部归位后读取结果",
+      "text": "最终一、二、三、五、七。十二次值比较，二十次数组写入。",
+      "eventIds": [
+        "47"
+      ],
+      "ruleIds": [
+        "heap-sort.stop"
+      ],
+      "pageModes": [
+        "rule"
+      ],
+      "stateView": "after",
+      "operandsPerPage": 4
+    },
+    {
+      "id": "summary",
+      "kind": "summary",
+      "title": "少量额外空间，但不保证稳定",
+      "text": "堆排序适合原地整理，算法只需少量额外空间，教学回放另计。相同数值记录的先后可能改变；需要稳定次序时，应选其他方法或另外设计规则。",
+      "ruleIds": [
+        "heap-sort.heap"
+      ],
+      "artwork": "../comics/heap-sort/summary.png",
+      "artworkRegion": [
+        0.32,
+        0.54,
+        0.978,
+        0.82
+      ],
+      "panelExplanations": [
+        "左边强调原地整理的空间优势；右边提醒等值记录可能换序，这不是主案例已有的身份数据。"
+      ]
+    }
+  ],
+  "artworkPanels": {
+    "analogy": [
+      [
+        0,
+        0.11,
+        1,
+        0.373
+      ],
+      [
+        0,
+        0.381,
+        1,
+        0.645
+      ],
+      [
+        0,
+        0.652,
+        1,
+        0.89
+      ]
+    ],
+    "summary": [
+      [
+        0,
+        0.087,
+        1,
+        0.332
+      ],
+      [
+        0,
+        0.341,
+        1,
+        0.531
+      ],
+      [
+        0,
+        0.537,
+        1,
+        0.897
+      ]
+    ]
+  }
+}

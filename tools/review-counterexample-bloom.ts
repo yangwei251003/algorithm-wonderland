@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {readFile,writeFile} from 'node:fs/promises';
+import {runners} from '../src/algorithms/intelligence';
+import {replayTrace,teachingJSON} from '../src/engine/teaching';
+import {normalizeInput,normalizeParams} from '../src/engine/validation';
+import {byId} from '../src/content/catalog';
+const id='bloom';
+const base=JSON.parse(await readFile(`media/exports/${id}.json`,'utf8'));
+const input=base.lesson.teachingCase.input,params={...base.lesson.teachingCase.params,query:'q'},seed=base.lesson.teachingCase.seed;
+const run=await runners[id](input,params,seed);
+const normalized=await runners[id](normalizeInput(input),normalizeParams(byId[id],params),seed);
+assert.equal(teachingJSON(run.trace),teachingJSON(normalized.trace));
+assert.ok(run.trace?.complete);assert.deepEqual(replayTrace(run.trace!),run.trace!.finalState);
+const state=run.trace!.finalState;
+assert.equal(state.maybe,true);assert.equal(state.really,false);assert.equal(state.falsePositive,true);
+
+const traceHash=createHash('sha256').update(teachingJSON(run.trace)).digest('hex');
+await writeFile('media/exports/review-counterexample-bloom.json',teachingJSON({...base,lesson:{...base.lesson,teachingCase:{input,params,seed}},run,traceHash},2));
+console.log({traceHash,events:run.trace!.events.length,state});

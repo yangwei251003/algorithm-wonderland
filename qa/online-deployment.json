@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-10-26T14:48:21.068685+00:00",
+  "status": "published",
+  "url": "https://yangwei251003.github.io/algorithm-wonderland/",
+  "originalUrl": "https://yangwei251003.github.io/algorithm-wonderland-site/",
+  "originalUrlStatus": 200,
+  "originalUrlRedirectScriptVerified": true,
+  "v1BackupTag": "v1-before-online-preview-20261026",
+  "cloudRuns": [
+    {
+      "id": 40334840131,
+      "sha": "deb9c4c63f154d886d6a0d3f9eea75dc98bdcd9e",
+      "conclusion": "success",
+      "url": "https://github.com/yangwei251003/algorithm-wonderland/actions/runs/40334840131"
+    },
+    {
+      "id": 40337928721,
+      "sha": "a5883a3d67e0c1c2b811aeb9a59e4cbce674294d",
+      "conclusion": "success",
+      "url": "https://github.com/yangwei251003/algorithm-wonderland/actions/runs/40337928721"
+    },
+    {
+      "id": 40339896677,
+      "sha": "31ab306fb78329610a8635a6c83b4b769fda9df7",
+      "conclusion": "success",
+      "url": "https://github.com/yangwei251003/algorithm-wonderland/actions/runs/40339896677"
+    }
+  ],
+  "cloudTests": {
+    "passed": 380,
+    "failed": 0
+  },
+  "staticBytes": 896440249,
+  "onlineContent": {
+    "version": "2.0-online-preview",
+    "exhibits": 84,
+    "comics": 252,
+    "interactive": 16,
+    "transcripts": 84,
+    "hostedFilms": 0,
+    "fullAudiovisualReviewed": 0
+  },
+  "browserValidation": {
+    "anonymousHomeMapObserved": true,
+    "basicBfsCalculationObserved": true,
+    "originalComicAndTranscriptUrlsChecked": 336,
+    "scope": "Windows Edge. Broader network probes hit slow resource requests; full remote browser sweep was not completed. No full visual/audio acceptance is implied."
+  },
+  "remainingMedia": {
+    "localHdFilms": 84,
+    "hostedHdFilms": 0,
+    "fullAVReviewed": 0
+  }
+}

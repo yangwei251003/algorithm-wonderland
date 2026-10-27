@@ -1,0 +1,50 @@
+{
+  "algorithmId": "ucb",
+  "lessonVersion": 2,
+  "traceHash": "d0f7b50dd091d49a1f17f5072c69dc6b9a423fa5fe12024012464a24d43d713b",
+  "reviewedAt": "2026-10-26",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "美食摊位的平均好评与探索机会",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图",
+        "所有数字、决策与固定种子真实trace核对",
+        "区分选择分、估计得分、真实成功率；概念示意与实验结果分开"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "第四次选择B的真实UCB分数与反馈更新",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图",
+        "所有数字、决策与固定种子真实trace核对",
+        "区分选择分、估计得分、真实成功率；概念示意与实验结果分开"
+      ],
+      "corrections": [
+        "小数1.665前等号改为约等号"
+      ]
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "40次尝试统计与环境变化的边界",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终图",
+        "所有数字、决策与固定种子真实trace核对",
+        "区分选择分、估计得分、真实成功率；概念示意与实验结果分开"
+      ],
+      "corrections": []
+    }
+  ],
+  "limitations": [
+    "未真人试学",
+    "数值仅代表固定种子小案例，不能推广为保证"
+  ]
+}

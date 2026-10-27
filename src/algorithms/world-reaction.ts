@@ -1,0 +1,21 @@
+import type {Runner,Frame,Scene} from '../engine/types';
+import {TraceRecorder} from '../engine/teaching';
+import {rng,num,clamp,round,result,frame} from '../engine/utils';
+export function reactionLaplacian(a:number[],x:number,y:number,cols:number,rows:number){const at=(dx:number,dy:number)=>a[((y+dy+rows)%rows)*cols+(x+dx+cols)%cols];return-at(0,0)+.2*(at(1,0)+at(-1,0)+at(0,1)+at(0,-1))+.05*(at(1,1)+at(1,-1)+at(-1,1)+at(-1,-1));}
+/** The grid topology does not change during the simulation. Resolve wraparound
+ * once, keeping the same neighbour order and floating-point sum as above. */
+function reactionNeighbours(cols:number,rows:number){return Array.from({length:cols*rows},(_,i)=>{const x=i%cols,y=Math.floor(i/cols),at=(dx:number,dy:number)=>((y+dy+rows)%rows)*cols+(x+dx+cols)%cols;return[at(1,0),at(-1,0),at(0,1),at(0,-1),at(1,1),at(1,-1),at(-1,1),at(-1,-1)];});}
+function indexedLaplacian(a:number[],i:number,k:number[]){return-a[i]+.2*(a[k[0]]+a[k[1]]+a[k[2]]+a[k[3]])+.05*(a[k[4]]+a[k[5]]+a[k[6]]+a[k[7]]);}
+export const reaction:Runner=(_,p,seed)=>{const random=rng(seed),cols=48,rows=32,n=cols*rows,feed=num(p,'feed',.036),kill=num(p,'kill',.062),steps=Math.max(0,Math.round(num(p,'steps',1000)));let u=Array(n).fill(1),v=Array(n).fill(0);
+ for(let k=0;k<8;k++){const cx=8+Math.floor(random()*32),cy=6+Math.floor(random()*20);for(let y=cy-2;y<=cy+2;y++)for(let x=cx-2;x<=cx+2;x++){const i=y*cols+x;u[i]=.5+random()*.05;v[i]=.25+random()*.03;}}
+ const focus=v.findIndex(z=>z>0),fx=focus%cols,fy=Math.floor(focus/cols),frames:Frame[]=[],log=new TraceRecorder('reaction-diffusion',seed,{u,v,feed,kill,cols,rows,step:0,focus}),visual=(t:number):Scene=>({kind:'image',cols,rows,pixels:v.flatMap(z=>{const q=clamp(z*3,0,1);return[15+110*q,28+195*q,42+145*q,255];}),title:`第${t}步：扩散、反应、补给、移除`});
+ const init=log.add({frameIndex:0,phase:'初始浓度',ruleId:'reaction-rule',action:'固定种子放置8个小浓度斑块',explanation:'两种物质U、V在48×32循环网格上同步更新。中心权重−1、四个正邻居各0.2、四个斜邻居各0.05；均匀浓度的扩散项为0。Du=1、Dv=0.5、时间步长1。',scene:visual(0)},{});frames.push({...frame(visual(0),'从局部浓度斑块开始，不预先画出最终条纹。'),eventId:init});
+ const neighbours=reactionNeighbours(cols,rows);
+ for(let t=1;t<=steps;t++){const un:number[]=Array(n),vn:number[]=Array(n),clippedU:number[]=[],clippedV:number[]=[];let lu=0,lv=0,reaction=0,rawU=0,rawV=0;
+  for(let i=0;i<n;i++){const k=neighbours[i],lU=indexedLaplacian(u,i,k),lV=indexedLaplacian(v,i,k),r=u[i]*v[i]*v[i],a=u[i]+lU-r+feed*(1-u[i]),b=v[i]+.5*lV+r-(feed+kill)*v[i];un[i]=clamp(a,0,1);vn[i]=clamp(b,0,1);if(a!==un[i])clippedU.push(i);if(b!==vn[i])clippedV.push(i);if(i===focus){lu=lU;lv=lV;reaction=r;rawU=a;rawV=b;}}
+  const window=Array.from({length:3},(_,dy)=>Array.from({length:3},(_,dx)=>v[((fy+dy-1+rows)%rows)*cols+(fx+dx-1+cols)%cols])),oldU=u[focus],oldV=v[focus];u=un;v=vn;const sampled=t%Math.max(1,Math.floor(steps/28))===0||t===steps,frameIndex=sampled?frames.length:frames.length-1;
+  const id=log.add({parentId:init,frameIndex,phase:`第${t}步`,ruleId:'reaction-update',action:'从旧浓度同时计算所有1536格的新浓度',explanation:'扩散把浓度与邻居比较；UV²使U转成V；补给把U拉回1，feed+kill移除V。所有格读取旧数组，最后一起替换；计算超出[0,1]时显式截断。示例窗口是更新前V，不是整张最新浓度图。',calculation:{formula:'U新=clip(U+lapU−UV²+f(1−U))；V新=clip(V+0.5lapV+UV²−(f+k)V)',values:{'示例格':focus,U:oldU,V:oldV,lapU:lu,lapV:lv,'UV²':reaction,'补给U':feed*(1-oldU),'移除V':(feed+kill)*oldV,'未限幅V':rawV},result:v[focus]},scene:sampled?visual(t):{kind:'matrix',matrix:window,rowLabels:['上邻居','中行','下邻居'],title:`第${t}步：格${focus}更新前的V邻域`}},{u,v,step:t,clippedU,clippedV,focusCalculation:{oldU,oldV,lapU:lu,lapV:lv,reaction,rawU,rawV,newU:u[focus],newV:v[focus]}});
+  if(sampled)frames.push({...frame(visual(t),`第${t}步：补给${feed}，移除${kill}。`,{'活跃格子':v.filter(z=>z>.1).length}),eventId:id});
+ }
+ const active=v.filter(z=>z>.1).length,mean=v.reduce((a,b)=>a+b,0)/n;log.add({frameIndex:frames.length-1,phase:'观察时域结束',ruleId:'reaction-stop',action:`完成${steps}次同步更新`,explanation:'停止于指定步数，不保证已达稳定。条纹、斑点、均匀或消失都可能；颜色只代表V浓度，不能直接推断真实化学实验。',scene:visual(steps)},{active,mean});log.trace.coverageNote='每个时间步保存全部U/V旧新浓度、截断位置和示例计算；同一同步规则批量覆盖1536格。主画面约每1/28时域取一帧，但完整时间步没有删除，可逐步展开。';return{...result(frames,'Gray–Scott反应扩散用局部浓度变化生成斑纹。图案由扩散、转化、补给和移除共同形成，也可能均匀或消失。',{'演化步数':steps,'活跃比例':round(active/n*100)+'%','平均浓度':round(mean,3)}),trace:log.trace};
+};

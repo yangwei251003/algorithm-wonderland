@@ -1,0 +1,47 @@
+{
+  "algorithmId": "potential-field",
+  "lessonVersion": 2,
+  "traceHash": "5e6e372cd673d9ce05a2770b76fb766cd2f6340e392ce4c82febb1a505972892",
+  "reviewedAt": "2026-10-26",
+  "comics": [
+    {
+      "role": "analogy",
+      "file": "analogy.png",
+      "alt": "目标吸引与障碍排斥合成局部方向，每次只移动一小步。",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看最终修订图；吸引指向目标，排斥远离障碍，共同起于机器人",
+        "合力位于吸引与排斥方向之间；明确箭头非比例示意"
+      ],
+      "corrections": [
+        "两次精修排斥箭头过陡的方向，改为主要向左远离右侧障碍",
+        "增加方向示意、长度非比例标注"
+      ]
+    },
+    {
+      "role": "rules",
+      "file": "rules.png",
+      "alt": "首步吸引力0.06×(92−8)=5.04，障碍18.79在影响范围外，位置只移到8.8。",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看；5.04、18.79、18、0.8与真实首步一致",
+        "把力与位移区分，说明重新计算与整段碰撞检查"
+      ],
+      "corrections": []
+    },
+    {
+      "role": "summary",
+      "file": "summary.png",
+      "alt": "U形陷阱中力可能平衡；另列顺利绕行案例131次更新距目标1.98。",
+      "status": "passed",
+      "checks": [
+        "实际逐张查看；U形开口朝左、机器人在内、目标在右侧外，推拉相反",
+        "陷阱概念图与真实成功指标分开标注；不保证必达或最优"
+      ],
+      "corrections": []
+    }
+  ],
+  "limitations": [
+    "未真人试学；漫画箭头不作为精确数值比例图，精确向量来自真实scene与trace。"
+  ]
+}

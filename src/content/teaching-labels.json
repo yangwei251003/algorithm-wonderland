@@ -1,0 +1,400 @@
+{
+  "formulas": {
+    "topological.unlock": "剩余前置数 = 原前置数 − 1",
+    "simplex.enter": "在足够负的目标系数中选最小值",
+    "simplex.leave": "允许增量 = 右侧值 ÷ 正系数",
+    "branch-bound.prune": "本支上界 ≤ 整数纪录（含误差容限）",
+    "stable-matching.choose": "接受条件：空缺，或新名次 < 原名次",
+    "max-flow.push": "层号增加1且余量>0时：\n可传量 = min(传入量, 余量)",
+    "max-flow.residual": "新正向余量 = 原正向余量 − 增送量\n新反向余量 = 原反向余量 + 增送量",
+    "critical-path.forward": "最早开始 = max(当前要求, 前置开始+前置工期)",
+    "critical-path.backward": "最晚开始 = min(后继最晚开始) − 自身工期",
+    "critical-path.slack": "总时差 = 最晚开始 − 最早开始",
+    "huffman.merge": "新权重 = 两个最小权重之和",
+    "huffman.size": "完整位数 = 码表字节数 × 8\n+ 正文补齐到整字节后的位数",
+    "lz77.size": "完整位数 = 40位头\n+ 各条记录的字段与新字符位数",
+    "crc.divide": "新位 = 原位 XOR 规则位",
+    "crc.channel": "收到位 = 发送位 XOR 开关"
+  },
+  "phaseResults": {
+    "bootstrap.resample": {
+      "statistic": "重采样均值"
+    }
+  },
+  "results": {
+    "topological.unlock": "剩余前置数",
+    "minimax-choose": "最佳回传评价",
+    "mcts-finish": "推荐分支样本均值",
+    "thompson-update": "失败参数 β 新",
+    "logistic-regression.gradient": "预测概率 p",
+    "bootstrap.resample": "累计和",
+    "regret-policy": "石头的本轮概率",
+    "regret-update": "累计遗憾（石头、布、剪刀）",
+    "kalman-predict": "预测方差",
+    "kalman-gain": "新测量权重",
+    "kalman-update": "融合位置",
+    "simplex.enter": "目前入基列索引",
+    "simplex.leave": "本行允许增量",
+    "simplex.pivot": "新格值",
+    "potential-force": "合力大小",
+    "potential-step": "距目标",
+    "pursuit-target": "实际前视距离",
+    "pursuit-steer": "车轮转角（弧度）",
+    "pursuit-motion": "新 y 坐标",
+    "max-flow.residual": "新正向余量",
+    "max-flow.push": "可传入流量或拒绝结果"
+  },
+  "common": {
+    "label": "真实类别",
+    "logit": "激活前得分",
+    "N": "总数量",
+    "rate": "学习步长",
+    "Gx": "横向亮度变化",
+    "Gy": "纵向亮度变化",
+    "gx": "横向权重梯度",
+    "gy": "纵向权重梯度",
+    "oldX": "原横向值",
+    "oldY": "原纵向值",
+    "oldBias": "原偏置",
+    "gBias": "偏置梯度",
+    "dt": "时间步长",
+    "rhs": "约束右边上限",
+    "lhs": "约束左边用量",
+    "old": "原值",
+    "next": "新值",
+    "T": "当前温度",
+    "P": "比例分量",
+    "I": "积分分量",
+    "D": "微分分量",
+    "draw": "随机抽取值",
+    "U": "物质U浓度",
+    "V": "物质V浓度",
+    "lapU": "U的邻域扩散量",
+    "lapV": "V的邻域扩散量",
+    "delta": "变化量",
+    "oldValue": "原方案得分",
+    "newValue": "新方案得分",
+    "cooling": "降温比例",
+    "base": "基础量",
+    "u1": "随机数1",
+    "u2": "随机数2",
+    "spread": "波动幅度",
+    "oldRank": "原排序或权重",
+    "outdegree": "发出链接数",
+    "det": "行列式",
+    "bottom": "下边插值",
+    "dx": "横向差",
+    "dy": "纵向差",
+    "challenger": "挑战方案",
+    "Ch": "逐位选择",
+    "W": "本轮消息字",
+    "Maj": "逐位多数",
+    "length": "长度",
+    "factor": "乘数",
+    "duration": "持续时间",
+    "j": "位置j",
+    "incoming": "传入流量",
+    "fromLevel": "起点层数",
+    "toLevel": "终点层数",
+    "eps": "邻域半径",
+    "deadline": "截止时间",
+    "totalWeight": "候选权重总和",
+    "chosenP": "所选候选概率",
+    "successes": "成功次数",
+    "trials": "试验次数",
+    "offset": "偏移位置",
+    "polynomialBit": "多项式对应位",
+    "mask": "位掩码",
+    "inertia": "惯性系数",
+    "oldVelocity": "原速度",
+    "r1": "随机数1",
+    "r2": "随机数2",
+    "personal": "个体最好位置",
+    "global": "群体最好位置",
+    "raw": "未限幅结果",
+    "profitA": "产品A收益",
+    "profitB": "产品B收益",
+    "A": "产品A数量",
+    "B": "产品B数量",
+    "dangling": "无出链节点权重",
+    "coefficient": "系数",
+    "samples": "样本数",
+    "bit": "当前比特",
+    "column": "列号",
+    "rank": "排序位置",
+    "class": "类别",
+    "i": "位置i",
+    "idf": "词的稀有程度",
+    "tf": "词在文档中出现次数",
+    "k1": "词频饱和系数",
+    "averageLength": "平均文档长度",
+    "normalizer": "归一化分母",
+    "qx": "查询横坐标",
+    "qy": "查询纵坐标",
+    "similarity": "相似程度",
+    "rating": "用户评分",
+    "nL": "左侧样本数",
+    "nR": "右侧样本数",
+    "GL": "左侧不纯度",
+    "GR": "右侧不纯度",
+    "child": "子节点",
+    "day": "天数",
+    "byte": "字节值",
+    "xored": "异或后的值",
+    "multiplier": "乘数",
+    "hash": "哈希值",
+    "size": "空间大小",
+    "actual": "实际观察值",
+    "high": "上边界",
+    "mx": "横坐标均值",
+    "my": "纵坐标均值",
+    "vx": "横向方差",
+    "vy": "纵向方差",
+    "product": "偏差乘积",
+    "square": "偏差平方",
+    "squareA": "向量A平方和",
+    "squareB": "向量B平方和",
+    "common": "共同评分人数",
+    "shrink": "相似度收缩强度",
+    "diagonal": "左上方状态",
+    "deletion": "删除代价",
+    "insertion": "插入代价",
+    "matchCost": "匹配或替换代价",
+    "seen": "已经见过的数量",
+    "previous": "上一次的值",
+    "threshold": "判断阈值",
+    "minCount": "最少出现次数",
+    "before": "变化前",
+    "parentStart": "前置活动开始时间",
+    "latestStart": "最迟开始时间",
+    "squarePreference": "偏好向量平方和",
+    "squareMovie": "电影向量平方和",
+    "encoded": "编码值",
+    "rootU": "端点U所属集合",
+    "rootV": "端点V所属集合",
+    "start": "开始时间",
+    "lastEnd": "已选活动结束时间",
+    "horizon": "观察时段",
+    "numerator": "分子",
+    "joint": "共同出现次数",
+    "antecedent": "前提出现次数",
+    "min": "最小值",
+    "newRank": "新排序位置",
+    "rho": "挥发比例",
+    "alpha": "新观察的权重",
+    "observed": "本次观察值",
+    "recent": "本次观察贡献",
+    "history": "历史估计贡献",
+    "prior": "先验概率",
+    "frequency": "出现频数",
+    "candidate": "新候选",
+    "epsilon": "判断容差",
+    "relaxed": "放宽整数限制的结果",
+    "window": "窗口大小",
+    "forecast": "预测值",
+    "predicted": "预测值",
+    "dx2": "横向偏差平方",
+    "dxdy": "两方向偏差乘积",
+    "dy2": "纵向偏差平方",
+    "lengthByte": "长度字段字节数",
+    "UTF8Bytes": "UTF-8编码字节数",
+    "countBytes": "计数字段字节数",
+    "sumX": "横坐标总和",
+    "sumY": "纵坐标总和",
+    "denominator": "分母",
+    "meanX": "横坐标均值",
+    "meanY": "纵坐标均值",
+    "df": "包含该词的文档数",
+    "falsePositive": "误报相关值",
+    "ones": "类别1的票数",
+    "truth": "真实类别",
+    "classCount": "该类样本数",
+    "total": "总数",
+    "smoothing": "平滑系数",
+    "score0": "类别0得分",
+    "score1": "类别1得分",
+    "f1": "频数1",
+    "f2": "频数2",
+    "upperBound": "最优值上界",
+    "sensitivity": "真阳性率",
+    "normal": "非目标比例",
+    "truePositive": "缺陷且亮灯的比例",
+    "evidence": "证据总概率",
+    "replicates": "重采样次数",
+    "loIndex": "下分位位置",
+    "hiIndex": "上分位位置",
+    "xx": "横向离散量",
+    "xy": "两方向共变动量",
+    "yy": "纵向离散量",
+    "theta": "主方向角度",
+    "lambda1": "第一方向方差",
+    "lambda2": "第二方向方差",
+    "codebookBytes": "码表字节数",
+    "payloadBits": "编码正文位数",
+    "distanceBits": "距离字段位数",
+    "records": "记录数量",
+    "header": "头部开销",
+    "Fs": "采样频率",
+    "weight": "权重",
+    "value": "当前值",
+    "target": "目标",
+    "current": "当前对象",
+    "loss": "损失值",
+    "falsePositiveJoint": "正常且亮灯的比例",
+    "posterior": "根据证据更新后的概率"
+  },
+  "algorithms": {
+    "knapsack": {
+      "weight": "占用容量",
+      "value": "价值",
+      "capacity": "当前可用容量"
+    },
+    "knn": {
+      "distance": "距离平方",
+      "rank": "从近到远的名次"
+    },
+    "kmeans": {
+      "distance": "距离平方"
+    },
+    "linear-search": {
+      "found": "命中位置（−1为未找到）"
+    },
+    "binary-search": {
+      "found": "命中位置（−1为未找到）"
+    },
+    "kalman": {
+      "Q": "过程噪声方差",
+      "R": "测量噪声方差",
+      "K": "测量融合权重",
+      "z": "本次测量"
+    },
+    "qlearning": {
+      "Q": "当前行动价值"
+    },
+    "ant-colony": {
+      "Q": "信息素奖励尺度",
+      "length": "路线长度"
+    },
+    "pid": {
+      "u": "控制指令",
+      "P": "比例分量",
+      "I": "积分分量",
+      "D": "微分分量"
+    },
+    "pure-pursuit": {
+      "L": "车辆轴距",
+      "v": "前进速度"
+    },
+    "mcts": {
+      "u": "探索得分"
+    },
+    "hungarian": {
+      "u": "行势",
+      "v": "列势",
+      "delta": "势的调整量"
+    },
+    "logistic-regression": {
+      "z": "分类得分",
+      "oldX": "原横向权重",
+      "oldY": "原纵向权重"
+    },
+    "neural-network": {
+      "oldX": "原横向权重",
+      "oldY": "原纵向权重"
+    },
+    "particle-filter": {
+      "z": "本次测量"
+    },
+    "bm25": {
+      "b": "长度校正系数",
+      "length": "文档长度",
+      "normalizer": "长度校正项"
+    },
+    "sha256": {
+      "K": "本轮固定常数"
+    },
+    "pso": {
+      "oldX": "原横向位置"
+    },
+    "ahp": {
+      "a": "偏好比较a",
+      "b": "偏好比较b",
+      "c": "偏好比较c"
+    },
+    "pca": {
+      "vx": "主方向横分量",
+      "vy": "主方向纵分量",
+      "xx": "横向方差",
+      "xy": "协方差",
+      "yy": "纵向方差"
+    },
+    "bayes": {
+      "falsePositive": "正常产品误报率",
+      "sensitivity": "有缺陷时亮灯率",
+      "normal": "正常产品比例",
+      "evidence": "所有亮灯产品的比例"
+    },
+    "bloom": {
+      "falsePositive": "是否发生误报"
+    },
+    "pagerank": {
+      "oldRank": "上一轮权重",
+      "rank": "节点权重"
+    },
+    "stable-matching": {
+      "oldRank": "原对象的偏好名次",
+      "newRank": "新对象的偏好名次"
+    },
+    "edit-distance": {
+      "diagonal": "对齐候选总成本"
+    },
+    "simplex": {
+      "pivot": "主元",
+      "pivotValue": "主元行同列值",
+      "coefficient": "系数"
+    },
+    "critical-path": {
+      "latest": "最迟开始时间",
+      "earliest": "最早开始时间",
+      "latestStart": "后继最晚开始"
+    },
+    "graph-coloring": {
+      "saturation": "已出现的邻居颜色种数",
+      "degree": "相邻顶点数"
+    },
+    "max-flow": {
+      "residual": "当前剩余容量",
+      "oldForward": "原正向余量",
+      "oldReverse": "原反向余量",
+      "sent": "本次增送量",
+      "pass": "允许传入的流量"
+    },
+    "branch-bound": {
+      "x": "甲产量",
+      "y": "乙产量",
+      "incumbent": "已有可行整数收益",
+      "upperBound": "本支连续上界"
+    },
+    "huffman": {
+      "order": "创建次序"
+    },
+    "crc": {
+      "polynomialBit": "规则对应位",
+      "encoded": "发送位",
+      "mask": "翻转开关"
+    }
+  },
+  "formulaVariants": {
+    "simplex.pivot": {
+      "row[j]←row[j]/pivot": "新格值 = 原格值 ÷ 主元",
+      "row_i[j]←row_i[j]−factor×pivotRow[j]": "新格值 = 原格值 − 乘数 × 主元行同列值"
+    },
+    "branch-bound.relax": {
+      "a·x+b·y≤c+1e−7": "资源用量 ≤ 资源上限 + 10⁻⁷"
+    },
+    "bloom.hash": {
+      "h=imul(h XOR byte,16777619) mod 2^32": "更新值 =（旧值 XOR 字节）× 16777619\n只保留低 32 位",
+      "position=hash mod size": "灯号 = 哈希值对灯数取余"
+    }
+  }
+}
